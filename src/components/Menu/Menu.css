@@ -1,0 +1,14 @@
+*{
+    margin:auto;
+    padding: auto;
+}
+.menu0{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo a img{
+    width: 110px;
+}
