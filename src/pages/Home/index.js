@@ -1,11 +1,11 @@
-import './style.js';
+import {ContainerHome} from './style';
 import face from '../../static/Logo/face.png';
 import insta from '../../static/Logo/insta.png';
 import mail from '../../static/Logo/mail.png';
 
 function Home(){
   return(
-    <Home>Dashboard</Home>
+    <ContainerHome>Dashboard</ContainerHome>
     
   )
     

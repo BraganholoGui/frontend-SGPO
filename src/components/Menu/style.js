@@ -1,21 +1,39 @@
-import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
-  html, body {
-    margin: 0;
-    padding: 0;
+export const StyledMenu = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: ${({ theme }) => theme.primaryLight};
+  height: 100vh;
+  text-align: left;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    width: 100%;
   }
-  *, *::after, *::before {
-    box-sizing: border-box;
+
+  a {
+    font-size: 2rem;
+    text-transform: uppercase;
+    padding: 2rem 0;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    color: ${({ theme }) => theme.primaryDark};
+    text-decoration: none;
+    transition: color 0.3s linear;
+    
+    @media (max-width: ${({ theme }) => theme.mobile}) {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.primaryHover};
+    }
   }
-  body {
-    align-items: center;
-    background: #0D0C1D;
-    color: #EFFFFA;
-    display: flex;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    height: 100vh;
-    justify-content: center;
-    text-rendering: optimizeLegibility;
-  }
-  `
+`;

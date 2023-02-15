@@ -1,12 +1,23 @@
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './App.css';
-import React, { useState, useEffect } from 'react';
 import AppRoutes from './routes';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {AuthProvider} from './contexts/auth';
 
-export default function App() {
+function App() {
+  console.log('teste')
   const [ready, setReady] = useState(false);
 
-  useEffect(() => setReady(true), []);
+  useEffect(() => {
+    setReady(true)
+  }, []);
 
-  return ready ? <AppRoutes /> : null;
+  return ready ?
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
+    : null;
 }
 
+export default App;
