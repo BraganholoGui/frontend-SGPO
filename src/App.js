@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {AuthProvider} from './contexts/auth';
 
 function App() {
-  console.log('teste')
   const [ready, setReady] = useState(false);
 
   useEffect(() => {

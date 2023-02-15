@@ -8,7 +8,7 @@ function clear() {
   history.push('/login');
 }
 
-function handleResponse(resp: {status:any, data:any}) {
+function handleResponse(resp) {
   if(resp){
     if (resp.status === 403) {
       clear();
@@ -19,31 +19,23 @@ function handleResponse(resp: {status:any, data:any}) {
 
 }
 
-export async function get(url:any) {
+export async function get(url) {
 
   return await api.get(url, {
     headers: {
       authorization: 'Bearer '+ await localStorage.getItem('token')
     }
   })
-    .then((response:any):any => {
+    .then((response) => {
       return handleResponse(response);
     })
-    .catch((error:any):any => {
+    .catch((error) => {
       console.log(error);
       clear();
     });
 }
-  interface Response {
-    data: {
-      user: {
-        name: string;
-      };
-      token: string;
-    };
-  }
-  
-  export function post(text: string, user: {name:string}): Promise<Response> {
+
+export function post(text, user) {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
