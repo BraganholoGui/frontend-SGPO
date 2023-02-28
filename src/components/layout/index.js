@@ -3,13 +3,13 @@ import * as S from './styles';
 import Header from '../../components/Header';
 // import Navbar from '../navbar';
 import { useLocation } from 'react-router-dom';
+import Menu from '../Menu';
 
 function Layout({ children, ...rest }) {
   const [showNav, setShowNav] = useState(0);
   const [compact, setCompact] = useState(0);
   const toggle = () => setShowNav(Number(!showNav));
   const [url, setUrl] = useState('');
-  // const history = useHistory();
   const location = useLocation();
 
   // async function loadData() {
@@ -32,6 +32,7 @@ function Layout({ children, ...rest }) {
       </S.GridNav> */}
       <S.GridHeader>
         <Header />
+        <Menu/>
       </S.GridHeader>
       <S.GridMain>{children}</S.GridMain>
     </S.Grid>

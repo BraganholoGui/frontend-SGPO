@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/auth';
-import PublicRoutes from './puclibRoutes';
+import PublicRoutes from './publicRoutes';
 import PrivateRoutes from './privateRoutes';
 
 const AppRoutes = () => {
