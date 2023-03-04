@@ -68,26 +68,25 @@ export const Navigation = styled.nav`
 export const List = styled.ul`
 position: absolute;
 list-style:none;
-top: 30%;
+top: 40%;
 left: 40%;
 transform:translate(-50%,-50%);
-text-align: center;
+text-align: start;
 width: 100%;
 display: flex;
 flex-direction: column;
 li{
   &:hover{
   color: '#fff';
-}
-}
-`;
-export const ItemLink = styled(NavLink)`
-all: unset;
-font-size: 3rem;
-font-weight: 300;
-text-decoration: none;
-color: #000;
-&:hover{
-  color: #fff;
+  }
+  a{
+    font-size: 2.6rem;
+    font-weight: 300;
+    text-decoration: none;
+    color: #000;
+    &:hover{
+      color: #fff;
+    }
+  }
 }
 `;

@@ -19,5 +19,7 @@ export const GridHeader = styled.header`
 
 export const GridMain = styled.main`
   grid-area: main;
-  background-color: #FBFCFD;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
 `;

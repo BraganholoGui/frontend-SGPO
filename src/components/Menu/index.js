@@ -2,32 +2,40 @@ import React, { useState } from 'react';
 import * as S from './style';
 import MenuIcon from '@mui/icons-material/Menu';
 import ClearIcon from '@mui/icons-material/Clear';
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Menu = () => {
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click)
+  const [click, setClick] = useState(true);
+
+  const handleClick = () => setClick(!click);
+
   return (
     <>
       <S.MenuLabel htmlFor='navi-toggle' onClick={handleClick}>
-        <S.Icon onClick={handleClick} clicked={!click}></S.Icon>
+        <S.Icon onClick={handleClick} clicked={!click }></S.Icon>
       </S.MenuLabel>
-      <S.Nav clicked={click} onClick={click ? handleClick : null}>
+      <S.Nav clicked={click} >
         {
           !click ?
             <S.Navigation >
               <S.List>
                 <li>
-                  <S.ItemLink clicked={click} to='/'>Home</S.ItemLink>
+                  <a href='/' >Dashboard</a>
                 </li>
                 <li>
-                  <S.ItemLink clicked={click} to='/about'>About</S.ItemLink>
+                  <a href='/about'>About</a>
                 </li>
                 <li>
-                  <S.ItemLink clicked={click} to='/'>Home</S.ItemLink>
+                  <a href='/' >Tarefas</a>
                 </li>
                 <li>
-                  <S.ItemLink clicked={click} to='/'>Home</S.ItemLink>
+                  <a href='/'>Produtos</a>
+                </li>
+                <li>
+                  <a href='/'>Estoque</a>
+                </li>
+                <li>
+                  <a href='/'>Usuários</a>
                 </li>
               </S.List>
             </S.Navigation> : null

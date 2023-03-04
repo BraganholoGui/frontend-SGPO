@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
 export const ContainerMain = styled.div`
+  width: 100%;
   display:flex;
-  justify-content:space-around;
+  justify-content: flex-end;
+  align-items: center;
   background-color:#115b4c;
   height:5rem;
   top: 0rem;
-  /* background-image: linear-gradient(rgb(25, 25, 105), rgb(187, 183, 183)); */
+`; 
+
+export const Title = styled.div`
+ width: 70%;
+ display:flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 3vh;
 `; 

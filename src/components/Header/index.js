@@ -4,7 +4,9 @@ function HeaderInit() {
   return (
     <>
       <S.ContainerMain>
-        Header
+        <S.Title>
+          Sistema de Gestao de processos operacionais (SGPO)
+        </S.Title>
       </S.ContainerMain>
     </>
   )

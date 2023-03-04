@@ -1,11 +1,12 @@
-import {ContainerHome} from './style';
+import { ContainerHome } from './style';
 
-function About(){
-  return(
-    <ContainerHome>about</ContainerHome>
-    
+function About() {
+  return (
+    <>
+      <ContainerHome>about</ContainerHome>
+    </>
   )
-    
+
 }
 
 export default About;

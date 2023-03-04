@@ -3,7 +3,7 @@ import face from '../../static/Logo/face.png';
 import insta from '../../static/Logo/insta.png';
 import mail from '../../static/Logo/mail.png';
 
-function Home(){
+function Dashboard(){
   return(
     <ContainerHome>Dashboard</ContainerHome>
     
@@ -11,4 +11,4 @@ function Home(){
     
 }
 
-export default Home;
+export default Dashboard;
