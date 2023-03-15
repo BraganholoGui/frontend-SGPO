@@ -26,8 +26,8 @@ export const Nav = styled.div`
   background-image: radial-gradient(${COLORS.primaryDark},${COLORS.primaryLight});
   /* background:${(props) => (!props.clicked? " #115b4c":"#b6edc8")}; */
   height: 100vh;
-  border-radius: 0% 0% 100% 0%;
-  width: ${(props) => (props.clicked? " 5rem":" 17rem")};
+  /* border-radius: 0% 0% 100% 0%; */
+  width: ${(props) => (props.clicked? " 5rem":" 14rem")};
   height: ${(props) => (props.clicked? " 5rem":" 100vh")};
   transition: transform 3.2s;
 `;
@@ -80,7 +80,7 @@ li{
   color: '#fff';
   }
   a{
-    font-size: 2.6rem;
+    font-size: 1.5rem;
     font-weight: 300;
     text-decoration: none;
     color: #000;
