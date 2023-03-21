@@ -23,6 +23,7 @@ export const Nav = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  border-radius:${(props) => (!props.clicked? " 0% 0% 0% 0%":"0% 0% 50% 0%")};
   background-image: radial-gradient(${COLORS.primaryDark},${COLORS.primaryLight});
   /* background:${(props) => (!props.clicked? " #115b4c":"#b6edc8")}; */
   height: 100vh;
