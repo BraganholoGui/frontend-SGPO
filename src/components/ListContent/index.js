@@ -1,11 +1,14 @@
 import * as S from './style';
 
-function HeaderContent(props) {
+function ListContent(props) {
   return (
       <S.ContainerMain>
+        <S.Box>
+          dfdsf
+        </S.Box>
       </S.ContainerMain>
   )
 
 }
 
-export default HeaderContent;
+export default ListContent;
