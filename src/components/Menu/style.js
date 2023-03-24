@@ -24,7 +24,7 @@ export const Nav = styled.div`
   top: 0;
   left: 0;
   border-radius:${(props) => (!props.clicked? " 0% 0% 0% 0%":"0% 0% 50% 0%")};
-  background-image: radial-gradient(${COLORS.primaryDark},${COLORS.primaryLight});
+  background-image: radial-gradient(${COLORS.primaryLight},${COLORS.primaryDark});
   /* background:${(props) => (!props.clicked? " #115b4c":"#b6edc8")}; */
   height: 100vh;
   /* border-radius: 0% 0% 100% 0%; */
@@ -64,29 +64,32 @@ cursor: pointer;
 export const Navigation = styled.nav`
  height: 50vh;
  width: 100vh; 
+ display: flex;
+ justify-content: center;
+ align-items: center;
 `;
 
 export const List = styled.ul`
 position: absolute;
 list-style:none;
-top: 40%;
-left: 40%;
+top: 52%;
+left: 52%;
 transform:translate(-50%,-50%);
 text-align: start;
 width: 100%;
 display: flex;
 flex-direction: column;
 li{
-  &:hover{
-  color: '#fff';
-  }
+  margin-bottom: 10px;
   a{
     font-size: 1.5rem;
     font-weight: 300;
     text-decoration: none;
     color: #000;
     &:hover{
-      color: #fff;
+      font-weight: 450;
+      margin-left: 5px;
+
     }
   }
 }

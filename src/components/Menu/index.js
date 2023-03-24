@@ -23,19 +23,37 @@ const Menu = () => {
                   <a href='/' >Dashboard</a>
                 </li>
                 <li>
-                  <a href='/about'>About</a>
+                  <a href='/about'>Tarefas</a>
                 </li>
                 <li>
-                  <a href='/' >Tarefas</a>
+                  <a href='/'>Temas *</a>
                 </li>
                 <li>
-                  <a href='/'>Produtos</a>
+                  <a href='/' >Compras</a>
+                </li>
+                <li>
+                  <a href='/'>Vendas</a>
                 </li>
                 <li>
                   <a href='/'>Estoque</a>
                 </li>
                 <li>
-                  <a href='/'>Usuários</a>
+                  <a href='/'>Produtos *</a>
+                </li>
+                <li>
+                  <a href='/'>Materiais *</a>
+                </li>
+                <li>
+                  <a href='/'>Compradores *</a>
+                </li>
+                <li>
+                  <a href='/'>Fornecedores *</a>
+                </li>
+                <li>
+                  <a href='/'>Times *</a>
+                </li>
+                <li>
+                  <a href='/users'>Usuários *</a>
                 </li>
               </S.List>
             </S.Navigation> : null

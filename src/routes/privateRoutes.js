@@ -1,16 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Login from '../pages/Login';
+import Dashboard from '../pages/Dashboard';
+import Layout from '../components/layout';
+import User from '../pages/Users';
 
-const PrivateRoutes = () => {
+const PublicRoutes = () => {
   return (
     <BrowserRouter>
-    <Switch>
-      <Route path="/" component={Login} />
-    </Switch>
+      <Layout>
+        <Switch>
+          <Route path="/users" component={User} />
+          <Route path="/" component={Dashboard} />
+        </Switch>
+      </Layout>
     </BrowserRouter>
   );
 };
 
-export default PrivateRoutes;
+export default PublicRoutes;

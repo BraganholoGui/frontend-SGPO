@@ -5,8 +5,8 @@ import PrivateRoutes from './privateRoutes';
 
 const AppRoutes = () => {
   const { signed } = useAuth();
-  return <PublicRoutes />
-  return signed ? <PublicRoutes /> : <PrivateRoutes />;
+  return <PrivateRoutes />
+  return signed ? <PrivateRoutes /> : <PublicRoutes />;
 };
 
 export default AppRoutes;
