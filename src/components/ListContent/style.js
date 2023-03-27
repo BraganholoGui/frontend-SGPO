@@ -9,7 +9,4 @@ export const ContainerMain = styled.div`
 export const Box = styled.div`
   margin-top: 2%;
   width: 70%;
-  border: 1px solid black;
-
-
 `; 
