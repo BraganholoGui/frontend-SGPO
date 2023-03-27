@@ -3,8 +3,21 @@ import { Container } from './style';
 import { Person } from '@mui/icons-material';
 import ListContent from '../../components/ListContent';
 import DataTable from 'react-data-table-component';
+import { get } from '../../services/actions';
+import { useEffect, useState } from 'react';
 
 function User() {
+  const [data, setData] = useState([]);
+
+  async function loadData() {
+    get(`/users`)
+      .then(async response => {
+        if (response) {
+          setData(response.records);
+        }
+      });
+  }
+
   const columns = [
     {
       name: 'Acesso',
@@ -28,52 +41,34 @@ function User() {
     },
   ];
 
-  const data = [
-    {
-      id: 1,
-      access_name: 'Beetlejuice',
-      year: '1988',
-    },
-    {
-      id: 2,
-      access_name: 'Ghostbusters',
-      year: '1984',
-    },
-    {
-      id: 3,
-      access_name: 'Beetlejuice',
-      year: '1988',
-    },
-    {
-      id: 4,
-      access_name: 'Ghostbusters',
-      year: '1984',
-    },
-  ];
   const customStyles = {
     table: {
       style: {
-        border: '1px solid black', 
+        border: '1px solid black',
       },
     },
     rows: {
       style: {
-        minHeight: '72px', 
+        minHeight: '72px',
       },
     },
     headCells: {
       style: {
-        paddingLeft: '8px', 
+        paddingLeft: '8px',
         paddingRight: '8px',
       },
     },
     cells: {
       style: {
-        paddingLeft: '8px', 
+        paddingLeft: '8px',
         paddingRight: '8px',
       },
     },
   };
+
+  useEffect(() => {
+      loadData();
+  }, [])
   return (
     <Container>
       <HeaderContent title="Usuários" icon={<Person fontSize="large" />} />
