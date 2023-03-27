@@ -27,14 +27,50 @@ function User() {
       title: 'Ghostbusters',
       year: '1984',
     },
-  ]
+    {
+      id: 3,
+      title: 'Beetlejuice',
+      year: '1988',
+    },
+    {
+      id: 4,
+      title: 'Ghostbusters',
+      year: '1984',
+    },
+  ];
+  const customStyles = {
+    table: {
+      style: {
+        border: '1px solid black', 
+      },
+    },
+    rows: {
+      style: {
+        minHeight: '72px', 
+      },
+    },
+    headCells: {
+      style: {
+        paddingLeft: '8px', 
+        paddingRight: '8px',
+      },
+    },
+    cells: {
+      style: {
+        paddingLeft: '8px', 
+        paddingRight: '8px',
+      },
+    },
+  };
   return (
     <Container>
       <HeaderContent title="Usuários" icon={<Person fontSize="large" />} />
       <ListContent
         columns={columns}
         data={data}
-      ></ListContent>
+        customStyles={customStyles}
+      />
+
     </Container>
   )
 
