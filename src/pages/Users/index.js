@@ -7,11 +7,23 @@ import DataTable from 'react-data-table-component';
 function User() {
   const columns = [
     {
-      name: 'Title',
-      selector: row => row.title,
+      name: 'Acesso',
+      selector: row => row.access_name,
     },
     {
-      name: 'Year',
+      name: 'Nome',
+      selector: row => row.year,
+    },
+    {
+      name: 'Cargo',
+      selector: row => row.year,
+    },
+    {
+      name: 'Time',
+      selector: row => row.year,
+    },
+    {
+      name: 'Editar',
       selector: row => row.year,
     },
   ];
@@ -19,22 +31,22 @@ function User() {
   const data = [
     {
       id: 1,
-      title: 'Beetlejuice',
+      access_name: 'Beetlejuice',
       year: '1988',
     },
     {
       id: 2,
-      title: 'Ghostbusters',
+      access_name: 'Ghostbusters',
       year: '1984',
     },
     {
       id: 3,
-      title: 'Beetlejuice',
+      access_name: 'Beetlejuice',
       year: '1988',
     },
     {
       id: 4,
-      title: 'Ghostbusters',
+      access_name: 'Ghostbusters',
       year: '1984',
     },
   ];
