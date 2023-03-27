@@ -36,6 +36,8 @@ function ListContent(props) {
       style: {
         borderRadius: '20px',
         borderRight: '2px solid rgb(	17, 91, 76, 0.5)',
+        fontWeight:700,
+        fontSize:'15px'
       },
     },
     cells: {
