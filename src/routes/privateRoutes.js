@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
 import Layout from '../components/layout';
-import User from '../pages/Users/List';
-import UserEdit from '../pages/Users/Edit';
+import User from '../pages/User/List';
+import UserEdit from '../pages/User/Edit';
 
 const PublicRoutes = () => {
   return (

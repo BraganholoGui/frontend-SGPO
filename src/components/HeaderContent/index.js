@@ -3,7 +3,7 @@ import * as S from './style';
 function HeaderContent(props) {
   return (
       <S.ContainerMain>
-        <S.Title>
+        <S.Title id={props.id}>
           <S.Icon>
             {props.icon}
           </S.Icon>

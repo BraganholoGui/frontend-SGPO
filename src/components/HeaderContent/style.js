@@ -11,7 +11,7 @@ export const ContainerMain = styled.div`
 `; 
 
 export const Title = styled.div`
- width: 62%;
+ width: ${(props) => (!props.id? " 62%":"70%")};
  color: #000;
  font-size: 3vh;
  display: flex;
