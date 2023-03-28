@@ -11,6 +11,9 @@ function HeaderContent(props) {
             {props.title}
           </S.TitleText>
         </S.Title>
+        <S.ButtonBox>
+          <S.Button>Novo Usuário</S.Button>
+        </S.ButtonBox>
       </S.ContainerMain>
   )
 

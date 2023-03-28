@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { theme } from '../../theme';
 const COLORS ={
   primaryDark: '#115b4c',
   primaryLight: '#b6edc8',

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../theme';
 
 export const ContainerMain = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ export const ContainerMain = styled.div`
 `; 
 
 export const Title = styled.div`
- width: 65%;
+ width: 69%;
  color: #000;
  font-size: 3vh;
  display: flex;
@@ -31,7 +32,23 @@ export const TitleText = styled.div`
 `; 
 
 export const ButtonBox = styled.div`
- width: 35%;
  display: flex;
  text-align: center;
+`; 
+
+export const Button = styled.button`
+ display: flex;
+ text-align: center;
+ justify-content: center;
+ align-items: center;
+ width:150px;
+ height: 40px;
+ background-color: ${theme.military};
+ color:#fff;
+ border-radius: 10px;
+ text-transform: uppercase;
+ &:hover{
+  background-color: rgba(24, 31, 28, 0.9);
+  font-style: italic;
+ }
 `; 
