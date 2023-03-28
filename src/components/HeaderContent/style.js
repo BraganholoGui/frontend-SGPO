@@ -29,3 +29,9 @@ export const TitleText = styled.div`
  text-align: center;
  font-style: italic;
 `; 
+
+export const ButtonBox = styled.div`
+ width: 35%;
+ display: flex;
+ text-align: center;
+`; 

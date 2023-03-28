@@ -12,6 +12,9 @@ function ListContent(props) {
   }, [props.data, props.columns]);
 
   const customStyles = {
+    all:{
+      borderRadius: '20px',
+    },
     table: {
       style: {
         borderTop: '2px solid rgb(	17, 91, 76, 0.3)',
@@ -40,6 +43,12 @@ function ListContent(props) {
         fontSize:'15px'
       },
     },
+    noData: {
+      style: {
+        borderRadius: '20px',
+        padding:'24px'
+      },
+    },
     cells: {
       style: {
         borderRadius: '20px',
@@ -58,6 +67,8 @@ function ListContent(props) {
           customStyles={customStyles}
           subHeaderAlign={'left'}
           pagination
+          highlightOnHover
+          noDataComponent={"Não há cadastros!"}
           striped
         />
       </S.Box>
