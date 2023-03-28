@@ -11,7 +11,7 @@ export const ContainerMain = styled.div`
 `; 
 
 export const Title = styled.div`
- width: 69%;
+ width: 62%;
  color: #000;
  font-size: 3vh;
  display: flex;
@@ -44,11 +44,17 @@ export const Button = styled.button`
  width:150px;
  height: 40px;
  background-color: ${theme.military};
- color:#fff;
+ a{
+   color:#fff; 
+   text-transform: uppercase;
+   text-decoration: none;
+   &:hover{
+    font-style: italic;
+   }
+ }
  border-radius: 10px;
- text-transform: uppercase;
+
  &:hover{
   background-color: rgba(24, 31, 28, 0.9);
-  font-style: italic;
  }
 `; 

@@ -3,13 +3,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
 import Layout from '../components/layout';
-import User from '../pages/Users';
+import User from '../pages/Users/List';
+import UserEdit from '../pages/Users/Edit';
 
 const PublicRoutes = () => {
   return (
     <BrowserRouter>
       <Layout>
         <Switch>
+          <Route path="/user/:id" component={UserEdit} />
           <Route path="/users" component={User} />
           <Route path="/" component={Dashboard} />
         </Switch>
