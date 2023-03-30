@@ -13,6 +13,7 @@ function User() {
     get(`/users`)
       .then(async response => {
         if (response) {
+          console.log(response.records);
           setData(response.records);
         }
       });
@@ -20,20 +21,20 @@ function User() {
 
   const columns = [
     {
-      name: 'Acesso',
+      name: 'Nome de Acesso',
       selector: row => row.access_name,
     },
     {
       name: 'Nome',
-      selector: row => row.year,
+      selector: row => row.Person.name,
     },
     {
       name: 'Cargo',
-      selector: row => row.year,
+      selector: row => row.Role.name,
     },
     {
       name: 'Time',
-      selector: row => row.year,
+      selector: row => row.Team.name,
     },
     {
       name: 'Editar',
