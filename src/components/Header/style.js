@@ -17,4 +17,8 @@ export const Title = styled.div`
   align-items: center;
   color: #fff;
   font-size: 3vh;
+  @media (max-width: 1400px) {
+     width: 70%;
+     font-size: 2.5vh;
+  }
 `; 

@@ -1,7 +1,13 @@
 export const theme = {
-    primaryDark: '#0D0C1D',
-    primaryLight: '#EFFFFA',
+    primaryDark: '#115b4c',
+    primaryLight: '#b6edc8',
     primaryHover: '#343078',
+    lastDark: '#504B43',
+    light: '#72a98f',
+    grey:'#cfcfcf',
+    acqua:'#32908f',
+    military: '#181F1C',
+    militaryLight: '#274029',
     mobile: '576px',
     colorTest:[
         '#0B3954',
