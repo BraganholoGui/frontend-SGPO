@@ -2,6 +2,7 @@ import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
 import { Person } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
+import DataTable from 'react-data-table-component';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -73,7 +74,7 @@ function UserEdit() {
   }, [])
   return (
     <Container>
-      <HeaderContent id={id} title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large"/>} />
+      <HeaderContent title="Usuários" icon={<Person fontSize="large"/>} titleButton="Novo Usuário" linkTo="/users/novo" />
       <ListContent
         columns={columns}
         data={data}
