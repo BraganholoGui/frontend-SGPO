@@ -6,8 +6,9 @@ import DataTable from 'react-data-table-component';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import * as S from './style';
 
-function UserEdit() {
+function UserList() {
   const [data, setData] = useState([]);
   const id = useParams();
 
@@ -15,7 +16,6 @@ function UserEdit() {
     get(`/users`)
       .then(async response => {
         if (response) {
-          console.log(response.records);
           setData(response.records);
         }
       });
@@ -24,19 +24,19 @@ function UserEdit() {
   const columns = [
     {
       name: 'Nome de Acesso',
-      selector: row => row.access_name,
+      selector: row =>  <S.Row href={`users/${row.id}`}>{row.access_name}</S.Row>,
     },
     {
       name: 'Nome',
-      selector: row => row.Person.name,
+      selector: row => <S.Row href={`users/${row.id}`}>{row.Person.name}</S.Row>,
     },
     {
       name: 'Cargo',
-      selector: row => row.Role.name,
+      selector: row => <S.Row href={`users/${row.id}`}>{row.Role.name}</S.Row>,
     },
     {
       name: 'Time',
-      selector: row => row.Team.name,
+      selector: row => <S.Row href={`users/${row.id}`}>{row.Team.name}</S.Row>,
     },
     {
       name: 'Editar',
@@ -86,4 +86,4 @@ function UserEdit() {
 
 }
 
-export default UserEdit;
+export default UserList;

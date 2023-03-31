@@ -6,8 +6,9 @@ import DataTable from 'react-data-table-component';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import * as S from './style';
 
-function UserEdit() {
+function User() {
   const [data, setData] = useState([]);
   const id = useParams();
 
@@ -75,15 +76,8 @@ function UserEdit() {
   return (
     <Container>
       <HeaderContent id={id} title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large"/>} />
-      <ListContent
-        columns={columns}
-        data={data}
-        customStyles={customStyles}
-      />
-
     </Container>
   )
 
 }
-
-export default UserEdit;
+export default User;
