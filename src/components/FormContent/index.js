@@ -10,11 +10,11 @@ function FormContent(props) {
     setColumns(props.columns);
   }, [props.data, props.columns]);
 
- 
+
   return (
     <S.ContainerMain>
       <S.Box>
-       {props.children}
+        {props.children}
       </S.Box>
     </S.ContainerMain>
   )

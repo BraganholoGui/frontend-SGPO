@@ -7,7 +7,7 @@ import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as S from './style';
-import { InputText } from '../../../components/InputsForm/InputText/style';
+import InputForm from '../../../components/InputsForm/InputForm';
 import FormContent from '../../../components/FormContent';
 
 function User() {
@@ -25,14 +25,18 @@ function User() {
   }
 
   useEffect(() => {
-      loadData();
+    loadData();
   }, [])
+
   return (
     <Container>
-      <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large"/>} />
+      <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large" />} />
       <FormContent>
-        <InputText></InputText>
-
+        <S.ContentBox>
+          <InputForm title="Nome" type='password' size="small"></InputForm>
+          <InputForm type='password' size="small"></InputForm>
+          <InputForm type='password' size="small"></InputForm>
+        </S.ContentBox>
       </FormContent>
     </Container>
   )
