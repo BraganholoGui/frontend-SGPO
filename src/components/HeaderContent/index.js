@@ -11,11 +11,11 @@ function HeaderContent(props) {
             {props.title}
           </S.TitleText>
         </S.Title>
-        {!props.id ? 
+        {/* {!props.id ?  */}
         <S.ButtonBox>
           <S.Button><a href={props.linkTo}>{props.titleButton}</a></S.Button>
         </S.ButtonBox>
-        : null}
+        {/* : null} */}
       </S.ContainerMain>
   )
 

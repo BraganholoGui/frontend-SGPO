@@ -29,7 +29,7 @@ function User() {
   }, [])
   return (
     <Container>
-      <HeaderContent id={id} title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large"/>} />
+      <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large"/>} />
       <FormContent>
         <InputText></InputText>
 
