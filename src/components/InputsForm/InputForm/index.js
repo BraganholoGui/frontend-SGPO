@@ -6,25 +6,41 @@ function InputForm(props) {
   const [size, setSize] = useState('');
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
+  const [value, setValue] = useState('');
 
   useEffect(() => {
     setSize(props.size);
     setType(props.type);
     setTitle(props.title);
+    setValue(props.value);
   }, [])
 
   return (
     <>
       {
         size == 'small' ?
-          <>
+          <S.ContainerFormSmall>
+            <S.Title>{title}</S.Title>
             <S.InputSmall
               type={type}
             />
-          </>
+          </S.ContainerFormSmall>
           :
           size == 'medium' ?
-            null : null
+            <S.ContainerFormMedium>
+              <S.Title>{title}</S.Title>
+              <S.InputSmall
+                type={type}
+              />
+            </S.ContainerFormMedium>
+            :
+            <S.ContainerFormBig>
+              <S.Title>{title}</S.Title>
+              <S.InputSmall
+                value={value}
+                type={type}
+              />
+            </S.ContainerFormBig>
 
       }
 
