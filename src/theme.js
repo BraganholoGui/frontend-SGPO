@@ -8,6 +8,7 @@ export const theme = {
     acqua:'#32908f',
     military: '#181F1C',
     militaryLight: '#274029',
+    greenL: '#4da768',
     mobile: '576px',
     colorTest:[
         '#0B3954',

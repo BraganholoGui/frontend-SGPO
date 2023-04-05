@@ -10,7 +10,7 @@ import * as S from './style';
 
 function UserList() {
   const [data, setData] = useState([]);
-  const id = useParams();
+  const {id} = useParams();
 
   async function loadData() {
     get(`/users`)

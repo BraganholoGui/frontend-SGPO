@@ -7,7 +7,7 @@ background-color: #f2f2f2;
 border-radius: 10px;
 border: 2px solid #ccc;
 box-shadow: 2px 2px 3px #ccc;
-height: 40px;
+height: 50px;
 font-family: Arial, sans-serif;
 font-size: 16px;
 color: #333;

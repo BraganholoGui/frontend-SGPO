@@ -1,3 +1,4 @@
+import Button from '../ButtonLink';
 import * as S from './style';
 
 function HeaderContent(props) {
@@ -12,7 +13,7 @@ function HeaderContent(props) {
           </S.TitleText>
         </S.Title>
         <S.ButtonBox>
-          <S.Button><a href={props.linkTo}>{props.titleButton}</a></S.Button>
+          <Button><a href={props.linkTo}>{props.titleButton}</a></Button>
         </S.ButtonBox>
       </S.ContainerMain>
   )

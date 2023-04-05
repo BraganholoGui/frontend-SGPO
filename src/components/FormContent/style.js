@@ -18,5 +18,6 @@ export const Box = styled.div`
   border-bottom: 2px solid rgb(	17, 91, 76, 0.5);
   border-radius: 20px;
   display:flex ;
+  flex-direction: column;
 `; 
 
