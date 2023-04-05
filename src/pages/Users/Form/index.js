@@ -54,7 +54,7 @@ function User() {
           <InputForm value={123} title="Nome" type='text' size="small"></InputForm>
         </S.ContentBox>
         <S.ContentBox>
-          <InputForm value={email} title="Email" type='text' size="small"></InputForm>
+          <InputForm value={email} title="Email" readOnly={true} type='text' size="small"></InputForm>
           <InputForm value={phone} title="Telefone" type='teext' size="small"></InputForm>
           <InputForm value={team} title="Time" type='text' size="small"></InputForm>
         </S.ContentBox>

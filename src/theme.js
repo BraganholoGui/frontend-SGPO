@@ -9,6 +9,8 @@ export const theme = {
     military: '#181F1C',
     militaryLight: '#274029',
     greenL: '#4da768',
+    inputLock: 'rgba(190, 190, 190, 0.5)',
+    input: 'rgba(242, 242, 242, 0.5)',
     mobile: '576px',
     colorTest:[
         '#0B3954',

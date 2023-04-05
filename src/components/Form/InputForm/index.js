@@ -7,12 +7,14 @@ function InputForm(props) {
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
+  const [readOnly, setReadOnly] = useState(false);
 
   useEffect(() => {
     setSize(props.size);
     setType(props.type);
     setTitle(props.title);
     setValue(props.value);
+    setReadOnly(props.readOnly);
   }, [])
 
   return (
@@ -23,6 +25,8 @@ function InputForm(props) {
             <S.Title>{title}</S.Title>
             <S.InputSmall
               type={type}
+              readOnly={readOnly}
+
             />
           </S.ContainerFormSmall>
           :
@@ -30,7 +34,7 @@ function InputForm(props) {
             <S.ContainerFormMedium>
               <S.Title>{title}</S.Title>
               <S.InputSmall
-                type={type}
+                type={type} readOnly={readOnly}
               />
             </S.ContainerFormMedium>
             :
@@ -39,6 +43,7 @@ function InputForm(props) {
               <S.InputSmall
                 value={value}
                 type={type}
+                readOnly
               />
             </S.ContainerFormBig>
 
