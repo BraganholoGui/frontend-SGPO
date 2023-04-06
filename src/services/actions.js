@@ -27,6 +27,7 @@ export async function get(url) {
     }
   })
     .then((response) => {
+      console.log('')
       return handleResponse(response);
     })
     .catch((error) => {

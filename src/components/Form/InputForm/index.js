@@ -15,7 +15,7 @@ function InputForm(props) {
     setTitle(props.title);
     setValue(props.value);
     setReadOnly(props.readOnly);
-  }, [])
+  }, [props])
 
   return (
     <>
@@ -26,6 +26,7 @@ function InputForm(props) {
             <S.InputSmall
               type={type}
               readOnly={readOnly}
+              value={value}
 
             />
           </S.ContainerFormSmall>
@@ -34,7 +35,7 @@ function InputForm(props) {
             <S.ContainerFormMedium>
               <S.Title>{title}</S.Title>
               <S.InputSmall
-                type={type} readOnly={readOnly}
+                type={type} readOnly={readOnly} value={value}
               />
             </S.ContainerFormMedium>
             :

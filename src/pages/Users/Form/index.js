@@ -3,6 +3,7 @@ import { Person } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import DataTable from 'react-data-table-component';
 import { get } from '../../../services/actions';
+import api from '../../../services/api'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as S from './style';
@@ -12,7 +13,7 @@ import ButtonForm from '../../../components/Form/ButtonForm';
 
 function User() {
   const {id} = useParams();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const [accessName, setAccessName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -25,8 +26,7 @@ function User() {
       get(`/users/${id}`)
         .then(async response => {
           if (response) {
-            console.log(response.records);
-            setData(response.records);
+            setData(response.user);
           }
         });
     }
@@ -37,6 +37,7 @@ function User() {
   }, [])
   
   useEffect(() => {
+    console.log(data.access_name)
     setAccessName(data.access_name);
     setEmail(data.Person && data.Person.Contact ? data.Person.Contact.email : '');
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
