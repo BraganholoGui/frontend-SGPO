@@ -5,15 +5,17 @@ import ButtonSave from '../ButtonSave';
 import * as S from './style';
 
 function ButtonForm(props) {
-
+  const [url, setUrl] = useState('');
+  const [obj, setObj] = useState('');
   useEffect(() => {
-
-  }, [])
+    setUrl(props.url)
+    setObj(props.obj)
+  }, [props])
 
   return (
     <S.Container>
       <S.Box>
-        <ButtonSave/>
+        <ButtonSave url={url} obj={obj} />
       </S.Box>
     </S.Container>
 

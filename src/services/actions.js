@@ -36,6 +36,34 @@ export async function get(url) {
     });
 }
 
+
+export function put(url, data, method = "PUT") {
+
+  // Swal.mixin({
+  //   toast: true,
+  //   position: 'top-end'
+  // }).fire({ onOpen: () => { Swal.showLoading() } });
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      api.put(`${url}`, JSON.stringify(data), {
+        headers: {
+          authorization: 'Bearer ' + await localStorage.getItem("token")
+        }
+      })
+        .then(response => {
+          resolve(handleResponse(response))
+        })
+        .catch(error => {
+          reject(error)
+          // clear()
+        })
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
 export function post(text, user) {
     return new Promise((resolve) => {
       setTimeout(() => {

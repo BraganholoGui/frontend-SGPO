@@ -12,9 +12,12 @@ import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
 
 function User() {
-  const {id} = useParams();
+  const { id } = useParams();
+  const url = '/users';
   const [data, setData] = useState({});
+  const [name, setName] = useState('');
   const [accessName, setAccessName] = useState('');
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [team, setTeam] = useState('');
@@ -22,7 +25,7 @@ function User() {
 
 
   async function loadData() {
-    if(id !='novo'){
+    if (id != 'novo') {
       get(`/users/${id}`)
         .then(async response => {
           if (response) {
@@ -32,12 +35,33 @@ function User() {
     }
   }
 
+  function buildSubmitObj() {
+    let obj = {
+      contact:{
+          id:data.Person && data.Person.Contact ? data.Person.Contact.id : null,
+          email:email,
+          phone:phone,
+      },
+      person:{
+          id:data.Person ? data.Person.id : null,
+          name:name
+      },
+      access_name:accessName,
+      password:password,
+      team:1,
+      role:1
+  }
+
+    return obj
+  }
+
   useEffect(() => {
     loadData();
   }, [])
-  
+
   useEffect(() => {
-    console.log(data.access_name)
+    setName(data.Person && data.Person ? data.Person.name : '');
+    setPassword(data.password_hash);
     setAccessName(data.access_name);
     setEmail(data.Person && data.Person.Contact ? data.Person.Contact.email : '');
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
@@ -51,8 +75,8 @@ function User() {
       <FormContent>
         <S.ContentBox>
           <InputForm value={accessName} title="Nome de acesso" type='text' size="small"></InputForm>
-          <InputForm value={123} title="Senha" type='password' size="small"></InputForm>
-          <InputForm value={123} title="Nome" type='text' size="small"></InputForm>
+          <InputForm value={password} title="Senha" type='password' size="small"></InputForm>
+          <InputForm value={name} title="Nome" type='text' size="small"></InputForm>
         </S.ContentBox>
         <S.ContentBox>
           <InputForm value={email} title="Email" readOnly={true} type='text' size="small"></InputForm>
@@ -62,7 +86,7 @@ function User() {
         <S.ContentBox>
           <InputForm value={role} title="Cargo" type='text' size="small"></InputForm>
         </S.ContentBox>
-      <ButtonForm/>
+        <ButtonForm url={url} obj={buildSubmitObj()} />
       </FormContent>
     </S.Container>
   )
