@@ -5,6 +5,8 @@ import { theme } from '../../../theme';
 
 function SelectOptions(props) {
     const [options, setOptions] = useState([]);
+    const [selected, setSelected] = useState(null);
+
     const colourStyles = {
         control: (styles) => ({
             ...styles,
@@ -40,10 +42,20 @@ function SelectOptions(props) {
 
     useEffect(() => {
         setOptions(props.options);
+        setSelected(props.selected);
     }, [props])
 
     return (
-        <Select styles={colourStyles} options={options} />
+        <Select
+            styles={colourStyles}
+            options={options}
+            onChange={(e) => {
+                setSelected(e.id)
+                props.setSelected(e.id)
+                props.selected=e.id
+            }}
+            selected={selected}
+        />
     )
 
 }

@@ -19,6 +19,7 @@ function User() {
   const [phone, setPhone] = useState('');
   const [team, setTeam] = useState('');
   const [role, setRole] = useState('');
+  const [selected, setSelected] = useState('');
 
   const [roleOptions, setRoleOptions] = useState('');
 
@@ -58,10 +59,9 @@ function User() {
     get(`/roles`)
     .then(async response => {
       if (response) {
-        console.log(response)
         response.records.map(item =>{
           item.value = item.id;
-          item.label = item.name
+          item.label = item.id +'. ' + item.name
         })
         setRoleOptions(response.records);
       }
@@ -101,7 +101,7 @@ function User() {
             <InputForm value={team} setValue={setTeam} title="Time" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm options={roleOptions} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
+            <InputForm options={roleOptions} selected={selected} setSelected={setSelected} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
             <InputForm value={role} setValue={setRole} title="Cargo" type='text' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />

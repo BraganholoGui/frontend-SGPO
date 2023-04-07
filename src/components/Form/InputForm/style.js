@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme';
 
-export const InputSmall = styled.input`
+export const Input = styled.input`
 /* width: 30%; */
 background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `${theme.input}`)};
 border-radius: 10px;
@@ -12,6 +12,7 @@ font-family: Arial, sans-serif;
 font-size: 16px;
 color: #333;
 transition: all 0.9s ease-in-out;
+padding:10px;
 
 &&:focus{
     border: 2px solid ${theme.primaryDark};
