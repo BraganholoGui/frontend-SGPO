@@ -65,7 +65,7 @@ cursor: pointer;
 
 export const Navigation = styled.nav`
  height: 50vh;
- width: 100vh; 
+ width: 14vh; 
  display: flex;
  justify-content: center;
  align-items: center;

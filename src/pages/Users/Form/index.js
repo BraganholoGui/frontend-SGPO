@@ -37,20 +37,20 @@ function User() {
 
   function buildSubmitObj() {
     let obj = {
-      contact:{
-          id:data.Person && data.Person.Contact ? data.Person.Contact.id : null,
-          email:email,
-          phone:phone,
+      contact: {
+        id: data.Person && data.Person.Contact ? data.Person.Contact.id : null,
+        email: email,
+        phone: phone,
       },
-      person:{
-          id:data.Person ? data.Person.id : null,
-          name:name
+      person: {
+        id: data.Person ? data.Person.id : null,
+        name: name
       },
-      access_name:accessName,
-      password:password,
-      team:1,
-      role:1
-  }
+      access_name: accessName,
+      password: password,
+      team: 1,
+      role: 1
+    }
 
     return obj
   }
@@ -70,6 +70,7 @@ function User() {
   }, [data])
 
   return (
+  <>
     <S.Container>
       <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large" />} />
       <FormContent>
@@ -89,6 +90,7 @@ function User() {
         <ButtonForm url={url} obj={buildSubmitObj()} />
       </FormContent>
     </S.Container>
+  </>
   )
 
 }

@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import * as S from './style';
-import { put, post} from '../../../services/actions'
+import { put, post } from '../../../services/actions'
 import { useHistory, useParams } from 'react-router-dom';
-import {toast} from '../../../GeneralFunctions/functions'
+import { toast } from '../../../GeneralFunctions/functions'
+import Loading from '../../Loading';
 
 function ButtonSave(props) {
-  const {id} = useParams();
+  const { id } = useParams();
   const [url, setUrl] = useState('');
   const [obj, setObj] = useState('');
+  const [loading, setLoading] = useState(false);
   const history = useHistory()
 
   useEffect(() => {
@@ -18,29 +20,44 @@ function ButtonSave(props) {
 
   function handleSubmit(url) {
     console.log(obj)
+    setLoading(true)
     if (id != 'novo') {
       put(`${url}/${id}`, obj)
         .then(() => {
-          toast('success',`Atualizado com sucesso!`);
+          toast('success', `Atualizado com sucesso!`);
           // history.goBack()
+          setLoading(false)
+
         }).catch((err) => {
           toast('error', err.reason || `Error ao atualizar o registro :(`);
         });
     } else {
       post(url, obj)
         .then(() => {
-          toast('success',`Salvo com sucesso!`);
-          history.goBack()
+          toast('success', `Salvo com sucesso!`);
+          // history.goBack();
+          setLoading(false)
+
         }).catch((err) => {
           toast('error', err.reason || `Error ao salvar o registro :(`);
         });
     }
   }
-  
+
   return (
-     <S.ButtonSave  onClick={() => handleSubmit(url)} >
-      SALVAR  
-     </S.ButtonSave>
+    <>
+      {
+        loading ?
+          <body style={{ width: '100%', backgroundColor: '#fff' }}>
+            <Loading></Loading>
+
+          </body>
+          : null
+      }
+      <S.ButtonSave onClick={() => handleSubmit(url)} >
+        SALVAR
+      </S.ButtonSave>
+    </>
   )
 
 }
