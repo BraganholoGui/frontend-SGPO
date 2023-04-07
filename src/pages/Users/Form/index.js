@@ -5,7 +5,7 @@ import DataTable from 'react-data-table-component';
 import { get } from '../../../services/actions';
 import api from '../../../services/api'
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import * as S from './style';
 import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
@@ -13,6 +13,7 @@ import ButtonForm from '../../../components/Form/ButtonForm';
 
 function User() {
   const { id } = useParams();
+  const location = useLocation();
   const url = '/users';
   const [data, setData] = useState({});
   const [name, setName] = useState('');
@@ -58,6 +59,10 @@ function User() {
   useEffect(() => {
     loadData();
   }, [])
+ 
+  useEffect(() => {
+    loadData();
+  }, [location])
 
   useEffect(() => {
     setName(data.Person && data.Person ? data.Person.name : '');

@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme';
 
-export const ButtonSave = styled.button`
+export const ButtonDelete = styled.button`
  display: flex;
  text-align: center;
  justify-content: center;
  align-items: center;
  width:220px;
  height: 55px;
- background-color: ${theme.save};
+ background-color: ${theme.warning};
  color: #fff;
  font-weight: 700;
  font-size:20px;
- margin: 0 2%;
+ margin-left:2%;
  a{
    color:#fff; 
    text-transform: uppercase;
@@ -38,7 +38,7 @@ export const ButtonSaveLock = styled.button`
  color: #fff;
  font-weight: 700;
  font-size:20px;
- margin: 0 2%;
+ margin-left:2%;
  a{
    color:#fff; 
    text-transform: uppercase;

@@ -26,7 +26,7 @@ function ButtonSave(props) {
       put(`${url}/${id}`, obj)
         .then(() => {
           toast('success', `Atualizado com sucesso!`);
-          // history.goBack()
+          history.goBack()
           setLoading(false)
 
         }).catch((err) => {
@@ -50,13 +50,13 @@ function ButtonSave(props) {
       {
         loading ?
           <>
-            <div style={{ width: '50%', backgroundColor: '#fff' }}>
+            <S.ButtonSaveLock >
+              SALVAR
+            </S.ButtonSaveLock>
+            <div style={{  backgroundColor: '#fff' }}>
               <Loading></Loading>
 
             </div>
-            <S.ButtonSaveLock onClick={() => handleSubmit(url)} >
-              SALVAR
-            </S.ButtonSaveLock>
           </>
           : <S.ButtonSave onClick={() => handleSubmit(url)} >
             SALVAR
