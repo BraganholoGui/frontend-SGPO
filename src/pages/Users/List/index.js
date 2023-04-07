@@ -55,7 +55,7 @@ function UserList() {
     },
     {
       name: 'Editar',
-      selector: row => <EditDelete id={row.id} url={url}/>,
+      selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData}/>,
       style: {
         display:'flex',
         justifyContent:'center',

@@ -84,6 +84,34 @@ export function post(url, data) {
     }
   })
   }
+
+  export function del(url, id) {
+
+    // Swal.mixin({
+    //   toast: true,
+    //   position: 'top-end'
+    // }).fire({ onOpen: () => { Swal.showLoading() } });
+  
+    return new Promise(async (resolve, reject) => {
+     
+      try {
+        api.delete(`${url}/${id}`, {
+          headers: {
+            authorization: 'Bearer ' + await localStorage.getItem("token")
+          }
+        })
+          .then(response => {
+            resolve(handleResponse(response))
+          })
+          .catch(error => {
+            reject(error)
+            // clear()
+          })
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
   
   export const defaults = {
     headers: {
