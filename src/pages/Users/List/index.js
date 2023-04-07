@@ -33,29 +33,26 @@ function UserList() {
       name: 'Nome de Acesso',
       selector: row =>  <S.Row href={`users/${row.id}`}>{row.access_name}</S.Row>,
       sortable: true,
-      center:true
     },
     {
       name: 'Nome',
       selector: row => <S.Row href={`users/${row.id}`}>{row.Person.name}</S.Row>,
       sortable: true,
-      center:true
     },
     {
       name: 'Cargo',
       selector: row => <S.Row href={`users/${row.id}`}>{row.Role.name}</S.Row>,
       sortable: true,
-      center:true
     },
     {
       name: 'Time',
       selector: row => <S.Row href={`users/${row.id}`}>{row.Team.name}</S.Row>,
       sortable: true,
-      center:true
     },
     {
-      name: 'Editar',
+      name: 'Editar/Deletar',
       selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData}/>,
+      center:true,
       style: {
         display:'flex',
         justifyContent:'center',
