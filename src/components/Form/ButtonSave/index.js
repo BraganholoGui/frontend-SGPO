@@ -36,8 +36,8 @@ function ButtonSave(props) {
       post(url, obj)
         .then(() => {
           toast('success', `Salvo com sucesso!`);
-          // history.goBack();
           setLoading(false)
+          history.goBack();
 
         }).catch((err) => {
           toast('error', err.reason || `Error ao salvar o registro :(`);

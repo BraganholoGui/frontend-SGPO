@@ -89,8 +89,8 @@ function UserList() {
 
   useEffect(() => {
       loadData();
-  }, [])
-  
+  })
+
   return (
     <Container>
       <HeaderContent title="Usuários" icon={<Person fontSize="large"/>} titleButton="Novo Usuário" linkTo="/users/novo" />
