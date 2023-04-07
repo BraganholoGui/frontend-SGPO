@@ -1,9 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Person } from '@mui/icons-material';
-import ListContent from '../../../components/ListContent';
-import DataTable from 'react-data-table-component';
 import { get } from '../../../services/actions';
-import api from '../../../services/api'
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import * as S from './style';
@@ -13,7 +10,6 @@ import ButtonForm from '../../../components/Form/ButtonForm';
 
 function User() {
   const { id } = useParams();
-  const location = useLocation();
   const url = '/users';
   const [data, setData] = useState({});
   const [name, setName] = useState('');
@@ -59,10 +55,7 @@ function User() {
   useEffect(() => {
     loadData();
   }, [])
- 
-  useEffect(() => {
-    loadData();
-  }, [location])
+
 
   useEffect(() => {
     setName(data.Person && data.Person ? data.Person.name : '');
@@ -74,28 +67,35 @@ function User() {
     setRole(data.Role ? data.Role.name : '');
   }, [data])
 
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
   return (
-  <>
-    <S.Container>
-      <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large" />} />
-      <FormContent>
-        <S.ContentBox>
-          <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
-          <InputForm value={password} setValue={setPassword} title="Senha" type='password' size="small"></InputForm>
-          <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
-        </S.ContentBox>
-        <S.ContentBox>
-          <InputForm value={email} setValue={setEmail} title="Email" type='text' size="small"></InputForm>
-          <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
-          <InputForm value={team} setValue={setTeam} title="Time" type='text' size="small"></InputForm>
-        </S.ContentBox>
-        <S.ContentBox>
-          <InputForm value={role} setValue={setRole} title="Cargo" type='text' size="small"></InputForm>
-        </S.ContentBox>
-        <ButtonForm url={url} obj={buildSubmitObj()} />
-      </FormContent>
-    </S.Container>
-  </>
+    <>
+      <S.Container>
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large" />} />
+        <FormContent>
+          <S.ContentBox>
+            <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
+            <InputForm value={password} setValue={setPassword} title="Senha" type='password' size="small"></InputForm>
+            <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
+          </S.ContentBox>
+          <S.ContentBox>
+            <InputForm value={email} setValue={setEmail} title="Email" type='text' size="small"></InputForm>
+            <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
+            <InputForm value={team} setValue={setTeam} title="Time" type='text' size="small"></InputForm>
+          </S.ContentBox>
+          <S.ContentBox>
+            <InputForm options={options} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
+            <InputForm value={role} setValue={setRole} title="Cargo" type='text' size="small"></InputForm>
+          </S.ContentBox>
+          <ButtonForm url={url} obj={buildSubmitObj()} />
+        </FormContent>
+      </S.Container>
+    </>
   )
 
 }

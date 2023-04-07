@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
+import SelectOptions from '../Select';
 import * as S from './style';
 
 function InputForm(props) {
@@ -7,6 +8,7 @@ function InputForm(props) {
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
+  const [options, setOptions] = useState([]);
   const [readOnly, setReadOnly] = useState(false);
 
   useEffect(() => {
@@ -14,6 +16,7 @@ function InputForm(props) {
     setType(props.type);
     setTitle(props.title);
     setValue(props.value);
+    setOptions(props.options);
     setReadOnly(props.readOnly);
   }, [props])
 
@@ -23,41 +26,59 @@ function InputForm(props) {
         size == 'small' ?
           <S.ContainerFormSmall>
             <S.Title>{title}</S.Title>
-            <S.InputSmall
-              type={type}
-              readOnly={readOnly}
-              value={value}
-              onChange={(e)=> {setValue(e.target.value)
-                props.setValue(e.target.value)
-              }}
+            {
+              type == 'select' ?
+                <SelectOptions options={options} />
+                :
+                <S.InputSmall
+                  type={type}
+                  readOnly={readOnly}
+                  value={value}
+                  onChange={(e) => {
+                    setValue(e.target.value)
+                    props.setValue(e.target.value)
+                  }}
 
-            />
+                />
+            }
+
           </S.ContainerFormSmall>
           :
           size == 'medium' ?
             <S.ContainerFormMedium>
               <S.Title>{title}</S.Title>
-              <S.InputSmall
-                type={type} readOnly={readOnly} value={value}   onChange={(e)=> {setValue(e.target.value)
-                  props.value = e.target.value
-                }}
-              />
+              {
+                type == 'select' ?
+                  <SelectOptions options={options} />
+                  :
+                  <S.InputSmall
+                    type={type} readOnly={readOnly} value={value} onChange={(e) => {
+                      setValue(e.target.value)
+                      props.value = e.target.value
+                    }}
+                  />
+              }
             </S.ContainerFormMedium>
             :
             <S.ContainerFormBig>
               <S.Title>{title}</S.Title>
-              <S.InputSmall
-                value={value}
-                type={type}
-                onChange={(e)=> {setValue(e.target.value)
-                  props.value = e.target.value
-                }}
-                readOnly={readOnly}
-              />
+              {
+                type == 'select' ?
+                  <SelectOptions options={options} />
+                  :
+                  <S.InputSmall
+                    value={value}
+                    type={type}
+                    onChange={(e) => {
+                      setValue(e.target.value)
+                      props.value = e.target.value
+                    }}
+                    readOnly={readOnly}
+                  />
+              }
             </S.ContainerFormBig>
 
       }
-
     </>
 
   )
