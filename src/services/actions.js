@@ -64,20 +64,25 @@ export function put(url, data, method = "PUT") {
   })
 }
 
-export function post(text, user) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          data: {
-            token:
-              '91j893h281h9nf98fnf2309jd09jkkd0as98238j9fr8j98f9j8f298r829r-f',
-            user: {
-              name: user.name,
-            },
-          },
-        });
-      }, 2000);
-    });
+export function post(url, data) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      api.post(url, data, {
+        headers: {
+          authorization: 'Bearer ' + await localStorage.getItem("token")
+        }
+      })
+        .then(response => {
+          resolve(handleResponse(response))
+        })
+        .catch(error => {
+          reject(error)
+          handleResponse()
+        })
+    } catch (error) {
+      reject(error)
+    }
+  })
   }
   
   export const defaults = {
@@ -85,3 +90,4 @@ export function post(text, user) {
       Authorization: '',
     },
   };
+  

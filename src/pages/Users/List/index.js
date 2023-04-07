@@ -23,6 +23,10 @@ function UserList() {
 
   const columns = [
     {
+      name: 'ID',
+      selector: row =>  <S.Row href={`users/${row.id}`}>{row.id}</S.Row>,
+    },
+    {
       name: 'Nome de Acesso',
       selector: row =>  <S.Row href={`users/${row.id}`}>{row.access_name}</S.Row>,
     },

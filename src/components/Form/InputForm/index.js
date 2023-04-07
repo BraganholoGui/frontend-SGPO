@@ -27,6 +27,9 @@ function InputForm(props) {
               type={type}
               readOnly={readOnly}
               value={value}
+              onChange={(e)=> {setValue(e.target.value)
+                props.setValue(e.target.value)
+              }}
 
             />
           </S.ContainerFormSmall>
@@ -35,7 +38,9 @@ function InputForm(props) {
             <S.ContainerFormMedium>
               <S.Title>{title}</S.Title>
               <S.InputSmall
-                type={type} readOnly={readOnly} value={value}
+                type={type} readOnly={readOnly} value={value}   onChange={(e)=> {setValue(e.target.value)
+                  props.value = e.target.value
+                }}
               />
             </S.ContainerFormMedium>
             :
@@ -44,7 +49,10 @@ function InputForm(props) {
               <S.InputSmall
                 value={value}
                 type={type}
-                readOnly
+                onChange={(e)=> {setValue(e.target.value)
+                  props.value = e.target.value
+                }}
+                readOnly={readOnly}
               />
             </S.ContainerFormBig>
 

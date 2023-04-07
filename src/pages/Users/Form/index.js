@@ -74,17 +74,17 @@ function User() {
       <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large" />} />
       <FormContent>
         <S.ContentBox>
-          <InputForm value={accessName} title="Nome de acesso" type='text' size="small"></InputForm>
-          <InputForm value={password} title="Senha" type='password' size="small"></InputForm>
-          <InputForm value={name} title="Nome" type='text' size="small"></InputForm>
+          <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
+          <InputForm value={password} setValue={setPassword} title="Senha" type='password' size="small"></InputForm>
+          <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
         </S.ContentBox>
         <S.ContentBox>
-          <InputForm value={email} title="Email" readOnly={true} type='text' size="small"></InputForm>
-          <InputForm value={phone} title="Telefone" type='teext' size="small"></InputForm>
-          <InputForm value={team} title="Time" type='text' size="small"></InputForm>
+          <InputForm value={email} setValue={setEmail} title="Email" type='text' size="small"></InputForm>
+          <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
+          <InputForm value={team} setValue={setTeam} title="Time" type='text' size="small"></InputForm>
         </S.ContentBox>
         <S.ContentBox>
-          <InputForm value={role} title="Cargo" type='text' size="small"></InputForm>
+          <InputForm value={role} setValue={setRole} title="Cargo" type='text' size="small"></InputForm>
         </S.ContentBox>
         <ButtonForm url={url} obj={buildSubmitObj()} />
       </FormContent>
