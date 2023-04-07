@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Select from 'react-select'
+import { theme } from '../../../theme';
 
 function SelectOptions(props) {
     const [options, setOptions] = useState([]);
@@ -17,47 +18,25 @@ function SelectOptions(props) {
             fontSize: '16px',
             color: '#333',
             transition: 'all 0.9s ease-in-out',
+            ':focus': {
+                ...styles[':focus'],
+                border: ` border: 2px solid ${theme.primaryDark}`,
+                transition: 'all 0.9s ease -in -out'
+            },
         }),
-        // option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-        //     const color = chroma(data.color);
-        //     return {
-        //         ...styles,
-        //         backgroundColor: isDisabled
-        //             ? undefined
-        //             : isSelected
-        //                 ? data.color
-        //                 : isFocused
-        //                     ? color.alpha(0.1).css()
-        //                     : undefined,
-        //         color: isDisabled
-        //             ? '#ccc'
-        //             : isSelected
-        //                 ? chroma.contrast(color, 'white') > 2
-        //                     ? 'white'
-        //                     : 'black'
-        //                 : data.color,
-        //         cursor: isDisabled ? 'not-allowed' : 'default',
+        option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+            return {
+                ...styles,
+                borderRadius: '10px',
+                border: '2px solid #ccc',
+                boxShadow: '2px 2px 3px #ccc',
 
-        //         ':active': {
-        //             ...styles[':active'],
-        //             backgroundColor: !isDisabled
-        //                 ? isSelected
-        //                     ? data.color
-        //                     : color.alpha(0.3).css()
-        //                 : undefined,
-        //         },
-        //     };
-        // },
+            };
+        },
         // input: (styles) => ({ ...styles, ...dot() }),
         // placeholder: (styles) => ({ ...styles, ...dot('#ccc') }),
         // singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
     };
-
-    // &&:focus{
-    //     border: 2px solid ${ theme.primaryDark };
-    //     transition: all 0.9s ease -in -out;
-    // }
-
 
     useEffect(() => {
         setOptions(props.options);

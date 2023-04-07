@@ -20,6 +20,8 @@ function User() {
   const [team, setTeam] = useState('');
   const [role, setRole] = useState('');
 
+  const [roleOptions, setRoleOptions] = useState('');
+
 
   async function loadData() {
     if (id != 'novo') {
@@ -52,8 +54,24 @@ function User() {
     return obj
   }
 
+  function getOptions(){
+    get(`/roles`)
+    .then(async response => {
+      if (response) {
+        console.log(response)
+        response.records.map(item =>{
+          item.value = item.id;
+          item.label = item.name
+        })
+        setRoleOptions(response.records);
+      }
+    });
+
+  }
+
   useEffect(() => {
     loadData();
+    getOptions();
   }, [])
 
 
@@ -66,12 +84,6 @@ function User() {
     setTeam(data.Team ? data.Team.name : '');
     setRole(data.Role ? data.Role.name : '');
   }, [data])
-
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
 
   return (
     <>
@@ -89,7 +101,7 @@ function User() {
             <InputForm value={team} setValue={setTeam} title="Time" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm options={options} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
+            <InputForm options={roleOptions} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
             <InputForm value={role} setValue={setRole} title="Cargo" type='text' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
