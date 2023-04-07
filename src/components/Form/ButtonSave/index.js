@@ -4,7 +4,8 @@ import * as S from './style';
 import { put, post } from '../../../services/actions'
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from '../../../GeneralFunctions/functions'
-import Loading from '../../Loading';
+import {Loading} from '../../Loading';
+import { height } from '@mui/system';
 
 function ButtonSave(props) {
   const { id } = useParams();
@@ -48,15 +49,19 @@ function ButtonSave(props) {
     <>
       {
         loading ?
-          <body style={{ width: '100%', backgroundColor: '#fff' }}>
-            <Loading></Loading>
+          <>
+            <div style={{ width: '50%', backgroundColor: '#fff' }}>
+              <Loading></Loading>
 
-          </body>
-          : null
+            </div>
+            <S.ButtonSaveLock onClick={() => handleSubmit(url)} >
+              SALVAR
+            </S.ButtonSaveLock>
+          </>
+          : <S.ButtonSave onClick={() => handleSubmit(url)} >
+            SALVAR
+          </S.ButtonSave>
       }
-      <S.ButtonSave onClick={() => handleSubmit(url)} >
-        SALVAR
-      </S.ButtonSave>
     </>
   )
 

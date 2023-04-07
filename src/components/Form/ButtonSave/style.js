@@ -26,3 +26,24 @@ export const ButtonSave = styled.button`
   background-color: rgba(24, 31, 28, 0.8);
  }
 `; 
+export const ButtonSaveLock = styled.button`
+ display: flex;
+ text-align: center;
+ justify-content: center;
+ align-items: center;
+ width:220px;
+ height: 55px;
+ background-color: ${theme.buttonLock};
+ color: #fff;
+ font-weight: 700;
+ font-size:20px;
+ a{
+   color:#fff; 
+   text-transform: uppercase;
+   text-decoration: none;
+   &:hover{
+    font-style: italic;
+   }
+ }
+ border-radius: 10px;
+`; 

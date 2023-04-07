@@ -1,16 +1,26 @@
 import * as S from './style';
 import ReactLoading from "react-loading";
 
-function Loading() {
+export function Loading() {
   return (
     <ReactLoading
-      type={"bars"}
+      type={"spin"}
       color={"#03fc4e"}
-      height={100}
-      width={100}
+      height={70}
+      width={70}
+    />
+  )
+
+}
+export function LoadingSmall() {
+  return (
+    <ReactLoading
+      type={"spin"}
+      color={"#03fc4e"}
+      height={20}
+      width={20}
     />
   )
 
 }
 
-export default Loading;
