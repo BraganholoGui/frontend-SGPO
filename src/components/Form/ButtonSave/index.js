@@ -27,9 +27,10 @@ function ButtonSave(props) {
           toast('success', `Atualizado com sucesso!`);
           history.goBack()
           setLoading(false)
-
+          
         }).catch((err) => {
           toast('error', err.reason || `Error ao atualizar o registro :(`);
+          setLoading(false)
         });
     } else {
       post(url, obj)

@@ -52,7 +52,7 @@ function SelectOptions(props) {
             onChange={(e) => {
                 setSelected(e.id)
                 props.setSelected(e.id)
-                props.selected=e.id
+                // props.selected= e.id
             }}
             selected={selected}
         />

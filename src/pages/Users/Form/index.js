@@ -36,6 +36,8 @@ function User() {
   }
 
   function buildSubmitObj() {
+    console.log("selected", selected)
+    return
     let obj = {
       contact: {
         id: data.Person && data.Person.Contact ? data.Person.Contact.id : null,
@@ -102,7 +104,9 @@ function User() {
           </S.ContentBox>
           <S.ContentBox>
             <InputForm options={roleOptions} selected={selected} setSelected={setSelected} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
-            <InputForm value={role} setValue={setRole} title="Cargo" type='text' size="small"></InputForm>
+          </S.ContentBox>
+          <S.ContentBox>
+            redefinir senha
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>

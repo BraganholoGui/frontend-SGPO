@@ -30,7 +30,9 @@ function InputForm(props) {
             <S.Title>{title}</S.Title>
             {
               type == 'select' ?
-                <SelectOptions options={options} selected={selected}  />
+                <SelectOptions options={options} selected={selected} 
+                setSelected={setSelected}
+                  />
                 :
                 <S.Input
                   type={type}
