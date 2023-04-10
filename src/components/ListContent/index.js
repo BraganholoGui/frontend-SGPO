@@ -54,7 +54,8 @@ function ListContent(props) {
         borderRadius: '20px',
         borderRight: '2px solid rgb(	17, 91, 76, 0.3)',
         borderBottom: '2px solid rgb(	17, 91, 76, 0.3)',
-
+        flexWrap:"wrap"
+        
       },
     },
   };
