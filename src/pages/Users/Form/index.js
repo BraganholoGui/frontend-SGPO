@@ -110,15 +110,12 @@ function User() {
         <FormContent>
           <S.ContentBox>
             <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
-            <InputForm value={password} setValue={setPassword} title="Senha" type='password' size="small"></InputForm>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
+            <InputForm value={email} setValue={setEmail} title="Email" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm value={email} setValue={setEmail} title="Email" type='text' size="small"></InputForm>
             <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
             <InputForm options={teamOptions} selected={team} setSelected={setTeam} value={team} setValue={setTeam} title="Time" type='select' size="small"></InputForm>
-          </S.ContentBox>
-          <S.ContentBox>
             <InputForm options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
