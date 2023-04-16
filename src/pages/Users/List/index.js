@@ -17,6 +17,7 @@ function UserList() {
     get(url)
       .then(async response => {
         if (response) {
+          console.log(response.records);
           setData(response.records);
         }
       });
@@ -41,12 +42,12 @@ function UserList() {
     },
     {
       name: 'Cargo',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Role.name}</S.Row>,
+      selector: row => <S.Row href={`users/${row.id}`}>{row.Role ? row.Role.name : '-'}</S.Row>,
       sortable: true,
     },
     {
       name: 'Time',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Team.name}</S.Row>,
+      selector: row => <S.Row href={`users/${row.id}`}>{row.Team ? row.Team.name : '-'}</S.Row>,
       sortable: true,
     },
     {
