@@ -24,8 +24,6 @@ function Layout({ children, ...rest }) {
   // useEffect(() => {
   //   loadData();
   // }, [location]);
-  console.log(rest)
-  console.log(children)
   return (
     <S.Grid {...rest}>
       {/* <S.GridNav>

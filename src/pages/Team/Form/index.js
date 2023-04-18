@@ -42,12 +42,32 @@ function Team() {
   function getOptions(){
     get(`/users`)
     .then(async response => {
-      if (response) {
+      if (response && response.records) {
         response.records.map(item =>{
           item.value = item.id;
           item.label = item.id +'. ' + item.Person.name
         })
         setUserOptions(response.records);
+      }
+    });
+    get(`/teams-user/${id}`)
+    .then(async response => {
+      console.log(response)
+      if (response) {
+        response.team_user.map(item =>{
+          item.value = item.id;
+          item.label = item.user +'. ' + item.User.Person.name
+        })
+        console.log(response.team_user);
+        let usersSelected;
+      if(teamOptions.length > 0){
+        response.team_user.map(itemTeam =>{
+          usersSelected = userOptions.filter(item =>item.id == itemTeam.user)
+
+        })
+        console.log('usersSelected', usersSelected)
+      }
+        setUsersRelateds(response.team_user);
       }
     });
 
@@ -66,7 +86,7 @@ function Team() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/teams" title={id == "novo" ? "Novo Time" : "Editar Time"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome do time" type='text' size="medium"></InputForm>

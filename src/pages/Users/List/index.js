@@ -17,7 +17,6 @@ function UserList() {
     get(url)
       .then(async response => {
         if (response) {
-          console.log(response.records);
           setData(response.records);
         }
       });
@@ -90,7 +89,7 @@ function UserList() {
 
   useEffect(() => {
       loadData();
-  }, [])
+  })
 
   return (
     <Container>

@@ -75,7 +75,7 @@ function TeamList() {
 
   useEffect(() => {
       loadData();
-  }, [])
+  })
 
   return (
     <Container>

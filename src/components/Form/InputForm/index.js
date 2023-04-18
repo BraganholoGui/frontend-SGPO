@@ -75,7 +75,6 @@ function InputForm(props) {
     setSelected(props.selected);
     setReadOnly(props.readOnly);
     setIsMulti(props.isMulti);
-    console.log(props.isMulti);
   }, [props])
 
   return (
@@ -90,7 +89,7 @@ function InputForm(props) {
                   styles={colourStyles}
                   setSelected={setSelected} value={selected}
                   isMulti={isMulti}
-                  isClearable={isMulti ? value.some((v) => !v.isFixed) : ''}
+                  isClearable={isMulti &&  Array.isArray(value)  ? value.some((v) => !v.isFixed) : ''}
                     onChange={(e) => {
                       if(isMulti){
                         setSelected(e)
@@ -129,7 +128,7 @@ function InputForm(props) {
                     styles={colourStyles}
                     setSelected={setSelected} value={selected}
                     isMulti={isMulti}
-                    isClearable={isMulti ? value.some((v) => !v.isFixed) : null}
+                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : null}
 
                     onChange={(e) => {
                       if(isMulti){
@@ -167,7 +166,7 @@ function InputForm(props) {
                     styles={colourStyles}
                     setSelected={setSelected} value={selected}
                     isMulti={isMulti}
-                    isClearable={isMulti ? value.some((v) => !v.isFixed) : null}
+                    isClearable={isMulti && Array.isArray(value)  ? value.some((v) => !v.isFixed) : null}
 
                     onChange={(e) => {
                       if(isMulti){

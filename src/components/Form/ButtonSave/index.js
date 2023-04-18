@@ -20,7 +20,6 @@ function ButtonSave(props) {
 
   function handleSubmit(url) {
     setLoading(true)
-    console.log(obj)
     if (id != 'novo') {
       put(`${url}/${id}`, obj)
         .then(() => {
