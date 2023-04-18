@@ -8,16 +8,16 @@ import { useParams } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 
-function UserList() {
+function TeamList() {
   const [data, setData] = useState([]);
   const {id} = useParams();
-  const url = `/users`
+  const url = `/teams`
+  const urlAux = `/teams-user`
 
   async function loadData() {
     get(url)
       .then(async response => {
         if (response) {
-          console.log(response.records);
           setData(response.records);
         }
       });
@@ -26,28 +26,13 @@ function UserList() {
   const columns = [
     {
       name: 'ID',
-      selector: row =>  <S.Row href={`users/${row.id}`}>{row.id}</S.Row>,
+      selector: row =>  <S.Row href={`teams/${row.id}`}>{row.id}</S.Row>,
       sortable: true,
       center:true
     },
     {
-      name: 'Nome de Acesso',
-      selector: row =>  <S.Row href={`users/${row.id}`}>{row.access_name}</S.Row>,
-      sortable: true,
-    },
-    {
-      name: 'Nome',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Person.name}</S.Row>,
-      sortable: true,
-    },
-    {
-      name: 'Cargo',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Role ? row.Role.name : '-'}</S.Row>,
-      sortable: true,
-    },
-    {
       name: 'Time',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Team ? row.Team.name : '-'}</S.Row>,
+      selector: row =>  <S.Row href={`teams/${row.id}`}>{row.name}</S.Row>,
       sortable: true,
     },
     {
@@ -94,7 +79,7 @@ function UserList() {
 
   return (
     <Container>
-      <HeaderContent title="Usuários" icon={<Person fontSize="large"/>} titleButton="Novo Usuário" linkTo="/users/novo" />
+      <HeaderContent title="Times" icon={<Person fontSize="large"/>} titleButton="Novo Time" linkTo="/teams/novo" />
       <ListContent
         columns={columns}
         data={data}
@@ -106,4 +91,4 @@ function UserList() {
 
 }
 
-export default UserList;
+export default TeamList;

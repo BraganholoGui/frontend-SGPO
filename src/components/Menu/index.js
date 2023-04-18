@@ -50,7 +50,7 @@ const Menu = () => {
                   <a href='/'>Fornecedores *</a>
                 </li>
                 <li>
-                  <a href='/'>Times *</a>
+                  <a href='/teams'>Times *</a>
                 </li>
                 <li>
                   <a href='/users'>Usuários *</a>

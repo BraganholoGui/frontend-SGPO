@@ -13,6 +13,7 @@ function InputForm(props) {
   const [options, setOptions] = useState([]);
   const [readOnly, setReadOnly] = useState(false);
   const [selected, setSelected] = useState(null);
+  const [isMulti, setIsMulti] = useState(false);
 
   const colourStyles = {
     control: (styles) => ({
@@ -42,6 +43,24 @@ function InputForm(props) {
 
       };
     },
+    multiValue: (styles, { data }) => {
+      return {
+        ...styles,
+        border:`1px solid ${theme.lastDark}`,
+        backgroundColor:`${theme.inputLock}`,
+        borderRadius:'20px'
+        
+      };
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      ':hover': {
+        color: 'red',
+      },
+    }),
     // input: (styles) => ({ ...styles, ...dot() }),
     // placeholder: (styles) => ({ ...styles, ...dot('#ccc') }),
     // singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
@@ -55,6 +74,8 @@ function InputForm(props) {
     setOptions(props.options);
     setSelected(props.selected);
     setReadOnly(props.readOnly);
+    setIsMulti(props.isMulti);
+    console.log(props.isMulti);
   }, [props])
 
   return (
@@ -68,12 +89,22 @@ function InputForm(props) {
                 <Select options={options} selected={selected}
                   styles={colourStyles}
                   setSelected={setSelected} value={selected}
-                  onChange={(e) => {
-                    setSelected(e.id)
-                    setValue(e.id)
-                    props.setValue(e)
-                    props.setSelected(e)
-                  }} />
+                  isMulti={isMulti}
+                  isClearable={isMulti ? value.some((v) => !v.isFixed) : ''}
+                    onChange={(e) => {
+                      if(isMulti){
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }else{
+                        setSelected(e.id)
+                        setValue(e.id)
+                        props.setValue(e.id)
+                        props.setSelected(e.id)
+                      }
+
+                    }}/>
                 :
                 <S.Input
                   type={type}
@@ -97,18 +128,33 @@ function InputForm(props) {
                   <Select options={options} selected={selected}
                     styles={colourStyles}
                     setSelected={setSelected} value={selected}
+                    isMulti={isMulti}
+                    isClearable={isMulti ? value.some((v) => !v.isFixed) : null}
+
                     onChange={(e) => {
-                      setSelected(e.id)
-                      setValue(e.id)
-                      props.setValue(e.id)
-                      props.setSelected(e.id)
+                      if(isMulti){
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }else{
+                        setSelected(e.id)
+                        setValue(e.id)
+                        props.setValue(e.id)
+                        props.setSelected(e.id)
+                      }
+
                     }} />
                   :
                   <S.Input
-                    type={type} readOnly={readOnly} value={value} onChange={(e) => {
-                      setValue(e.target.value)
-                      props.value = e.target.value
-                    }}
+                  type={type}
+                  readOnly={readOnly}
+                  value={value}
+                  onChange={(e) => {
+                    setValue(e.target.value)
+                    props.setValue(e.target.value)
+                  }}
+                  selected={selected}
                   />
               }
             </S.ContainerFormMedium>
@@ -120,12 +166,23 @@ function InputForm(props) {
                   <Select options={options} selected={selected}
                     styles={colourStyles}
                     setSelected={setSelected} value={selected}
+                    isMulti={isMulti}
+                    isClearable={isMulti ? value.some((v) => !v.isFixed) : null}
+
                     onChange={(e) => {
-                      setSelected(e.id)
-                      setValue(e.id)
-                      props.setValue(e.id)
-                      props.setSelected(e.id)
-                    }} />
+                      if(isMulti){
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }else{
+                        setSelected(e.id)
+                        setValue(e.id)
+                        props.setValue(e.id)
+                        props.setSelected(e.id)
+                      }
+
+                    }}/>
                   :
                   <S.Input
                     value={value}

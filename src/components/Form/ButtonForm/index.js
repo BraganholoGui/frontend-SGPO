@@ -14,14 +14,12 @@ function ButtonForm(props) {
   useEffect(() => {
     setUrl(props.url)
     setObj(props.obj)
-    console.log(obj)
   }, [props])
   
   useEffect(() => {
     setUrl(props.url)
     setObj(props.obj)
   }, [])
-  console.log(obj)
   return (
     <S.Container>
       <S.Box>
