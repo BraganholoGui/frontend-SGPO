@@ -24,18 +24,41 @@ export const ContainerFormSmall = styled.div`
 width: 30%;
 display: flex;
 flex-direction: column;
+transition: all 2s ;
+transform: rotate(-360deg);
+@media (max-width: 860px) {
+    width: 95%;
+    transition: all 2s ;
+    transform: rotate(360deg);
+  }
 
 `; 
 export const ContainerFormMedium = styled.div`
 width: 60%;
 display: flex;
+transition: all 2s ;
+transform: rotate(-360deg);
 flex-direction: column;
+@media (max-width: 860px) {
+    width: 95%;
+    transition: all 2s ;
+    transform: rotate(360deg);
+
+  }
 
 `; 
 export const ContainerFormBig = styled.div`
 width: 90%;
 display: flex;
 flex-direction: column;
+transition: all 2s ;
+transform: rotate(-360deg);
+@media (max-width: 860px) {
+    width: 95%;
+    transition: all 2s ;
+    transform: rotate(360deg);
+
+  }
 
 `; 
 export const Title = styled.label`

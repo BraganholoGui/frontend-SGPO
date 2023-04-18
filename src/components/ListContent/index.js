@@ -1,6 +1,7 @@
 import * as S from './style';
 import DataTable from 'react-data-table-component';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { Button } from 'reactstrap';
 
 function ListContent(props) {
   const [data, setData] = useState(props.data);
@@ -59,15 +60,66 @@ function ListContent(props) {
       },
     },
   };
+  const paginationComponentOptions = {
+    rowsPerPageText: 'Linhas por página',
+    rangeSeparatorText: 'de',
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'Todos',
+};
+//   const Export = ({ onExport }) => <Button onClick={e => onExport(e.target.value)}>Export</Button>;
+
+//   const actionsMemo = useMemo(() => <Export onExport={() => downloadCSV(data)} />, []);
+
+// function convertArrayOfObjectsToCSV(array) {
+// 	let result;
+
+// const columnDelimiter = ',';
+// 	const lineDelimiter = '\n';
+// const keys = Object.keys(data[0]);
+
+// 	result = '';
+// 	result += keys.join(columnDelimiter);
+// 	result += lineDelimiter;
+
+// 	array.forEach(item => {
+// 		let ctr = 0;
+// 		keys.forEach(key => {
+// 			if (ctr > 0) result += columnDelimiter;
+
+// 			result += item[key];
+			
+// 			ctr++;
+// 		});
+// 		result += lineDelimiter;
+// 	});
+
+// 	return result;
+// }
+//   function downloadCSV(array) {
+//       const link = document.createElement('a');
+//     let csv = convertArrayOfObjectsToCSV(array);
+//     if (csv == null) return;
+
+//     const filename = 'export.csv';
+
+//     if (!csv.match(/^data:text\/csv/i)) {
+//       csv = `data:text/csv;charset=utf-8,${csv}`;
+//     }
+//     link.setAttribute('href', encodeURI(csv));
+//     link.setAttribute('download', filename);
+//     link.click();
+//   }
   return (
     <S.ContainerMain>
       <S.Box>
         <DataTable
           data={data}
           columns={columns}
+        // actions={actionsMemo}
           customStyles={customStyles}
           subHeaderAlign={'left'}
           pagination
+          paginationComponentOptions={paginationComponentOptions}
           highlightOnHover
           noDataComponent={"Não há cadastros!"}
           striped

@@ -9,6 +9,7 @@ export const ContainerMain = styled.div`
   `; 
 export const Box = styled.div`
   margin-top: 2%;
+  flex-wrap: wrap;
   width: 70%;
   z-index: 999;
   padding:40px;

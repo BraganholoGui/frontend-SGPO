@@ -9,4 +9,9 @@ export const ContentBox = styled.div`
   justify-content: space-around;
   align-items: center;
   margin: 10px;
+  @media (max-width: 860px) {
+    display: inline;
+    flex-wrap: wrap;
+  }
+ 
 `; 
