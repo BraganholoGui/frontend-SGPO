@@ -94,10 +94,10 @@ function User() {
     let roleSelected;
     let teamSelected;
     if(teamOptions.length > 0){
-      teamSelected = teamOptions.find(item =>item.id == data.Role.id)
+      teamSelected = teamOptions.find(item =>item.id == data.Team.id)
     }
     if(roleOptions.length > 0){
-      roleSelected = roleOptions.find(item =>item.id == data.Team.id)
+      roleSelected = roleOptions.find(item =>item.id == data.Role.id)
     }
     setTeam(teamSelected);
     setRole(roleSelected);
