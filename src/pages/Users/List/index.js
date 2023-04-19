@@ -4,7 +4,7 @@ import { Person } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 
@@ -12,6 +12,7 @@ function UserList() {
   const [data, setData] = useState([]);
   const {id} = useParams();
   const url = `/users`
+  const location = useLocation();
 
   async function loadData() {
     get(url)
@@ -89,7 +90,7 @@ function UserList() {
 
   useEffect(() => {
       loadData();
-  })
+  }, [location.key])
 
   return (
     <Container>

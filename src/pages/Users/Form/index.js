@@ -93,10 +93,10 @@ function User() {
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
     let roleSelected;
     let teamSelected;
-    if(teamOptions.length > 0){
+    if(teamOptions.length > 0 && data.Team){
       teamSelected = teamOptions.find(item =>item.id == data.Team.id)
     }
-    if(roleOptions.length > 0){
+    if(roleOptions.length > 0 && data.Role){
       roleSelected = roleOptions.find(item =>item.id == data.Role.id)
     }
     setTeam(teamSelected);

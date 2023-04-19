@@ -4,7 +4,7 @@ import { Person } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation, useRouteMatch } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 
@@ -12,7 +12,7 @@ function TeamList() {
   const [data, setData] = useState([]);
   const {id} = useParams();
   const url = `/teams`
-  const urlAux = `/teams-user`
+  const location = useLocation();
 
   async function loadData() {
     get(url)
@@ -75,7 +75,7 @@ function TeamList() {
 
   useEffect(() => {
       loadData();
-  })
+  }, [location.key])
 
   return (
     <Container>

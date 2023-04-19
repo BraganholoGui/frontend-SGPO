@@ -97,10 +97,11 @@ function InputForm(props) {
                         props.setValue(e)
                         props.setSelected(e)
                       }else{
-                        setSelected(e.id)
-                        setValue(e.id)
-                        props.setValue(e.id)
-                        props.setSelected(e.id)
+                        console.log('e', e)
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
                       }
 
                     }}/>
