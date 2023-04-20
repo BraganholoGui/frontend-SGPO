@@ -18,10 +18,10 @@ function ButtonSave(props) {
     setObj(props.obj)
   }, [props])
 
-  function handleSubmit(url) {
+  async function handleSubmit(url) {
     setLoading(true)
     if (id != 'novo') {
-      put(`${url}/${id}`, obj)
+      await put(`${url}/${id}`, obj)
         .then(() => {
           toast('success', `Atualizado com sucesso!`);
           history.goBack()
@@ -37,7 +37,7 @@ function ButtonSave(props) {
           toast('success', `Salvo com sucesso!`);
           setLoading(false)
           history.goBack();
-          
+
         }).catch((err) => {
           toast('error', err.reason || `Error ao salvar o registro :(`);
           setLoading(false)

@@ -48,7 +48,9 @@ function InputForm(props) {
         ...styles,
         border:`1px solid ${theme.lastDark}`,
         backgroundColor:`${theme.inputLock}`,
-        borderRadius:'20px'
+        borderRadius:'20px',
+        padding:'5px',
+        textAlign:'center'
         
       };
     },
@@ -63,10 +65,21 @@ function InputForm(props) {
     }),
     // input: (styles) => ({ ...styles, ...dot() }),
     // placeholder: (styles) => ({ ...styles, ...dot('#ccc') }),
-    // singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+    singleValue: (styles, { data }) => {
+      return {
+        ...styles,
+        border:`1px solid ${theme.lastDark}`,
+        backgroundColor:`${theme.inputLock}`,
+        borderRadius:'20px',
+        padding:'5px',
+        textAlign:'center'
+        
+      };
+    },
   };
 
   useEffect(() => {
+    console.log(props)
     setSize(props.size);
     setType(props.type);
     setTitle(props.title);
@@ -89,6 +102,7 @@ function InputForm(props) {
                   styles={colourStyles}
                   setSelected={setSelected} value={selected}
                   isMulti={isMulti}
+                  isDisabled={readOnly}
                   isClearable={isMulti &&  Array.isArray(value)  ? value.some((v) => !v.isFixed) : ''}
                     onChange={(e) => {
                       if(isMulti){

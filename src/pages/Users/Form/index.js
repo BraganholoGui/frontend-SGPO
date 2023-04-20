@@ -49,33 +49,53 @@ function User() {
       access_name: accessName,
       password: password,
       team: team ? team.id : null,
-      role: role ? role.id :  null,
+      role: role ? role.id : null,
     }
 
     return obj;
   }
 
-  function getOptions(){
+  function getOptions() {
     get(`/roles`)
-    .then(async response => {
-      if (response) {
-        response.records.map(item =>{
-          item.value = item.id;
-          item.label = item.id +'. ' + item.name
-        })
-        setRoleOptions(response.records);
-      }
-    });
+      .then(async response => {
+        if (response) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.name
+          })
+          setRoleOptions(response.records);
+        }
+      });
     get(`/teams`)
-    .then(async response => {
-      if (response) {
-        response.records.map(item =>{
-          item.value = item.id;
-          item.label = item.id +'. ' + item.name
-        })
-        setTeamOptions(response.records);
-      }
-    });
+      .then(async response => {
+        if (response) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.name
+          })
+          // setTeamOptions(response.records);
+        }
+      });
+    get(`/users/${id}`)
+      .then(async response => {
+        let listTeams = []
+        if (response) {
+          console.log(response)
+          response.user.TeamUsers.map(team => {
+            let obj = {
+              ...team,
+              value : team.Team.name,
+              label : team.team + '. ' + team.Team.name
+            }
+
+            listTeams.push(obj)
+          })
+
+          console.log(listTeams);
+          setTeamOptions(listTeams);
+
+        }
+      });
 
   }
 
@@ -93,11 +113,11 @@ function User() {
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
     let roleSelected;
     let teamSelected;
-    if(teamOptions.length > 0 && data.Team){
-      teamSelected = teamOptions.find(item =>item.id == data.Team.id)
+    if (teamOptions.length > 0 && data.Team) {
+      teamSelected = teamOptions.find(item => item.id == data.Team.id)
     }
-    if(roleOptions.length > 0 && data.Role){
-      roleSelected = roleOptions.find(item =>item.id == data.Role.id)
+    if (roleOptions.length > 0 && data.Role) {
+      roleSelected = roleOptions.find(item => item.id == data.Role.id)
     }
     setTeam(teamSelected);
     setRole(roleSelected);
@@ -115,7 +135,7 @@ function User() {
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
-            <InputForm options={teamOptions} selected={team} setSelected={setTeam} value={team} setValue={setTeam} title="Time" type='select' size="small"></InputForm>
+            <InputForm options={teamOptions} selected={teamOptions} isMulti={true} readOnly={true} setSelected={setTeam} value={team} setValue={setTeam} title="Times" type='select' size="small"></InputForm>
             <InputForm options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>

@@ -15,10 +15,11 @@ function UserList() {
   const location = useLocation();
 
   async function loadData() {
-    get(url)
+    await get(url)
       .then(async response => {
         if (response) {
           setData(response.records);
+          console.log(response.records);
         }
       });
   }
@@ -46,7 +47,7 @@ function UserList() {
       sortable: true,
     },
     {
-      name: 'Time',
+      name: 'Times',
       selector: row => <S.Row href={`users/${row.id}`}>{row.Team ? row.Team.name : '-'}</S.Row>,
       sortable: true,
     },
@@ -90,7 +91,11 @@ function UserList() {
 
   useEffect(() => {
       loadData();
-  }, [location.key])
+  }, [location, location.key])
+ 
+  useEffect(() => {
+      loadData();
+  }, [])
 
   return (
     <Container>

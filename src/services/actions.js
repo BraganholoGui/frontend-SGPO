@@ -28,6 +28,7 @@ export async function get(url) {
   })
     .then((response) => {
       console.log('')
+      console.log(handleResponse(response))
       return handleResponse(response);
     })
     .catch((error) => {
@@ -37,16 +38,16 @@ export async function get(url) {
 }
 
 
-export function put(url, data, method = "PUT") {
+export async function put(url, data, method = "PUT") {
 
   // Swal.mixin({
   //   toast: true,
   //   position: 'top-end'
   // }).fire({ onOpen: () => { Swal.showLoading() } });
 
-  return new Promise(async (resolve, reject) => {
+  return await new Promise(async (resolve, reject) => {
     try {
-      api.put(`${url}`, JSON.stringify(data), {
+       await api.put(`${url}`, JSON.stringify(data), {
         headers: {
           authorization: 'Bearer ' + await localStorage.getItem("token")
         }
@@ -64,10 +65,10 @@ export function put(url, data, method = "PUT") {
   })
 }
 
-export function post(url, data) {
-  return new Promise(async (resolve, reject) => {
+export async function post(url, data) {
+  return await new Promise(async (resolve, reject) => {
     try {
-      api.post(url, data, {
+      await api.post(url, data, {
         headers: {
           authorization: 'Bearer ' + await localStorage.getItem("token")
         }
@@ -85,17 +86,17 @@ export function post(url, data) {
   })
   }
 
-  export function del(url, id) {
+  export async function del(url, id) {
 
     // Swal.mixin({
     //   toast: true,
     //   position: 'top-end'
     // }).fire({ onOpen: () => { Swal.showLoading() } });
   
-    return new Promise(async (resolve, reject) => {
+    return await new Promise(async (resolve, reject) => {
      
       try {
-        api.delete(`${url}/${id}`, {
+        await api.delete(`${url}/${id}`, {
           headers: {
             authorization: 'Bearer ' + await localStorage.getItem("token")
           }
