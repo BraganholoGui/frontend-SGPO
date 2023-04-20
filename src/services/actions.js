@@ -28,7 +28,7 @@ export async function get(url) {
   })
     .then((response) => {
       console.log('')
-      console.log(handleResponse(response))
+      
       return handleResponse(response);
     })
     .catch((error) => {

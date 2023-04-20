@@ -53,7 +53,7 @@ const Menu = () => {
                   <a href='/teams'>Times *</a>
                 </li>
                 <li>
-                  <a href='/'>Cargos *</a>
+                  <a href='/roles'>Cargos *</a>
                 </li>
                 <li>
                   <a href='/users'>Usuários *</a>

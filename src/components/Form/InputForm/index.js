@@ -198,13 +198,14 @@ function InputForm(props) {
                     }}/>
                   :
                   <S.Input
-                    value={value}
-                    type={type}
-                    onChange={(e) => {
-                      setValue(e.target.value)
-                      props.value = e.target.value
-                    }}
-                    readOnly={readOnly}
+                  type={type}
+                  readOnly={readOnly}
+                  value={value}
+                  onChange={(e) => {
+                    setValue(e.target.value)
+                    props.setValue(e.target.value)
+                  }}
+                  selected={selected}
                   />
               }
             </S.ContainerFormBig>
