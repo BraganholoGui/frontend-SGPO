@@ -23,7 +23,7 @@ function InputForm(props) {
       borderRadius: '10px',
       border: '2px solid #ccc',
       boxShadow: '2px 2px 3px #ccc',
-      height: '50px',
+      minHeight: '50px',
       fontFamily: ' Arial, sans-serif',
       fontSize: '16px',
       color: '#333',
