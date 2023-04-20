@@ -53,6 +53,9 @@ const Menu = () => {
                   <a href='/'>Times *</a>
                 </li>
                 <li>
+                  <a href='/'>Cargos *</a>
+                </li>
+                <li>
                   <a href='/users'>Usuários *</a>
                 </li>
               </S.List>
