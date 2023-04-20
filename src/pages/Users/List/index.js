@@ -10,7 +10,7 @@ import EditDelete from '../../../components/Form/EditDelete';
 
 function UserList() {
   const [data, setData] = useState([]);
-  const {id} = useParams();
+  const { id } = useParams();
   const url = `/users`
   const location = useLocation();
 
@@ -22,18 +22,19 @@ function UserList() {
           console.log(response.records);
         }
       });
+
   }
 
   const columns = [
     {
       name: 'ID',
-      selector: row =>  <S.Row href={`users/${row.id}`}>{row.id}</S.Row>,
+      selector: row => <S.Row href={`users/${row.id}`}>{row.id}</S.Row>,
       sortable: true,
-      center:true
+      center: true
     },
     {
       name: 'Nome de Acesso',
-      selector: row =>  <S.Row href={`users/${row.id}`}>{row.access_name}</S.Row>,
+      selector: row => <S.Row href={`users/${row.id}`}>{row.access_name}</S.Row>,
       sortable: true,
     },
     {
@@ -48,18 +49,30 @@ function UserList() {
     },
     {
       name: 'Times',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Team ? row.Team.name : '-'}</S.Row>,
+      selector: row => <S.Row href={`users/${row.id}`}>
+        {row.TeamUsers ?
+          <>
+            {row.TeamUsers.map(item => {
+              return (
+                <>
+                  - {item.Team.name}<br></br>
+                </>
+              )
+            })}
+          </>
+          : '-'}
+      </S.Row>,
       sortable: true,
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData}/>,
-      center:true,
+      selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} />,
+      center: true,
       style: {
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
       },
     },
   ];
@@ -90,16 +103,16 @@ function UserList() {
   };
 
   useEffect(() => {
-      loadData();
+    loadData();
   }, [location, location.key])
- 
+
   useEffect(() => {
-      loadData();
+    loadData();
   }, [])
 
   return (
     <Container>
-      <HeaderContent title="Usuários" icon={<Person fontSize="large"/>} titleButton="Novo Usuário" linkTo="/users/novo" />
+      <HeaderContent title="Usuários" icon={<Person fontSize="large" />} titleButton="Novo Usuário" linkTo="/users/novo" />
       <ListContent
         columns={columns}
         data={data}

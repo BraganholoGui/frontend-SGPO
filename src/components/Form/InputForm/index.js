@@ -79,7 +79,6 @@ function InputForm(props) {
   };
 
   useEffect(() => {
-    console.log(props)
     setSize(props.size);
     setType(props.type);
     setTitle(props.title);
