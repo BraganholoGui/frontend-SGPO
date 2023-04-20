@@ -19,9 +19,9 @@ function User() {
   const [phone, setPhone] = useState('');
   const [team, setTeam] = useState('');
   const [role, setRole] = useState('');
-  const [selected, setSelected] = useState('');
 
   const [roleOptions, setRoleOptions] = useState('');
+  const [teamOptions, setTeamOptions] = useState('');
 
 
   async function loadData() {
@@ -36,8 +36,6 @@ function User() {
   }
 
   function buildSubmitObj() {
-    console.log("selected", selected)
-    return
     let obj = {
       contact: {
         id: data.Person && data.Person.Contact ? data.Person.Contact.id : null,
@@ -50,11 +48,11 @@ function User() {
       },
       access_name: accessName,
       password: password,
-      team: 1,
-      role: 1
+      team: team ? team.id : null,
+      role: role ? role.id :  null,
     }
 
-    return obj
+    return obj;
   }
 
   function getOptions(){
@@ -66,6 +64,16 @@ function User() {
           item.label = item.id +'. ' + item.name
         })
         setRoleOptions(response.records);
+      }
+    });
+    get(`/teams`)
+    .then(async response => {
+      if (response) {
+        response.records.map(item =>{
+          item.value = item.id;
+          item.label = item.id +'. ' + item.name
+        })
+        setTeamOptions(response.records);
       }
     });
 
@@ -83,9 +91,17 @@ function User() {
     setAccessName(data.access_name);
     setEmail(data.Person && data.Person.Contact ? data.Person.Contact.email : '');
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
-    setTeam(data.Team ? data.Team.name : '');
-    setRole(data.Role ? data.Role.name : '');
-  }, [data])
+    let roleSelected;
+    let teamSelected;
+    if(teamOptions.length > 0 && data.Team){
+      teamSelected = teamOptions.find(item =>item.id == data.Team.id)
+    }
+    if(roleOptions.length > 0 && data.Role){
+      roleSelected = roleOptions.find(item =>item.id == data.Role.id)
+    }
+    setTeam(teamSelected);
+    setRole(roleSelected);
+  }, [data, teamOptions, roleOptions])
 
   return (
     <>
@@ -94,16 +110,13 @@ function User() {
         <FormContent>
           <S.ContentBox>
             <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
-            <InputForm value={password} setValue={setPassword} title="Senha" type='password' size="small"></InputForm>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
-          </S.ContentBox>
-          <S.ContentBox>
             <InputForm value={email} setValue={setEmail} title="Email" type='text' size="small"></InputForm>
-            <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
-            <InputForm value={team} setValue={setTeam} title="Time" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm options={roleOptions} selected={selected} setSelected={setSelected} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
+            <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
+            <InputForm options={teamOptions} selected={team} setSelected={setTeam} value={team} setValue={setTeam} title="Time" type='select' size="small"></InputForm>
+            <InputForm options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             redefinir senha

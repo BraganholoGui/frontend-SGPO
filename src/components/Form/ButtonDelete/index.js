@@ -18,6 +18,7 @@ function ButtonDelete(props) {
   }, [props])
 
   function deleteForm(url, id) {
+    console.log(url, id)
     setLoading(true)
     del(url, id)
       .then(() => {

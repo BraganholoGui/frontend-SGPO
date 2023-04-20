@@ -19,7 +19,6 @@ function ButtonSave(props) {
   }, [props])
 
   function handleSubmit(url) {
-    console.log(obj)
     setLoading(true)
     if (id != 'novo') {
       put(`${url}/${id}`, obj)
@@ -38,9 +37,10 @@ function ButtonSave(props) {
           toast('success', `Salvo com sucesso!`);
           setLoading(false)
           history.goBack();
-
+          
         }).catch((err) => {
           toast('error', err.reason || `Error ao salvar o registro :(`);
+          setLoading(false)
         });
     }
   }
