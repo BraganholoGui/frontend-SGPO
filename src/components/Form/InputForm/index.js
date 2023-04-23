@@ -110,7 +110,6 @@ function InputForm(props) {
                         props.setValue(e)
                         props.setSelected(e)
                       }else{
-                        console.log('e', e)
                         setSelected(e)
                         setValue(e)
                         props.setValue(e)

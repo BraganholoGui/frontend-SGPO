@@ -20,7 +20,6 @@ function Role() {
       get(`/roles/${id}`)
         .then(async response => {
           if (response) {
-            console.log(response.role);
             setData(response.role);
           }
         });

@@ -52,20 +52,17 @@ function Team() {
     });
     get(`/teams-user/${id}`)
     .then(async response => {
-      console.log(response)
       if (response) {
         response.team_user.map(item =>{
           item.value = item.id;
           item.label = item.user +'. ' + item.User.Person.name
         })
-        console.log(response.team_user);
         let usersSelected;
       if(teamOptions.length > 0){
         response.team_user.map(itemTeam =>{
           usersSelected = userOptions.filter(item =>item.id == itemTeam.user)
 
         })
-        console.log('usersSelected', usersSelected)
       }
         setUsersRelateds(response.team_user);
       }

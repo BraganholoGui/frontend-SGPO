@@ -80,20 +80,16 @@ function User() {
       .then(async response => {
         let listTeams = []
         if (response) {
-          console.log(response)
           response.user.TeamUsers.map(team => {
             let obj = {
               ...team,
-              value : team.Team.name,
-              label : team.team + '. ' + team.Team.name
+              value: team.Team.name,
+              label: team.team + '. ' + team.Team.name
             }
 
             listTeams.push(obj)
           })
-
-          console.log(listTeams);
           setTeamOptions(listTeams);
-
         }
       });
 
@@ -135,7 +131,11 @@ function User() {
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
-            <InputForm options={teamOptions} selected={teamOptions} isMulti={true} readOnly={true} setSelected={setTeam} value={team} setValue={setTeam} title="Times" type='select' size="small"></InputForm>
+            {id != 'novo' ?
+              <InputForm options={teamOptions} selected={teamOptions} isMulti={true} readOnly={true} setSelected={setTeam} value={team} setValue={setTeam} title="Times" type='select' size="small"></InputForm>
+              :
+              null
+            }
             <InputForm options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>

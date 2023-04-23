@@ -30,7 +30,6 @@ function EditDelete(props) {
   }
 
   function deleteForm(url, id) {
-    console.log(url, id)
     setDeleteitem(true)
     del(url, id)
       .then(() => {
