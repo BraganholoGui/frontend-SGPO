@@ -9,6 +9,8 @@ import TeamList from '../pages/Team/List';
 import Team from '../pages/Team/Form';
 import Role from '../pages/Role/Form';
 import RoleList from '../pages/Role/List';
+import Supplier from '../pages/Supplier/Form';
+import SupplierList from '../pages/Supplier/List';
 
 const PublicRoutes = () => {
   return (
@@ -21,6 +23,8 @@ const PublicRoutes = () => {
           <Route path="/teams" component={TeamList} />
           <Route path="/users/:id" component={User} />
           <Route path="/users" component={Users} />
+          <Route path="/suppliers/:id" component={Supplier} />
+          <Route path="/suppliers" component={SupplierList} />
           <Route path="/" component={Dashboard} />
         </Switch>
       </Layout>
