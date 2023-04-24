@@ -41,7 +41,7 @@ const Menu = () => {
                   <a href='/'>Produtos *</a>
                 </li>
                 <li>
-                  <a href='/'>Materiais *</a>
+                  <a href='/materials'>Materiais *</a>
                 </li>
                 <li>
                   <a href='/buyers'>Compradores *</a>
