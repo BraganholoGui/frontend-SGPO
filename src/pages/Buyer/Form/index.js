@@ -13,7 +13,7 @@ function Buyer() {
   const url = '/buyers';
   const [data, setData] = useState({});
   const [name, setName] = useState('');
-  const [cnpj, setCnpj] = useState('');
+  const [cpf_cnpj, setCpfCnpj] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -39,7 +39,7 @@ function Buyer() {
         id: data.Person ? data.Person.id : null,
         name: name
       },
-      cpf_cnpj: cnpj,
+      cpf_cnpj: cpf_cnpj,
       is_cnpj:true
      
     }
@@ -54,7 +54,7 @@ function Buyer() {
 
   useEffect(() => {
     setName(data.Person && data.Person ? data.Person.name : '');
-    setCnpj(data.cnpj);
+    setCpfCnpj(data.cpf_cnpj);
     setEmail(data.Person && data.Person.Contact ? data.Person.Contact.email : '');
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
   }, [data])
@@ -65,7 +65,7 @@ function Buyer() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/buyers" title={id == "novo" ? "Novo Compradores" : "Editar Compradores"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={cnpj} setValue={setCnpj} title="CNPJ" type='text' size="medium"></InputForm>
+            <InputForm value={cpf_cnpj} setValue={setCpfCnpj} title="CPF ou CNPJ" type='text' size="medium"></InputForm>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="medium"></InputForm>
           </S.ContentBox>
           <S.ContentBox>

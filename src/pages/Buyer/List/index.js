@@ -36,7 +36,7 @@ function BuyerList() {
     },
     {
       name: 'CNPJ',
-      selector: row => <S.Row href={`buyers/${row.id}`}>{row.cnpj}</S.Row>,
+      selector: row => <S.Row href={`buyers/${row.id}`}>{row.cpf_cnpj}</S.Row>,
       sortable: true,
     },
     {
