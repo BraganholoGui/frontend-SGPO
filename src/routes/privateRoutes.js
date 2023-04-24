@@ -15,6 +15,8 @@ import Buyer from '../pages/Buyer/Form';
 import BuyerList from '../pages/Buyer/List';
 import MaterialList from '../pages/Material/List';
 import Material from '../pages/Material/Form';
+import Product from '../pages/Product/Form';
+import ProductList from '../pages/Product/List';
 
 const PublicRoutes = () => {
   return (
@@ -33,6 +35,8 @@ const PublicRoutes = () => {
           <Route path="/buyers" component={BuyerList} />
           <Route path="/materials/:id" component={Material} />
           <Route path="/materials" component={MaterialList} />
+          <Route path="/products/:id" component={Product} />
+          <Route path="/products" component={ProductList} />
           <Route path="/" component={Dashboard} />
         </Switch>
       </Layout>

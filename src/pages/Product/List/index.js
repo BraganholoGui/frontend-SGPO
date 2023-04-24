@@ -8,11 +8,11 @@ import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 
-function MaterialList() {
+function ProductList() {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
   const { id } = useParams();
-  const url = `/materials`
+  const url = `/products`
   const location = useLocation();
 
   async function loadData() {
@@ -93,7 +93,7 @@ function MaterialList() {
 
   return (
     <Container>
-      <HeaderContent title="Materiais" icon={<Person fontSize="large" />} titleButton="Novo Material" linkTo="/materials/novo" />
+      <HeaderContent title="Produtos" icon={<Person fontSize="large" />} titleButton="Novo Produto" linkTo="/products/novo" />
       <ListContent
         columns={columns}
         data={data}
@@ -105,4 +105,4 @@ function MaterialList() {
 
 }
 
-export default MaterialList;
+export default ProductList;
