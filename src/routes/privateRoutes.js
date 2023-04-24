@@ -17,6 +17,8 @@ import MaterialList from '../pages/Material/List';
 import Material from '../pages/Material/Form';
 import Product from '../pages/Product/Form';
 import ProductList from '../pages/Product/List';
+import Theme from '../pages/Theme/Form';
+import ThemeList from '../pages/Theme/List';
 
 const PublicRoutes = () => {
   return (
@@ -37,6 +39,8 @@ const PublicRoutes = () => {
           <Route path="/materials" component={MaterialList} />
           <Route path="/products/:id" component={Product} />
           <Route path="/products" component={ProductList} />
+          <Route path="/themes/:id" component={Theme} />
+          <Route path="/themes" component={ThemeList} />
           <Route path="/" component={Dashboard} />
         </Switch>
       </Layout>
