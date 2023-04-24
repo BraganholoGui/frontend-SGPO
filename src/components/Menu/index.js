@@ -44,7 +44,7 @@ const Menu = () => {
                   <a href='/'>Materiais *</a>
                 </li>
                 <li>
-                  <a href='/'>Compradores *</a>
+                  <a href='/buyers'>Compradores *</a>
                 </li>
                 <li>
                   <a href='/suppliers'>Fornecedores *</a>

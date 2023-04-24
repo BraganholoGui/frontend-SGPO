@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Button from '../../ButtonLink';
 import ButtonDelete from '../ButtonDelete';
 import ButtonSave from '../ButtonSave';
 import * as S from './style';

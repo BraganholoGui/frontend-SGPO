@@ -8,9 +8,9 @@ import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
 
-function Supplier() {
+function Buyer() {
   const { id } = useParams();
-  const url = '/suppliers';
+  const url = '/buyers';
   const [data, setData] = useState({});
   const [name, setName] = useState('');
   const [cnpj, setCnpj] = useState('');
@@ -19,13 +19,13 @@ function Supplier() {
 
   async function loadData() {
     if (id != 'novo') {
-      get(`/suppliers/${id}`)
+      get(`/buyers/${id}`)
         .then(async response => {
           if (response) {
-            setData(response.supplier);
+            setData(response.buyer);
           }
         });
-    }
+    } 
   }
 
   function buildSubmitObj() {
@@ -39,7 +39,8 @@ function Supplier() {
         id: data.Person ? data.Person.id : null,
         name: name
       },
-      cnpj: cnpj,
+      cpf_cnpj: cnpj,
+      is_cnpj:true
      
     }
 
@@ -61,7 +62,7 @@ function Supplier() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/suppliers" title={id == "novo" ? "Novo Fornecedor" : "Editar Fornecedor"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/buyers" title={id == "novo" ? "Novo Compradores" : "Editar Compradores"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={cnpj} setValue={setCnpj} title="CNPJ" type='text' size="medium"></InputForm>
@@ -78,4 +79,4 @@ function Supplier() {
   )
 
 }
-export default Supplier;
+export default Buyer;
