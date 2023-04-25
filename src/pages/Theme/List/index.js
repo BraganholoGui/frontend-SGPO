@@ -34,7 +34,7 @@ function ThemeList() {
       center: true,
     },
     {
-      name: 'Name',
+      name: 'Nome',
       selector: row => row.name,
       sortable: true,
     },
@@ -78,7 +78,7 @@ function ThemeList() {
 
   useEffect(() => {
     loadData();
-  }, [load])
+  }, [])
 
   return (
     <Container>

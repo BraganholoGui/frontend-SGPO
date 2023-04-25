@@ -40,7 +40,7 @@ function SupplierList() {
       sortable: true,
     },
     {
-      name: 'Name',
+      name: 'Nome',
       selector: row => <S.Row href={`suppliers/${row.id}`}>{row.Person ? row.Person.name : '-'}</S.Row>,
       sortable: true,
     },

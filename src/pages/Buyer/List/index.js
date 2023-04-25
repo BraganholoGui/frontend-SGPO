@@ -40,7 +40,7 @@ function BuyerList() {
       sortable: true,
     },
     {
-      name: 'Name',
+      name: 'Nome',
       selector: row => <S.Row href={`buyers/${row.id}`}>{row.Person ? row.Person.name : '-'}</S.Row>,
       sortable: true,
     },

@@ -35,7 +35,7 @@ function ProductList() {
       center: true,
     },
     {
-      name: 'Name',
+      name: 'Nome',
       selector: row => row.name,
       sortable: true,
     },

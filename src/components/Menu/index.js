@@ -20,43 +20,43 @@ const Menu = () => {
             <S.Navigation >
               <S.List>
                 <li>
-                  <a href='/' >Dashboard</a>
+                  <a href='/' >Dashboard *</a>
                 </li>
                 <li>
-                  <a href='/about'>Tarefas</a>
+                  <a href='/about'>Tarefas *</a>
                 </li>
                 <li>
-                  <a href='/themes'>Temas *</a>
+                  <a href='/themes'>Temas</a>
                 </li>
                 <li>
-                  <a href='/' >Compras</a>
+                  <a href='/' >Compras *</a>
                 </li>
                 <li>
-                  <a href='/'>Vendas</a>
+                  <a href='/'>Vendas *</a>
                 </li>
                 <li>
-                  <a href='/'>Estoque</a>
+                  <a href='/'>Estoque *</a>
                 </li>
                 <li>
-                  <a href='/products'>Produtos *</a>
+                  <a href='/products'>Produtos</a>
                 </li>
                 <li>
-                  <a href='/materials'>Materiais *</a>
+                  <a href='/materials'>Materiais</a>
                 </li>
                 <li>
-                  <a href='/buyers'>Compradores *</a>
+                  <a href='/buyers'>Compradores</a>
                 </li>
                 <li>
-                  <a href='/suppliers'>Fornecedores *</a>
+                  <a href='/suppliers'>Fornecedores</a>
                 </li>
                 <li>
-                  <a href='/teams'>Times *</a>
+                  <a href='/teams'>Times</a>
                 </li>
                 <li>
-                  <a href='/roles'>Cargos *</a>
+                  <a href='/roles'>Cargos</a>
                 </li>
                 <li>
-                  <a href='/users'>Usuários *</a>
+                  <a href='/users'>Usuários</a>
                 </li>
               </S.List>
             </S.Navigation> : null
