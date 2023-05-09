@@ -21,7 +21,8 @@ function Product() {
       get(`/products/${id}`)
         .then(async response => {
           if (response) {
-            setData(response.material);
+            console.log(response)
+            setData(response.product);
           }
         });
     } 
@@ -43,6 +44,7 @@ function Product() {
 
 
   useEffect(() => {
+    console.log(data)
     setName(data.name );
     setDescription(data.description);
     setPrice(data.price);
