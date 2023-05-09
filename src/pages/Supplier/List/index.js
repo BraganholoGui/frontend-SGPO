@@ -18,7 +18,6 @@ function SupplierList() {
     await get(url)
       .then(async response => {
         if (response) {
-          console.log(response.records);
           setData(response.records);
         }
       });

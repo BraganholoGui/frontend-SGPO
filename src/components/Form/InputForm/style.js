@@ -38,6 +38,7 @@ width: 40%;
 display: flex;
 transition: all 2s ;
 transform: rotate(-360deg);
+z-index: 1;
 flex-direction: column;
 @media (max-width: 860px) {
     width: 95%;

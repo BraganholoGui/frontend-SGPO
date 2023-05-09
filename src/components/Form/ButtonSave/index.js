@@ -19,7 +19,6 @@ function ButtonSave(props) {
   }, [props])
 
   async function handleSubmit(url) {
-    console.log(obj)
     setLoading(true)
     if (id != 'novo') {
       await put(`${url}/${id}`, obj)

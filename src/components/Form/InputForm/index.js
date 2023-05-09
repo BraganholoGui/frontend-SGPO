@@ -18,6 +18,7 @@ function InputForm(props) {
   const colourStyles = {
     control: (styles) => ({
       ...styles,
+      zIndex: 99999999,
       backgroundColor: 'white',
       //  background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `${theme.input}`)};
       borderRadius: '10px',
@@ -40,7 +41,7 @@ function InputForm(props) {
         borderRadius: '10px',
         border: '2px solid #ccc',
         boxShadow: '2px 2px 3px #ccc',
-
+        zIndex: 99999999,
       };
     },
     multiValue: (styles, { data }) => {
@@ -50,7 +51,8 @@ function InputForm(props) {
         backgroundColor:`${theme.inputLock}`,
         borderRadius:'20px',
         padding:'5px',
-        textAlign:'center'
+        textAlign:'center',
+        zIndex: 99999999,
         
       };
     },
@@ -72,7 +74,8 @@ function InputForm(props) {
         backgroundColor:`${theme.inputLock}`,
         borderRadius:'20px',
         padding:'5px',
-        textAlign:'center'
+        textAlign:'center',
+        width:'70%',
         
       };
     },
@@ -142,7 +145,6 @@ function InputForm(props) {
                     setSelected={setSelected} value={selected}
                     isMulti={isMulti}
                     isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : null}
-
                     onChange={(e) => {
                       if(isMulti){
                         setSelected(e)
@@ -150,12 +152,11 @@ function InputForm(props) {
                         props.setValue(e)
                         props.setSelected(e)
                       }else{
-                        setSelected(e.id)
-                        setValue(e.id)
-                        props.setValue(e.id)
-                        props.setSelected(e.id)
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
                       }
-
                     }} />
                   :
                   <S.Input
@@ -188,10 +189,10 @@ function InputForm(props) {
                         props.setValue(e)
                         props.setSelected(e)
                       }else{
-                        setSelected(e.id)
-                        setValue(e.id)
-                        props.setValue(e.id)
-                        props.setSelected(e.id)
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
                       }
 
                     }}/>
