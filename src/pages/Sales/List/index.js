@@ -19,6 +19,7 @@ function SaleList() {
       .then(async response => {
         if (response) {
           setData(response.records);
+          console.log(response.records)
         }
       });
 
@@ -33,12 +34,12 @@ function SaleList() {
     },
     {
       name: 'Comprador',
-      selector: row => row.buyer,
+      selector: row => row.Buyer.Person.name,
       sortable: true,
     },
     {
       name: 'Produto',
-      selector: row => row.product,
+      selector: row => row.Product.name,
       sortable: true,
     },
     {

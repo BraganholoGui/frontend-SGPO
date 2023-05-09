@@ -32,7 +32,7 @@ const Menu = () => {
                   <a href='/' >Compras *</a>
                 </li>
                 <li>
-                  <a href='/sales'>Vendas *</a>
+                  <a href='/sales'>Vendas</a>
                 </li>
                 <li>
                   <a href='/'>Estoque *</a>

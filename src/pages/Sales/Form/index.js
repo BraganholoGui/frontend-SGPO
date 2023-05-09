@@ -58,7 +58,7 @@ function Sale() {
           }
         }
       });
-    get(`/buyers`)
+    get(`/buyers`) 
       .then(async response => {
         if (response && response.records) {
           response.records.map(item => {
@@ -80,6 +80,9 @@ function Sale() {
     loadData();
     getOptions()
   }, [])
+  useEffect(() => {
+    getOptions()
+  }, [data])
 
 
   useEffect(() => {
