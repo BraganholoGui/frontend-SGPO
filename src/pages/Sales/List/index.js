@@ -8,10 +8,10 @@ import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 
-function ProductList() {
+function SaleList() {
   const [data, setData] = useState([]);
   const { id } = useParams();
-  const url = `/products`
+  const url = `/sales`
   const location = useLocation();
 
   async function loadData() {
@@ -32,18 +32,23 @@ function ProductList() {
       center: true,
     },
     {
-      name: 'Nome',
-      selector: row => row.name,
+      name: 'Comprador',
+      selector: row => row.buyer,
       sortable: true,
     },
     {
-      name: 'Descrição',
-      selector: row => row.description,
+      name: 'Produto',
+      selector: row => row.product,
       sortable: true,
     },
     {
       name: 'Preço',
       selector: row => row.price,
+      sortable: true,
+    },
+    {
+      name: 'Quantidade',
+      selector: row => row.quantity,
       sortable: true,
     },
     {
@@ -90,7 +95,7 @@ function ProductList() {
 
   return (
     <Container>
-      <HeaderContent title="Produtos" icon={<Person fontSize="large" />} titleButton="Novo Produto" linkTo="/products/novo" />
+      <HeaderContent title="Vendas" icon={<Person fontSize="large" />} titleButton="Nova Venda" linkTo="/sales/novo" />
       <ListContent
         columns={columns}
         data={data}
@@ -102,4 +107,4 @@ function ProductList() {
 
 }
 
-export default ProductList;
+export default SaleList;

@@ -10,17 +10,14 @@ import EditDelete from '../../../components/Form/EditDelete';
 
 function MaterialList() {
   const [data, setData] = useState([]);
-  const [load, setLoad] = useState(false);
   const { id } = useParams();
   const url = `/materials`
   const location = useLocation();
 
   async function loadData() {
-    setLoad(!load)
     await get(url)
       .then(async response => {
         if (response) {
-          console.log(response.records);
           setData(response.records);
         }
       });
@@ -89,7 +86,7 @@ function MaterialList() {
 
   useEffect(() => {
     loadData();
-  }, [load])
+  }, [])
 
   return (
     <Container>

@@ -8,20 +8,21 @@ import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
 
-function Product() {
+function  Sale() {
   const { id } = useParams();
-  const url = '/products';
+  const url = '/sales';
   const [data, setData] = useState({});
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [product, setProduct] = useState('');
+  const [buyer, setBuyer] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
 
   async function loadData() {
     if (id != 'novo') {
-      get(`/products/${id}`)
+      get(`/sales/${id}`)
         .then(async response => {
           if (response) {
-            setData(response.product);
+            setData(response.sale);
           }
         });
     } 
@@ -29,11 +30,12 @@ function Product() {
 
   function buildSubmitObj() {
     let obj = {
-      name:name,
+      product:product,
       price: price,
-      description:description
+      buyer:buyer,
+      quantity:quantity,
     }
-
+    console.log(obj)
     return obj;
   }
 
@@ -43,22 +45,24 @@ function Product() {
 
 
   useEffect(() => {
-    setName(data.name );
-    setDescription(data.description);
+    setProduct(data.product );
+    setBuyer(data.buyer);
+    setQuantity(data.quantity);
     setPrice(data.price);
   }, [data])
 
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/products" title={id == "novo" ? "Novo Produto" : "Editar Produto"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={name} setValue={setName} title="Nome" type='text' size="medium"></InputForm>
+            <InputForm value={product} setValue={setProduct} title="Produto" type='text' size="medium"></InputForm>
             <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="medium"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="large"></InputForm>
+            <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="medium"></InputForm>
+            <InputForm value={buyer} setValue={setBuyer} title="Comprador" type='text' size="medium"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>
@@ -67,4 +71,4 @@ function Product() {
   )
 
 }
-export default Product;
+export default  Sale;

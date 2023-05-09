@@ -10,13 +10,11 @@ import EditDelete from '../../../components/Form/EditDelete';
 
 function UserList() {
   const [data, setData] = useState([]);
-  const [load, setLoad] = useState(false);
   const { id } = useParams();
   const url = `/users`
   const location = useLocation();
 
   async function loadData() {
-    setLoad(!load)
     await get(url)
       .then(async response => {
         if (response) {
@@ -105,7 +103,7 @@ function UserList() {
 
   useEffect(() => {
     loadData();
-  }, [load])
+  }, [])
 
   return (
     <Container>
