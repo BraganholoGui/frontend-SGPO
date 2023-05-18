@@ -23,7 +23,7 @@ const Menu = () => {
                   <a href='/' >Dashboard *</a>
                 </li>
                 <li>
-                  <a href='/about'>Tarefas *</a>
+                  <a href='/tasks'>Tarefas</a>
                 </li>
                 <li>
                   <a href='/themes'>Temas</a>
