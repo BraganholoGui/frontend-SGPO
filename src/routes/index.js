@@ -8,5 +8,5 @@ const AppRoutes = () => {
   return <PrivateRoutes />
   return signed ? <PrivateRoutes /> : <PublicRoutes />;
 };
-
+ 
 export default AppRoutes;
