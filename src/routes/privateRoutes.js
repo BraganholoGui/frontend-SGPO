@@ -21,6 +21,8 @@ import Theme from '../pages/Theme/Form';
 import ThemeList from '../pages/Theme/List';
 import SaleList from '../pages/Sales/List';
 import Sale from '../pages/Sales/Form';
+import Purchase from '../pages/Purchase/Form';
+import PurchaseList from '../pages/Purchase/List';
 
 const PublicRoutes = () => {
   return (
@@ -41,6 +43,8 @@ const PublicRoutes = () => {
           <Route path="/materials" component={MaterialList} />
           <Route path="/products/:id" component={Product} />
           <Route path="/products" component={ProductList} />
+          <Route path="/purchases/:id" component={Purchase} />
+          <Route path="/purchases" component={PurchaseList} />
           <Route path="/sales/:id" component={Sale} />
           <Route path="/sales" component={SaleList} />
           <Route path="/themes/:id" component={Theme} />

@@ -6,10 +6,12 @@ import { Button } from 'reactstrap';
 function ListContent(props) {
   const [data, setData] = useState(props.data);
   const [columns, setColumns] = useState(props.columns);
+  const [conditionalRowStyles, setConditionalRowStyles] = useState(props.conditionalRowStyles);
 
   useEffect(() => {
     setData(props.data);
     setColumns(props.columns);
+    setConditionalRowStyles(props.conditionalRowStyles);
   }, [props.data, props.columns]);
 
   const customStyles = {
@@ -123,6 +125,7 @@ function ListContent(props) {
           highlightOnHover
           noDataComponent={"Não há cadastros!"}
           striped
+          conditionalRowStyles={conditionalRowStyles}
         />
       </S.Box>
     </S.ContainerMain>
