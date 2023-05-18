@@ -2,6 +2,7 @@ import * as S from './style';
 import DataTable from 'react-data-table-component';
 import { useState, useEffect, useMemo } from 'react';
 import { Button } from 'reactstrap';
+import Kanban from '../KanbanComponents/index';
 
 function ListContentKanban(props) {
   const [data, setData] = useState(props.data);
@@ -17,7 +18,7 @@ function ListContentKanban(props) {
   return (
     <S.ContainerMain>
       <S.Box>
-        
+        <Kanban/>
       </S.Box>
     </S.ContainerMain>
   )
