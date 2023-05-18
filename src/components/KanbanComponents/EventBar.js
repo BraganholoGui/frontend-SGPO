@@ -17,9 +17,9 @@ const EventBar = ({ events, setEvents, currentEvent, setCurrentEvent }) => {
         ...prev,
         {
           title,
-          ['To do']: [],
-          ['In progress']: [],
-          ['Completed']: [],
+          ['Pendente']: [],
+          ['Fazendo']: [],
+          ['Finalizado']: [],
         },
       ]);
   }, [events, setEvents]);

@@ -6,19 +6,16 @@ import Kanban from '../KanbanComponents/index';
 
 function ListContentKanban(props) {
   const [data, setData] = useState(props.data);
-  const [columns, setColumns] = useState(props.columns);
-  const [conditionalRowStyles, setConditionalRowStyles] = useState(props.conditionalRowStyles);
 
   useEffect(() => {
+    console.log(props)
     setData(props.data);
-    setColumns(props.columns);
-    setConditionalRowStyles(props.conditionalRowStyles);
-  }, [props.data, props.columns]);
+  }, [props]);
 
   return (
     <S.ContainerMain>
       <S.Box>
-        <Kanban/>
+        <Kanban data={data} setData={setData}/>
       </S.Box>
     </S.ContainerMain>
   )

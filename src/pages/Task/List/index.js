@@ -13,14 +13,16 @@ function TaskKanban() {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
   const { id } = useParams();
-  const url = `/themes`
+  const url = `/tasks`
   const location = useLocation();
 
   async function loadData() {
-    setLoad(!load)
     await get(url)
       .then(async response => {
         if (response) {
+         response.records.map(item =>{
+            item.details = item.description
+          })
           setData(response.records);
         }
       });
@@ -34,7 +36,7 @@ function TaskKanban() {
   return (
     <Container>
       <HeaderContent title="Tarefas" icon={<Person fontSize="large" />} titleButton="Nova Tarefa" linkTo="/tasks/novo" />
-      <ListContentKanban/>
+      <ListContentKanban data={data} setData={setData}/>
 
     </Container>
   )

@@ -4,22 +4,51 @@ import './task.css';
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import EventBar from './EventBar';
 import TaskBox from './TaskBox';
+import { get } from '../../services/actions';
 
-function Kanban() {
-  const initEvent = useMemo(() => [
-    {
-      title: 'Add a new Event',
-      ['To do']: [],
-      ['In progress']: [],
-      ['Completed']: [],
-    },
-  ], []);
-
+function Kanban(props) {
+  const url = `/tasks`
+  const [data, setData] = useState(props.data);
   const [events, setEvents] = useState(() => {
+    console.log('data', data)
+    // let eventsAux = data.
     return localStorage.getItem('events')
       ? JSON.parse(localStorage.getItem('events'))
       : initEvent;
   });
+
+  useEffect(() => {
+    setData(props.data);
+    console.log(props.data);
+    let eventAux = [
+      {
+        title: 'Tasks',
+        ['Pendente']: [],
+        ['Fazendo']: [],
+        ['Finalizado']: [],
+      },
+    ];
+    console.log(props.data)
+    props.data.map(item =>{
+      if(item.status ==1){
+        eventAux[0]['Pendente'].push(item)
+      }else if(item.status == 2){
+        eventAux[1]['Fazendo'].push(item)
+      }else{
+        eventAux[2]['Finalizado'].push(item)
+      }
+    })
+    setEvents(eventAux)
+  }, [props]);
+  
+  const initEvent = useMemo(() => [
+    {
+      title: 'Add a new Event',
+      ['Pendente']: [],
+      ['Fazendo']: [],
+      ['Finalizado']: [],
+    },
+  ], []);
 
   const [currentEvent, setCurrentEvent] = useState(events[0]);
 
