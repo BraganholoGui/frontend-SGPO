@@ -12,3 +12,16 @@ export function toast(icon, msg) {
       title: msg
     });
   }
+
+  export function formattedDate(date) {
+    let dateFormated = new Date(date)
+    let finalDate = (adicionaZero(dateFormated.getDate().toString())) + '/' + (adicionaZero(dateFormated.getMonth().toString())) + '/' + dateFormated.getFullYear()
+    return finalDate;
+  }
+
+  function adicionaZero(numero){
+    if (numero <= 9) 
+        return "0" + numero;
+    else
+        return numero; 
+}

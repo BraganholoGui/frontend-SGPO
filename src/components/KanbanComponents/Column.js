@@ -23,27 +23,16 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                       index={index}
                     >
                       {(provided, snapshot) => (
-                        <>
                           <Task
-                            name={item.name}
-                            details={item.details}
-                            id={item.id}
-                            provided={provided}
-                            snapshot={snapshot}
-                            // handleRemove={handleRemove}
-                            // handleUpdate={handleUpdate}
+                          name={item.name}
+                          item={item}
+                          details={item.details}
+                          id={item.id}
+                          provided={provided}
+                          snapshot={snapshot}
+                          // handleRemove={handleRemove}
+                          // handleUpdate={handleUpdate}
                             />
-                          <Task
-                            name={item.name}
-                            item={item}
-                            details={item.details}
-                            id={item.id}
-                            provided={provided}
-                            snapshot={snapshot}
-                            // handleRemove={handleRemove}
-                            // handleUpdate={handleUpdate}
-                            />
-                            </>
                         )}
                     </Draggable>
                   ))}

@@ -1,3 +1,4 @@
+import { formattedDate } from '../../GeneralFunctions/functions';
 import * as S from './style'
 
 const Task = ({ name, details, item, id, provided, handleRemove }) => {
@@ -9,10 +10,10 @@ const Task = ({ name, details, item, id, provided, handleRemove }) => {
     >
       <S.TaskName>
         <S.TaskNameInformation>
-          {name}
+          {name} - 
         </S.TaskNameInformation>
         <S.TaskNameInformation>
-           {item ? item.start : null}
+           {item ? formattedDate(item.start) : null}
 
         </S.TaskNameInformation>
       </S.TaskName>
