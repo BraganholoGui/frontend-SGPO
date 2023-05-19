@@ -10,17 +10,21 @@ const Task = ({ name, details, item, id, provided, handleRemove }) => {
     >
       <S.TaskName>
         <S.TaskNameInformation>
-          {name} - 
-        </S.TaskNameInformation>
-        <S.TaskNameInformation>
-           {item ? formattedDate(item.start) : null}
-
+          {name} - {item ? formattedDate(item.start) : null}
         </S.TaskNameInformation>
       </S.TaskName>
-      <S.TaskDetails>{details}</S.TaskDetails>
-      <S.RemoveBar onClick={(e) => handleRemove(id, e)}>
-        -
-      </S.RemoveBar>
+      <S.TaskDetails>
+        Prazo: {item ? formattedDate(item.end) : null}
+      </S.TaskDetails>
+      <S.TaskDetails>Descrição: {details}</S.TaskDetails>
+      <S.ContainerActions>
+        <S.EditBar onClick={(e) => handleRemove(id, e)}>
+          -
+        </S.EditBar>
+        <S.RemoveBar onClick={(e) => handleRemove(id, e)}>
+          -
+        </S.RemoveBar>
+      </S.ContainerActions>
     </S.Task>
   );
 };

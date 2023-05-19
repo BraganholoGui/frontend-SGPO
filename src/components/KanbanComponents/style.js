@@ -24,8 +24,7 @@ export const TaskBoxBody = styled.div`
 `;
 
 export const Column = styled.div`
-width: 380px;
-  max-height: 700px;
+width: 400px;
   background-color: #f6f9fa;
   border-radius: 15px;
   padding: 17px 25px;
@@ -37,7 +36,7 @@ width: 380px;
 
 export const TaskContainer = styled.div`
   width: 100%;
-  height: 70vh;
+  height: 69vh;
   overflow: auto;
   border: 1px solid rgba(0,0,0,0.3);
   box-shadow: 7px 10px 7px rgb(0 0 0 / 35%);
@@ -71,6 +70,7 @@ flex-direction: column;
 `;
 
 export const TaskName = styled.div`
+width: 100%;
 display: flex;
 align-items: flex-start;
 font-style: normal;
@@ -80,9 +80,10 @@ font-style: normal;
     content: '●';
   font-style: normal;
   /* color: #f19737; */
-  color: ${theme.primaryLight};;
+  color: ${theme.primaryLight};
   margin-right: 10px;
   }
+  border-bottom: 1px solid white;
 `;
 
 export const TaskNameInformation = styled.div`
@@ -90,21 +91,28 @@ display: flex;
 align-items: flex-start;
 font-style: normal;
 font-size: 0.9em;
-font-weight: 300;
+font-weight: 600;
 `;
 
-export const TaskDetails = styled.p`
+export const TaskDetails = styled.div`
   font-style: normal;
   font-weight: 300;
   font-size: 0.8em;
   color: #9c9c9c;
-  /* word-wrap: break-word; */
-  margin-top: 10px;
-  line-height: 1.1em;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
 `;
 
+export const ContainerActions = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+`; 
+
 export const RemoveBar = styled.p`
-position: absolute;
   bottom: 15px;
   right: 15px;
   text-align: end;
@@ -115,6 +123,23 @@ position: absolute;
   transition: 0.5s;
   &&:hover {
   color: red;
+  font-size: 8em;
+  line-height: 0.01em;
+  transition: 0.5s;
+}
+`; 
+
+export const EditBar = styled.p`
+  bottom: 15px;
+  right: 15px;
+  text-align: end;
+  font-size: 3.5em;
+  font-weight: 300;
+  color: ${theme.primaryDark};;
+  line-height: 0.1em;
+  transition: 0.5s;
+  &&:hover {
+  color: ${theme.primaryDark};;
   font-size: 8em;
   line-height: 0.01em;
   transition: 0.5s;
