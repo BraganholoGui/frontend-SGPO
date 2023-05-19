@@ -17,7 +17,7 @@ function Task() {
   const [end, setEnd] = useState('12/12/2022');
   const [themeSelected, setThemeSelected] = useState(null);
   const [userSelected, setUserSelected] = useState(null);
-  const [statusSelected, setStatusSelected] = useState(null);
+  const [statusSelected, setStatusSelected] = useState(1);
   const [prioritySelected, setPrioritySelected] = useState(null);
 
   const [themeOptions, setThemeOptions] = useState('');
@@ -45,7 +45,7 @@ function Task() {
       end:end,
       theme: themeSelected ? themeSelected.id : null,
       created_by:1,
-      status: statusSelected ? statusSelected.id : null,
+      status: id != "novo" ? statusSelected ? statusSelected.id : null : 1,
       priority: prioritySelected ? prioritySelected.id : null,
     }
     return obj;
@@ -132,7 +132,11 @@ function Task() {
             <InputForm options={userOptions} selected={userSelected} setSelected={setUserSelected} value={userSelected} setValue={setUserSelected} title="Usuário" type='select' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            {/* <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status(alterar para radio btton)" type='select' size="small"></InputForm> */}
+            {
+              id != "novo" ?
+              <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status(alterar para radio btton)" type='select' size="small"></InputForm>
+              : null
+            }
             <InputForm options={priorityOptions} selected={prioritySelected} setSelected={setPrioritySelected} value={prioritySelected} setValue={setPrioritySelected} title="Prioridade" type='select' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
