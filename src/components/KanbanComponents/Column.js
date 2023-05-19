@@ -1,4 +1,3 @@
-import AddTaskButton from './AddTaskButton';
 import Task from './Task';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 // import uuid from 'react-uuid';
@@ -8,7 +7,6 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
   return (
     <S.Column>
       {tag}
-      {/* <AddTaskButton handleClick={handleAdd} /> */}
       <Droppable droppableId={tag}>
         {(provided, snapshot) => {
           return (
@@ -25,6 +23,7 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                       index={index}
                     >
                       {(provided, snapshot) => (
+                        <>
                           <Task
                             name={item.name}
                             details={item.details}
@@ -33,7 +32,18 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                             snapshot={snapshot}
                             // handleRemove={handleRemove}
                             // handleUpdate={handleUpdate}
-                          />
+                            />
+                          <Task
+                            name={item.name}
+                            item={item}
+                            details={item.details}
+                            id={item.id}
+                            provided={provided}
+                            snapshot={snapshot}
+                            // handleRemove={handleRemove}
+                            // handleUpdate={handleUpdate}
+                            />
+                            </>
                         )}
                     </Draggable>
                   ))}

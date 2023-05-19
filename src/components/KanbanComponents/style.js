@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {theme} from '../../theme'
 
 export const ContainerMain = styled.div`
   width: 100%;
@@ -6,12 +7,12 @@ export const ContainerMain = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 999;
-  `; 
+  `;
 export const Box = styled.div`
   margin-top: 2%;
   width: 70%;
   z-index: 999;
-`; 
+`;
 
 export const TaskBoxBody = styled.div`
  display: flex;
@@ -20,10 +21,10 @@ export const TaskBoxBody = styled.div`
   width: 100%;
   height: 700px;
   margin-top: 20px;
-`; 
+`;
 
 export const Column = styled.div`
-width: 300px;
+width: 380px;
   max-height: 700px;
   background-color: #f6f9fa;
   border-radius: 15px;
@@ -32,77 +33,75 @@ width: 300px;
   font-weight: 400;
   font-style: italic;
   transition: 1s;
-`; 
-
-export const AddTaskButton = styled.div`
-  width: 300px;
-  height: 40px;
-  font-size: 1.3em;
-  line-height: 40px;
-  background-color: #ebf1f1;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  transition: 0.5s;
-  outline: none;
-  text-align: center;
-  font-style: normal;
-  margin: 15px auto;
-  font-size: 1.1em;
-  &&:hover{
-    background-color: #dee4e4;
-  }
-`; 
+`;
 
 export const TaskContainer = styled.div`
- width: 100%;
-  min-height: 30px;
-  max-height: 600px;
+  width: 100%;
+  height: 70vh;
   overflow: auto;
-`; 
+  border: 1px solid rgba(0,0,0,0.3);
+  box-shadow: 7px 10px 7px rgb(0 0 0 / 35%);
+  border-radius: 20px;
+  display:flex;
+  /* justify-content: center; */
+  flex-direction:column;
+  align-items: center;
+`;
 
 export const Task = styled.div`
-position: relative;
-  width: calc(100% - 33px);
-  background-color: #fff;
-  padding: 15px;
+/* position: relative; */
+display: flex;
+align-items: flex-start;
+flex-direction: column;
+  width: calc(88%);
+  background-color: #333;
+  padding: 8px;
   border-radius: 10px;
-  margin-bottom: 18px;
+  margin-top: 18px;
+  margin:8px;
   cursor: pointer;
   transition: 0.2s;
   user-select: none;
-  border: 1px solid #ccc;
+  border: 2px solid #000;
   outline: none;
-
+  color:#fff;
   &&:hover{
-     background-color: rgba(0, 119, 256, 0.014);
   transition: 0.2s;
   }
-`; 
+`;
 
 export const TaskName = styled.div`
+display: flex;
+align-items: flex-start;
 font-style: normal;
   font-size: 0.9em;
   font-weight: 300;
-  line-height: 1.1em;
-
   &&:before{
     content: '●';
   font-style: normal;
-  color: #f19737;
+  /* color: #f19737; */
+  color: ${theme.primaryLight};;
   margin-right: 10px;
   }
-`; 
+`;
+
+export const TaskNameInformation = styled.div`
+display: flex;
+align-items: flex-start;
+font-style: normal;
+font-size: 0.9em;
+font-weight: 300;
+`;
 
 export const TaskDetails = styled.p`
   font-style: normal;
   font-weight: 300;
   font-size: 0.8em;
   color: #9c9c9c;
-  word-wrap: break-word;
+  /* word-wrap: break-word; */
   margin-top: 10px;
   line-height: 1.1em;
-`; 
+`;
 
 export const RemoveBar = styled.p`
 position: absolute;
@@ -111,7 +110,7 @@ position: absolute;
   text-align: end;
   font-size: 3.5em;
   font-weight: 300;
-  color: #888;
+  color: red;
   line-height: 0.1em;
   transition: 0.5s;
   &&:hover {
