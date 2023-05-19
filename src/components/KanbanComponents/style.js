@@ -66,6 +66,8 @@ flex-direction: column;
   color:#fff;
   &&:hover{
   transition: 0.2s;
+  width: calc(92%);
+  transform: rotate(3deg);
   }
 `;
 

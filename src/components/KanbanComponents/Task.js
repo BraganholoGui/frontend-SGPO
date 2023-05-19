@@ -18,10 +18,12 @@ const Task = ({ name, details, item, id, provided, handleRemove }) => {
       </S.TaskDetails>
       <S.TaskDetails>Descrição: {details}</S.TaskDetails>
       <S.ContainerActions>
-        <S.EditBar onClick={(e) => handleRemove(id, e)}>
+      <a href={`/tasks/${id}`} style={{textDecoration:'none'}}>
+        <S.EditBar>
           -
         </S.EditBar>
-        <S.RemoveBar onClick={(e) => handleRemove(id, e)}>
+        </a>
+       <S.RemoveBar onClick={(e) => handleRemove(id, e)}>
           -
         </S.RemoveBar>
       </S.ContainerActions>
