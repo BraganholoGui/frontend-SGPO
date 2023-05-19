@@ -70,9 +70,6 @@ function Purchase() {
           }
         }
       });
-
-    
-
   }
 
   useEffect(() => {
@@ -85,8 +82,6 @@ function Purchase() {
 
 
   useEffect(() => {
-    setProduct(data.product);
-    setMaterial(data.material);
     setQuantity(data.quantity);
     setPrice(data.price);
   }, [data])

@@ -44,32 +44,9 @@ function Kanban(props) {
 
   const [currentEvent, setCurrentEvent] = useState(events[0]);
 
-  const updateEvents = useCallback(async () => {
-    try {
-      if (!events.length) {
-        await localStorage.setItem('events', JSON.stringify(initEvent));
-        setEvents(JSON.parse(localStorage.getItem('events')));
-      } else {
-        await localStorage.setItem('events', JSON.stringify(events));
-      }
-    } catch (e) {
-      console.error('Failed to modify events!');
-    }
-  }, [events]);
-
-  // Set localStorage
-  useEffect(() => {
-    updateEvents();
-  }, [events]);
 
   return (
     <div className='App'>
-      {/* <EventBar
-        events={events}
-        setEvents={setEvents}
-        currentEvent={currentEvent}
-        setCurrentEvent={setCurrentEvent}
-      /> */}
       <TaskBox
         events={events}
         setEvents={setEvents}
