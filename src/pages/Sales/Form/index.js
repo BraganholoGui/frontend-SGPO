@@ -27,7 +27,6 @@ function Sale() {
       get(`/sales/${id}`)
         .then(async response => {
           if (response) {
-            console.log(response)
             setData(response.sale);
           }
         });

@@ -8,7 +8,6 @@ function ListContentKanban(props) {
   const [data, setData] = useState(props.data);
 
   useEffect(() => {
-    console.log(props)
     setData(props.data);
   }, [props]);
 

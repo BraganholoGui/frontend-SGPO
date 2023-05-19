@@ -27,7 +27,6 @@ function Purchase() {
       get(`/purchases/${id}`)
         .then(async response => {
           if (response) {
-            console.log(response)
             setData(response.purchase);
           }
         });
@@ -60,7 +59,6 @@ function Purchase() {
       });
     get(`/materials`) 
       .then(async response => {
-        console.log(response)
         if (response && response.records) {
           response.records.map(item => {
             item.value = item.id;

@@ -19,7 +19,6 @@ function PurchaseList() {
       .then(async response => {
         if (response) {
           setData(response.records);
-          console.log(response.records)
         }
       });
 
