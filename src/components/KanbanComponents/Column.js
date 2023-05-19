@@ -2,17 +2,17 @@ import AddTaskButton from './AddTaskButton';
 import Task from './Task';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 // import uuid from 'react-uuid';
+import * as S from './style'
 
 const Column = ({ tag, currentEvent, events, setEvents }) => {
   return (
-    <div className='column'>
+    <S.Column>
       {tag}
       {/* <AddTaskButton handleClick={handleAdd} /> */}
       <Droppable droppableId={tag}>
         {(provided, snapshot) => {
           return (
-            <div
-              className='task-container'
+            <S.TaskContainer
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -38,11 +38,11 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                     </Draggable>
                   ))}
               {provided.placeholder}
-            </div>
+            </S.TaskContainer>
           );
         }}
       </Droppable>
-    </div>
+    </S.Column>
   );
 };
 

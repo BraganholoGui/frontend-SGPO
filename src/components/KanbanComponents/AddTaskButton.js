@@ -1,8 +1,10 @@
+import * as S from './style'
+
 const AddTaskButton = ({ handleClick }) => {
   return (
-    <div className='add-task-button' onClick={handleClick}>
+    <S.AddTaskButton onClick={handleClick}>
       +
-    </div>
+    </S.AddTaskButton>
   );
 };
 

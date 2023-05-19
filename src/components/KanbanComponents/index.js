@@ -1,8 +1,4 @@
-import './style.css';
-import './event.css';
-import './task.css';
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
-import EventBar from './EventBar';
 import TaskBox from './TaskBox';
 import { get } from '../../services/actions';
 
@@ -11,7 +7,6 @@ function Kanban(props) {
   const [data, setData] = useState(props.data);
   const [events, setEvents] = useState(() => {
     console.log('data', data)
-    // let eventsAux = data.
     return localStorage.getItem('events')
       ? JSON.parse(localStorage.getItem('events'))
       : initEvent;

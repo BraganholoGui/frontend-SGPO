@@ -1,45 +1,29 @@
-.task-box-header {
+import styled from 'styled-components';
+
+export const ContainerMain = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 0 50px;
-  padding-top: 22px;
-}
-.task-box-title {
-  font-size: 2.5em;
-  padding: 25px 0;
-  font-weight: 500;
-}
+  justify-content: center;
+  z-index: 999;
+  `; 
+export const Box = styled.div`
+  margin-top: 2%;
+  width: 70%;
+  z-index: 999;
+`; 
 
-.remove-button {
-  font-size: 1.1em;
-  font-style: italic;
-  margin-left: 35px;
-  padding: 10px 10px;
-  background: none;
-  border: 2px solid red;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-  outline: none;
-}
-
-.remove-button:hover {
-  color: #fff;
-  background-color: red;
-  transition: 0.3s;
-}
-
-.task-box-body {
-  display: flex;
+export const TaskBoxBody = styled.div`
+ display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
   width: 100%;
   height: 700px;
   margin-top: 20px;
-}
+`; 
 
-.column {
-  width: 300px;
+export const Column = styled.div`
+width: 300px;
   max-height: 700px;
   background-color: #f6f9fa;
   border-radius: 15px;
@@ -48,9 +32,9 @@
   font-weight: 400;
   font-style: italic;
   transition: 1s;
-}
+`; 
 
-.add-task-button {
+export const AddTaskButton = styled.div`
   width: 300px;
   height: 40px;
   font-size: 1.3em;
@@ -65,21 +49,20 @@
   font-style: normal;
   margin: 15px auto;
   font-size: 1.1em;
-}
+  &&:hover{
+    background-color: #dee4e4;
+  }
+`; 
 
-.add-task-button:hover {
-  background-color: #dee4e4;
-}
-
-.task-container {
-  width: 100%;
+export const TaskContainer = styled.div`
+ width: 100%;
   min-height: 30px;
   max-height: 600px;
   overflow: auto;
-}
+`; 
 
-.task {
-  position: relative;
+export const Task = styled.div`
+position: relative;
   width: calc(100% - 33px);
   background-color: #fff;
   padding: 15px;
@@ -90,28 +73,28 @@
   user-select: none;
   border: 1px solid #ccc;
   outline: none;
-}
 
-.task:hover {
-  background-color: rgba(0, 119, 256, 0.014);
+  &&:hover{
+     background-color: rgba(0, 119, 256, 0.014);
   transition: 0.2s;
-}
+  }
+`; 
 
-.task-name {
-  font-style: normal;
+export const TaskName = styled.div`
+font-style: normal;
   font-size: 0.9em;
   font-weight: 300;
   line-height: 1.1em;
-}
 
-.task-name::before {
-  content: '●';
+  &&:before{
+    content: '●';
   font-style: normal;
   color: #f19737;
   margin-right: 10px;
-}
+  }
+`; 
 
-.task-details {
+export const TaskDetails = styled.p`
   font-style: normal;
   font-weight: 300;
   font-size: 0.8em;
@@ -119,10 +102,10 @@
   word-wrap: break-word;
   margin-top: 10px;
   line-height: 1.1em;
-}
+`; 
 
-.remove-bar {
-  position: absolute;
+export const RemoveBar = styled.p`
+position: absolute;
   bottom: 15px;
   right: 15px;
   text-align: end;
@@ -131,11 +114,10 @@
   color: #888;
   line-height: 0.1em;
   transition: 0.5s;
-}
-
-.remove-bar:hover {
+  &&:hover {
   color: red;
   font-size: 8em;
   line-height: 0.01em;
   transition: 0.5s;
 }
+`; 

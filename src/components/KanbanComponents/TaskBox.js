@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import Column from './Column';
 import { DragDropContext } from 'react-beautiful-dnd';
+import * as S from "./style"
 
 const TaskBox = ({ events, setEvents, currentEvent, setCurrentEvent }) => {
 
@@ -32,7 +33,7 @@ const TaskBox = ({ events, setEvents, currentEvent, setCurrentEvent }) => {
   return (
     <div>
       <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>
-        <div className='task-box-body'>
+        <S.TaskBoxBody>
           {
             ['Pendente', 'Fazendo', 'Finalizado'].map(tag => (
               <Column 
@@ -44,7 +45,7 @@ const TaskBox = ({ events, setEvents, currentEvent, setCurrentEvent }) => {
               />
             ))
           }
-        </div>
+        </S.TaskBoxBody>
       </DragDropContext>
     </div>
   );

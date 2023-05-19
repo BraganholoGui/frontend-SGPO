@@ -1,18 +1,18 @@
-const Task = ({ name, details, id, provided, handleUpdate, handleRemove }) => {
+import * as S from './style'
+
+const Task = ({ name, details, id, provided, handleRemove }) => {
   return (
-    <div
-      className='task'
+    <S.Task
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
-      onClick={() => handleUpdate(id)}
     >
-      <h2 className='task-name over-hide'>{name}</h2>
-      <p className='task-details'>{details}</p>
-      <div className='remove-bar' onClick={(e) => handleRemove(id, e)}>
+      <S.TaskName>{name}</S.TaskName>
+      <S.TaskDetails>{details}</S.TaskDetails>
+      <S.RemoveBar onClick={(e) => handleRemove(id, e)}>
         -
-      </div>
-    </div>
+      </S.RemoveBar>
+    </S.Task>
   );
 };
 
