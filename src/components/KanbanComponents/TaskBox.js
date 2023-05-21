@@ -30,7 +30,6 @@ const TaskBox = ({ events, setEvents, currentEvent, setCurrentEvent }) => {
   }
 
   const handleDragEnd = useCallback((result) => {
-    console.log(result)
     if (!result.destination) return;
     const { source, destination } = result;
     const curEvent = events.find((item) => item.title === currentEvent.title);
