@@ -101,11 +101,12 @@ function Purchase() {
     getOptions()
   }, [])
   useEffect(() => {
-    getOptions()
-  }, [data])
-
-
+    calculateTotal()
+  }, [price, quantity])
+  
+  
   useEffect(() => {
+    getOptions()
     setQuantity(data.quantity);
     setPrice(data.price);
   }, [data])
@@ -122,6 +123,7 @@ function Purchase() {
           </S.ContentBox>
           <S.ContentBox>
             Switch material or product
+            
           </S.ContentBox>
           <S.ContentBox>
             <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>

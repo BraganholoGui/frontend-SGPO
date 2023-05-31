@@ -127,7 +127,7 @@ function User() {
           <S.ContentBox>
             <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
-            <InputForm value={email} setValue={setEmail} title="Email" type='text' size="small"></InputForm>
+            <InputForm value={email} setValue={setEmail} title="Email" type='email' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>

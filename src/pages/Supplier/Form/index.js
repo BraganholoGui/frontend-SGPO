@@ -68,7 +68,7 @@ function Supplier() {
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="medium"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm value={email} setValue={setEmail} title="Email" type='text' size="medium"></InputForm>
+            <InputForm value={email} setValue={setEmail} title="Email" type='email' size="medium"></InputForm>
             <InputForm value={phone} setValue={setPhone} title="Telefone" type='text' size="medium"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
