@@ -18,9 +18,12 @@ function Purchase() {
   const [price, setPrice] = useState('');
   const [productSelected, setProductSelected] = useState(null);
   const [materialSelected, setMaterialSelected] = useState(null);
+  const [supplierSelected, setSupplierSelected] = useState(null);
+  const [total, setTotal] = useState(null);
 
   const [productOptions, setProductsOptions] = useState('');
   const [materialOptions, setMaterialOptions] = useState('');
+  const [supplierOptions, setSupplierOptions] = useState('');
 
   async function loadData() {
     if (id != 'novo') {
@@ -39,6 +42,7 @@ function Purchase() {
       price: price,
       material: materialSelected ? materialSelected.id :  null,
       quantity: quantity,
+      supplier: supplierSelected ? supplierSelected.id :  null,
     }
     return obj;
   }
@@ -70,6 +74,26 @@ function Purchase() {
           }
         }
       });
+    get(`/suppliers`) 
+      .then(async response => {
+        if (response && response.records) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.Person.name
+          })
+          setSupplierOptions(response.records);
+          if(data && data.SupplierPurchases){
+            let itemFound = data.SupplierPurchases.find(supPurchase => supPurchase.purchase == id)
+            setSupplierSelected(response.records.find(item => item.id == itemFound.supplier))
+          }
+        }
+      });
+  }
+
+  function calculateTotal(){
+    let total = price * quantity;
+
+    setTotal(total)
   }
 
   useEffect(() => {
@@ -92,13 +116,17 @@ function Purchase() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="medium"></InputForm>
-            <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="medium"></InputForm>
+            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
+            <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
+            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
+          </S.ContentBox>
+          <S.ContentBox>
+            Switch material or product
           </S.ContentBox>
           <S.ContentBox>
             <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
-            Switch material or product
             <InputForm options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
+            <InputForm options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>

@@ -18,6 +18,11 @@ function PurchaseList() {
     await get(url)
       .then(async response => {
         if (response) {
+          response.records.map(item =>{
+            if(item.SupplierPurchases){
+              item.SupplierAux = item.SupplierPurchases.find(supPurchase => supPurchase.purchase == item.id)
+            }
+          })
           setData(response.records);
         }
       });
@@ -44,6 +49,11 @@ function PurchaseList() {
     {
       name: 'Quantidade',
       selector: row => row.quantity,
+      sortable: true,
+    },
+    {
+      name: 'Fornecedor',
+      selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
       sortable: true,
     },
     {
