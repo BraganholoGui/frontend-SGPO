@@ -61,6 +61,7 @@ function Purchase() {
           setProductsOptions(response.records);
           if(data && data.product){
             setProductSelected(response.records.find(item => item.id == data.product))
+            setChecked(false)
           }
         }
       });
@@ -74,6 +75,7 @@ function Purchase() {
           setMaterialOptions(response.records);
           if(data && data.material){
             setMaterialSelected(response.records.find(item => item.id == data.material))
+            setChecked(true)
           }
         }
       });
