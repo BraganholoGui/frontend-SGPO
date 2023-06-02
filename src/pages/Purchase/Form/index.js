@@ -125,7 +125,7 @@ function Purchase() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
