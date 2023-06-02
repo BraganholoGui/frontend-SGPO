@@ -3,28 +3,26 @@ import { useState } from 'react';
 import * as S from './style';
 import Select from 'react-select'
 import { theme } from '../../../theme';
+import Switch from "react-switch"
 
-
-function InputForm(props) {
+function SwitchMaterialProduct(props) {
     const [size, setSize] = useState('');
     const [type, setType] = useState('');
     const [title, setTitle] = useState('');
-    const [value, setValue] = useState('');
-    const [options, setOptions] = useState([]);
-    const [readOnly, setReadOnly] = useState(false);
-    const [selected, setSelected] = useState(null);
-    const [isMulti, setIsMulti] = useState(false);
+    const [checked, setChecked] = useState(false);
+    const [cleanValue, setCleanValue] = useState(false);
+
+    const handleChange = () => {
+        setChecked(!checked);
+        props.setChecked(!checked)
+        props.setCleanValue(!null)
+    }
 
 
     useEffect(() => {
         setSize(props.size);
-        setType(props.type);
         setTitle(props.title);
-        setValue(props.value);
-        setOptions(props.options);
-        setSelected(props.selected);
-        setReadOnly(props.readOnly);
-        setIsMulti(props.isMulti);
+        setChecked(props.checked);
     }, [props])
 
     return (
@@ -32,47 +30,70 @@ function InputForm(props) {
             {
                 size == 'small' ?
                     <S.ContainerFormSmall>
-                        <S.Title>{title}</S.Title>
-
-                        <S.Input
-                            type={type}
-                            readOnly={readOnly}
-                            value={value}
-                            onChange={(e) => {
-                                setValue(e.target.value)
-                                props.setValue(e.target.value)
-                            }}
-                            selected={selected}
-                        />
+                        <S.Label>
+                            <S.Span>Produto</S.Span>
+                            <Switch
+                                onChange={handleChange}
+                                checked={checked}
+                                onColor="#86d3ff"
+                                onHandleColor="#2693e6"
+                                offColor="#b6edc8"
+                                offHandleColor="#115b4c"
+                                handleDiameter={30}
+                                uncheckedIcon={false}
+                                checkedIcon={false}
+                                boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                                activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                               
+                            />
+                            <S.Span>Material</S.Span>
+                        </S.Label>
                     </S.ContainerFormSmall>
                     :
                     size == 'medium' ?
                         <S.ContainerFormMedium>
-                            <S.Title>{title}</S.Title>
-                            <S.Input
-                                type={type}
-                                readOnly={readOnly}
-                                value={value}
-                                onChange={(e) => {
-                                    setValue(e.target.value)
-                                    props.setValue(e.target.value)
-                                }}
-                                selected={selected}
+                            <S.Label>
+                                <S.Span>Produto</S.Span>
+                                <Switch
+                                onChange={handleChange}
+                                checked={checked}
+                                onColor="#86d3ff"
+                                onHandleColor="#2693e6"
+                                offColor="#b6edc8"
+                                offHandleColor="#115b4c"
+                                handleDiameter={30}
+                                uncheckedIcon={false}
+                                checkedIcon={false}
+                                boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                                activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                               
                             />
+                                <S.Span>Material</S.Span>
+                            </S.Label>
+
+
                         </S.ContainerFormMedium>
                         :
                         <S.ContainerFormBig>
-                            <S.Title>{title}</S.Title>
-                            <S.Input
-                                type={type}
-                                readOnly={readOnly}
-                                value={value}
-                                onChange={(e) => {
-                                    setValue(e.target.value)
-                                    props.setValue(e.target.value)
-                                }}
-                                selected={selected}
+                            <S.Label>
+                                <S.Span>Produto</S.Span>
+                                <Switch
+                                onChange={handleChange}
+                                checked={checked}
+                                onColor="#86d3ff"
+                                onHandleColor="#2693e6"
+                                offColor="#b6edc8"
+                                offHandleColor="#115b4c"
+                                handleDiameter={30}
+                                uncheckedIcon={false}
+                                checkedIcon={false}
+                                boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                                activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                               
                             />
+                                <S.Span>Material</S.Span>
+                            </S.Label>
+
                         </S.ContainerFormBig>
             }
         </>
@@ -81,4 +102,4 @@ function InputForm(props) {
 
 }
 
-export default InputForm;
+export default SwitchMaterialProduct;

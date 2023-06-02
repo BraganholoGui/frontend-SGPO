@@ -7,6 +7,7 @@ import * as S from './style';
 import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
+import SwitchMaterialProduct from '../../../components/Switch/MaterialProduct';
 
 function Purchase() {
   const { id } = useParams();
@@ -20,6 +21,8 @@ function Purchase() {
   const [materialSelected, setMaterialSelected] = useState(null);
   const [supplierSelected, setSupplierSelected] = useState(null);
   const [total, setTotal] = useState(null);
+  const [checked, setChecked] = useState(null);
+  const [cleanValue, setCleanValue] = useState(null);
 
   const [productOptions, setProductsOptions] = useState('');
   const [materialOptions, setMaterialOptions] = useState('');
@@ -106,6 +109,12 @@ function Purchase() {
   
   
   useEffect(() => {
+    setProductSelected(null)
+    setMaterialSelected(null)
+  }, [cleanValue])
+
+
+  useEffect(() => {
     getOptions()
     setQuantity(data.quantity);
     setPrice(data.price);
@@ -122,12 +131,12 @@ function Purchase() {
             <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            Switch material or product
-            
-          </S.ContentBox>
-          <S.ContentBox>
-            <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
+            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue}></SwitchMaterialProduct>
+            { checked ? 
             <InputForm options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
+            :
+            <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
+          }
             <InputForm options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
