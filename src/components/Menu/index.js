@@ -35,7 +35,7 @@ const Menu = () => {
                   <a href='/sales'>Vendas</a>
                 </li>
                 <li>
-                  <a href='/'>Estoque *</a>
+                  <a href='/stock'>Estoque</a>
                 </li>
                 <li>
                   <a href='/products'>Produtos</a>

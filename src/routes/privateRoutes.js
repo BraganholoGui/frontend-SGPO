@@ -25,6 +25,7 @@ import Purchase from '../pages/Purchase/Form';
 import PurchaseList from '../pages/Purchase/List';
 import TaskKanban from '../pages/Task/List';
 import Task from '../pages/Task/Form';
+import StockList from '../pages/Stock/List';
 
 const PublicRoutes = () => {
   return (
@@ -49,6 +50,7 @@ const PublicRoutes = () => {
           <Route path="/purchases" component={PurchaseList} />
           <Route path="/sales/:id" component={Sale} />
           <Route path="/sales" component={SaleList} />
+          <Route path="/stock" component={StockList} />
           <Route path="/tasks/:id" component={Task} />
           <Route path="/tasks" component={TaskKanban} />
           <Route path="/themes/:id" component={Theme} />

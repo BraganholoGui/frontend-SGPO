@@ -14,9 +14,13 @@ function HeaderContent(props) {
           {props.title}
         </S.TitleText>
       </S.Title>
-      <S.ButtonBox>
-        <Button><a href={props.linkTo}>{props.titleButton}</a></Button>
-      </S.ButtonBox>
+      {
+        props.titleButton ?
+          <S.ButtonBox>
+            <Button><a href={props.linkTo}>{props.titleButton}</a></Button>
+          </S.ButtonBox>
+          : null
+      }
     </S.ContainerMain>
   )
 
