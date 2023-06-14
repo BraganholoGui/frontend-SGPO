@@ -18,6 +18,7 @@ function Sale() {
   const [price, setPrice] = useState('');
   const [productSelected, setProductSelected] = useState(null);
   const [buyerSelected, setBuyerSelected] = useState(null);
+  const [total, setTotal] = useState(null);
 
   const [productOptions, setProductsOptions] = useState('');
   const [buyerOptions, setBuyerOptions] = useState('');
@@ -36,7 +37,7 @@ function Sale() {
   function buildSubmitObj() {
     let obj = {
       product: productSelected ? productSelected.id : null,
-      price: price,
+      price: total,
       buyer: buyerSelected ? buyerSelected.id :  null,
       quantity: quantity,
     }
@@ -88,8 +89,17 @@ function Sale() {
     setProduct(data.product);
     setBuyer(data.buyer);
     setQuantity(data.quantity);
-    setPrice(data.price);
+    setPrice(data.price/data.quantity);
   }, [data])
+
+  function calculateTotal(){
+    let total = price * quantity;
+
+    setTotal(total)
+  }
+  useEffect(() => {
+    calculateTotal()
+  }, [price, quantity])
 
   return (
     <>
@@ -97,8 +107,9 @@ function Sale() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="medium"></InputForm>
-            <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="medium"></InputForm>
+            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
+            <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
+            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>

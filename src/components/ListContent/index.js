@@ -19,7 +19,7 @@ function ListContent(props) {
     setConditionalRowStyles(props.conditionalRowStyles);
   }, [props.data, props.columns, props.switch]);
   useEffect(() => {
-    props.setChecked(checked)
+    if(props.setChecked )props.setChecked(checked)
   }, [checked]);
 
   const customStyles = {
