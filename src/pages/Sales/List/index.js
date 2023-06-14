@@ -42,7 +42,7 @@ function SaleList() {
       sortable: true,
     },
     {
-      name: 'Preço',
+      name: 'Preço Total',
       selector: row => row.price,
       sortable: true,
     },
