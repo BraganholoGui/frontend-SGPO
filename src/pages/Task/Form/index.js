@@ -125,18 +125,18 @@ function Task() {
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
             <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
-            <InputForm options={themeOptions} selected={themeSelected} setSelected={setThemeSelected} value={themeSelected} setValue={setThemeSelected} title="Tema" type='select' size="small"></InputForm>
-          </S.ContentBox>
-          <S.ContentBox>
-            <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="medium"></InputForm>
-            <InputForm options={userOptions} selected={userSelected} setSelected={setUserSelected} value={userSelected} setValue={setUserSelected} title="Usuário" type='select' size="small"></InputForm>
-          </S.ContentBox>
-          <S.ContentBox>
-            {
-              id != "novo" ?
+            {/* {
+              id != "novo" ? */}
               <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status(alterar para radio btton)" type='select' size="small"></InputForm>
-              : null
-            }
+              {/* : null
+            } */}
+          </S.ContentBox>
+          <S.ContentBox>
+            <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="large"></InputForm>
+          </S.ContentBox>
+          <S.ContentBox>
+            <InputForm options={userOptions} selected={userSelected} setSelected={setUserSelected} value={userSelected} setValue={setUserSelected} title="Responsável" type='select' size="small"></InputForm>
+            <InputForm options={themeOptions} selected={themeSelected} setSelected={setThemeSelected} value={themeSelected} setValue={setThemeSelected} title="Tema" type='select' size="small"></InputForm>
             <InputForm options={priorityOptions} selected={prioritySelected} setSelected={setPrioritySelected} value={prioritySelected} setValue={setPrioritySelected} title="Prioridade" type='select' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
