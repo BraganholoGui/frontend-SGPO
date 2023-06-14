@@ -9,21 +9,32 @@ import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 
 function PurchaseList() {
-  const [data, setData] = useState([]);
+  const [dataProduct, setDataProduct] = useState([]);
+  const [dataMaterial, setDataMaterial] = useState([]);
   const { id } = useParams();
   const url = `/purchases`
   const location = useLocation();
+  const [checked, setChecked] = useState(false);
 
   async function loadData() {
+    let productList = [];
+    let materialList = [];
     await get(url)
       .then(async response => {
         if (response) {
+          console.log(response)
           response.records.map(item =>{
             if(item.SupplierPurchases){
               item.SupplierAux = item.SupplierPurchases.find(supPurchase => supPurchase.purchase == item.id)
             }
+            if(item.material) {
+              materialList.push(item)
+            } else{
+              productList.push(item)
+            }
           })
-          setData(response.records);
+          setDataProduct(productList);
+          setDataMaterial(materialList);
         }
       });
 
@@ -37,8 +48,8 @@ function PurchaseList() {
       center: true,
     },
     {
-      name: 'Produto / Material',
-      selector: row => row.Product? row.Product.name : row.Material ? row.Material.name : null,
+      name: 'Produto',
+      selector: row => row.Product? row.Product.name : null,
       sortable: true,
     },
     {
@@ -58,7 +69,46 @@ function PurchaseList() {
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} />,
+      selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} />,
+      center: true,
+      style: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+      },
+    },
+  ];
+  const columnsMaterial = [
+    {
+      name: 'ID',
+      selector: row => row.id,
+      sortable: true,
+      center: true,
+    },
+    {
+      name: 'Material',
+      selector: row => row.Material ? row.Material.name : null,
+      sortable: true,
+    },
+    {
+      name: 'Preço',
+      selector: row => row.price,
+      sortable: true,
+    },
+    {
+      name: 'Quantidade',
+      selector: row => row.quantity,
+      sortable: true,
+    },
+    {
+      name: 'Fornecedor',
+      selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      sortable: true,
+    },
+    {
+      name: 'Editar/Deletar',
+      selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} />,
       center: true,
       style: {
         display: 'flex',
@@ -116,11 +166,14 @@ function PurchaseList() {
 
   return (
     <Container>
-      <HeaderContent title="Compras(switch material/produto)" icon={<Person fontSize="large" />} titleButton="Nova Compra" linkTo="/purchases/novo" />
+      <HeaderContent title="Compras" icon={<Person fontSize="large" />} titleButton="Nova Compra" linkTo="/purchases/novo" />
       <ListContent
-        columns={columns}
-        data={data}
+        columns={!checked ? columns : columnsMaterial}
+        data={!checked ? dataProduct : dataMaterial}
         customStyles={customStyles}
+        swicth={true}
+        checked={checked}
+        setChecked={setChecked}
         // conditionalRowStyles={conditionalRowStyles}
       />
 

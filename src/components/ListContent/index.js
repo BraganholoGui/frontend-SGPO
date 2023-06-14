@@ -2,17 +2,25 @@ import * as S from './style';
 import DataTable from 'react-data-table-component';
 import { useState, useEffect, useMemo } from 'react';
 import { Button } from 'reactstrap';
+import SwitchMaterialProduct from '../Switch/MaterialProduct';
 
 function ListContent(props) {
   const [data, setData] = useState(props.data);
   const [columns, setColumns] = useState(props.columns);
+  const [switchMP, setSwitchMP] = useState(props.switch);
+  const [checked, setChecked] = useState(false);
   const [conditionalRowStyles, setConditionalRowStyles] = useState(props.conditionalRowStyles);
 
   useEffect(() => {
     setData(props.data);
     setColumns(props.columns);
+    setSwitchMP(props.switch);
+    setChecked(props.checked);
     setConditionalRowStyles(props.conditionalRowStyles);
-  }, [props.data, props.columns]);
+  }, [props.data, props.columns, props.switch]);
+  useEffect(() => {
+    props.setChecked(checked)
+  }, [checked]);
 
   const customStyles = {
     all:{
@@ -114,6 +122,10 @@ function ListContent(props) {
   return (
     <S.ContainerMain>
       <S.Box>
+      {props.swicth ?
+            <SwitchMaterialProduct size="large" checked={checked} setChecked={setChecked}></SwitchMaterialProduct>
+          : null
+        }
         <DataTable
           data={data}
           columns={columns}

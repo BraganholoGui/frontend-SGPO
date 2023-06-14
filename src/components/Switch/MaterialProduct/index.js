@@ -10,12 +10,13 @@ function SwitchMaterialProduct(props) {
     const [type, setType] = useState('');
     const [title, setTitle] = useState('');
     const [checked, setChecked] = useState(false);
-    const [cleanValue, setCleanValue] = useState(false);
+    const [deleteValue, setDeleteValue] = useState(false);
 
     const handleChange = () => {
         setChecked(!checked);
         props.setChecked(!checked)
-        props.setCleanValue(!null)
+        if(deleteValue)props.setCleanValue(!null)
+        // props.setCleanValue(!null)
     }
 
 
@@ -23,6 +24,7 @@ function SwitchMaterialProduct(props) {
         setSize(props.size);
         setTitle(props.title);
         setChecked(props.checked);
+        setDeleteValue(props.deleteValue);
     }, [props])
 
     return (

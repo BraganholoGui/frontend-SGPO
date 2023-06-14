@@ -133,7 +133,7 @@ function Purchase() {
             <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue}></SwitchMaterialProduct>
+            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
             { checked ? 
             <InputForm options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
             :
