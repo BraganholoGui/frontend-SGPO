@@ -14,6 +14,7 @@ function Product() {
   const [data, setData] = useState({});
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [qtdMin, setQtdMin] = useState('');
   const [price, setPrice] = useState('');
 
   async function loadData() {
@@ -31,7 +32,8 @@ function Product() {
     let obj = {
       name:name,
       price: price,
-      description:description
+      description:description,
+      quantity_min:qtdMin
     }
 
     return obj;
@@ -45,6 +47,7 @@ function Product() {
   useEffect(() => {
     setName(data.name );
     setDescription(data.description);
+    setQtdMin(data.quantity_min);
     setPrice(data.price);
   }, [data])
 
@@ -58,7 +61,8 @@ function Product() {
             <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="medium"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="large"></InputForm>
+            <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="medium"></InputForm>
+            <InputForm value={qtdMin} setValue={setQtdMin} title="Quantidade mínima" type='number' size="medium"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>

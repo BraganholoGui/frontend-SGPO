@@ -65,7 +65,7 @@ function StockList() {
     },
     {
       name: 'Editar/Deletar',
-      // selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} />,
+      selector: row => <EditDelete id={row.id} url={urlProducts} data={dataProduct} setData={setDataProduct} />,
       center: true,
       style: {
         display: 'flex',
@@ -104,7 +104,7 @@ function StockList() {
     },
     {
       name: 'Editar/Deletar',
-      // selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} />,
+      selector: row => <EditDelete id={row.id} url={urlMaterials} data={dataMaterial} setData={setDataMaterial} />,
       center: true,
       style: {
         display: 'flex',

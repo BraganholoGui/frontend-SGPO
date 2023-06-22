@@ -47,6 +47,11 @@ function ProductList() {
       sortable: true,
     },
     {
+      name: 'Quantidade mínima',
+      selector: row => row.quantity_min,
+      sortable: true,
+    },
+    {
       name: 'Editar/Deletar',
       selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} />,
       center: true,
