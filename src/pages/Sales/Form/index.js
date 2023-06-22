@@ -37,7 +37,7 @@ function Sale() {
   function buildSubmitObj() {
     let obj = {
       product: productSelected ? productSelected.id : null,
-      price: total,
+      price: price,
       buyer: buyerSelected ? buyerSelected.id :  null,
       quantity: quantity,
     }
@@ -71,9 +71,6 @@ function Sale() {
           }
         }
       });
-
-    
-
   }
 
   useEffect(() => {
@@ -89,7 +86,7 @@ function Sale() {
     setProduct(data.product);
     setBuyer(data.buyer);
     setQuantity(data.quantity);
-    setPrice(data.price/data.quantity);
+    setPrice(data.price);
   }, [data])
 
   function calculateTotal(){
