@@ -68,6 +68,11 @@ function PurchaseList() {
       sortable: true,
     },
     {
+      name: 'Status',
+      // selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      sortable: true,
+    },
+    {
       name: 'Editar/Deletar',
       selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} />,
       center: true,
@@ -104,6 +109,11 @@ function PurchaseList() {
     {
       name: 'Fornecedor',
       selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      sortable: true,
+    },
+    {
+      name: 'Status',
+      // selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
       sortable: true,
     },
     {
