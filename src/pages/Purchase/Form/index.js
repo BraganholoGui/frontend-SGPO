@@ -104,9 +104,8 @@ function Purchase() {
             item.label = item.name
           })
           setStatusOptions(response.records);
-          if(data && data.SupplierPurchases){
-            let itemFound = data.SupplierPurchases.find(supPurchase => supPurchase.purchase == id)
-            setSupplierSelected(response.records.find(item => item.id == itemFound.supplier))
+          if(data && data.Status){
+            setStatusSelected(response.records.find(item => item.id == data.status))
           }
         }
       });
