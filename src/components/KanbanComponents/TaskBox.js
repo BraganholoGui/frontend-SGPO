@@ -11,7 +11,7 @@ const TaskBox = ({ events, setEvents, currentEvent, setCurrentEvent }) => {
     let newStatus;
     if(destination == 'Pendente'){
       newStatus = 1;
-    }else if(destination == "Fazendo"){
+    }else if(destination == "Andamento"){
       newStatus = 2;
     }else{
       newStatus = 3;
@@ -58,7 +58,7 @@ const TaskBox = ({ events, setEvents, currentEvent, setCurrentEvent }) => {
       <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>
         <S.TaskBoxBody>
           {
-            ['Pendente', 'Fazendo', 'Finalizado'].map(tag => (
+            ['Pendente', 'Andamento', 'Finalizado'].map(tag => (
               <Column 
                 key={tag}
                 tag={tag}

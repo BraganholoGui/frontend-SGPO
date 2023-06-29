@@ -17,7 +17,7 @@ function Kanban(props) {
       {
         title: 'Tasks',
         ['Pendente']: [],
-        ['Fazendo']: [],
+        ['Andamento']: [],
         ['Finalizado']: [],
       },
     ];
@@ -25,7 +25,7 @@ function Kanban(props) {
       if(item.status ==1){
         eventAux[0]['Pendente'].push(item)
       }else if(item.status == 2){
-        eventAux[0]['Fazendo'].push(item)
+        eventAux[0]['Andamento'].push(item)
       }else{
         eventAux[0]['Finalizado'].push(item)
       }
@@ -37,7 +37,7 @@ function Kanban(props) {
     {
       title: 'Add a new Event',
       ['Pendente']: [],
-      ['Fazendo']: [],
+      ['Andamento']: [],
       ['Finalizado']: [],
     },
   ], []);

@@ -69,7 +69,7 @@ function PurchaseList() {
     },
     {
       name: 'Status',
-      // selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      selector: row =>  row.status == 1 ? "Pendente" :  row.status == 2 ? "Em Andamento" :  "Concluído",
       sortable: true,
     },
     {
@@ -113,7 +113,7 @@ function PurchaseList() {
     },
     {
       name: 'Status',
-      // selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      selector: row =>  row.status == 1 ? "Pendente" :  row.status == 2 ? "Em Andamento" :  "Concluído",
       sortable: true,
     },
     {

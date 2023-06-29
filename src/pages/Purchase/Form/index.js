@@ -20,6 +20,7 @@ function Purchase() {
   const [productSelected, setProductSelected] = useState(null);
   const [materialSelected, setMaterialSelected] = useState(null);
   const [supplierSelected, setSupplierSelected] = useState(null);
+  const [statusSelected, setStatusSelected] = useState(null);
   const [total, setTotal] = useState(null);
   const [checked, setChecked] = useState(null);
   const [cleanValue, setCleanValue] = useState(null);
@@ -27,6 +28,7 @@ function Purchase() {
   const [productOptions, setProductsOptions] = useState('');
   const [materialOptions, setMaterialOptions] = useState('');
   const [supplierOptions, setSupplierOptions] = useState('');
+  const [statusOptions, setStatusOptions] = useState('');
 
   async function loadData() {
     if (id != 'novo') {
@@ -46,6 +48,7 @@ function Purchase() {
       material: materialSelected ? materialSelected.id :  null,
       quantity: quantity,
       supplier: supplierSelected ? supplierSelected.id :  null,
+      status:statusSelected ? statusSelected.id : null,
     }
     return obj;
   }
@@ -93,6 +96,20 @@ function Purchase() {
           }
         }
       });
+    get(`/status`) 
+      .then(async response => {
+        if (response && response.records) {
+          response.records.map(item => {
+            item.value = item.value;
+            item.label = item.name
+          })
+          setStatusOptions(response.records);
+          if(data && data.SupplierPurchases){
+            let itemFound = data.SupplierPurchases.find(supPurchase => supPurchase.purchase == id)
+            setSupplierSelected(response.records.find(item => item.id == itemFound.supplier))
+          }
+        }
+      });
   }
 
   function calculateTotal(){
@@ -132,8 +149,20 @@ function Purchase() {
             <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
             <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>
+
+          {id != "novo" ?
           <S.ContentBox>
             <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+          </S.ContentBox>
+            : null
+          }
+          <S.ContentBox>
+          {id != "novo" ?
+            <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+            : 
+            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+
+          }
             { checked ? 
             <InputForm options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
             :
