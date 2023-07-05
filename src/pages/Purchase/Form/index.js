@@ -17,6 +17,7 @@ function Purchase() {
   const [material, setMaterial] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
+  const [end, setEnd] = useState('');
   const [productSelected, setProductSelected] = useState(null);
   const [materialSelected, setMaterialSelected] = useState(null);
   const [supplierSelected, setSupplierSelected] = useState(null);
@@ -45,6 +46,7 @@ function Purchase() {
     let obj = {
       product: productSelected ? productSelected.id : null,
       price: price,
+      end: end,
       material: materialSelected ? materialSelected.id :  null,
       quantity: quantity,
       supplier: supplierSelected ? supplierSelected.id :  null,
@@ -133,9 +135,11 @@ function Purchase() {
 
 
   useEffect(() => {
+    console.log(data)
     getOptions()
     setQuantity(data.quantity);
     setPrice(data.price);
+    setEnd((moment(data.end).utcOffset(0, true).format()));
   }, [data])
 
   return (
@@ -152,6 +156,7 @@ function Purchase() {
           {id != "novo" ?
           <S.ContentBox>
             <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+            <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
           </S.ContentBox>
             : null
           }

@@ -128,6 +128,7 @@ function InputForm(props) {
                   onChange={(e) => {
                     setValue(e.target.value)
                     props.setValue(e.target.value)
+                    console.log(e)
                   }}
                   selected={selected}
                 />
