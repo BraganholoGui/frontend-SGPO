@@ -2,17 +2,23 @@ import Task from './Task';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 // import uuid from 'react-uuid';
 import * as S from './style'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import history from '../../history';
 
 const Column = ({ tag, currentEvent, events, setEvents }) => {
   const [updateToggle, setUpdateToggle] = useState('');
+  const [allEvents, setAllEvents] = useState([]);
   const [removeToggle, setRemoveToggle] = useState('');
   const toggle = () =>{setRemoveToggle(!removeToggle)}
 
   function handleRemove(id){
     setRemoveToggle(true)
   }
+
+  useEffect(() => {
+    console.log(events)
+    setAllEvents(events)
+  }, [events]);
 
   return (
     <S.Column>
@@ -24,8 +30,10 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
+              {console.log(events)}
+              {console.log(currentEvent)}
               {events
-                .find((event) => event.title === currentEvent.title)
+                .find((event) => event.title == currentEvent.title)
                 ?.[tag].map((item, index) => (
                     <Draggable
                       key={item.id}
