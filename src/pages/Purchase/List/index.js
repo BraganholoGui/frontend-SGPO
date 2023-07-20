@@ -32,6 +32,10 @@ function PurchaseList() {
             } else{
               productList.push(item)
             }
+            if(item.end){
+              let newDate = new Date(item.end)
+              item.end = ((newDate.getDate() )) + "/" + ((newDate.getMonth() + 1)) + "/" + newDate.getFullYear(); 
+            } 
           })
           setDataProduct(productList);
           setDataMaterial(materialList);
@@ -65,6 +69,11 @@ function PurchaseList() {
     {
       name: 'Fornecedor',
       selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      sortable: true,
+    },
+    {
+      name: 'Prazo',
+      selector: row => row.end,
       sortable: true,
     },
     {
@@ -109,6 +118,11 @@ function PurchaseList() {
     {
       name: 'Fornecedor',
       selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      sortable: true,
+    },
+    {
+      name: 'Prazo',
+      selector: row =>  row.end,
       sortable: true,
     },
     {

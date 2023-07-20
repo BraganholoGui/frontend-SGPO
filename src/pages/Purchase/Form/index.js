@@ -47,10 +47,10 @@ function Purchase() {
       product: productSelected ? productSelected.id : null,
       price: price,
       end: end,
-      material: materialSelected ? materialSelected.id :  null,
+      material: materialSelected ? materialSelected.id : null,
       quantity: quantity,
-      supplier: supplierSelected ? supplierSelected.id :  null,
-      status:statusSelected ? statusSelected.id : null,
+      supplier: supplierSelected ? supplierSelected.id : null,
+      status: statusSelected ? statusSelected.id : null,
     }
     return obj;
   }
@@ -64,13 +64,13 @@ function Purchase() {
             item.label = item.id + '. ' + item.name
           })
           setProductsOptions(response.records);
-          if(data && data.product){
+          if (data && data.product) {
             setProductSelected(response.records.find(item => item.id == data.product))
             setChecked(false)
           }
         }
       });
-    get(`/materials`) 
+    get(`/materials`)
       .then(async response => {
         if (response && response.records) {
           response.records.map(item => {
@@ -78,13 +78,13 @@ function Purchase() {
             item.label = item.id + '. ' + item.name
           })
           setMaterialOptions(response.records);
-          if(data && data.material){
+          if (data && data.material) {
             setMaterialSelected(response.records.find(item => item.id == data.material))
             setChecked(true)
           }
         }
       });
-    get(`/suppliers`) 
+    get(`/suppliers`)
       .then(async response => {
         if (response && response.records) {
           response.records.map(item => {
@@ -92,13 +92,13 @@ function Purchase() {
             item.label = item.id + '. ' + item.Person.name
           })
           setSupplierOptions(response.records);
-          if(data && data.SupplierPurchases){
+          if (data && data.SupplierPurchases) {
             let itemFound = data.SupplierPurchases.find(supPurchase => supPurchase.purchase == id)
             setSupplierSelected(response.records.find(item => item.id == itemFound.supplier))
           }
         }
       });
-    get(`/status`) 
+    get(`/status`)
       .then(async response => {
         if (response && response.records) {
           response.records.map(item => {
@@ -106,14 +106,14 @@ function Purchase() {
             item.label = item.name
           })
           setStatusOptions(response.records);
-          if(data && data.Status){
+          if (data && data.Status) {
             setStatusSelected(response.records.find(item => item.id == data.status))
           }
         }
       });
   }
 
-  function calculateTotal(){
+  function calculateTotal() {
     let total = price * quantity;
 
     setTotal(total)
@@ -126,8 +126,8 @@ function Purchase() {
   useEffect(() => {
     calculateTotal()
   }, [price, quantity])
-  
-  
+
+
   useEffect(() => {
     setProductSelected(null)
     setMaterialSelected(null)
@@ -137,9 +137,14 @@ function Purchase() {
   useEffect(() => {
     console.log(data)
     getOptions()
-    setQuantity(data.quantity);
-    setPrice(data.price);
-    setEnd((moment(data.end).utcOffset(0, true).format()));
+    if (data) {
+      setQuantity(data.quantity);
+      setPrice(data.price);
+      if (data.end) {
+        let newDateFormatted = new Date(data.end).toISOString().slice(0, 10);
+        setEnd(newDateFormatted);
+      }
+    }
   }, [data])
 
   return (
@@ -154,24 +159,31 @@ function Purchase() {
           </S.ContentBox>
 
           {id != "novo" ?
-          <S.ContentBox>
-            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
-            <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
-          </S.ContentBox>
+            <S.ContentBox>
+              <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+              <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+            </S.ContentBox>
             : null
           }
-          <S.ContentBox>
-          {id != "novo" ?
-            <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
-            : 
-            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+          {
+            id == 'novo' ?
+              <S.ContentBox>
+                <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+              </S.ContentBox>
+              : null
+          }
 
-          }
-            { checked ? 
-            <InputForm options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
-            :
-            <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
-          }
+          <S.ContentBox>
+            {id != "novo" ?
+              <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+              :
+              <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+            }
+            {checked ?
+              <InputForm options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
+              :
+              <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
+            }
             <InputForm options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
