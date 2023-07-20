@@ -52,6 +52,11 @@ function MaterialList() {
       sortable: true,
     },
     {
+      name: 'Quantidade',
+      selector: row => row.quantity,
+      sortable: true,
+    },
+    {
       name: 'Editar/Deletar',
       selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} />,
       center: true,

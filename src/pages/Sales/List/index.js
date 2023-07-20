@@ -18,6 +18,7 @@ function SaleList() {
     await get(url)
       .then(async response => {
         if (response) {
+          console.log(response.records);
           setData(response.records);
         }
       });
@@ -33,7 +34,7 @@ function SaleList() {
     },
     {
       name: 'Comprador',
-      selector: row => row.Buyer.Person.name,
+      selector: row => row.Buyer && row.Buyer.Person ? row.Buyer.Person.name : '',
       sortable: true,
     },
     {

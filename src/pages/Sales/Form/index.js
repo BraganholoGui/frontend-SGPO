@@ -19,9 +19,11 @@ function Sale() {
   const [productSelected, setProductSelected] = useState(null);
   const [buyerSelected, setBuyerSelected] = useState(null);
   const [total, setTotal] = useState(null);
+  const [statusSelected, setStatusSelected] = useState(null);
 
   const [productOptions, setProductsOptions] = useState('');
   const [buyerOptions, setBuyerOptions] = useState('');
+  const [statusOptions, setStatusOptions] = useState('');
 
   async function loadData() {
     if (id != 'novo') {
@@ -29,6 +31,7 @@ function Sale() {
         .then(async response => {
           if (response) {
             setData(response.sale);
+            console.log(response.sale);
           }
         });
     }
@@ -38,8 +41,9 @@ function Sale() {
     let obj = {
       product: productSelected ? productSelected.id : null,
       price: price,
-      buyer: buyerSelected ? buyerSelected.id :  null,
+      buyer: buyerSelected ? buyerSelected.id : null,
       quantity: quantity,
+      status: statusSelected ? statusSelected.id : null,
     }
     return obj;
   }
@@ -53,12 +57,12 @@ function Sale() {
             item.label = item.id + '. ' + item.name
           })
           setProductsOptions(response.records);
-          if(data && data.product){
+          if (data && data.product) {
             setProductSelected(response.records.find(item => item.id == data.product))
           }
         }
       });
-    get(`/buyers`) 
+    get(`/buyers`)
       .then(async response => {
         if (response && response.records) {
           response.records.map(item => {
@@ -66,8 +70,22 @@ function Sale() {
             item.label = item.id + '. ' + item.Person.name
           })
           setBuyerOptions(response.records);
-          if(data && data.buyer){
+          if (data && data.buyer) {
             setBuyerSelected(response.records.find(item => item.id == data.buyer))
+          }
+        }
+      });
+
+      get(`/status`)
+      .then(async response => {
+        if (response && response.records) {
+          response.records.map(item => {
+            item.value = item.value;
+            item.label = item.name
+          })
+          setStatusOptions(response.records);
+          if (data && data.Status) {
+            setStatusSelected(response.records.find(item => item.id == data.status))
           }
         }
       });
@@ -89,7 +107,7 @@ function Sale() {
     setPrice(data.price);
   }, [data])
 
-  function calculateTotal(){
+  function calculateTotal() {
     let total = price * quantity;
 
     setTotal(total)
@@ -109,6 +127,11 @@ function Sale() {
             <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
+            {id != "novo" ?
+              <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+              :
+              null
+            }
             <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
             <InputForm options={buyerOptions} selected={buyerSelected} setSelected={setBuyerSelected} value={buyerSelected} setValue={setBuyerSelected} title="Comprador" type='select' size="small"></InputForm>
           </S.ContentBox>
