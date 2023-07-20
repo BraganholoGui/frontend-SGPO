@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { ConstructionOutlined, Person } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -22,7 +22,7 @@ function Purchase() {
   const [materialSelected, setMaterialSelected] = useState(null);
   const [supplierSelected, setSupplierSelected] = useState(null);
   const [statusSelected, setStatusSelected] = useState(null);
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(0);
   const [checked, setChecked] = useState(null);
   const [cleanValue, setCleanValue] = useState(null);
 
@@ -115,7 +115,7 @@ function Purchase() {
 
   function calculateTotal() {
     let total = price * quantity;
-
+    if(!total) total = 0;
     setTotal(total)
   }
 
@@ -135,7 +135,6 @@ function Purchase() {
 
 
   useEffect(() => {
-    console.log(data)
     getOptions()
     if (data) {
       setQuantity(data.quantity);

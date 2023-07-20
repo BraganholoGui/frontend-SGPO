@@ -22,7 +22,6 @@ function PurchaseList() {
     await get(url)
       .then(async response => {
         if (response) {
-          console.log(response)
           response.records.map(item =>{
             if(item.SupplierPurchases){
               item.SupplierAux = item.SupplierPurchases.find(supPurchase => supPurchase.purchase == item.id)
