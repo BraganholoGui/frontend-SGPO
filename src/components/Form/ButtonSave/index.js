@@ -5,6 +5,7 @@ import { put, post } from '../../../services/actions'
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from '../../../GeneralFunctions/functions'
 import {Loading} from '../../Loading';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 function ButtonSave(props) {
   const { id } = useParams();
@@ -20,6 +21,24 @@ function ButtonSave(props) {
 
   async function handleSubmit(url) {
     setLoading(true)
+    console.log(obj)
+    let invalid = false;
+    if(obj.productObj && !obj.materialObj){
+      if(obj.productObj.quantity == 0 || obj.productObj.quantity < parseInt(obj.quantity)){
+        setLoading(false);
+        toast('error', `Produto sem quantidade sulficiente!`);
+        invalid = true
+      }
+    }
+    if(obj.materialObj && !obj.productObj){
+      if(obj.materialObj.quantity == 0 || obj.materialObj.quantity < parseInt(obj.quantity)){
+        setLoading(false);
+        toast('error', `Material sem quantidade sulficiente!`);
+        invalid = true
+      }
+    }
+    if(invalid) return;
+    
     if (id != 'novo') {
       await put(`${url}/${id}`, obj)
         .then(() => {

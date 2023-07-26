@@ -4,7 +4,7 @@ import * as S from './style';
 import { put, post, del, get } from '../../../services/actions'
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from '../../../GeneralFunctions/functions'
-import { Edit, DeleteTwoTone } from '@mui/icons-material';
+import { Edit, DeleteTwoTone, Reviews } from '@mui/icons-material';
 import { LoadingSmall } from '../../Loading';
 
 function EditDelete(props) {
@@ -48,10 +48,12 @@ function EditDelete(props) {
 
   return (
     <S.Container>
-      <a href={`${url}/${id}`}><Edit color='primary'></Edit></a>
       {completed != 3 ?
+      <>
+      <a href={`${url}/${id}`}><Edit color='primary'></Edit></a>
         <S.Button onClick={() => deleteForm(url, id)}><DeleteTwoTone color='warning'></DeleteTwoTone></S.Button>
-        : null
+      </>
+        : <a href={`${url}/${id}`}><Reviews  style={{ color: 'green' }}></Reviews></a>
       }
       {
         deleteItem ?

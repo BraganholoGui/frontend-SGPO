@@ -107,6 +107,7 @@ function InputForm(props) {
                   isDisabled={readOnly}
                   isClearable={isMulti &&  Array.isArray(value)  ? value.some((v) => !v.isFixed) : ''}
                     onChange={(e) => {
+                      console.log(e)
                       if(isMulti){
                         setSelected(e)
                         setValue(e)

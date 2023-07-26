@@ -46,9 +46,11 @@ function Purchase() {
   function buildSubmitObj() {
     let obj = {
       product: productSelected ? productSelected.id : null,
+      // productObj: productSelected ? productSelected : null,
       price: price,
       end: end,
       material: materialSelected ? materialSelected.id : null,
+      // materialObj: materialSelected ? materialSelected : null,
       quantity: quantity,
       supplier: supplierSelected ? supplierSelected.id : null,
       status: statusSelected ? statusSelected.id : null,

@@ -77,7 +77,7 @@ function PurchaseList() {
     },
     {
       name: 'Status',
-      selector: row =>  row.status == 1 ? "Pendente" :  row.status == 2 ? "Em Andamento" :  "Concluído",
+      selector: row =>  row.status == 1 || !row.status ? "Pendente" :  row.status == 2 ? "Em Andamento" :  row.status == 3 ? "Concluído" : row.status == 4 ? "Negada" : "-",
       sortable: true,
     },
     {
@@ -126,7 +126,7 @@ function PurchaseList() {
     },
     {
       name: 'Status',
-      selector: row =>  row.status == 1 ? "Pendente" :  row.status == 2 ? "Em Andamento" :  "Concluído",
+      selector: row =>  row.status == 1 || !row.status ? "Pendente" :  row.status == 2 ? "Em Andamento" :  row.status == 3 ? "Concluído" : row.status == 4 ? "Negada" : "-",
       sortable: true,
     },
     {

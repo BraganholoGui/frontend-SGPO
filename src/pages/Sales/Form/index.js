@@ -40,6 +40,7 @@ function Sale() {
   function buildSubmitObj() {
     let obj = {
       product: productSelected ? productSelected.id : null,
+      productObj: productSelected ? productSelected : null,
       price: price,
       buyer: buyerSelected ? buyerSelected.id : null,
       quantity: quantity,
@@ -58,6 +59,7 @@ function Sale() {
           })
           setProductsOptions(response.records);
           if (data && data.product) {
+            console.log(response.records.find(item => item.id == data.product))
             setProductSelected(response.records.find(item => item.id == data.product))
           }
         }
