@@ -23,6 +23,7 @@ function StockList() {
         if (response) {
           console.log( response.records);
           setDataProduct( response.records);
+          console.log( response.records);
         }
       });
       
@@ -56,6 +57,11 @@ function StockList() {
     {
       name: 'Quantidade',
       selector: row => row.quantity,
+      sortable: true,
+    },
+    {
+      name: 'Quantidade Mínima',
+      selector: row => row.quantity_min,
       sortable: true,
     },
     {
@@ -94,6 +100,11 @@ function StockList() {
     },
     {
       name: 'Quantidade',
+      selector: row => row.quantity,
+      sortable: true,
+    },
+    {
+      name: 'Quantidade Mínima',
       selector: row => row.quantity_min,
       sortable: true,
     },
@@ -114,22 +125,18 @@ function StockList() {
       },
     },
   ];
-  // const conditionalRowStyles = [
-  //   {
-  //     when: row => row.Person ? row.Person.name : null,
-  //     style: {
-  //       backgroundColor: 'green',
-  //       color: 'white',
-  //       '&:hover': {
-  //         cursor: 'pointer',
-  //       },
-  //     },
-  //   },
-  //   {
-  //     when: row => row.Material ? row.Material.name : null,
-  //     style: row => ({ backgroundColor: row.isSpecial ? 'pink' : 'inerit' }),
-  //   },
-  // ];
+  const conditionalRowStyles = [
+    {
+      when: row => row.quantity < row.quantity_min,
+      style: {
+        color: 'red',
+        fontWeight:'bold'
+        // '&:hover': {
+        //   cursor: 'pointer',
+        // },
+      },
+    },
+  ];
 
   const customStyles = {
     table: {
@@ -170,7 +177,7 @@ function StockList() {
         swicth={true}
         checked={checked}
         setChecked={setChecked}
-        // conditionalRowStyles={conditionalRowStyles}
+        conditionalRowStyles={conditionalRowStyles}
       />
 
     </Container>

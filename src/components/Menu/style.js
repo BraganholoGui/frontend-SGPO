@@ -28,10 +28,9 @@ export const Nav = styled.div`
   border-radius:${(props) => (!props.clicked? " 0% 0% 0% 0%":"0% 0% 50% 0%")};
   background-image: radial-gradient(${COLORS.primaryLight},${COLORS.primaryDark});
   /* background:${(props) => (!props.clicked? " #115b4c":"#b6edc8")}; */
-  height: 100vh;
   /* border-radius: 0% 0% 100% 0%; */
-  width: ${(props) => (props.clicked? " 5rem":" 14rem")};
-  height: ${(props) => (props.clicked? " 5rem":" 100vh")};
+  width: ${(props) => (props.clicked? "5rem":"14rem")};
+  height: ${(props) => (props.clicked? "5rem":"100vh")};
   transition: transform 3.2s;
 `;
 export const Icon = styled.span`
