@@ -53,14 +53,32 @@ function SaleList() {
       sortable: true,
     },
     {
+      name: 'Status',
+      selector: row => row.status == 1 || !row.status ? "Pendente" :  row.status == 2 ? "Em Andamento" :  row.status == 3 ? "Concluído" : row.status == 4 ? "Negada" : "-",
+      sortable: true,
+    },
+    {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} />,
+      selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} completed={row.status}/>,
       center: true,
       style: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
 
+      },
+    },
+  ];
+
+  const conditionalRowStyles = [
+    {
+      when: row => row.status ==3,
+      style: {
+        color: 'green',
+        fontWeight:'bold'
+        // '&:hover': {
+        //   cursor: 'pointer',
+        // },
       },
     },
   ];
@@ -101,6 +119,7 @@ function SaleList() {
         columns={columns}
         data={data}
         customStyles={customStyles}
+        conditionalRowStyles={conditionalRowStyles}
       />
 
     </Container>

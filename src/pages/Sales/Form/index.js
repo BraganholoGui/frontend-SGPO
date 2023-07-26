@@ -20,6 +20,7 @@ function Sale() {
   const [buyerSelected, setBuyerSelected] = useState(null);
   const [total, setTotal] = useState(null);
   const [statusSelected, setStatusSelected] = useState(null);
+  const [completed, setCompleted] = useState(false);
 
   const [productOptions, setProductsOptions] = useState('');
   const [buyerOptions, setBuyerOptions] = useState('');
@@ -88,6 +89,9 @@ function Sale() {
           setStatusOptions(response.records);
           if (data && data.Status) {
             setStatusSelected(response.records.find(item => item.id == data.status))
+            if(data.status == 3){
+              setCompleted(true)
+            }
           }
         }
       });
@@ -124,20 +128,20 @@ function Sale() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
-            <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
+            <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
+            <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
             <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             {id != "novo" ?
-              <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+              <InputForm readOnly={completed} options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
               :
               null
             }
-            <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
-            <InputForm options={buyerOptions} selected={buyerSelected} setSelected={setBuyerSelected} value={buyerSelected} setValue={setBuyerSelected} title="Comprador" type='select' size="small"></InputForm>
+            <InputForm readOnly={completed} options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
+            <InputForm readOnly={completed} options={buyerOptions} selected={buyerSelected} setSelected={setBuyerSelected} value={buyerSelected} setValue={setBuyerSelected} title="Comprador" type='select' size="small"></InputForm>
           </S.ContentBox>
-          <ButtonForm url={url} obj={buildSubmitObj()} />
+          <ButtonForm url={url} obj={buildSubmitObj()} completed={completed}/>
         </FormContent>
       </S.Container>
     </>

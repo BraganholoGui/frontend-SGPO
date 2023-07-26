@@ -152,10 +152,6 @@ function PurchaseList() {
         // },
       },
     },
-    {
-      when: row => row.Material ? row.Material.name : null,
-      style: row => ({ backgroundColor: row.isSpecial ? 'pink' : 'inerit' }),
-    },
   ];
 
   const customStyles = {
