@@ -50,7 +50,7 @@ export const ContentCreateGraph = styled.div`
   border-right: 2px solid rgb(	17, 91, 76, 0.5);
   border-bottom: 2px solid rgb(	17, 91, 76, 0.5);
   padding: 15px;
-  grid-column: 1;
-  grid-row: 1;
+  grid-column:1/7 ;
+  grid-row: 1/7;
   margin: 10px;
 `; 

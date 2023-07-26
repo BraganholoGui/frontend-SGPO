@@ -3,6 +3,7 @@ import DataTable from 'react-data-table-component';
 import { useState, useEffect, useMemo } from 'react';
 import { Button } from 'reactstrap';
 import SwitchMaterialProduct from '../Switch/MaterialProduct';
+import CreateGraph from '../../pages/Dashboard/createGraph';
 
 function GraphContent(props) {
 
@@ -62,7 +63,7 @@ function GraphContent(props) {
       </S.Box>
       <S.Box>
         <S.ContentCreateGraph>
-          teste
+          <CreateGraph></CreateGraph>
         </S.ContentCreateGraph>
       </S.Box>
     </S.ContainerMain>
