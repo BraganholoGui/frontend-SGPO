@@ -118,16 +118,12 @@ function CreateGraph() {
     return result
   }
 
-  useEffect(() => {
-    // jsonToJsonArray();
-  }, [json])
-
   return (
     <div>
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
         <input type="file" onChange={handleFileChange} />
       </div>
-      <div style={{display:'grid', flexDirection:'column', width:'100%', alignItems:'center', justifyContent:'center', gridTemplateColumns:'auto auto auto'}}>
+      <div style={{display:'grid', gridTemplateColumns: 'repeat(3, 1fr)', flexDirection:'column', width:'100%', alignItems:'center', justifyContent:'center', gridTemplateColumns:'auto auto auto'}}>
         {json && json.length > 0 ?
           json.map((item, index) => {
             cont++
@@ -137,10 +133,11 @@ function CreateGraph() {
                 {
                   cont == 1 ?
                     item.map((subitem, subindex) => (
-                      <button style={{ width: '400px', margin:'2%', minHeight: '100px', maxHeight: '100px', backgroundColor: '#40E0D0', border: '1px solid grey', borderRadius: '20px' }} onClick={() => {
+                      <button style={{ width: '2px', margin:'2%', minHeight: '50px', maxHeight: '100px', gridColumn: subindex,
+                      gridRow: subindex % 5 ? 1 : 2, backgroundColor: '#b6edc8', border: '1px solid black', borderRadius: '20px' }} onClick={() => {
                         toggle();
                         getAllInfo(subitem[0])
-                      }}>{subitem[0]}</button>
+                      }}></button>
                     ))
                     : null
                 }
