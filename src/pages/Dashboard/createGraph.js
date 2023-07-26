@@ -13,6 +13,7 @@ function CreateGraph() {
   const [dataSelected, setDataSelected] = useState(null);
   const [isOpen, setIsOpen] = useState(null);
   let cont = 0;
+  let subInd = 0;
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -63,7 +64,7 @@ function CreateGraph() {
     console.log(listAux);
     listAux = convertObjToArray(listAux)
     console.log(listAux);
-    listAux.map(item =>{
+    listAux.map(item => {
       listNames.push(item[0])
       listQtds.push(item[1])
     })
@@ -123,7 +124,7 @@ function CreateGraph() {
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
         <input type="file" onChange={handleFileChange} />
       </div>
-      <div style={{display:'grid', gridTemplateColumns: 'repeat(3, 1fr)', flexDirection:'column', width:'100%', alignItems:'center', justifyContent:'center', gridTemplateColumns:'auto auto auto'}}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', flexDirection: 'column', width: '100%', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'auto auto auto' }}>
         {json && json.length > 0 ?
           json.map((item, index) => {
             cont++
@@ -132,13 +133,18 @@ function CreateGraph() {
               <>
                 {
                   cont == 1 ?
-                    item.map((subitem, subindex) => (
-                      <button style={{ width: '2px', margin:'2%', minHeight: '50px', maxHeight: '100px', gridColumn: subindex,
-                      gridRow: subindex % 5 ? 1 : 2, backgroundColor: '#b6edc8', border: '1px solid black', borderRadius: '20px' }} onClick={() => {
-                        toggle();
-                        getAllInfo(subitem[0])
-                      }}></button>
-                    ))
+                    item.map((subitem, subindex) => {
+                      return (
+
+                        <button style={{
+                          width: '2px', margin: '2%', minHeight: '50px', maxHeight: '100px', gridColumn: subindex,
+                          gridRow: subindex % 5 ? 1 : 2, backgroundColor: '#b6edc8', border: '1px solid black', borderRadius: '20px'
+                        }} onClick={() => {
+                          toggle();
+                          getAllInfo(subitem[0])
+                        }}>{subitem[0]}</button>
+                      )
+                    })
                     : null
                 }
               </>
