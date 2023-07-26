@@ -82,7 +82,7 @@ function PurchaseList() {
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} />,
+      selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} completed={row.status}/>,
       center: true,
       style: {
         display: 'flex',
@@ -131,7 +131,7 @@ function PurchaseList() {
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} />,
+      selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} completed={row.status}/>,
       center: true,
       style: {
         display: 'flex',
@@ -143,13 +143,13 @@ function PurchaseList() {
   ];
   const conditionalRowStyles = [
     {
-      when: row => row.Person ? row.Person.name : null,
+      when: row => row.status ==3,
       style: {
-        backgroundColor: 'green',
-        color: 'white',
-        '&:hover': {
-          cursor: 'pointer',
-        },
+        color: 'green',
+        fontWeight:'bold'
+        // '&:hover': {
+        //   cursor: 'pointer',
+        // },
       },
     },
     {
@@ -197,7 +197,7 @@ function PurchaseList() {
         swicth={true}
         checked={checked}
         setChecked={setChecked}
-        // conditionalRowStyles={conditionalRowStyles}
+        conditionalRowStyles={conditionalRowStyles}
       />
 
     </Container>

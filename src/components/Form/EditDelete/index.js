@@ -12,14 +12,17 @@ function EditDelete(props) {
   const [url, setUrl] = useState('');
   const [data, setData] = useState('');
   const [deleteItem, setDeleteitem] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
     setId(props.id)
     setUrl(props.url)
     setData(props.data)
+    setCompleted(props.completed)
+    console.log(props.completed)
   }, [props])
 
-  function updateList(){
+  function updateList() {
     get(url)
       .then(async response => {
         if (response) {
@@ -46,7 +49,10 @@ function EditDelete(props) {
   return (
     <S.Container>
       <a href={`${url}/${id}`}><Edit color='primary'></Edit></a>
-      <S.Button onClick={() => deleteForm(url, id)}><DeleteTwoTone color='warning'></DeleteTwoTone></S.Button>
+      {completed != 3 ?
+        <S.Button onClick={() => deleteForm(url, id)}><DeleteTwoTone color='warning'></DeleteTwoTone></S.Button>
+        : null
+      }
       {
         deleteItem ?
           <LoadingSmall></LoadingSmall>

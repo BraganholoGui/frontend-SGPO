@@ -25,6 +25,7 @@ function Purchase() {
   const [total, setTotal] = useState(0);
   const [checked, setChecked] = useState(null);
   const [cleanValue, setCleanValue] = useState(null);
+  const [completed, setCompleted] = useState(false);
 
   const [productOptions, setProductsOptions] = useState('');
   const [materialOptions, setMaterialOptions] = useState('');
@@ -106,8 +107,11 @@ function Purchase() {
             item.label = item.name
           })
           setStatusOptions(response.records);
-          if (data && data.Status) {
+          if (data && data.status) {
             setStatusSelected(response.records.find(item => item.id == data.status))
+            if(data.status == 3){
+              setCompleted(true)
+            }
           }
         }
       });
@@ -152,15 +156,21 @@ function Purchase() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
-            <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
+            <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
+            <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
             <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>
 
           {id != "novo" ?
             <S.ContentBox>
-              <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
-              <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+              {
+                completed ? 
+                null
+                :
+                <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+
+              }
+              <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
             </S.ContentBox>
             : null
           }
@@ -174,18 +184,18 @@ function Purchase() {
 
           <S.ContentBox>
             {id != "novo" ?
-              <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+              <InputForm  readOnly={completed} options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
               :
-              <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+              <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
             }
             {checked ?
-              <InputForm options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
+              <InputForm readOnly={completed} options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
               :
-              <InputForm options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
+              <InputForm readOnly={completed} options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
             }
-            <InputForm options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
+            <InputForm readOnly={completed} options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
           </S.ContentBox>
-          <ButtonForm url={url} obj={buildSubmitObj()} />
+          <ButtonForm url={url} obj={buildSubmitObj()} completed={completed} />
         </FormContent>
       </S.Container>
     </>

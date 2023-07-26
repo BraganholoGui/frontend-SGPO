@@ -14,21 +14,27 @@ function ButtonForm(props) {
     setUrl(props.url)
     setObj(props.obj)
   }, [props])
-  
+
   useEffect(() => {
     setUrl(props.url)
     setObj(props.obj)
   }, [])
   return (
     <S.Container>
-      <S.Box>
-        {
-          id != 'novo' ?
-          <ButtonDelete url={url} obj={obj} />
-          : null
-        }
-        <ButtonSave url={url} obj={obj} />
-      </S.Box>
+      {
+        props.completed ?
+          null
+          :
+          <S.Box>
+            {
+              id != 'novo' ?
+                <ButtonDelete url={url} obj={obj} />
+                : null
+            }
+            <ButtonSave url={url} obj={obj} />
+          </S.Box>
+      }
+
     </S.Container>
 
   )
