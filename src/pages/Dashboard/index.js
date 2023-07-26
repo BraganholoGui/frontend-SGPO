@@ -1,14 +1,24 @@
-import {ContainerHome} from './style';
-import face from '../../static/Logo/face.png';
-import insta from '../../static/Logo/insta.png';
-import mail from '../../static/Logo/mail.png';
+import HeaderContent from '../../components/HeaderContent';
+import { Container } from './style';
+import { Person } from '@mui/icons-material';
+import { get } from '../../services/actions';
+import { useEffect, useState } from 'react';
+import GraphContent from '../../components/Graphs';
 
-function Dashboard(){
-  return(
-    <ContainerHome>Dashboard</ContainerHome>
-    
+
+function StockList() {
+
+  useEffect(() => {
+  }, [])
+
+  return (
+    <Container>
+      <HeaderContent title="Dashboard" icon={<Person fontSize="large" />} />
+      <GraphContent>
+      </GraphContent>
+    </Container>
   )
-    
+
 }
 
-export default Dashboard;
+export default StockList;
