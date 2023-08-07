@@ -16,7 +16,6 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
   }
 
   useEffect(() => {
-    console.log(events)
     setAllEvents(events)
   }, [events]);
 
@@ -30,9 +29,8 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {console.log(events)}
-              {console.log(currentEvent)}
               {events
+                .find((event) => event.title == currentEvent.title)?.[tag] == [] ? events
                 .find((event) => event.title == currentEvent.title)
                 ?.[tag].map((item, index) => (
                     <Draggable
@@ -54,7 +52,7 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                           </>
                         )}
                     </Draggable>
-                  ))}
+                  )) : <>Vazio!</>}
               {provided.placeholder}
             </S.TaskContainer>
           );
