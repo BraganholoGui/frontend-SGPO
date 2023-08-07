@@ -3,6 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Modal, ModalBody } from 'reactstrap';
 import { useEffect } from 'react';
+import { toast } from '../../GeneralFunctions/functions';
 
 const XLSX = require('xlsx');
 
@@ -19,18 +20,22 @@ function CreateGraph() {
 
   const handleFileChange = (event) => {
     if(event){
+      try{
 
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(sheet);
-        setJson(jsonData);
-      };
-      reader.readAsArrayBuffer(file);
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const data = new Uint8Array(event.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet);
+          setJson(jsonData);
+        };
+        reader.readAsArrayBuffer(file);
+      } catch (e) {
+        toast('error', `Formato não aceito!`);
+      }
     }
   };
 
@@ -64,14 +69,11 @@ function CreateGraph() {
     let listAux = groupSames(list);
     let listNames = [];
     let listQtds = [];
-    console.log(listAux);
     listAux = convertObjToArray(listAux)
-    console.log(listAux);
     listAux.map(item => {
       listNames.push(item[0])
       listQtds.push(item[1])
     })
-    console.log('name', listNames)
 
     let final = {
       labels: listNames,
@@ -125,7 +127,7 @@ function CreateGraph() {
   return (
     <div>
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
-        <input type="file" onChange={handleFileChange} />
+        <input type="file" onChange={handleFileChange}  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {json && json.length > 0 ?
