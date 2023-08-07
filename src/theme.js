@@ -2,6 +2,7 @@ export const theme = {
     primaryDark: '#115b4c',
     primaryLight: '#b6edc8',
     primaryHover: '#343078',
+    bgDark: '#363535',
     lastDark: '#504B43',
     light: '#72a98f',
     grey:'#cfcfcf',

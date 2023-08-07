@@ -4,8 +4,10 @@ import { useState, useEffect, useMemo } from 'react';
 import { Button } from 'reactstrap';
 import SwitchMaterialProduct from '../Switch/MaterialProduct';
 import CreateGraph from '../../pages/Dashboard/createGraph';
+import CBox from '../CBox';
+import Container from '../Container';
 
-function GraphContent(props) {
+function ContainerMain(props) {
 
   //   const Export = ({ onExport }) => <Button onClick={e => onExport(e.target.value)}>Export</Button>;
 
@@ -52,23 +54,10 @@ function GraphContent(props) {
   //   }
   return (
     <S.ContainerMain>
-      <S.Box>
-        <S.Content>
-          teste
-        </S.Content>
-        <S.Content2>
-          teste
-        </S.Content2>
-       
-      </S.Box>
-      <S.Box>
-        <S.ContentCreateGraph>
-          <CreateGraph></CreateGraph>
-        </S.ContentCreateGraph>
-      </S.Box>
+      {props.children}
     </S.ContainerMain>
   )
 
 }
 
-export default GraphContent;
+export default ContainerMain;

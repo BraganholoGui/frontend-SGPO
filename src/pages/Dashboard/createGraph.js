@@ -18,17 +18,20 @@ function CreateGraph() {
   const toggle = () => setIsOpen(!isOpen);
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const data = new Uint8Array(event.target.result);
-      const workbook = XLSX.read(data, { type: 'array' });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const jsonData = XLSX.utils.sheet_to_json(sheet);
-      setJson(jsonData);
-    };
-    reader.readAsArrayBuffer(file);
+    if(event){
+
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(sheet);
+        setJson(jsonData);
+      };
+      reader.readAsArrayBuffer(file);
+    }
   };
 
   function getAllInfo(table) {
@@ -124,7 +127,7 @@ function CreateGraph() {
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
         <input type="file" onChange={handleFileChange} />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', flexDirection: 'column', width: '100%', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'auto auto auto' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {json && json.length > 0 ?
           json.map((item, index) => {
             cont++
@@ -135,10 +138,9 @@ function CreateGraph() {
                   cont == 1 ?
                     item.map((subitem, subindex) => {
                       return (
-
                         <button style={{
-                          width: '2px', margin: '2%', minHeight: '50px', maxHeight: '100px', gridColumn: subindex,
-                          gridRow: subindex % 5 ? 1 : 2, backgroundColor: '#b6edc8', border: '1px solid black', borderRadius: '20px'
+                          width: '100%', margin:'5px', minHeight:'50px',
+                          backgroundColor: '#b6edc8', border: '1px solid black', borderRadius: '20px'
                         }} onClick={() => {
                           toggle();
                           getAllInfo(subitem[0])
