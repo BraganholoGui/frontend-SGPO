@@ -51,7 +51,7 @@ function StockList() {
         <Container>
           Graph 1
         </Container>
-        <Container>
+        <Container style={{maxHeight:'50px'}}>
           Graph 2
           <CreatePieGraph labels={['Quantidade Baixa', 'Quantidade Regulada']} datasets={datasets} listProduct={listProduct}/>
         </Container>

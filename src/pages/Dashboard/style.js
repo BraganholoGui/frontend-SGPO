@@ -24,3 +24,18 @@ align-items: center;
 color: #000;
  font-size: 3vh;
 `; 
+
+
+export const ContainerGraph = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+`; 
+
+export const ContainerSubGraph = styled.div`
+width: 70%;
+display: flex;
+justify-content: center;
+align-items: center;
+`; 

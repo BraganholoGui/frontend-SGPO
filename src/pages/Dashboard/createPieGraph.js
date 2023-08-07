@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import * as S from './style';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function CreatePieGraph(props) {
   const [labels, setLabel] = useState([]);
   const [datas, setDatas] = useState([]);
-  console.log(datas)
+
   const data = {
     labels: labels,
     datasets: [
@@ -36,9 +37,16 @@ export function CreatePieGraph(props) {
   };
 
   useEffect(() => {
+    console.log(props)
     setLabel(props.labels);
     setDatas(props.datasets);
   }, [])
 
-  return <Pie data={data} />;
+  return (
+    <S.ContainerGraph>
+      <S.ContainerSubGraph>
+        <Pie data={data} />
+      </S.ContainerSubGraph>
+    </S.ContainerGraph>
+  )
 }
