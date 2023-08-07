@@ -32,6 +32,7 @@ width: 400px;
   font-weight: 400;
   font-style: italic;
   transition: 1s;
+  margin: 10px;
 `;
 
 export const TaskContainer = styled.div`
