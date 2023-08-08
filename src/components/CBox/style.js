@@ -10,6 +10,6 @@ export const Box = styled.div`
   border-bottom: 2px solid rgb(	17, 91, 76, 0.5);
   padding: 25px;
   display: grid;
-   ${({ quantityC }) => quantityC ? `grid-template-columns: repeat(${quantityC}, 1fr)` : 'grid-template-columns:1fr'}
+  ${({ quantityC }) => quantityC ? `grid-template-columns: repeat(${quantityC}, 1fr)` : 'grid-template-columns:1fr'}
   /* grid-template-columns: repeat(3, 1fr); */
   `;

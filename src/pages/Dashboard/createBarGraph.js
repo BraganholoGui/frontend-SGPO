@@ -22,17 +22,7 @@ ChartJS.register(
 
 export function CreateBarGraph(props) {
   const [labels, setLabels] = useState(props.labels);
-  const [data, setData] = useState({
-    labels,
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: props?.labels?.map((item, index) => props.labels[index]),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-    ]
-  });
-  console.log('props', props)
+  const [data, setData] = useState(null);
   const options = {
     indexAxis: 'y',
     elements: {
@@ -54,29 +44,31 @@ export function CreateBarGraph(props) {
     },
   };
 
-
   useEffect(() => {
     setLabels(props.labels);
-    if (props.labels) {
-
-      setData({
-        labels,
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data: props?.labels?.map((item, index) => props.datasets[index]),
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            borderColor: 'rgb(53, 162, 235)',
-          },
-        ]
-      });
-    }
+  }, [])
+  useEffect(() => {
+    setLabels(props.labels);
   }, [props])
+
+  useEffect(() => {
+
+    setData({
+      labels,
+      datasets: [
+        {
+          label: 'Dataset 1',
+          data: labels.map((item, index) => props.datasets[index]),
+          backgroundColor: 'rgba(53, 162, 235, 0.5)',
+          borderColor: 'rgb(53, 162, 235)',
+        },
+      ]
+    });
+  }, [labels])
 
   return (
     <>
-    {console.log('data', data)}
-      {true && data ?
+      {data ?
         <Bar options={options} data={data} />
         : null
       }

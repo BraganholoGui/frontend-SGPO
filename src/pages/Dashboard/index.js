@@ -160,20 +160,20 @@ function StockList() {
       <HeaderContent title="Dashboard" icon={<Person fontSize="large" />} />
       <ContainerMain>
       <CBox quantityContainer={2}>
-        <Container>
+        <Container heigtLimit={true}>
           Produto mais vendidos
           <CreateBarGraph labels={labelProductsSell} datasets={datasetsProductsSell}></CreateBarGraph>
         </Container>
-        <Container>
+        <Container heigtLimit={true}>
           Produtos com quantidade baixa
           <CreatePieGraph labels={['Quantidade Baixa', 'Quantidade Regulada']} datasets={datasets}/>
         </Container>
       </CBox>
       <CBox quantityContainer={2}>
-        <Container>
+        <Container heigtLimit={true}>
           Graph 3
         </Container>
-        <Container>
+        <Container heigtLimit={true}>
           Graph 4
         </Container>
       </CBox>
@@ -181,7 +181,7 @@ function StockList() {
         <S.DataTitile>
         Análise de planilhas
         </S.DataTitile>
-        <Container>
+        <Container heigtLimit={false}>
           <CreateGraph></CreateGraph>
         </Container>
       </CBox>

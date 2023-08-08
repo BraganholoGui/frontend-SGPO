@@ -11,10 +11,11 @@ export const Content = styled.div`
   /* grid-column: 1/3;
   grid-row: 1; */
   display: flex;
-  justify-content:center ;
+  /* justify-content:center ; */
   align-items: center;
   flex-direction: column;
   margin: 10px;
-  height: 400px;
-  max-height: 400px;
+  /* height: 420px; */
+  ${({ heigtLimit }) => heigtLimit ? `` : 'height: 420px'}
+  ${({ heigtLimit }) => heigtLimit ? `` : 'max-height: 420px'}
 `; 
