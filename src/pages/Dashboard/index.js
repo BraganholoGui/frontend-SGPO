@@ -18,6 +18,9 @@ function StockList() {
 
   const [datasetsProductsSell, setDatasetsProductsSell] = useState([]);
   const [labelProductsSell, setLabelProductsSell] = useState([]);
+  
+  const [datasetsProductsPurchased, setDatasetsProductsPurchased] = useState([]);
+  const [labelProductsPurchased, setLabelProductsPurchased] = useState([]);
 
   async function getProducts() {
     await get('/products')
@@ -51,13 +54,25 @@ function StockList() {
           })
           let labels = getAllInfo('productName', response.records).labels;
           let datas = getAllInfo('productName', response.records).datasets;
-          console.log(response.records);
-          console.log(getAllInfo('productName', response.records))
-         
-          console.log(labels)
-          console.log(datas[0].data)
           setDatasetsProductsSell(datas[0].data)
           setLabelProductsSell(getAllInfo('productName', response.records).labels);
+        }
+      });
+
+  }
+  async function getPurchases() {
+    await get('/purchases')
+      .then(async response => {
+        if (response) {
+          response.records.map(item => {
+            if(item.product){
+              item.productName = item.Product.name
+            }
+          })
+          let labels = getAllInfo('productName', response.records).labels;
+          let datas = getAllInfo('productName', response.records).datasets;
+          setDatasetsProductsPurchased(datas[0].data)
+          setLabelProductsPurchased(getAllInfo('productName', response.records).labels);
         }
       });
 
@@ -153,27 +168,33 @@ function StockList() {
   useEffect(() => {
     getProducts();
     getSales();
+    getPurchases();
   }, [])
 
   return (
     <S.Container>
       <HeaderContent title="Dashboard" icon={<Person fontSize="large" />} />
       <ContainerMain>
-      <CBox quantityContainer={2}>
-        <Container heigtLimit={true}>
+      <CBox quantityContainer={2} title={'Produtos e Materiais'}>
+        <Container heightLimit={true}>
           Produto mais vendidos
           <CreateBarGraph labels={labelProductsSell} datasets={datasetsProductsSell}></CreateBarGraph>
         </Container>
-        <Container heigtLimit={true}>
+        <Container heightLimit={true}>
           Produtos com quantidade baixa
           <CreatePieGraph labels={['Quantidade Baixa', 'Quantidade Regulada']} datasets={datasets}/>
         </Container>
+        <Container heightLimit={true}>
+        Produto mais comprado
+          <CreateBarGraph labels={labelProductsPurchased} datasets={datasetsProductsPurchased}></CreateBarGraph>
+        </Container>
       </CBox>
       <CBox quantityContainer={2}>
-        <Container heigtLimit={true}>
-          Graph 3
+        <Container heightLimit={true}>
+        Produto mais comprado
+          <CreateBarGraph labels={labelProductsPurchased} datasets={datasetsProductsPurchased}></CreateBarGraph>
         </Container>
-        <Container heigtLimit={true}>
+        <Container heightLimit={true}>
           Graph 4
         </Container>
       </CBox>
@@ -181,7 +202,7 @@ function StockList() {
         <S.DataTitile>
         Análise de planilhas
         </S.DataTitile>
-        <Container heigtLimit={false}>
+        <Container heightLimit={false}>
           <CreateGraph></CreateGraph>
         </Container>
       </CBox>

@@ -16,6 +16,6 @@ export const Content = styled.div`
   flex-direction: column;
   margin: 10px;
   /* height: 420px; */
-  ${({ heigtLimit }) => heigtLimit ? `` : 'height: 420px'}
-  ${({ heigtLimit }) => heigtLimit ? `` : 'max-height: 420px'}
+  ${({ heightLimit }) => heightLimit ? `` : 'height: 350px'}
+  ${({ heightLimit }) => heightLimit ? `` : 'max-height: 350px'}
 `; 

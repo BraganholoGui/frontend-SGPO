@@ -8,7 +8,7 @@ import CreateGraph from '../../pages/Dashboard/createGraph';
 function Container(props) {
  
   return (
-    <S.Content heigtLimit={props.heigtLimit}>
+    <S.Content heightLimit={props.heightLimit}>
       {props.children}
     </S.Content>
   )
