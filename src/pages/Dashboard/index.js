@@ -163,7 +163,6 @@ function StockList() {
         <Container>
           Produto mais vendidos
           <CreateBarGraph labels={labelProductsSell} datasets={datasetsProductsSell}></CreateBarGraph>
-          {/* <CreatePieGraph labels={labelProductsSell} datasets={datasetsProductsSell}/> */}
         </Container>
         <Container>
           Produtos com quantidade baixa

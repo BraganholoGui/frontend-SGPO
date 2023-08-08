@@ -21,43 +21,65 @@ ChartJS.register(
 );
 
 export function CreateBarGraph(props) {
-  const [labels, setLabels] = useState([]);
-  const [data, setData] = useState([]);
-  console.log(props)
+  const [labels, setLabels] = useState(props.labels);
+  const [data, setData] = useState({
+    labels,
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: props?.labels?.map((item, index) => props.labels[index]),
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ]
+  });
+  console.log('props', props)
   const options = {
+    indexAxis: 'y',
+    elements: {
+      bar: {
+        display: false,
+        borderWidth: 2,
+      },
+    },
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        display: false,
+        position: 'right',
       },
       title: {
-        display: true,
-        text: 'Chart.js Bar Chart',
+        display: false,
+        text: 'Chart.js Horizontal Bar Chart',
       },
     },
   };
 
-  
+
   useEffect(() => {
     setLabels(props.labels);
-    setData({
-      labels,
-      datasets: [
-        {
-          label: 'Dataset 1',
-          data: props.labels.map(() => 10),
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-          label: 'Dataset 2',
-          data: props.labels.map(() => 10),
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-      ]
-    });
+    if (props.labels) {
+
+      setData({
+        labels,
+        datasets: [
+          {
+            label: 'Dataset 1',
+            data: props?.labels?.map((item, index) => props.datasets[index]),
+            backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            borderColor: 'rgb(53, 162, 235)',
+          },
+        ]
+      });
+    }
   }, [props])
 
-
-
-  return <Bar options={options} data={data} />;
+  return (
+    <>
+    {console.log('data', data)}
+      {true && data ?
+        <Bar options={options} data={data} />
+        : null
+      }
+    </>
+  )
 }
