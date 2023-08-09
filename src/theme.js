@@ -6,6 +6,8 @@ export const theme = {
     lastDark: '#504B43',
     light: '#72a98f',
     grey:'#cfcfcf',
+    bgColor:'#F8F8F8',
+    header:'#101010',
     acqua:'#32908f',
     skin:'#ffba7c',
     military: '#181F1C',

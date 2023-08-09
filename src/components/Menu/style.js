@@ -81,8 +81,12 @@ width: 100%;
 display: flex;
 flex-direction: column;
 li{
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+  display: flex;
+  align-items: center;
   a{
+    display: flex;
+    align-items: flex-end;
     font-size: 1.5rem;
     font-weight: 300;
     text-decoration: none;
@@ -90,8 +94,26 @@ li{
     &:hover{
       font-weight: 450;
       margin-left: 5px;
-
     }
   }
 }
+@media (max-width: 1000px) {
+  li{
+  margin-left: 10%;
+  display: flex;
+  align-items: center;
+  a{
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-decoration: none;
+    color: #000;
+    &:hover{
+      font-weight: 450;
+      margin-left: 5px;
+    }
+  }
+}
+  }
 `;

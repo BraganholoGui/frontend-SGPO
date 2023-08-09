@@ -73,23 +73,31 @@ function MaterialList() {
     table: {
       style: {
         border: '1px solid black',
+        backgroundColor:  '#363535',
+        color:'#fff'
       },
     },
     rows: {
       style: {
         minHeight: '72px',
+        backgroundColor:  '#363535',
+        color:'#fff'
       },
     },
     headCells: {
       style: {
         paddingLeft: '8px',
         paddingRight: '8px',
+        backgroundColor:  '#363535',
+        color:'#fff'
       },
     },
     cells: {
       style: {
         paddingLeft: '8px',
         paddingRight: '8px',
+        backgroundColor:  '#363535',
+        color:'#fff'
       },
     },
   };

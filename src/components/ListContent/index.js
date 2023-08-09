@@ -25,6 +25,9 @@ function ListContent(props) {
   const customStyles = {
     all:{
       borderRadius: '20px',
+      backgroundColor:  '#363535',
+      color: '#FFFFFF'
+
     },
     table: {
       style: {
@@ -33,17 +36,27 @@ function ListContent(props) {
         borderRight: '2px solid rgb(	17, 91, 76, 0.5)',
         borderBottom: '2px solid rgb(	17, 91, 76, 0.5)',
         borderRadius: '20px',
+        backgroundColor:  '#363535',
+        color: '#FFFFFF'
+
       },
     },
     rows: {
       style: {
         borderRadius: '20px',
+        backgroundColor:  '#363535',
+      color: '#FFFFFF'
+
+
       },
     },
     headRow: {
       style: {
         borderRadius: '20px',
+        backgroundColor:  '#363535',
         borderBottom: '2px solid rgb(	17, 91, 76, 0.5)',
+      color: '#FFFFFF'
+
       },
     },
     headCells: {
@@ -51,22 +64,33 @@ function ListContent(props) {
         borderRadius: '20px',
         borderRight: '2px solid rgb(	17, 91, 76, 0.5)',
         fontWeight:700,
-        fontSize:'15px'
+        fontSize:'15px',
+        backgroundColor:  '#363535',
+      color: '#FFFFFF'
+
+
       },
     },
     noData: {
       style: {
         borderRadius: '20px',
-        padding:'24px'
+        padding:'24px',
+        backgroundColor:  '#363535',
+        color:'#fff'
       },
     },
+    // stripedStyle: {
+    //   color: "#363535",
+    //   backgroundColor: "#fff"
+    // },
     cells: {
       style: {
         borderRadius: '20px',
         borderRight: '2px solid rgb(	17, 91, 76, 0.3)',
         borderBottom: '2px solid rgb(	17, 91, 76, 0.3)',
-        flexWrap:"wrap"
-        
+        flexWrap:"wrap",
+        backgroundColor:  '#363535',
+        color: '#FFFFFF'
       },
     },
   };
@@ -136,7 +160,7 @@ function ListContent(props) {
           paginationComponentOptions={paginationComponentOptions}
           highlightOnHover
           noDataComponent={"Não há cadastros!"}
-          striped
+          // striped
           conditionalRowStyles={conditionalRowStyles}
         />
       </S.Box>
