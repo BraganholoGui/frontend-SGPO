@@ -80,7 +80,7 @@ function User() {
       .then(async response => {
         let listTeams = []
         if (response) {
-          response.user.TeamUsers.map(team => {
+          response?.user?.TeamUsers.map(team => {
             let obj = {
               ...team,
               value: team.Team.name,
