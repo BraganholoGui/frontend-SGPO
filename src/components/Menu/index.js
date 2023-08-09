@@ -20,7 +20,7 @@ const Menu = () => {
             <S.Navigation >
               <S.List>
                 <li>
-                  <a href='/' >Dashboard *</a>
+                  <a href='/' >Dashboard</a>
                 </li>
                 <li>
                   <a href='/tasks'>Tarefas</a>

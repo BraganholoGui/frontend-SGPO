@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
 import Layout from '../components/layout';
@@ -56,6 +56,7 @@ const PublicRoutes = () => {
           <Route path="/themes/:id" component={Theme} />
           <Route path="/themes" component={ThemeList} />
           <Route path="/" component={Dashboard} />
+          <Redirect to={true ? '/' : 'login'} />
         </Switch>
       </Layout>
     </BrowserRouter>
