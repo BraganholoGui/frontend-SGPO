@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { Task } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -35,7 +35,7 @@ function TaskKanban() {
 
   return (
     <Container>
-      <HeaderContent title="Tarefas" icon={<Person fontSize="large" />} titleButton="Nova Tarefa" linkTo="/tasks/novo" />
+      <HeaderContent title="Tarefas" icon={<Task fontSize="large" />} titleButton="Nova Tarefa" linkTo="/tasks/novo" />
       <ListContentKanban data={data} setData={setData}/>
 
     </Container>

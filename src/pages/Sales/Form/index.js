@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { Loyalty } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -125,7 +125,7 @@ function Sale() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Loyalty fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>

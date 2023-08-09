@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { Groups } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -79,7 +79,7 @@ function TeamList() {
 
   return (
     <Container>
-      <HeaderContent title="Times" icon={<Person fontSize="large"/>} titleButton="Novo Time" linkTo="/teams/novo" />
+      <HeaderContent title="Times" icon={<Groups fontSize="large"/>} titleButton="Novo Time" linkTo="/teams/novo" />
       <ListContent
         columns={columns}
         data={data}

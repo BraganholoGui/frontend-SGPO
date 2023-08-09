@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { ShoppingCart } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -185,7 +185,7 @@ function PurchaseList() {
 
   return (
     <Container>
-      <HeaderContent title="Compras" icon={<Person fontSize="large" />} titleButton="Nova Compra" linkTo="/purchases/novo" />
+      <HeaderContent title="Compras" icon={<ShoppingCart fontSize="large" />} titleButton="Nova Compra" linkTo="/purchases/novo" />
       <ListContent
         columns={!checked ? columns : columnsMaterial}
         data={!checked ? dataProduct : dataMaterial}

@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { Groups } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -83,7 +83,7 @@ function Team() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/teams" title={id == "novo" ? "Novo Time" : "Editar Time"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/teams" title={id == "novo" ? "Novo Time" : "Editar Time"} icon={<Groups fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome do time" type='text' size="medium"></InputForm>

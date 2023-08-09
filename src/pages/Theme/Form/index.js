@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { AccountTree } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -45,7 +45,7 @@ function Theme() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/themes" title={id == "novo" ? "Novo Tema" : "Editar Tema"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/themes" title={id == "novo" ? "Novo Tema" : "Editar Tema"} icon={<AccountTree fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="large"></InputForm>

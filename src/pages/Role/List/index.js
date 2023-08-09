@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { Psychology } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -79,7 +79,7 @@ function RoleList() {
 
   return (
     <Container>
-      <HeaderContent title="Cargos" icon={<Person fontSize="large"/>} titleButton="Novo Cargo" linkTo="/roles/novo" />
+      <HeaderContent title="Cargos" icon={<Psychology fontSize="large"/>} titleButton="Novo Cargo" linkTo="/roles/novo" />
       <ListContent
         columns={columns}
         data={data}

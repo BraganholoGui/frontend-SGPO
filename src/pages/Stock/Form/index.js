@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { Inventory } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -125,7 +125,7 @@ function Stock() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<Inventory fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>

@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { Inventory } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -169,7 +169,7 @@ function StockList() {
 
   return (
     <Container>
-      <HeaderContent title="Estoque" icon={<Person fontSize="large" />} />
+      <HeaderContent title="Estoque" icon={<Inventory fontSize="large" />} />
       <ListContent
         columns={!checked ? columns : columnsMaterial}
         data={!checked ? dataProduct : dataMaterial}

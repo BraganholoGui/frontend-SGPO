@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { Task } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
 
-function Task() {
+function TaskForm() {
   const { id } = useParams();
   const url = '/tasks';
   const [data, setData] = useState({});
@@ -120,7 +120,7 @@ function Task() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/tasks" title={id == "novo" ? "Novo Tarefa" : "Editar Tarefa"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/tasks" title={id == "novo" ? "Novo Tarefa" : "Editar Tarefa"} icon={<Task fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
@@ -146,4 +146,4 @@ function Task() {
   )
 
 }
-export default Task;
+export default TaskForm;

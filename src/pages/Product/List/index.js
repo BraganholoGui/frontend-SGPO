@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { Category } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -100,7 +100,7 @@ function ProductList() {
 
   return (
     <Container>
-      <HeaderContent title="Produtos" icon={<Person fontSize="large" />} titleButton="Novo Produto" linkTo="/products/novo" />
+      <HeaderContent title="Produtos" icon={<Category fontSize="large" />} titleButton="Novo Produto" linkTo="/products/novo" />
       <ListContent
         columns={columns}
         data={data}

@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { Psychology } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -45,7 +45,7 @@ function Role() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/roles" title={id == "novo" ? "Novo Cargo" : "Editar Cargo"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/roles" title={id == "novo" ? "Novo Cargo" : "Editar Cargo"} icon={<Psychology fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome do cargo" type='text' size="large"></InputForm>

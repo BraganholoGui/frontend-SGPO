@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { Person } from '@mui/icons-material';
+import { Category } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -54,7 +54,7 @@ function Product() {
   return (
     <>
       <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/products" title={id == "novo" ? "Novo Produto" : "Editar Produto"} icon={<Person fontSize="large" />} />
+        <HeaderContent id={id} titleButton="Voltar" linkTo="/products" title={id == "novo" ? "Novo Produto" : "Editar Produto"} icon={<Category fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="medium"></InputForm>

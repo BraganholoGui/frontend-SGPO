@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { People } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -107,7 +107,7 @@ function UserList() {
 
   return (
     <Container>
-      <HeaderContent title="Usuários" icon={<Person fontSize="large" />} titleButton="Novo Usuário" linkTo="/users/novo" />
+      <HeaderContent title="Usuários" icon={<People fontSize="large" />} titleButton="Novo Usuário" linkTo="/users/novo" />
       <ListContent
         columns={columns}
         data={data}

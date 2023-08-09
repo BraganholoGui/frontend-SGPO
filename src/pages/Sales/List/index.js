@@ -1,6 +1,6 @@
 import HeaderContent from '../../../components/HeaderContent';
 import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { Loyalty } from '@mui/icons-material';
 import ListContent from '../../../components/ListContent';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
@@ -114,7 +114,7 @@ function SaleList() {
 
   return (
     <Container>
-      <HeaderContent title="Vendas" icon={<Person fontSize="large" />} titleButton="Nova Venda" linkTo="/sales/novo" />
+      <HeaderContent title="Vendas" icon={<Loyalty fontSize="large" />} titleButton="Nova Venda" linkTo="/sales/novo" />
       <ListContent
         columns={columns}
         data={data}

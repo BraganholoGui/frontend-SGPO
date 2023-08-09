@@ -1,6 +1,6 @@
 import HeaderContent from '../../components/HeaderContent';
 // import { Container } from './style';
-import { Person } from '@mui/icons-material';
+import { BarChart } from '@mui/icons-material';
 import { get } from '../../services/actions';
 import { useEffect, useState } from 'react';
 import ContainerMain from '../../components/ContainerMain';
@@ -194,7 +194,7 @@ function StockList() {
 
   return (
     <S.Container>
-      <HeaderContent title="Dashboard" icon={<Person fontSize="large" />} />
+      <HeaderContent title="Dashboard" icon={<BarChart fontSize="large" />} />
       <ContainerMain>
       <CBox quantityContainer={2} title={'Produtos e Materiais'}>
         <Container heightLimit={true}>
