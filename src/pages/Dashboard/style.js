@@ -16,16 +16,6 @@ color:#000;
 
 `; 
 
-export const DataTitile = styled.div`
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-color: #000;
- font-size: 3vh;
-`; 
-
-
 export const ContainerGraph = styled.div`
 width: 100%;
 display: flex;

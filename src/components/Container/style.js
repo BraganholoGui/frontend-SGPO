@@ -11,6 +11,7 @@ export const Content = styled.div`
   /* grid-column: 1/3;
   grid-row: 1; */
   display: flex;
+  color: #fff;
   /* justify-content:center ; */
   align-items: center;
   flex-direction: column;

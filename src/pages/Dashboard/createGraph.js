@@ -145,7 +145,7 @@ function CreateGraph() {
                       return (
                         <button style={{
                           width: '100%', margin:'5px', minHeight:'50px',
-                          backgroundColor: '#b6edc8', border: '1px solid black', borderRadius: '20px'
+                          backgroundColor: '#cccccc', border: '1px solid black', borderRadius: '20px'
                         }} onClick={() => {
                           toggle();
                           getAllInfo(subitem[0])

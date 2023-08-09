@@ -7,6 +7,7 @@ export const theme = {
     light: '#72a98f',
     grey:'#cfcfcf',
     acqua:'#32908f',
+    skin:'#ffba7c',
     military: '#181F1C',
     militaryLight: '#274029',
     greenL: '#4da768',

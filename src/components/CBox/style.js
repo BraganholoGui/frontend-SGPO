@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../theme';
 
 export const ContainerBox = styled.div`
   margin-top: 2%;
@@ -12,6 +13,7 @@ export const ContainerBox = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: ${theme.bgDark};
   `;
 
 export const Box = styled.div`
@@ -23,6 +25,7 @@ export const Box = styled.div`
 
 export const TitleBox = styled.div`
     width: 100%;
+    color: #fff;
   font-weight: bold;
   font-size: 20px;
   display: flex;

@@ -22,6 +22,9 @@ function StockList() {
   const [datasetsProductsPurchased, setDatasetsProductsPurchased] = useState([]);
   const [labelProductsPurchased, setLabelProductsPurchased] = useState([]);
 
+  const [datasetsMaterialPurchased, setDatasetsMaterialPurchased] = useState([]);
+  const [labelMaterialPurchased, setLabelMaterialPurchased] = useState([]);
+
   async function getProducts() {
     await get('/products')
       .then(async response => {
@@ -56,6 +59,23 @@ function StockList() {
           let datas = getAllInfo('productName', response.records).datasets;
           setDatasetsProductsSell(datas[0].data)
           setLabelProductsSell(getAllInfo('productName', response.records).labels);
+        }
+      });
+
+  }
+  async function getMaterials() {
+    await get('/purchases')
+      .then(async response => {
+        if (response) {
+          response.records.map(item => {
+            if(item.material){
+              item.materialName = item.Material.name
+            }
+          })
+          let labels = getAllInfo('materialName', response.records).labels;
+          let datas = getAllInfo('materialName', response.records).datasets;
+          setDatasetsMaterialPurchased(datas[0].data)
+          setLabelMaterialPurchased(getAllInfo('materialName', response.records).labels);
         }
       });
 
@@ -169,6 +189,7 @@ function StockList() {
     getProducts();
     getSales();
     getPurchases();
+    getMaterials();
   }, [])
 
   return (
@@ -188,20 +209,12 @@ function StockList() {
         Produto mais comprado
           <CreateBarGraph labels={labelProductsPurchased} datasets={datasetsProductsPurchased}></CreateBarGraph>
         </Container>
-      </CBox>
-      <CBox quantityContainer={2}>
         <Container heightLimit={true}>
-        Produto mais comprado
-          <CreateBarGraph labels={labelProductsPurchased} datasets={datasetsProductsPurchased}></CreateBarGraph>
-        </Container>
-        <Container heightLimit={true}>
-          Graph 4
+          Material mais comprado
+          <CreateBarGraph labels={labelMaterialPurchased} datasets={datasetsMaterialPurchased}></CreateBarGraph>
         </Container>
       </CBox>
-      <CBox>
-        <S.DataTitile>
-        Análise de planilhas
-        </S.DataTitile>
+      <CBox title={'Análise de planilhas dinâmico'}>
         <Container heightLimit={false}>
           <CreateGraph></CreateGraph>
         </Container>
