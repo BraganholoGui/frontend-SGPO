@@ -129,6 +129,7 @@ function StockList() {
     {
       when: row => row.quantity < row.quantity_min,
       style: {
+        backgroundColor:'red',
         color: 'red',
         fontWeight:'bold'
         // '&:hover': {

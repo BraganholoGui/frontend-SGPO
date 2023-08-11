@@ -143,13 +143,9 @@ function PurchaseList() {
   ];
   const conditionalRowStyles = [
     {
-      when: row => row.status ==3,
+      when: row => row.status == 3,
       style: {
-        color: 'green',
-        fontWeight:'bold'
-        // '&:hover': {
-        //   cursor: 'pointer',
-        // },
+        backgroundColor: 'green',
       },
     },
   ];

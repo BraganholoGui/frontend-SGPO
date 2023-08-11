@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   async function Login(userData) {
+    console.log('teste', userData)
     const response = await actions.post('https://localhost:3002/clients', userData);
     if (response.data.token) {
       const userLog = response.data.user.name;

@@ -27,29 +27,29 @@ function UserList() {
   const columns = [
     {
       name: 'ID',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.id}</S.Row>,
+      selector: row => row.id,
       sortable: true,
       center: true
     },
     {
       name: 'Nome de Acesso',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.access_name}</S.Row>,
+      selector: row => row.access_name,
       sortable: true,
     },
     {
       name: 'Nome',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Person.name}</S.Row>,
+      selector: row => row.Person.name,
       sortable: true,
     },
     {
       name: 'Cargo',
-      selector: row => <S.Row href={`users/${row.id}`}>{row.Role ? row.Role.name : '-'}</S.Row>,
+      selector: row => row.Role ? row.Role.name : '-',
       sortable: true,
     },
     {
       name: 'Times',
-      selector: row => <S.Row href={`users/${row.id}`}>
-        {row.TeamUsers ?
+      selector: row => 
+        row.TeamUsers ?
           <>
             {row.TeamUsers.map(item => {
               return (
@@ -59,8 +59,8 @@ function UserList() {
               )
             })}
           </>
-          : '-'}
-      </S.Row>,
+          : '-'
+     ,
       sortable: true,
     },
     {

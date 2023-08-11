@@ -26,13 +26,13 @@ function TeamList() {
   const columns = [
     {
       name: 'ID',
-      selector: row =>  <S.Row href={`teams/${row.id}`}>{row.id}</S.Row>,
+      selector: row => row.id,
       sortable: true,
       center:true
     },
     {
       name: 'Time',
-      selector: row =>  <S.Row href={`teams/${row.id}`}>{row.name}</S.Row>,
+      selector: row => row.name,
       sortable: true,
     },
     {

@@ -26,13 +26,13 @@ function RoleList() {
   const columns = [
     {
       name: 'ID',
-      selector: row =>  <S.Row href={`roles/${row.id}`}>{row.id}</S.Row>,
+      selector: row =>  row.id,
       sortable: true,
       center:true
     },
     {
       name: 'Cargo',
-      selector: row =>  <S.Row href={`roles/${row.id}`}>{row.name}</S.Row>,
+      selector: row =>  row.name,
       sortable: true,
     },
     {

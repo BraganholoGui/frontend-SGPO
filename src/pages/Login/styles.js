@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const ContainerBody = styled.div`
-background-image: linear-gradient(rgb(25, 25, 105), rgba(0, 150, 229, 0.5));
+background-image: linear-gradient(#115b4c, #b6edc8);
 display: flex;
 align-items: center;
 justify-content: center;
-height:700px;
+height:100vh;
+flex-direction: column;
 `;
 
 export const ContainerAll = styled.div`
@@ -24,6 +25,15 @@ padding: 5%;
 export const TitleLogin = styled.header`
 font-size: 28px;
 font-weight: 700;
+`;
+export const MainTitleLogin = styled.div`
+font-size: 28px;
+font-weight: 700;
+/* padding-bottom: 70px; */
+`;
+export const Line = styled.hr`
+width: 100%;
+padding-bottom: 50px;
 `;
 export const ContainerForm = styled.div`
 width: 100%;
@@ -56,7 +66,8 @@ font-size: 20px;
 line-height: 25px;
 display: flex;
 align-items: center;
-color: #466486;
+color: #115b4c;
+margin-top: 5%;
 
 `;
 export const InputForm = styled.input`
@@ -79,7 +90,7 @@ display: flex;
 align-items: center;
 justify-content: flex-start;
 flex-direction: column;
-margin-top: 5%;
+margin-top: 13%;
 `;
 
 export const ButtonForm = styled.button`

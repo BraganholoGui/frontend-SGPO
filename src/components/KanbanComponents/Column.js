@@ -9,9 +9,9 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
   const [updateToggle, setUpdateToggle] = useState('');
   const [allEvents, setAllEvents] = useState([]);
   const [removeToggle, setRemoveToggle] = useState('');
-  const toggle = () =>{setRemoveToggle(!removeToggle)}
+  const toggle = () => { setRemoveToggle(!removeToggle) }
 
-  function handleRemove(id){
+  function handleRemove(id) {
     setRemoveToggle(true)
   }
 
@@ -30,17 +30,16 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
               {...provided.droppableProps}
             >
               {events
-                .find((event) => event.title == currentEvent.title)?.[tag] == [] ? events
                 .find((event) => event.title == currentEvent.title)
                 ?.[tag].map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id.toString()}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <>
-                          <Task
+                  <Draggable
+                    key={item.id}
+                    draggableId={item.id.toString()}
+                    index={index}
+                  >
+                    {(provided, snapshot) => (
+                      <>
+                        <Task
                           name={item.name}
                           item={item}
                           details={item.details}
@@ -48,11 +47,12 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                           provided={provided}
                           snapshot={snapshot}
                           handleRemove={handleRemove(item.id)}
-                          />
-                          </>
-                        )}
-                    </Draggable>
-                  )) : <>Vazio!</>}
+                        />
+                      </>
+                    )}
+                  </Draggable>
+                ))
+              }
               {provided.placeholder}
             </S.TaskContainer>
           );

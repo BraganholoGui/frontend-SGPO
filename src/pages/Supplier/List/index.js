@@ -27,28 +27,28 @@ function SupplierList() {
   const columns = [
     {
       name: 'ID',
-      selector: row => <S.Row href={`suppliers/${row.id}`}>{row.id}</S.Row>,
+      selector: row => row.id,
       sortable: true,
       center: true
     },
     {
       name: 'CNPJ',
-      selector: row => <S.Row href={`suppliers/${row.id}`}>{row.cnpj}</S.Row>,
+      selector: row => row.cnpj,
       sortable: true,
     },
     {
       name: 'Nome',
-      selector: row => <S.Row href={`suppliers/${row.id}`}>{row.Person ? row.Person.name : '-'}</S.Row>,
+      selector: row => row.Person ? row.Person.name : '-',
       sortable: true,
     },
     {
       name: 'Telefone',
-      selector: row => <S.Row href={`suppliers/${row.id}`}>{row.Person && row.Person.Contact ? row.Person.Contact.phone : '-'}</S.Row>,
+      selector: row => row.Person && row.Person.Contact ? row.Person.Contact.phone : '-',
       sortable: true,
     },
     {
       name: 'Email',
-      selector: row => <S.Row href={`suppliers/${row.id}`}>{row.Person && row.Person.Contact ? row.Person.Contact.email : '-'}</S.Row>,
+      selector: row => row.Person && row.Person.Contact ? row.Person.Contact.email : '-',
       sortable: true,
     },
     {
