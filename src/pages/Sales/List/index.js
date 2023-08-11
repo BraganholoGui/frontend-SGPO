@@ -71,16 +71,16 @@ function SaleList() {
   ];
 
   const conditionalRowStyles = [
-    {
-      when: row => row.status ==3,
-      style: {
-        color: 'green',
-        fontWeight:'bold'
-        // '&:hover': {
-        //   cursor: 'pointer',
-        // },
-      },
-    },
+    // {
+    //   when: row => row.status ==3,
+    //   style: {
+    //     color: 'green',
+    //     fontWeight:'bold'
+    //     // '&:hover': {
+    //     //   cursor: 'pointer',
+    //     // },
+    //   },
+    // },
   ];
 
   const customStyles = {

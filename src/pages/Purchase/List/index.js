@@ -142,12 +142,12 @@ function PurchaseList() {
     },
   ];
   const conditionalRowStyles = [
-    {
-      when: row => row.status == 3,
-      style: {
-        backgroundColor: 'green',
-      },
-    },
+    // {
+    //   when: row => row.status == 3,
+    //   style: {
+    //     backgroundColor: 'green',
+    //   },
+    // },
   ];
 
   const customStyles = {

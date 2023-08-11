@@ -14,3 +14,9 @@ border: none;
 background-color: transparent;
  
 `; 
+export const Completed = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+ 
+`; 

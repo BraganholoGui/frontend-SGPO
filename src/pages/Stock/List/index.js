@@ -55,13 +55,13 @@ function StockList() {
       sortable: true,
     },
     {
-      name: 'Quantidade',
-      selector: row => row.quantity,
+      name: 'Quantidade Mínima',
+      selector: row => row.quantity_min,
       sortable: true,
     },
     {
-      name: 'Quantidade Mínima',
-      selector: row => row.quantity_min,
+      name: 'Quantidade',
+      selector: row => row.quantity || 0,
       sortable: true,
     },
     {
@@ -71,7 +71,7 @@ function StockList() {
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={urlProducts} data={dataProduct} setData={setDataProduct} />,
+      selector: row => <EditDelete id={row.id} url={urlProducts} data={dataProduct} setData={setDataProduct} alert={row.quantity_min > row.quantity ? true : false}/>,
       center: true,
       style: {
         display: 'flex',
@@ -99,13 +99,13 @@ function StockList() {
       sortable: true,
     },
     {
-      name: 'Quantidade',
-      selector: row => row.quantity,
+      name: 'Quantidade Mínima',
+      selector: row => row.quantity_min,
       sortable: true,
     },
     {
-      name: 'Quantidade Mínima',
-      selector: row => row.quantity_min,
+      name: 'Quantidade',
+      selector: row => row.quantity || 0,
       sortable: true,
     },
     {
@@ -115,7 +115,7 @@ function StockList() {
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={urlMaterials} data={dataMaterial} setData={setDataMaterial} />,
+      selector: row => <EditDelete id={row.id} url={urlMaterials} data={dataMaterial} setData={setDataMaterial} alert={row.quantity_min > row.quantity ? true : false} />,
       center: true,
       style: {
         display: 'flex',
@@ -126,17 +126,12 @@ function StockList() {
     },
   ];
   const conditionalRowStyles = [
-    {
-      when: row => row.quantity < row.quantity_min,
-      style: {
-        backgroundColor:'red',
-        color: 'red',
-        fontWeight:'bold'
-        // '&:hover': {
-        //   cursor: 'pointer',
-        // },
-      },
-    },
+    // {
+    //   when: row => row.quantity < row.quantity_min,
+    //   style: {
+    //     color: 'red',
+    //   },
+    // },
   ];
 
   const customStyles = {

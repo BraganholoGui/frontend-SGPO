@@ -6,7 +6,7 @@ export const ContainerMain = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 999;
-  background-color: '#f8f8f8';
+  /* background-color: '#f8f8f8'; */
   `; 
 export const Box = styled.div`
   margin-top: 2%;
