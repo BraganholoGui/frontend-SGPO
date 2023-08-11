@@ -158,7 +158,7 @@ function ListContent(props) {
           subHeaderAlign={'left'}
           pagination
           paginationComponentOptions={paginationComponentOptions}
-          highlightOnHover
+          // highlightOnHover
           noDataComponent={"Não há cadastros!"}
           // striped
           conditionalRowStyles={conditionalRowStyles}

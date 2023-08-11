@@ -102,6 +102,7 @@ function Purchase() {
     get(`/status`)
       .then(async response => {
         if (response && response.records) {
+          response.records = response.records.filter(item => !item.id_permission);
           response.records.map(item => {
             item.value = item.value;
             item.label = item.name

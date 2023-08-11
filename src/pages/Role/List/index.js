@@ -36,6 +36,11 @@ function RoleList() {
       sortable: true,
     },
     {
+      name: 'Permnissão',
+      selector: row =>  row.Status?.name,
+      sortable: true,
+    },
+    {
       name: 'Editar/Deletar',
       selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData}/>,
       center:true,

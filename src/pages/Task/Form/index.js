@@ -80,6 +80,7 @@ function TaskForm() {
     get(`/status`) 
       .then(async response => {
         if (response && response.records) {
+          response.records = response.records.filter(item => !item.id_permission);
           response.records.map(item => {
             item.value = item.id;
             item.label = item.id + '. ' + item.name
