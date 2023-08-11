@@ -20,29 +20,33 @@ export const AuthProvider = ({ children }) => {
 
   async function Login(userData) {
     console.log('teste', userData)
-    const response = await actions.post('https://localhost:3002/clients', userData);
-    if (response.data.token) {
-      const userLog = response.data.user.name;
-      await api.get('/clients')
-        .then(async (res) => {
-          if (res && res.data) {
-            await res.data.map(async (user) => {
-              let log = false;
-              if (user.name == userLog) {
-                log = true
-                await setUser(response.data.user);
-                localStorage.setItem("token", response.data.token)
-                localStorage.setItem("user", userLog)
-                localStorage.setItem("fullUser", JSON.stringify(user))
-                localStorage.setItem("clientList", JSON.stringify(res.data))
-              } 
-              ShowToast(log);
-
-            })
-          }
+    actions.post('/login', userData)
+        .then(() => {
+        }).catch((err) => {
         });
-      actions.defaults.headers.Authorization = `Bearer ${response.data.token}`;
-    }
+    // const response = await actions.post('https://localhost:3002/clients', userData);
+    // if (response.data.token) {
+    //   const userLog = response.data.user.name;
+    //   await api.get('/clients')
+    //     .then(async (res) => {
+    //       if (res && res.data) {
+    //         await res.data.map(async (user) => {
+    //           let log = false;
+    //           if (user.name == userLog) {
+    //             log = true
+    //             await setUser(response.data.user);
+    //             localStorage.setItem("token", response.data.token)
+    //             localStorage.setItem("user", userLog)
+    //             localStorage.setItem("fullUser", JSON.stringify(user))
+    //             localStorage.setItem("clientList", JSON.stringify(res.data))
+    //           } 
+    //           ShowToast(log);
+
+    //         })
+    //       }
+    //     });
+    //   actions.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+    // }
   }
 
   async function ShowToast(log) {
