@@ -14,6 +14,7 @@ export const theme = {
     militaryLight: '#274029',
     greenL: '#4da768',
     buttonLock: 'rgba(90, 90, 90)',
+    btblue:'#0B3954',
     save: 'rgba(33, 128, 13)',
     warning: 'rgba(255, 0, 0)',
     inputLock: 'rgba(190, 190, 190, 0.5)',

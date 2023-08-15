@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import ButtonDelete from '../ButtonDelete';
 import ButtonSave from '../ButtonSave';
 import * as S from './style';
+import ButtonPassword from '../ButtonPassword';
 
 function ButtonForm(props) {
   const { id } = useParams();
@@ -26,6 +27,10 @@ function ButtonForm(props) {
           null
           :
           <S.Box>
+            {
+              props.redefinePassword ? 
+              <ButtonPassword/> : null
+            }
             {
               id != 'novo' ?
                 <ButtonDelete url={url} obj={obj} />

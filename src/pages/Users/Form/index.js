@@ -138,10 +138,7 @@ function User() {
             }
             <InputForm options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
           </S.ContentBox>
-          <S.ContentBox>
-            redefinir senha
-          </S.ContentBox>
-          <ButtonForm url={url} obj={buildSubmitObj()} />
+          <ButtonForm url={url} obj={buildSubmitObj()} redefinePassword />
         </FormContent>
       </S.Container>
     </>

@@ -6,8 +6,8 @@ export const ButtonSave = styled.button`
  text-align: center;
  justify-content: center;
  align-items: center;
- width:220px;
- height: 55px;
+  width:170px;
+ height: 45px;
  background-color: ${theme.save};
  color: #fff;
  font-weight: 700;
@@ -32,8 +32,8 @@ export const ButtonSaveLock = styled.button`
  text-align: center;
  justify-content: center;
  align-items: center;
- width:220px;
- height: 55px;
+  width:170px;
+ height: 45px;
  background-color: ${theme.buttonLock};
  color: #fff;
  font-weight: 700;
