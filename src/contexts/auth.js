@@ -20,10 +20,8 @@ export const AuthProvider = ({ children }) => {
 
   async function Login(userData) {
     console.log('teste', userData)
-    actions.post('/login', userData)
-        .then(() => {
-        }).catch((err) => {
-        });
+    let x = actions.post('/login', userData).then(x => x.json())
+      console.log('xxx',x)
     // const response = await actions.post('https://localhost:3002/clients', userData);
     // if (response.data.token) {
     //   const userLog = response.data.user.name;
@@ -50,9 +48,9 @@ export const AuthProvider = ({ children }) => {
   }
 
   async function ShowToast(log) {
-    if(log){
+    if (log) {
       await toast('success', 'Bem vindo!');
-    }else{
+    } else {
       await toast('error', 'Erro ao realizar login!');
     }
   }
@@ -76,7 +74,7 @@ export const AuthProvider = ({ children }) => {
   }
   return (
     <AuthContext.Provider
-      value={{ signed: Boolean(user), user, Login, Logout, ShowToast }}
+      value={{ signed: true, user, Login, Logout, ShowToast }}
     >
       {children}
     </AuthContext.Provider>
