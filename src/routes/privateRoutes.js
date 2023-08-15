@@ -56,7 +56,7 @@ const PublicRoutes = () => {
           <Route path="/themes/:id" component={Theme} />
           <Route path="/themes" component={ThemeList} />
           <Route path="/" component={Dashboard} />
-          <Redirect to={true ? '/' : 'login'} />
+          <Redirect to={'/'} />
         </Switch>
       </Layout>
     </BrowserRouter>

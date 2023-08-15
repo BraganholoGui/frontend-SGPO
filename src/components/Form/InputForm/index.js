@@ -100,7 +100,7 @@ function InputForm(props) {
             <S.Title>{title}</S.Title>
             {
               type == 'select' ?
-                <Select options={options} selected={selected}
+                <Select options={options || []} selected={selected}
                   styles={colourStyles}
                   setSelected={setSelected} value={selected}
                   isMulti={isMulti}
@@ -142,7 +142,7 @@ function InputForm(props) {
               <S.Title>{title}</S.Title>
               {
                 type == 'select' ?
-                  <Select options={options} selected={selected}
+                  <Select options={options || []} selected={selected}
                     styles={colourStyles}
                     setSelected={setSelected} value={selected}
                     isMulti={isMulti}
@@ -178,7 +178,7 @@ function InputForm(props) {
               <S.Title>{title}</S.Title>
               {
                 type == 'select' ?
-                  <Select options={options} selected={selected}
+                  <Select options={options || []} selected={selected}
                     styles={colourStyles}
                     setSelected={setSelected} value={selected}
                     isMulti={isMulti}

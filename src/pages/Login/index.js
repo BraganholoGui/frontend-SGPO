@@ -7,6 +7,11 @@ function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const { signed, Login } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   async function handleLogin() {
     await Login({
@@ -20,13 +25,13 @@ function Login() {
       <S.MainTitleLogin>
         SGPO - Login
       </S.MainTitleLogin>
-        <S.Line/>
+      <S.Line />
       <S.ContainerAll>
         <S.ContainerForm>
           <S.Form>
             <S.ContainerFields>
               <S.Label>
-                Nome do usuário:
+                Nome de acesso:
               </S.Label>
               <S.InputForm
                 value={userName}
@@ -34,15 +39,23 @@ function Login() {
                 onChange={(e) => {
                   setUserName(e.target.value)
                 }} />
-              <S.Label>
-                Senha:
-              </S.Label>
-              <S.InputForm
-                value={password}
-                type='password'
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                }} />
+                <S.Label>
+                  Senha:
+                </S.Label>
+              <S.StyledPasswordInput>
+                <S.PasswordInput
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                  }}
+                />
+                <S.PasswordToggle onClick={togglePasswordVisibility}>
+                  <S.PasswordIcon>
+                    {showPassword ? <S.PasswordEyeSlashIcon/> : <S.PasswordEyeIcon/>}
+                  </S.PasswordIcon>
+                </S.PasswordToggle>
+              </S.StyledPasswordInput>
             </S.ContainerFields>
             <S.ContainerButton>
               <S.ButtonForm onClick={handleLogin}>

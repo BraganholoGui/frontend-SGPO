@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Visibility, VisibilityOff} from '@mui/icons-material';
 
 export const ContainerBody = styled.div`
 background-image: linear-gradient(#115b4c, #b6edc8);
@@ -111,6 +112,43 @@ cursor: pointer;
 }
 `;
 
+export const StyledPasswordInput = styled.div`
+position: relative;
+display: flex;
+align-items: center;
+width: 100%;
+`;
 
+export const PasswordInput = styled.input`
+    outline: none; 
+    width:100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+`;
+
+export const PasswordToggle = styled.div`
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+`;
+
+export const PasswordIcon = styled.div`
+  font-size: 20px;
+`;
+
+export const PasswordEyeIcon = styled(Visibility)`
+  color: #777;
+`;
+
+export const PasswordEyeSlashIcon = styled(VisibilityOff)`
+  color: #777;
+`;
 
 

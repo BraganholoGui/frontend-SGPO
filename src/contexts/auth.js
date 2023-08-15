@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import Swal from 'sweetalert2';
-
+import { toast } from '../GeneralFunctions/functions';
 import * as actions from '../services/actions';
 import api from '../services/api';
 
@@ -8,58 +8,49 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     const storagedUser = localStorage.getItem('user');
     const storagedToken = localStorage.getItem('token');
     if (storagedToken && storagedUser) {
       setUser({ storagedUser });
+      setToken(storagedToken)
       actions.defaults.headers.Authorization = `Bearer ${storagedToken}`;
     }
   }, []);
 
   async function Login(userData) {
-    console.log('teste', userData)
-    let x = actions.post('/login', userData).then(x => x.json())
-      console.log('xxx',x)
-    // const response = await actions.post('https://localhost:3002/clients', userData);
-    // if (response.data.token) {
-    //   const userLog = response.data.user.name;
-    //   await api.get('/clients')
-    //     .then(async (res) => {
-    //       if (res && res.data) {
-    //         await res.data.map(async (user) => {
-    //           let log = false;
-    //           if (user.name == userLog) {
-    //             log = true
-    //             await setUser(response.data.user);
-    //             localStorage.setItem("token", response.data.token)
-    //             localStorage.setItem("user", userLog)
-    //             localStorage.setItem("fullUser", JSON.stringify(user))
-    //             localStorage.setItem("clientList", JSON.stringify(res.data))
-    //           } 
-    //           ShowToast(log);
+    try {
+      let x = actions.post('/login', userData).then(x => {
+        setToken(x.token)
+        setUser(x.user)
+        localStorage.setItem('token', x.token)
+        localStorage.setItem('user', x.user)
+        actions.defaults.headers.Authorization = `Bearer ${token}`;
+        toast('success', 'Bem vindo!');
+      }).catch(err => {
+        setToken(null)
+        setUser(null)
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        toast('error', `Nome de acesso ou senha inválidos`);
+      })
 
-    //         })
-    //       }
-    //     });
-    //   actions.defaults.headers.Authorization = `Bearer ${response.data.token}`;
-    // }
-  }
-
-  async function ShowToast(log) {
-    if (log) {
-      await toast('success', 'Bem vindo!');
-    } else {
-      await toast('error', 'Erro ao realizar login!');
+    } catch (e) {
+      console.log("Error")
+      toast('error', `Acesso negado!`);
     }
   }
-
+  
   function Logout() {
+    toast('success', 'DEslogado!');
+    setToken(null);
     setUser(null);
     localStorage.removeItem("token")
     localStorage.removeItem("user")
   }
+
   function toast(icon, msg) {
     Swal.mixin({
       toast: true,
@@ -74,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   }
   return (
     <AuthContext.Provider
-      value={{ signed: true, user, Login, Logout, ShowToast }}
+      value={{ signed: Boolean(token), user, Login, Logout }}
     >
       {children}
     </AuthContext.Provider>
