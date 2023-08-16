@@ -7,21 +7,36 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
+import { arrayToXLSX } from '../../../GeneralFunctions/functions';
+import FilterContent from '../../../components/FilterContent';
 
 function UserList() {
   const [data, setData] = useState([]);
+  const [columnsExcel, setColumnsExcel] = useState([]);
   const { id } = useParams();
   const url = `/users`
   const location = useLocation();
+
 
   async function loadData() {
     await get(url)
       .then(async response => {
         if (response) {
           setData(response.records);
+          let listAux = []
+          response.records.map(item => {
+            let obj  = {
+              id: item.id,
+              Acesso: item.access_name,
+              Nome: item.Person.name,
+              Cargo: item.Role.name,
+              Criação: item.createdAt,
+            }
+            listAux.push(obj)
+          })
+          setColumnsExcel(listAux)
         }
       });
-
   }
 
   const columns = [
@@ -108,6 +123,7 @@ function UserList() {
   return (
     <Container>
       <HeaderContent title="Usuários" icon={<People fontSize="large" />} titleButton="Novo Usuário" linkTo="/users/novo" />
+      <FilterContent columnsExcel={columnsExcel} filesheet={"Usuários"}  fileName={"users.xlsx"}></FilterContent>
       <ListContent
         columns={columns}
         data={data}

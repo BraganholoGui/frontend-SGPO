@@ -1,4 +1,6 @@
 import Swal from 'sweetalert2';
+const XLSX = require('xlsx');
+
 
 export function toast(icon, msg) {
     Swal.mixin({
@@ -24,4 +26,13 @@ export function toast(icon, msg) {
         return "0" + numero;
     else
         return numero; 
+}
+
+export function arrayToXLSX(arrayOfObjects, sheetName, fileName) {
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.json_to_sheet(arrayOfObjects);
+  
+  XLSX.utils.book_append_sheet(wb, ws, sheetName);
+  
+  XLSX.writeFile(wb, fileName);
 }
