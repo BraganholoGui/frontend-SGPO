@@ -7,18 +7,37 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation, useRouteMatch } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
+import FilterContent from '../../../components/FilterContent';
+import InputFormFilter from '../../../components/Form/InputFormFilter';
 
 function TeamList() {
   const [data, setData] = useState([]);
+  const [columnsExcel, setColumnsExcel] = useState([]);
+  const [team, setTeam] = useState(null);
   const {id} = useParams();
   const url = `/teams`
   const location = useLocation();
 
-  async function loadData() {
-    get(url)
+  async function loadData(clean) {
+    let start = new Date().toISOString() ;
+    let end = new Date().toISOString();
+    let startQuery = `start=${start}`;
+    let endQuery = `end=${end}`;
+    
+    
+    let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
+    if(!clean){
+  
+      let teamQuery = team ? `team=${team}` : null;
+  
+      query = query.includes('?') ? query + '&' + teamQuery : query + '?' + teamQuery;
+    }
+
+    get(`${url}${query}`)
       .then(async response => {
         if (response) {
           setData(response.records);
+          setColumnsExcel(response.records);
         }
       });
   }
@@ -47,6 +66,11 @@ function TeamList() {
       },
     },
   ];
+
+  function cleanFilter(){
+    setTeam(null);
+    loadData(true);
+  }
 
   const customStyles = {
     table: {
@@ -80,6 +104,9 @@ function TeamList() {
   return (
     <Container>
       <HeaderContent title="Times" icon={<Groups fontSize="large"/>} titleButton="Novo Time" linkTo="/teams/novo" />
+      <FilterContent columnsExcel={columnsExcel} filesheet={"Usuários"} fileName={"users.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
+        <InputFormFilter value={team} setValue={setTeam} title="Nome de acesso" type='text' size="medium"></InputFormFilter>
+      </FilterContent>
       <ListContent
         columns={columns}
         data={data}

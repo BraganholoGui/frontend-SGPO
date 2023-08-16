@@ -36,7 +36,7 @@ export const IconsContainer = styled.div`
 export const FieldsContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 85%;
 `; 
 export const FilterTitle = styled.button`

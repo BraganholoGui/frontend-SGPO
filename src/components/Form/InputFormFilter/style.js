@@ -26,6 +26,7 @@ display: flex;
 flex-direction: column;
 transition: all 2s ;
 transform: rotate(-360deg);
+margin:0 10px;
 @media (max-width: 860px) {
     width: 95%;
     transition: all 2s ;
@@ -39,6 +40,7 @@ display: flex;
 transition: all 2s ;
 transform: rotate(-360deg);
 z-index: 1;
+margin:0 10px;
 flex-direction: column;
 @media (max-width: 860px) {
     width: 95%;
@@ -54,6 +56,7 @@ display: flex;
 flex-direction: column;
 transition: all 2s ;
 transform: rotate(-360deg);
+margin:0 10px;
 @media (max-width: 860px) {
     width: 95%;
     transition: all 2s ;
