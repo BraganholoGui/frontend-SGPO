@@ -3,7 +3,7 @@ import { theme } from '../../../theme';
 
 export const Input = styled.input`
 /* width: 30%; */
-background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `${theme.input}`)};
+background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `#fff`)};
 border-radius: 10px;
 border: 2px solid #ccc;
 box-shadow: 2px 2px 3px #ccc;

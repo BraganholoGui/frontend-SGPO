@@ -69,8 +69,8 @@ function InputFormFilter(props) {
     singleValue: (styles, { data }) => {
       return {
         ...styles,
-        border: `1px solid ${theme.lastDark}`,
-        backgroundColor: `${theme.inputLock}`,
+        border: `1px solid ${theme.inputLock}`,
+        backgroundColor: `${theme.bgColor}`,
         borderRadius: '20px',
         textAlign: 'center',
         width: '70%',

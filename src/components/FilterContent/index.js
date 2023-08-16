@@ -24,7 +24,7 @@ function FilterContent(props) {
           {props.children}
         </S.FieldsContainer>
         <S.IconsContainer>
-          <S.FilterTitle>
+          <S.FilterTitle onClick={props.loadData}>
             Filtrar
           </S.FilterTitle>
           <S.VerticalHr></S.VerticalHr>
