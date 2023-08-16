@@ -14,7 +14,7 @@ export const Box = styled.div`
   width: 70%;
   border-radius: 15px;
   display: flex;
-  justify-content: flex-end;
+  justify-content:space-between;
   align-items: center;
   padding: 15px 10px;
 `; 
@@ -31,7 +31,13 @@ export const IconsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  min-width: 80px;
+  width: 12%;
+`; 
+export const FieldsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
 `; 
 export const FilterTitle = styled.button`
 all:unset;

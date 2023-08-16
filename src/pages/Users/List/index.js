@@ -7,16 +7,64 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
-import { arrayToXLSX } from '../../../GeneralFunctions/functions';
+import { arrayToXLSX, formattedDate } from '../../../GeneralFunctions/functions';
 import FilterContent from '../../../components/FilterContent';
+import FormContent from '../../../components/FormContent';
+import InputFormFilter from '../../../components/Form/InputFormFilter';
 
 function UserList() {
   const [data, setData] = useState([]);
   const [columnsExcel, setColumnsExcel] = useState([]);
+  const [accessName, setAccessName] = useState(null);
+  const [name, setName] = useState(null);
+  const [role, setRole] = useState(null);
+  const [team, setTeam] = useState(null);
   const { id } = useParams();
   const url = `/users`
   const location = useLocation();
 
+  const [roleOptions, setRoleOptions] = useState('');
+  const [teamOptions, setTeamOptions] = useState('');
+
+  function getOptions() {
+    get(`/roles`)
+      .then(async response => {
+        if (response) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.name
+          })
+          setRoleOptions(response.records);
+        }
+      });
+    get(`/teams`)
+      .then(async response => {
+        if (response) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.name
+          })
+          // setTeamOptions(response.records);
+        }
+      });
+    get(`/users/${id}`)
+      .then(async response => {
+        let listTeams = []
+        if (response) {
+          response?.user?.TeamUsers.map(team => {
+            let obj = {
+              ...team,
+              value: team.Team.name,
+              label: team.team + '. ' + team.Team.name
+            }
+
+            listTeams.push(obj)
+          })
+          setTeamOptions(listTeams);
+        }
+      });
+
+  }
 
   async function loadData() {
     await get(url)
@@ -25,12 +73,12 @@ function UserList() {
           setData(response.records);
           let listAux = []
           response.records.map(item => {
-            let obj  = {
+            let obj = {
               id: item.id,
               Acesso: item.access_name,
               Nome: item.Person.name,
               Cargo: item.Role.name,
-              Criação: item.createdAt,
+              Criação: formattedDate(item.createdAt),
             }
             listAux.push(obj)
           })
@@ -63,7 +111,7 @@ function UserList() {
     },
     {
       name: 'Times',
-      selector: row => 
+      selector: row =>
         row.TeamUsers ?
           <>
             {row.TeamUsers.map(item => {
@@ -75,7 +123,7 @@ function UserList() {
             })}
           </>
           : '-'
-     ,
+      ,
       sortable: true,
     },
     {
@@ -118,12 +166,19 @@ function UserList() {
 
   useEffect(() => {
     loadData();
+    getOptions();
   }, [])
 
   return (
     <Container>
       <HeaderContent title="Usuários" icon={<People fontSize="large" />} titleButton="Novo Usuário" linkTo="/users/novo" />
-      <FilterContent columnsExcel={columnsExcel} filesheet={"Usuários"}  fileName={"users.xlsx"}></FilterContent>
+      <FilterContent columnsExcel={columnsExcel} filesheet={"Usuários"} fileName={"users.xlsx"}>
+        <InputFormFilter value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputFormFilter>
+        <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
+        <InputFormFilter options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputFormFilter>
+        <InputFormFilter options={teamOptions} selected={team} setSelected={setTeam} value={role} setValue={setRole} title="Time" type='select' size="small"></InputFormFilter>
+
+      </FilterContent>
       <ListContent
         columns={columns}
         data={data}

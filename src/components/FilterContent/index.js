@@ -20,6 +20,9 @@ function FilterContent(props) {
   return (
     <S.ContainerMain>
       <S.Box>
+        <S.FieldsContainer>
+          {props.children}
+        </S.FieldsContainer>
         <S.IconsContainer>
           <S.FilterTitle>
             Filtrar
