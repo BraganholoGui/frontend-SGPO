@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Button } from 'reactstrap';
 import SwitchMaterialProduct from '../Switch/MaterialProduct';
 import { arrayToXLSX } from '../../GeneralFunctions/functions';
+import { FilterAltOff, FilterAlt } from '@mui/icons-material';
 
 function FilterContent(props) {
   const [data, setData] = useState(props.data);
@@ -25,10 +26,16 @@ function FilterContent(props) {
         </S.FieldsContainer>
         <S.IconsContainer>
           <S.FilterTitle onClick={props.loadData}>
-            Filtrar
+            <FilterAlt />
           </S.FilterTitle>
           <S.VerticalHr></S.VerticalHr>
-          <S.ExportIcon onClick={() => { arrayToXLSX(data, filesheet, fileName) }} />
+          <S.FilterTitle onClick={props.cleanFilter}>
+            <FilterAltOff />
+          </S.FilterTitle>
+          <S.VerticalHr></S.VerticalHr>
+          <S.FilterTitle onClick={props.cleanFilter}>
+            <S.ExportIcon onClick={() => { arrayToXLSX(data, filesheet, fileName) }} />
+          </S.FilterTitle>
         </S.IconsContainer>
       </S.Box>
     </S.ContainerMain>

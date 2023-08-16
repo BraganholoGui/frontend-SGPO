@@ -34,7 +34,7 @@ transform: rotate(-360deg);
 
 `; 
 export const ContainerFormMedium = styled.div`
-width: 40%;
+width: 30%;
 display: flex;
 transition: all 2s ;
 transform: rotate(-360deg);

@@ -92,7 +92,92 @@ function InputFormFilter(props) {
 
   return (
     <>
-      <S.ContainerFormSmall>
+      {
+        size == 'small' ?
+          <S.ContainerFormSmall>
+            {
+              type == 'select' ?
+                <Select options={options || []} selected={selected}
+                  setSelected={setSelected} value={selected}
+                  isMulti={isMulti}
+                  isDisabled={readOnly}
+                  placeholder={title}
+                  styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
+                  isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                  onChange={(e) => {
+                    if (isMulti) {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    } else {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    }
+
+                  }} />
+                :
+                <S.Input
+                  type={type}
+                  readOnly={readOnly}
+                  value={value}
+                  placeholder={title}
+                  onChange={(e) => {
+                    setValue(e.target.value)
+                    props.setValue(e.target.value)
+                  }}
+                  selected={selected}
+                />
+            }
+
+          </S.ContainerFormSmall>
+          : size == 'medium' ?
+          <S.ContainerFormMedium>
+          {
+            type == 'select' ?
+              <Select options={options || []} selected={selected}
+                setSelected={setSelected} value={selected}
+                isMulti={isMulti}
+                isDisabled={readOnly}
+                placeholder={title}
+                styles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                menuPortalTarget={document.body}
+                menuPosition={'fixed'} 
+                isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                onChange={(e) => {
+                  if (isMulti) {
+                    setSelected(e)
+                    setValue(e)
+                    props.setValue(e)
+                    props.setSelected(e)
+                  } else {
+                    setSelected(e)
+                    setValue(e)
+                    props.setValue(e)
+                    props.setSelected(e)
+                  }
+  
+                }} />
+              :
+              <S.Input
+                type={type}
+                readOnly={readOnly}
+                value={value}
+                placeholder={title}
+                onChange={(e) => {
+                  setValue(e.target.value)
+                  props.setValue(e.target.value)
+                }}
+                selected={selected}
+              />
+          }
+  
+        </S.ContainerFormMedium>
+        :  <S.ContainerFormSmall>
         {
           type == 'select' ?
             <Select options={options || []} selected={selected}
@@ -133,6 +218,8 @@ function InputFormFilter(props) {
         }
 
       </S.ContainerFormSmall>
+      }
+
     </>
 
   )

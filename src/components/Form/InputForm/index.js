@@ -47,8 +47,8 @@ function InputForm(props) {
     multiValue: (styles, { data }) => {
       return {
         ...styles,
-        border:`1px solid ${theme.lastDark}`,
-        backgroundColor:`${theme.inputLock}`,
+        border: `1px solid ${theme.inputLock}`,
+        backgroundColor: `${theme.bgColor}`,
         borderRadius:'20px',
         padding:'5px',
         textAlign:'center',
@@ -145,7 +145,7 @@ function InputForm(props) {
               {
                 type == 'select' ?
                   <Select options={options || []} selected={selected}
-                    sstyles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    styles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
                     menuPortalTarget={document.body}
                     menuPosition={'fixed'} 
                     setSelected={setSelected} value={selected}

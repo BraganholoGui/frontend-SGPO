@@ -132,7 +132,7 @@ function CreateGraph() {
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '2% 0' }}>
         <input type="file" onChange={handleFileChange}  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', width:'100%'}}>
         {json && json.length > 0 ?
           json.map((item, index) => {
             cont++
@@ -163,6 +163,7 @@ function CreateGraph() {
       <Modal
         isOpen={isOpen}
         toggle={toggle}
+        size={'100'}
       >
         <ModalBody>
           <Pie data={dataSelected} />

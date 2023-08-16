@@ -41,4 +41,7 @@ export const FieldsContainer = styled.div`
 `; 
 export const FilterTitle = styled.button`
 all:unset;
+display:flex ;
+justify-content:center;
+align-items: center;
 `; 

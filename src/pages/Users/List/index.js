@@ -44,49 +44,35 @@ function UserList() {
             item.value = item.id;
             item.label = item.id + '. ' + item.name
           })
-          // setTeamOptions(response.records);
-        }
-      });
-    get(`/users/${id}`)
-      .then(async response => {
-        let listTeams = []
-        if (response) {
-          response?.user?.TeamUsers.map(team => {
-            let obj = {
-              ...team,
-              value: team.Team.name,
-              label: team.team + '. ' + team.Team.name
-            }
-
-            listTeams.push(obj)
-          })
-          setTeamOptions(listTeams);
+          setTeamOptions(response.records);
         }
       });
 
   }
 
-  async function loadData() {
+  async function loadData(clean) {
 
     let start = new Date().toISOString() ;
     let end = new Date().toISOString();
     let startQuery = `start=${start}`;
     let endQuery = `end=${end}`;
-
-
+    
+    
+    let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
+    if(!clean){
     let accessNameQuery = accessName ? `accessName=${accessName}` : null;
 
-    let nameQuery = name ? `name=${name}` : null;
+    // let nameQuery = name ? `name=${name}` : null;
 
-    let roleQuery = role && role.id ? `role=${role.id}` : null;
-
-    let teamQuery = team && team.id ? `team=${team.id}` : null;
-
-    let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
-    query = query.includes('?') ? query + '&' + accessNameQuery : query + '?' + accessNameQuery;
-    query = query.includes('?') ? query + '&' + nameQuery : query + '?' + nameQuery;
-    query = query.includes('?') ? query + '&' + roleQuery : query + '?' + roleQuery;
-    query = query.includes('?') ? query + '&' + teamQuery : query + '?' + teamQuery;
+      let roleQuery = role && role.id ? `role=${role.id}` : null;
+  
+      let teamQuery = team && team.id ? `team=${team.id}` : null;
+  
+      query = query.includes('?') ? query + '&' + accessNameQuery : query + '?' + accessNameQuery;
+      // query = query.includes('?') ? query + '&' + nameQuery : query + '?' + nameQuery;
+      query = query.includes('?') ? query + '&' + roleQuery : query + '?' + roleQuery;
+      query = query.includes('?') ? query + '&' + teamQuery : query + '?' + teamQuery;
+    }
     console.log('query', query);
     await get(`${url}${query}`)
       .then(async response => {
@@ -190,14 +176,21 @@ function UserList() {
     getOptions();
   }, [])
 
+  function cleanFilter(){
+    setTeam(null);
+    setRole(null);
+    setAccessName(null);
+    loadData(true);
+  }
+
   return (
     <Container>
       <HeaderContent title="Usuários" icon={<People fontSize="large" />} titleButton="Novo Usuário" linkTo="/users/novo" />
-      <FilterContent columnsExcel={columnsExcel} filesheet={"Usuários"} fileName={"users.xlsx"} loadData={() => loadData()}>
-        <InputFormFilter value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputFormFilter>
-        <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
-        <InputFormFilter options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputFormFilter>
-        <InputFormFilter options={teamOptions} selected={team} setSelected={setTeam} value={role} setValue={setRole} title="Time" type='select' size="small"></InputFormFilter>
+      <FilterContent columnsExcel={columnsExcel} filesheet={"Usuários"} fileName={"users.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
+        <InputFormFilter value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="medium"></InputFormFilter>
+        {/* <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="medium"></InputFormFilter> */}
+        <InputFormFilter options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="medium"></InputFormFilter>
+        <InputFormFilter options={teamOptions} selected={team} setSelected={setTeam} value={team} setValue={setTeam} title="Time" type='select' size="medium"></InputFormFilter>
 
       </FilterContent>
       <ListContent
