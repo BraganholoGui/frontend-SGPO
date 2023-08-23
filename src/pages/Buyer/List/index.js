@@ -7,22 +7,72 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
+import FilterContent from '../../../components/FilterContent';
+import InputFormFilter from '../../../components/Form/InputFormFilter';
+import { formattedDate } from '../../../GeneralFunctions/functions';
 
 function BuyerList() {
+  const [columnsExcel, setColumnsExcel] = useState([]);
   const [data, setData] = useState([]);
   const { id } = useParams();
   const url = `/buyers`
   const location = useLocation();
+  const [cnpj, setCnpj] = useState(null);
+  const [name, setName] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [email, setEmail] = useState(null);
 
-  async function loadData() {
-    await get(url)
+  async function loadData(clean) {
+    let start = new Date().toISOString() ;
+    let end = new Date().toISOString();
+    let startQuery = `start=${start}`;
+    let endQuery = `end=${end}`;
+    
+    
+    let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
+    if(!clean){
+  
+      let cnpjQuery = cnpj ? `cnpj=${cnpj}` : null;
+      let nameQuery = name ? `name=${name}` : null;
+      let phoneQuery = phone ? `phone=${phone}` : null;
+      let emailQuery = email ? `email=${email}` : null;
+  
+      query = query.includes('?') ? query + '&' + cnpjQuery : query + '?' + cnpjQuery;
+      query = query.includes('?') ? query + '&' + nameQuery : query + '?' + nameQuery;
+      query = query.includes('?') ? query + '&' + phoneQuery : query + '?' + phoneQuery;
+      query = query.includes('?') ? query + '&' + emailQuery : query + '?' + emailQuery;
+    }
+
+    await get(`${url}${query}`)
       .then(async response => {
         if (response) {
+          console.log(response.records);
           setData(response.records);
+          let listAux = []
+          response.records.map(item => {
+            let obj = {
+              id: item.id,
+              Comprador: item.Person.name,
+              Cnpj: item.cpf_cnpj,
+              Telefone: item.Person && item.Person.Contact ? item.Person.Contact.phone : '',
+              Email: item.Person && item.Person.Contact ? item.Person.Contact.email : '',
+              Criação: formattedDate(item.createdAt),
+            }
+            listAux.push(obj)
+          })
+          setColumnsExcel(listAux);
         }
       });
 
   }
+  function cleanFilter(){
+    setCnpj(null);
+    setName(null);
+    setPhone(null);
+    setEmail(null);
+    loadData(true);
+  }
+  
 
   const columns = [
     {
@@ -96,6 +146,12 @@ function BuyerList() {
   return (
     <Container>
       <HeaderContent title="Compradores" icon={<Person fontSize="large" />} titleButton="Novo Compradores" linkTo="/buyers/novo" />
+      <FilterContent columnsExcel={columnsExcel} filesheet={"Fornecedores"} fileName={"suppliers.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
+        <InputFormFilter value={cnpj} setValue={setCnpj} title="Cnpj" type='text' size="small"></InputFormFilter>
+        <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
+        <InputFormFilter value={phone} setValue={setPhone} title="Telefone" type='text' size="small"></InputFormFilter>
+        <InputFormFilter value={email} setValue={setEmail} title="Email" type='text' size="small"></InputFormFilter>
+      </FilterContent>
       <ListContent
         columns={columns}
         data={data}

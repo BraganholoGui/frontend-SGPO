@@ -9,6 +9,7 @@ import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 import InputFormFilter from '../../../components/Form/InputFormFilter';
 import FilterContent from '../../../components/FilterContent';
+import { formattedDate } from '../../../GeneralFunctions/functions';
 
 function SupplierList() {
   const [data, setData] = useState([]);
@@ -28,7 +29,6 @@ function SupplierList() {
     let startQuery = `start=${start}`;
     let endQuery = `end=${end}`;
     
-    
     let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
     if(!clean){
   
@@ -47,7 +47,19 @@ function SupplierList() {
       .then(async response => {
         if (response) {
           setData(response.records);
-          setColumnsExcel(response.records);
+          let listAux = []
+          response.records.map(item => {
+            let obj = {
+              id: item.id,
+              Fornecedor: item.Person.name,
+              Cnpj: item.cnpj,
+              Telefone: item.Person.Contact.phone,
+              Email: item.Person.Contact.email,
+              Criação: formattedDate(item.createdAt),
+            }
+            listAux.push(obj)
+          })
+          setColumnsExcel(listAux);
         }
       });
 
