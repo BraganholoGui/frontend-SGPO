@@ -104,7 +104,7 @@ function TeamList() {
   return (
     <Container>
       <HeaderContent title="Times" icon={<Groups fontSize="large"/>} titleButton="Novo Time" linkTo="/teams/novo" />
-      <FilterContent columnsExcel={columnsExcel} filesheet={"Usuários"} fileName={"users.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
+      <FilterContent columnsExcel={columnsExcel} filesheet={"Times"} fileName={"teams.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
         <InputFormFilter value={team} setValue={setTeam} title="Nome de acesso" type='text' size="medium"></InputFormFilter>
       </FilterContent>
       <ListContent
