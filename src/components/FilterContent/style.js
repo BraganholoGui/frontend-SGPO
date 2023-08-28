@@ -10,7 +10,7 @@ export const ContainerMain = styled.div`
   `; 
 export const Box = styled.div`
   background-color: #f8f8f8;
-  height: 50px;
+  height: ${(props) => (props.spaceTitle ? `100px`: `75px`)};
   width: 70%;
   border-radius: 15px;
   display: flex;

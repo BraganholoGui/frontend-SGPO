@@ -132,8 +132,8 @@ function RoleList() {
   }, [location.key])
 
   function cleanFilter(){
-    setRole(null);
-    setStatus(null);
+    setRole('');
+    setStatus('');
     loadData(true);
   }
 

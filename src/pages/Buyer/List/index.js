@@ -52,10 +52,10 @@ function BuyerList() {
           response.records.map(item => {
             let obj = {
               id: item.id,
-              Comprador: item.Person.name,
+              Comprador: item.Person ? item.Person.name : '-',
               Cnpj: item.cpf_cnpj,
-              Telefone: item.Person && item.Person.Contact ? item.Person.Contact.phone : '',
-              Email: item.Person && item.Person.Contact ? item.Person.Contact.email : '',
+              Telefone: item.Person && item.Person.Contact ? item.Person.Contact.phone : '-',
+              Email: item.Person && item.Person.Contact ? item.Person.Contact.email : '-',
               Criação: formattedDate(item.createdAt),
             }
             listAux.push(obj)
@@ -66,10 +66,10 @@ function BuyerList() {
 
   }
   function cleanFilter(){
-    setCnpj(null);
-    setName(null);
-    setPhone(null);
-    setEmail(null);
+    setCnpj('');
+    setName('');
+    setPhone('');
+    setEmail('');
     loadData(true);
   }
   
@@ -146,7 +146,7 @@ function BuyerList() {
   return (
     <Container>
       <HeaderContent title="Compradores" icon={<Person fontSize="large" />} titleButton="Novo Compradores" linkTo="/buyers/novo" />
-      <FilterContent columnsExcel={columnsExcel} filesheet={"Fornecedores"} fileName={"suppliers.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
+      <FilterContent columnsExcel={columnsExcel} filesheet={"Compradores"} fileName={"buyers.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
         <InputFormFilter value={cnpj} setValue={setCnpj} title="Cnpj" type='text' size="small"></InputFormFilter>
         <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
         <InputFormFilter value={phone} setValue={setPhone} title="Telefone" type='text' size="small"></InputFormFilter>

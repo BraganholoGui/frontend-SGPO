@@ -20,7 +20,7 @@ function FilterContent(props) {
 
   return (
     <S.ContainerMain>
-      <S.Box>
+      <S.Box spaceTitle={props.spaceTitle}>
         <S.FieldsContainer>
           {props.children}
         </S.FieldsContainer>

@@ -135,10 +135,10 @@ function SupplierList() {
   }, [])
 
   function cleanFilter(){
-    setCnpj(null);
-    setName(null);
-    setPhone(null);
-    setEmail(null);
+    setCnpj('');
+    setName('');
+    setPhone('');
+    setEmail('');
     loadData(true);
   }
 

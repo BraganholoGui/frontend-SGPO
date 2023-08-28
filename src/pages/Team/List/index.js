@@ -68,7 +68,7 @@ function TeamList() {
   ];
 
   function cleanFilter(){
-    setTeam(null);
+    setTeam('');
     loadData(true);
   }
 

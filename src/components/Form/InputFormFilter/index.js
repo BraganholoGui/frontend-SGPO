@@ -14,6 +14,8 @@ function InputFormFilter(props) {
   const [readOnly, setReadOnly] = useState(false);
   const [selected, setSelected] = useState(null);
   const [isMulti, setIsMulti] = useState(false);
+  const [min, setMin] = useState('0');
+  const [max, setMax] = useState('100');
 
   const colourStyles = {
     control: (styles) => ({
@@ -88,7 +90,18 @@ function InputFormFilter(props) {
     setSelected(props.selected);
     setReadOnly(props.readOnly);
     setIsMulti(props.isMulti);
+    setMin(props.max);
+    setMax(props.min);
+    console.log(props)
   }, [props])
+
+  const getBackgroundSize = () => {
+    return {
+      backgroundSize: '100%',
+      width: '100%',
+      backgroundRepeat: 'no-repeat'
+    };
+  };
 
   return (
     <>
@@ -121,103 +134,137 @@ function InputFormFilter(props) {
 
                   }} />
                 :
-                <S.Input
-                  type={type}
-                  readOnly={readOnly}
-                  value={value}
-                  placeholder={title}
-                  onChange={(e) => {
-                    setValue(e.target.value)
-                    props.setValue(e.target.value)
-                  }}
-                  selected={selected}
-                />
+                <>
+                  <S.Space>
+                    <S.Title>
+                      {type == 'range' ? <>{title}:  {value}</> :  <>{title}</>}
+                    </S.Title>
+                  </S.Space>
+                  <S.Input
+                    type={type}
+                    readOnly={readOnly}
+                    value={value}
+                    placeholder={title}
+                    min='10'
+                    max='500'
+                    step="10"
+                    style={getBackgroundSize()}
+                    onChange={(e) => {
+                      setValue(e.target.value)
+                      props.setValue(e.target.value)
+                    }}
+                    selected={selected}
+                  />
+                </>
             }
 
           </S.ContainerFormSmall>
           : size == 'medium' ?
-          <S.ContainerFormMedium>
-          {
-            type == 'select' ?
-              <Select options={options || []} selected={selected}
-                setSelected={setSelected} value={selected}
-                isMulti={isMulti}
-                isDisabled={readOnly}
-                placeholder={title}
-                styles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                menuPortalTarget={document.body}
-                menuPosition={'fixed'} 
-                isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
-                onChange={(e) => {
-                  if (isMulti) {
-                    setSelected(e)
-                    setValue(e)
-                    props.setValue(e)
-                    props.setSelected(e)
-                  } else {
-                    setSelected(e)
-                    setValue(e)
-                    props.setValue(e)
-                    props.setSelected(e)
-                  }
-  
-                }} />
-              :
-              <S.Input
-                type={type}
-                readOnly={readOnly}
-                value={value}
-                placeholder={title}
-                onChange={(e) => {
-                  setValue(e.target.value)
-                  props.setValue(e.target.value)
-                }}
-                selected={selected}
-              />
-          }
-  
-        </S.ContainerFormMedium>
-        :  <S.ContainerFormSmall>
-        {
-          type == 'select' ?
-            <Select options={options || []} selected={selected}
-              setSelected={setSelected} value={selected}
-              isMulti={isMulti}
-              isDisabled={readOnly}
-              placeholder={title}
-              styles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-              menuPortalTarget={document.body}
-              menuPosition={'fixed'} 
-              isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
-              onChange={(e) => {
-                if (isMulti) {
-                  setSelected(e)
-                  setValue(e)
-                  props.setValue(e)
-                  props.setSelected(e)
-                } else {
-                  setSelected(e)
-                  setValue(e)
-                  props.setValue(e)
-                  props.setSelected(e)
-                }
+            <S.ContainerFormMedium>
+              {
+                type == 'select' ?
+                  <Select options={options || []} selected={selected}
+                    setSelected={setSelected} value={selected}
+                    isMulti={isMulti}
+                    isDisabled={readOnly}
+                    placeholder={title}
+                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                    onChange={(e) => {
+                      if (isMulti) {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      } else {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }
 
-              }} />
-            :
-            <S.Input
-              type={type}
-              readOnly={readOnly}
-              value={value}
-              placeholder={title}
-              onChange={(e) => {
-                setValue(e.target.value)
-                props.setValue(e.target.value)
-              }}
-              selected={selected}
-            />
-        }
+                    }} />
+                  :
+                  <>
+                    <S.Space>
+                      <S.Title>
+                      {type == 'range' ? <>{title}:  {value}</> :  <>{title}</>}
+                      </S.Title>
+                    </S.Space>
+                    <S.Input
+                      type={type}
+                      readOnly={readOnly}
+                      value={value}
+                      placeholder={title}
+                      min='10'
+                      max='500'
+                      step="10"
+                      style={getBackgroundSize()}
+                      onChange={(e) => {
+                        setValue(e.target.value)
+                        props.setValue(e.target.value)
+                      }}
+                      selected={selected}
+                    />
+                  </>
+              }
 
-      </S.ContainerFormSmall>
+            </S.ContainerFormMedium>
+            : <S.ContainerFormSmall>
+              {
+                type == 'select' ?
+                  <Select options={options || []} selected={selected}
+                    setSelected={setSelected} value={selected}
+                    isMulti={isMulti}
+                    isDisabled={readOnly}
+                    placeholder={title}
+                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                    onChange={(e) => {
+                      if (isMulti) {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      } else {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }
+
+                    }} />
+                  :
+                  <>
+                   
+                    <S.Space>
+                      <S.Title>
+                      {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
+                      </S.Title>
+                    </S.Space>
+                    <S.Input
+                      type={type}
+                      readOnly={readOnly}
+                      value={value}
+                      placeholder={title}
+                      min='10'
+                      max='500'
+                      step="1"
+                      // style={getBackgroundSize()}
+                      onChange={(e) => {
+                        setValue(e.target.value)
+                        props.setValue(e.target.value)
+                      }}
+                      selected={selected}
+                    />
+                  </>
+              }
+
+            </S.ContainerFormSmall>
       }
 
     </>

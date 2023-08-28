@@ -177,9 +177,9 @@ function UserList() {
   }, [])
 
   function cleanFilter(){
-    setTeam(null);
-    setRole(null);
-    setAccessName(null);
+    setTeam('');
+    setRole('');
+    setAccessName('');
     loadData(true);
   }
 
