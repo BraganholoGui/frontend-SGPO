@@ -13,3 +13,6 @@ export const Box = styled.div`
   width: 70%;
   z-index: 999;
 `; 
+export const RowCont = styled.div`
+display: flex;
+`; 

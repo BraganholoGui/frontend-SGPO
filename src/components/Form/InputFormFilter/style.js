@@ -74,3 +74,38 @@ export const Space = styled.label`
 font-family: Monospace;
 font-weight: 900;
 `; 
+export const RadioContainer = styled.div`
+ display: flex;
+    align-items: center;
+    margin: 5px;
+`; 
+export const RadioLabel = styled.label`
+ font-size: 16px;
+    margin-right: 10px;
+`; 
+export const RadioInput = styled.input`
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #34bfa3;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+
+    &&:checked {
+    border-color: #2c7d62;
+    background-color: #2c7d62;
+  }
+  &&:checked::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`; 

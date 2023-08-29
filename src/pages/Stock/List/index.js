@@ -7,6 +7,10 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
+import FilterContent from '../../../components/FilterContent';
+import SwitchMaterialProduct from '../../../components/Switch/MaterialProduct';
+import InputFormFilter from '../../../components/Form/InputFormFilter';
+import { formattedDate } from '../../../GeneralFunctions/functions';
 
 function StockList() {
   const [dataProduct, setDataProduct] = useState([]);
@@ -16,22 +20,83 @@ function StockList() {
   const urlMaterials = `/materials`
   const location = useLocation();
   const [checked, setChecked] = useState(false);
+  const [columnsExcelProd, setColumnsExcelProd] = useState([]);
+  const [columnsExcelmat, setColumnsExcelMat] = useState([]);
+  const [lowQuantity, setLowQuantity] = useState(false);
+  const [name, setName] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [quantityMin, setQuantityMin] = useState(null);
 
-  async function loadData() {
-    await get(urlProducts)
+
+  async function loadData(clean) {
+    let start = new Date().toISOString() ;
+    let end = new Date().toISOString();
+    let startQuery = `start=${start}`;
+    let endQuery = `end=${end}`;
+    
+    let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
+    if(!clean){
+  
+      let quantityMinQuery = quantityMin ? `quantityMin=${quantityMin}` : null;
+      let nameQuery = name ? `name=${name}` : null;
+      let priceQuery = price ? `price=${price}` : null;
+      let descriptionQuery = description ? `description=${description}` : null;
+  
+      query = query.includes('?') ? query + '&' + quantityMinQuery : query + '?' + quantityMinQuery;
+      query = query.includes('?') ? query + '&' + nameQuery : query + '?' + nameQuery;
+      query = query.includes('?') ? query + '&' + priceQuery : query + '?' + priceQuery;
+      query = query.includes('?') ? query + '&' + descriptionQuery : query + '?' + descriptionQuery;
+    }
+    await get(`${urlProducts}${query}`)
       .then(async response => {
         if (response) {
-          console.log( response.records);
-          setDataProduct( response.records);
-          console.log( response.records);
+          let list = [];
+          let listAux = [];
+          response.records.map(item => {
+            let obj = {
+              id: item.id,
+              Produto: item.name,
+              Description: item.description,
+              'Quantidade Mínima': item.quantity_min,
+              'Quantidade': item.quantity,
+              Criação: formattedDate(item.createdAt),
+            }
+            listAux.push(obj)
+            if (lowQuantity) {
+              if (item.quantity_min > item.quantity) list.push(item)
+            } else {
+              list.push(item)
+            }
+          })
+          setDataProduct(list);
+          setColumnsExcelProd(listAux);
         }
       });
-      
-      await get(urlMaterials)
+
+     await get(`${urlMaterials}${query}`)
       .then(async response => {
         if (response) {
-          console.log( response.records);
-          setDataMaterial( response.records);
+          let list = [];
+          let listAux = [];
+          response.records.map(item => {
+            let obj = {
+              id: item.id,
+              Material: item.name,
+              Description: item.description,
+              'Quantidade Mínima': item.quantity_min,
+              'Quantidade': item.quantity,
+              Criação: formattedDate(item.createdAt),
+            }
+            listAux.push(obj)
+            if (lowQuantity) {
+              if (item.quantity_min > item.quantity) list.push(item)
+            } else {
+              list.push(item)
+            }
+          })
+          setDataMaterial(list);
+          setColumnsExcelMat(listAux);
         }
       });
 
@@ -50,6 +115,11 @@ function StockList() {
       sortable: true,
     },
     {
+      name: 'Descrição',
+      selector: row => row.description,
+      sortable: true,
+    },
+    {
       name: 'Preço',
       selector: row => row.price,
       sortable: true,
@@ -65,13 +135,8 @@ function StockList() {
       sortable: true,
     },
     {
-      name: 'Descrição',
-      selector: row =>  row.description,
-      sortable: true,
-    },
-    {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={urlProducts} data={dataProduct} setData={setDataProduct} alert={row.quantity_min > row.quantity ? true : false}/>,
+      selector: row => <EditDelete id={row.id} url={urlProducts} data={dataProduct} setData={setDataProduct} alert={row.quantity_min > row.quantity ? true : false} />,
       center: true,
       style: {
         display: 'flex',
@@ -94,6 +159,11 @@ function StockList() {
       sortable: true,
     },
     {
+      name: 'Descrição',
+      selector: row => row.description,
+      sortable: true,
+    },
+    {
       name: 'Preço',
       selector: row => row.price,
       sortable: true,
@@ -106,11 +176,6 @@ function StockList() {
     {
       name: 'Quantidade',
       selector: row => row.quantity || 0,
-      sortable: true,
-    },
-    {
-      name: 'Descrição',
-      selector: row =>  row.description,
       sortable: true,
     },
     {
@@ -162,19 +227,36 @@ function StockList() {
   useEffect(() => {
     loadData();
   }, [])
+  function cleanFilter(){
+    setPrice('');
+    setName('');
+    setDescription('');
+    setQuantityMin('');
+    setLowQuantity(false)
+    loadData(true);
+  }
 
   return (
     <Container>
       <HeaderContent title="Estoque" icon={<Inventory fontSize="large" />} />
+      <FilterContent spaceTitle columnsExcel={checked ? columnsExcelProd : columnsExcelmat} filesheet={checked ? "Produtos" : "Materiais"} fileName={checked ? "products.xlsx" : "materials.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}>
+        <InputFormFilter spaceTitle value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Quantidade Mín." type='range' min="0" max="100" size="small"></InputFormFilter>
+      </FilterContent>
       <ListContent
         columns={!checked ? columns : columnsMaterial}
         data={!checked ? dataProduct : dataMaterial}
         customStyles={customStyles}
+        range={true}
         swicth={true}
         checked={checked}
         setChecked={setChecked}
         conditionalRowStyles={conditionalRowStyles}
-      />
+      >
+        <InputFormFilter value={lowQuantity} setValue={setLowQuantity} title="Estoque Baixo" type='radio' size="small" loadData={() => loadData()}></InputFormFilter>
+      </ListContent>
 
     </Container>
   )

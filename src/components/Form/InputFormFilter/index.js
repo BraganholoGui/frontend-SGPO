@@ -134,28 +134,67 @@ function InputFormFilter(props) {
 
                   }} />
                 :
-                <>
-                  <S.Space>
-                    <S.Title>
-                      {type == 'range' ? <>{title}:  {value}</> :  <>{title}</>}
-                    </S.Title>
-                  </S.Space>
-                  <S.Input
-                    type={type}
-                    readOnly={readOnly}
-                    value={value}
-                    placeholder={title}
-                    min='10'
-                    max='500'
-                    step="10"
-                    style={getBackgroundSize()}
-                    onChange={(e) => {
-                      setValue(e.target.value)
-                      props.setValue(e.target.value)
-                    }}
-                    selected={selected}
-                  />
-                </>
+                type == 'radio' ?
+                  <>
+                    <S.RadioContainer>
+                      <S.RadioLabel  for="radio-option">
+                     Estoque baixo:
+                      </S.RadioLabel>
+                      <S.RadioInput
+                      name="radio-group"
+                      id="radio-option"
+                        type={type}
+                        readOnly={readOnly}
+                        value={value}
+                        onChange={(e) => {
+                          setValue(false)
+                          props.loadData()
+
+                          props.setValue(false)
+                        }}
+                      />
+                    </S.RadioContainer>
+                    <S.RadioContainer>
+                      <S.RadioLabel  for="radio-option2">
+                     Todos:
+                      </S.RadioLabel>
+                      <S.RadioInput
+                      name="radio-group"
+                      id="radio-option2"
+                        type={type}
+                        readOnly={readOnly}
+                        value={value}
+                        onChange={(e) => {
+                          setValue(true)
+                          props.loadData()
+                          props.setValue(true)
+                        }}
+                      />
+                    </S.RadioContainer>
+                  </>
+                  :
+                  <>
+                    <S.Space>
+                      <S.Title>
+                        {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
+                      </S.Title>
+                    </S.Space>
+                    <S.Input
+                      type={type}
+                      readOnly={readOnly}
+                      value={value}
+                      placeholder={title}
+                      min='10'
+                      max='500'
+                      step="10"
+                      style={getBackgroundSize()}
+                      onChange={(e) => {
+                        setValue(e.target.value)
+                        props.setValue(e.target.value)
+                      }}
+                      selected={selected}
+                    />
+                  </>
             }
 
           </S.ContainerFormSmall>
@@ -190,7 +229,7 @@ function InputFormFilter(props) {
                   <>
                     <S.Space>
                       <S.Title>
-                      {type == 'range' ? <>{title}:  {value}</> :  <>{title}</>}
+                        {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
                       </S.Title>
                     </S.Space>
                     <S.Input
@@ -240,10 +279,10 @@ function InputFormFilter(props) {
                     }} />
                   :
                   <>
-                   
+
                     <S.Space>
                       <S.Title>
-                      {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
+                        {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
                       </S.Title>
                     </S.Space>
                     <S.Input

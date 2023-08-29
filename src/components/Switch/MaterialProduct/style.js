@@ -7,11 +7,11 @@ display: flex;
 flex-direction: column;
 transition: all 2s ;
 transform: rotate(-360deg);
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
     width: 95%;
     transition: all 2s ;
     transform: rotate(360deg);
-  }
+  } */
 
 `; 
 export const ContainerFormMedium = styled.div`
@@ -21,12 +21,12 @@ transition: all 2s ;
 transform: rotate(-360deg);
 z-index: 1;
 flex-direction: column;
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
     width: 95%;
     transition: all 2s ;
     transform: rotate(360deg);
 
-  }
+  } */
 
 `; 
 export const ContainerFormBig = styled.div`
@@ -37,12 +37,12 @@ align-items: center;
 justify-content: center;
 transition: all 2s ;
 transform: rotate(-360deg);
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
     width: 95%;
     transition: all 2s ;
     transform: rotate(360deg);
 
-  }
+  } */
 
 `; 
 export const Title = styled.label`

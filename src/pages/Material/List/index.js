@@ -163,7 +163,7 @@ function MaterialList() {
         <InputFormFilter spaceTitle value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
-        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Quantidade Mínima" type='text' size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Quantidade Mín." type='range' min="0" max="100" size="small"></InputFormFilter>
         {/* <InputFormFilter spaceTitle value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputFormFilter> */}
       </FilterContent>
       <ListContent

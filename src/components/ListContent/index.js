@@ -19,13 +19,13 @@ function ListContent(props) {
     setConditionalRowStyles(props.conditionalRowStyles);
   }, [props.data, props.columns, props.switch]);
   useEffect(() => {
-    if(props.setChecked )props.setChecked(checked)
+    if (props.setChecked) props.setChecked(checked)
   }, [checked]);
 
   const customStyles = {
-    all:{
+    all: {
       borderRadius: '20px',
-      backgroundColor:  '#363535',
+      backgroundColor: '#363535',
       color: '#FFFFFF'
 
     },
@@ -36,7 +36,7 @@ function ListContent(props) {
         borderRight: '2px solid rgb(	17, 91, 76, 0.5)',
         borderBottom: '2px solid rgb(	17, 91, 76, 0.5)',
         borderRadius: '20px',
-        backgroundColor:  '#363535',
+        backgroundColor: '#363535',
         color: '#FFFFFF'
 
       },
@@ -44,8 +44,8 @@ function ListContent(props) {
     rows: {
       style: {
         borderRadius: '20px',
-        backgroundColor:  '#363535',
-      color: '#FFFFFF'
+        backgroundColor: '#363535',
+        color: '#FFFFFF'
 
 
       },
@@ -53,9 +53,9 @@ function ListContent(props) {
     headRow: {
       style: {
         borderRadius: '20px',
-        backgroundColor:  '#363535',
+        backgroundColor: '#363535',
         borderBottom: '2px solid rgb(	17, 91, 76, 0.5)',
-      color: '#FFFFFF'
+        color: '#FFFFFF'
 
       },
     },
@@ -63,10 +63,10 @@ function ListContent(props) {
       style: {
         borderRadius: '20px',
         borderRight: '2px solid rgb(	17, 91, 76, 0.5)',
-        fontWeight:700,
-        fontSize:'15px',
-        backgroundColor:  '#363535',
-      color: '#FFFFFF'
+        fontWeight: 700,
+        fontSize: '15px',
+        backgroundColor: '#363535',
+        color: '#FFFFFF'
 
 
       },
@@ -74,9 +74,9 @@ function ListContent(props) {
     noData: {
       style: {
         borderRadius: '20px',
-        padding:'24px',
-        backgroundColor:  '#363535',
-        color:'#fff'
+        padding: '24px',
+        backgroundColor: '#363535',
+        color: '#fff'
       },
     },
     // stripedStyle: {
@@ -88,8 +88,8 @@ function ListContent(props) {
         borderRadius: '20px',
         borderRight: '2px solid rgb(	17, 91, 76, 0.3)',
         borderBottom: '2px solid rgb(	17, 91, 76, 0.3)',
-        flexWrap:"wrap",
-        backgroundColor:  '#363535',
+        flexWrap: "wrap",
+        backgroundColor: '#363535',
         color: '#FFFFFF'
       },
     },
@@ -99,61 +99,70 @@ function ListContent(props) {
     rangeSeparatorText: 'de',
     selectAllRowsItem: true,
     selectAllRowsItemText: 'Todos',
-};
-//   const Export = ({ onExport }) => <Button onClick={e => onExport(e.target.value)}>Export</Button>;
+  };
+  //   const Export = ({ onExport }) => <Button onClick={e => onExport(e.target.value)}>Export</Button>;
 
-//   const actionsMemo = useMemo(() => <Export onExport={() => downloadCSV(data)} />, []);
+  //   const actionsMemo = useMemo(() => <Export onExport={() => downloadCSV(data)} />, []);
 
-// function convertArrayOfObjectsToCSV(array) {
-// 	let result;
+  // function convertArrayOfObjectsToCSV(array) {
+  // 	let result;
 
-// const columnDelimiter = ',';
-// 	const lineDelimiter = '\n';
-// const keys = Object.keys(data[0]);
+  // const columnDelimiter = ',';
+  // 	const lineDelimiter = '\n';
+  // const keys = Object.keys(data[0]);
 
-// 	result = '';
-// 	result += keys.join(columnDelimiter);
-// 	result += lineDelimiter;
+  // 	result = '';
+  // 	result += keys.join(columnDelimiter);
+  // 	result += lineDelimiter;
 
-// 	array.forEach(item => {
-// 		let ctr = 0;
-// 		keys.forEach(key => {
-// 			if (ctr > 0) result += columnDelimiter;
+  // 	array.forEach(item => {
+  // 		let ctr = 0;
+  // 		keys.forEach(key => {
+  // 			if (ctr > 0) result += columnDelimiter;
 
-// 			result += item[key];
-			
-// 			ctr++;
-// 		});
-// 		result += lineDelimiter;
-// 	});
+  // 			result += item[key];
 
-// 	return result;
-// }
-//   function downloadCSV(array) {
-//       const link = document.createElement('a');
-//     let csv = convertArrayOfObjectsToCSV(array);
-//     if (csv == null) return;
+  // 			ctr++;
+  // 		});
+  // 		result += lineDelimiter;
+  // 	});
 
-//     const filename = 'export.csv';
+  // 	return result;
+  // }
+  //   function downloadCSV(array) {
+  //       const link = document.createElement('a');
+  //     let csv = convertArrayOfObjectsToCSV(array);
+  //     if (csv == null) return;
 
-//     if (!csv.match(/^data:text\/csv/i)) {
-//       csv = `data:text/csv;charset=utf-8,${csv}`;
-//     }
-//     link.setAttribute('href', encodeURI(csv));
-//     link.setAttribute('download', filename);
-//     link.click();
-//   }
+  //     const filename = 'export.csv';
+
+  //     if (!csv.match(/^data:text\/csv/i)) {
+  //       csv = `data:text/csv;charset=utf-8,${csv}`;
+  //     }
+  //     link.setAttribute('href', encodeURI(csv));
+  //     link.setAttribute('download', filename);
+  //     link.click();
+  //   }
   return (
     <S.ContainerMain>
       <S.Box>
-      {props.swicth ?
-            <SwitchMaterialProduct size="large" checked={checked} setChecked={setChecked}></SwitchMaterialProduct>
-          : null
+        {props.swicth && props.range ?
+          <S.RowCont>
+            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked}></SwitchMaterialProduct>
+            <>{props.children}</>
+
+          </S.RowCont>
+          : props.swicth ?
+            <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked}></SwitchMaterialProduct>
+            : props.range ?
+              <>{props.children}</>
+              : null
         }
+
         <DataTable
           data={data}
           columns={columns}
-        // actions={actionsMemo}
+          // actions={actionsMemo}
           customStyles={customStyles}
           subHeaderAlign={'left'}
           pagination
