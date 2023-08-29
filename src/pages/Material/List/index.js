@@ -9,6 +9,7 @@ import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 import FilterContent from '../../../components/FilterContent';
 import InputFormFilter from '../../../components/Form/InputFormFilter';
+import { formattedDate } from '../../../GeneralFunctions/functions';
 
 function MaterialList() {
   const [data, setData] = useState([]);
@@ -47,6 +48,19 @@ function MaterialList() {
       .then(async response => {
         if (response) {
           setData(response.records);
+          let listAux = []
+          response.records.map(item => {
+            let obj = {
+              id: item.id,
+              Material: item.name,
+              Description: item.description,
+              'Quantidade Mínima': item.quantity_min,
+              'Quantidade': item.quantity,
+              Criação: formattedDate(item.createdAt),
+            }
+            listAux.push(obj)
+          })
+          setColumnsExcel(listAux)
         }
       });
 
@@ -145,7 +159,7 @@ function MaterialList() {
   return (
     <Container>
       <HeaderContent title="Materiais" icon={<Category fontSize="large" />} titleButton="Novo Material" linkTo="/materials/novo" />
-      <FilterContent spaceTitle columnsExcel={columnsExcel} filesheet={"Compradores"} fileName={"buyers.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
+      <FilterContent spaceTitle columnsExcel={columnsExcel} filesheet={"Materiais"} fileName={"materials.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
         <InputFormFilter spaceTitle value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
