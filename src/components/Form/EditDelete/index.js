@@ -61,7 +61,7 @@ function EditDelete(props) {
         :
         <S.Completed>
           <a href={`${url}/${id}`}><Reviews style={{ color: 'green' }}></Reviews></a>
-          <CheckCircleTwoTone style={{ cursor: 'pointer',color: 'green' }} onClick={() => toast('success', `Concluída!`)} />
+          <CheckCircleTwoTone style={{ cursor: 'pointer',color: 'green' }} onClick={() => toast('success', `Compra Finalizada!`)} />
         </S.Completed>
       }
       {

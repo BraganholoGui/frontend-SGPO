@@ -9,6 +9,7 @@ import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 import FilterContent from '../../../components/FilterContent';
 import InputFormFilter from '../../../components/Form/InputFormFilter';
+import { formattedDate } from '../../../GeneralFunctions/functions';
 
 function TeamList() {
   const [data, setData] = useState([]);
@@ -37,7 +38,16 @@ function TeamList() {
       .then(async response => {
         if (response) {
           setData(response.records);
-          setColumnsExcel(response.records);
+          let list = [];
+          response.records.map(item => {
+            let obj = {
+              id: item.id,
+              Time: item.name,
+              Criação: formattedDate(item.createdAt),
+            }
+            list.push(obj)
+          })
+          setColumnsExcel(list);
         }
       });
   }
@@ -105,7 +115,7 @@ function TeamList() {
     <Container>
       <HeaderContent title="Times" icon={<Groups fontSize="large"/>} titleButton="Novo Time" linkTo="/teams/novo" />
       <FilterContent columnsExcel={columnsExcel} filesheet={"Times"} fileName={"teams.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
-        <InputFormFilter value={team} setValue={setTeam} title="Nome de acesso" type='text' size="medium"></InputFormFilter>
+        <InputFormFilter value={team} setValue={setTeam} title="Time" type='text' size="medium"></InputFormFilter>
       </FilterContent>
       <ListContent
         columns={columns}

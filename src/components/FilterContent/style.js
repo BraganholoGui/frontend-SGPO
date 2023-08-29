@@ -29,9 +29,10 @@ export const VerticalHr = styled.hr`
 `; 
 export const IconsContainer = styled.div`
   display: flex;
+  margin-top: 15px;
   align-items: center;
   justify-content: space-around;
-  width: 12%;
+  width: 20%;
 `; 
 export const FieldsContainer = styled.div`
   display: flex;

@@ -110,39 +110,45 @@ function InputFormFilter(props) {
           <S.ContainerFormSmall>
             {
               type == 'select' ?
-                <Select options={options || []} selected={selected}
-                  setSelected={setSelected} value={selected}
-                  isMulti={isMulti}
-                  isDisabled={readOnly}
-                  placeholder={title}
-                  styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                  menuPortalTarget={document.body}
-                  menuPosition={'fixed'}
-                  isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
-                  onChange={(e) => {
-                    if (isMulti) {
-                      setSelected(e)
-                      setValue(e)
-                      props.setValue(e)
-                      props.setSelected(e)
-                    } else {
-                      setSelected(e)
-                      setValue(e)
-                      props.setValue(e)
-                      props.setSelected(e)
-                    }
+                <>
+                  <S.Title>
+                    {title}
+                  </S.Title>
+                  <Select options={options || []} selected={selected}
+                    setSelected={setSelected} value={selected}
+                    isMulti={isMulti}
+                    isDisabled={readOnly}
+                    placeholder={'Selecione...'}
+                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                    onChange={(e) => {
+                      if (isMulti) {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      } else {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }
 
-                  }} />
+                    }} />
+                </>
+
                 :
                 type == 'radio' ?
                   <>
                     <S.RadioContainer>
-                      <S.RadioLabel  for="radio-option">
-                     Estoque baixo:
+                      <S.RadioLabel for="radio-option">
+                        Estoque baixo:
                       </S.RadioLabel>
                       <S.RadioInput
-                      name="radio-group"
-                      id="radio-option"
+                        name="radio-group"
+                        id="radio-option"
                         type={type}
                         readOnly={readOnly}
                         value={value}
@@ -155,12 +161,12 @@ function InputFormFilter(props) {
                       />
                     </S.RadioContainer>
                     <S.RadioContainer>
-                      <S.RadioLabel  for="radio-option2">
-                     Todos:
+                      <S.RadioLabel for="radio-option2">
+                        Todos:
                       </S.RadioLabel>
                       <S.RadioInput
-                      name="radio-group"
-                      id="radio-option2"
+                        name="radio-group"
+                        id="radio-option2"
                         type={type}
                         readOnly={readOnly}
                         value={value}
@@ -183,10 +189,7 @@ function InputFormFilter(props) {
                       type={type}
                       readOnly={readOnly}
                       value={value}
-                      placeholder={title}
-                      min='10'
-                      max='500'
-                      step="10"
+                      // placeholder={title}
                       style={getBackgroundSize()}
                       onChange={(e) => {
                         setValue(e.target.value)
@@ -202,105 +205,186 @@ function InputFormFilter(props) {
             <S.ContainerFormMedium>
               {
                 type == 'select' ?
-                  <Select options={options || []} selected={selected}
-                    setSelected={setSelected} value={selected}
-                    isMulti={isMulti}
-                    isDisabled={readOnly}
-                    placeholder={title}
-                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                    menuPortalTarget={document.body}
-                    menuPosition={'fixed'}
-                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
-                    onChange={(e) => {
-                      if (isMulti) {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      } else {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      }
-
-                    }} />
-                  :
                   <>
-                    <S.Space>
-                      <S.Title>
-                        {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
-                      </S.Title>
-                    </S.Space>
-                    <S.Input
-                      type={type}
-                      readOnly={readOnly}
-                      value={value}
-                      placeholder={title}
-                      min='10'
-                      max='500'
-                      step="10"
-                      style={getBackgroundSize()}
+                    <S.Title>
+                      {title}
+                    </S.Title>
+                    <Select options={options || []} selected={selected}
+                      setSelected={setSelected} value={selected}
+                      isMulti={isMulti}
+                      isDisabled={readOnly}
+                      placeholder={'Selecione...'}
+                      styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                      menuPortalTarget={document.body}
+                      menuPosition={'fixed'}
+                      isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
                       onChange={(e) => {
-                        setValue(e.target.value)
-                        props.setValue(e.target.value)
-                      }}
-                      selected={selected}
-                    />
+                        if (isMulti) {
+                          setSelected(e)
+                          setValue(e)
+                          props.setValue(e)
+                          props.setSelected(e)
+                        } else {
+                          setSelected(e)
+                          setValue(e)
+                          props.setValue(e)
+                          props.setSelected(e)
+                        }
+
+                      }} />
                   </>
+                  :
+                  type == 'radio' ?
+                    <>
+                      <S.RadioContainer>
+                        <S.RadioLabel for="radio-option">
+                          Estoque baixo:
+                        </S.RadioLabel>
+                        <S.RadioInput
+                          name="radio-group"
+                          id="radio-option"
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          onChange={(e) => {
+                            setValue(false)
+                            props.loadData()
+
+                            props.setValue(false)
+                          }}
+                        />
+                      </S.RadioContainer>
+                      <S.RadioContainer>
+                        <S.RadioLabel for="radio-option2">
+                          Todos:
+                        </S.RadioLabel>
+                        <S.RadioInput
+                          name="radio-group"
+                          id="radio-option2"
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          onChange={(e) => {
+                            setValue(true)
+                            props.loadData()
+                            props.setValue(true)
+                          }}
+                        />
+                      </S.RadioContainer>
+                    </>
+                    :
+                    <>
+                      <S.Space>
+                        <S.Title>
+                          {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
+                        </S.Title>
+                      </S.Space>
+                      <S.Input
+                        type={type}
+                        readOnly={readOnly}
+                        value={value}
+                        // placeholder={title}
+                        style={getBackgroundSize()}
+                        onChange={(e) => {
+                          setValue(e.target.value)
+                          props.setValue(e.target.value)
+                        }}
+                        selected={selected}
+                      />
+                    </>
               }
 
             </S.ContainerFormMedium>
             : <S.ContainerFormSmall>
               {
                 type == 'select' ?
-                  <Select options={options || []} selected={selected}
-                    setSelected={setSelected} value={selected}
-                    isMulti={isMulti}
-                    isDisabled={readOnly}
-                    placeholder={title}
-                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                    menuPortalTarget={document.body}
-                    menuPosition={'fixed'}
-                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
-                    onChange={(e) => {
-                      if (isMulti) {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      } else {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      }
-
-                    }} />
-                  :
                   <>
-
-                    <S.Space>
-                      <S.Title>
-                        {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
-                      </S.Title>
-                    </S.Space>
-                    <S.Input
-                      type={type}
-                      readOnly={readOnly}
-                      value={value}
-                      placeholder={title}
-                      min='10'
-                      max='500'
-                      step="1"
-                      // style={getBackgroundSize()}
+                    <S.Title>
+                      {title}
+                    </S.Title>
+                    <Select options={options || []} selected={selected}
+                      setSelected={setSelected} value={selected}
+                      isMulti={isMulti}
+                      isDisabled={readOnly}
+                      placeholder={'Selecione...'}
+                      styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                      menuPortalTarget={document.body}
+                      menuPosition={'fixed'}
+                      isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
                       onChange={(e) => {
-                        setValue(e.target.value)
-                        props.setValue(e.target.value)
-                      }}
-                      selected={selected}
-                    />
+                        if (isMulti) {
+                          setSelected(e)
+                          setValue(e)
+                          props.setValue(e)
+                          props.setSelected(e)
+                        } else {
+                          setSelected(e)
+                          setValue(e)
+                          props.setValue(e)
+                          props.setSelected(e)
+                        }
+
+                      }} />
                   </>
+                  :
+                  type == 'radio' ?
+                    <>
+                      <S.RadioContainer>
+                        <S.RadioLabel for="radio-option">
+                          Estoque baixo:
+                        </S.RadioLabel>
+                        <S.RadioInput
+                          name="radio-group"
+                          id="radio-option"
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          onChange={(e) => {
+                            setValue(false)
+                            props.loadData()
+
+                            props.setValue(false)
+                          }}
+                        />
+                      </S.RadioContainer>
+                      <S.RadioContainer>
+                        <S.RadioLabel for="radio-option2">
+                          Todos:
+                        </S.RadioLabel>
+                        <S.RadioInput
+                          name="radio-group"
+                          id="radio-option2"
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          onChange={(e) => {
+                            setValue(true)
+                            props.loadData()
+                            props.setValue(true)
+                          }}
+                        />
+                      </S.RadioContainer>
+                    </>
+                    :
+                    <>
+
+                      <S.Space>
+                        <S.Title>
+                          {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
+                        </S.Title>
+                      </S.Space>
+                      <S.Input
+                        type={type}
+                        readOnly={readOnly}
+                        value={value}
+                        // placeholder={title}
+                        onChange={(e) => {
+                          setValue(e.target.value)
+                          props.setValue(e.target.value)
+                        }}
+                        selected={selected}
+                      />
+                    </>
               }
 
             </S.ContainerFormSmall>

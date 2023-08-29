@@ -153,7 +153,8 @@ function ProductList() {
         <InputFormFilter value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
         <InputFormFilter value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
-        <InputFormFilter value={quantityMin} setValue={setQuantityMin} title="Quantidade Mínima" type='text' size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Quantidade Mín." type='range' min="0" max="100" size="small"></InputFormFilter>
+        {/* <InputFormFilter value={quantityMin} setValue={setQuantityMin} title="Quantidade Mínima" type='text' size="small"></InputFormFilter> */}
       </FilterContent>
       <ListContent
         columns={columns}

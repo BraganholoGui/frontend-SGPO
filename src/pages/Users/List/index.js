@@ -73,7 +73,7 @@ function UserList() {
       query = query.includes('?') ? query + '&' + roleQuery : query + '?' + roleQuery;
       query = query.includes('?') ? query + '&' + teamQuery : query + '?' + teamQuery;
     }
-    console.log('query', query);
+
     await get(`${url}${query}`)
       .then(async response => {
         if (response) {

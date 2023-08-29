@@ -26,10 +26,12 @@ function FilterContent(props) {
         </S.FieldsContainer>
         <S.IconsContainer>
           <S.FilterTitle onClick={props.loadData}>
+            Filtrar
             <FilterAlt />
           </S.FilterTitle>
           <S.VerticalHr></S.VerticalHr>
           <S.FilterTitle onClick={props.cleanFilter}>
+            Limpar
             <FilterAltOff />
           </S.FilterTitle>
           <S.VerticalHr></S.VerticalHr>

@@ -239,7 +239,7 @@ function StockList() {
   return (
     <Container>
       <HeaderContent title="Estoque" icon={<Inventory fontSize="large" />} />
-      <FilterContent spaceTitle columnsExcel={checked ? columnsExcelProd : columnsExcelmat} filesheet={checked ? "Produtos" : "Materiais"} fileName={checked ? "products.xlsx" : "materials.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}>
+      <FilterContent spaceTitle columnsExcel={!checked ? columnsExcelProd : columnsExcelmat} filesheet={!checked ? "Produtos" : "Materiais"} fileName={!checked ? "products.xlsx" : "materials.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}>
         <InputFormFilter spaceTitle value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
