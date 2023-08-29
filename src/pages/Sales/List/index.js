@@ -17,7 +17,6 @@ function SaleList() {
   const url = `/sales`
   const location = useLocation();
   const [columnsExcel, setColumnsExcel] = useState([]);
-  const [buyer, setBuyer] = useState(null);
   const [productSelected, setProductSelected] = useState(null);
   const [buyerSelected, setBuyerSelected] = useState(null);
   const [statusSelected, setStatusSelected] = useState(null);
@@ -36,7 +35,7 @@ function SaleList() {
     let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
     if (!clean) {
       
-      let buyerQuery = buyerSelected && buyerSelected.id ? `status=${buyerSelected.id}` : null;
+      let buyerQuery = buyerSelected && buyerSelected.id ? `buyer=${buyerSelected.id}` : null;
       let statusQuery = statusSelected && statusSelected.id ? `status=${statusSelected.id}` : null;
       let productQuery = productSelected && productSelected.id ? `product=${productSelected.id}` : null;
 
@@ -58,8 +57,8 @@ function SaleList() {
               'Email do Comprador': item.Buyer && item.Buyer.Person && item.Buyer.Person.Contact ? item.Buyer.Person.Contact.email : '',
               Produto: item.Product?.name,
               Status: item.Status?.name,
-              'Quantidade da compra': item.quantity,
-              Preço: "R$" + item.Product?.name + ",00",
+              'Quantidade da venda': item.quantity,
+              Preço: "R$" + item.price + ",00",
               Criação: formattedDate(item.createdAt),
             }
             listAux.push(obj)
@@ -144,10 +143,6 @@ function SaleList() {
             item.label = item.id + '. ' + item.name
           })
           setProductsOptions(response.records);
-          if (data && data.product) {
-            console.log(response.records.find(item => item.id == data.product))
-            setProductSelected(response.records.find(item => item.id == data.product))
-          }
         }
       });
     get(`/buyers`)
@@ -158,9 +153,6 @@ function SaleList() {
             item.label = item.id + '. ' + item.Person.name
           })
           setBuyerOptions(response.records);
-          if (data && data.buyer) {
-            setBuyerSelected(response.records.find(item => item.id == data.buyer))
-          }
         }
       });
 

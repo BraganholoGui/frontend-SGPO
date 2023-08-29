@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
+import FilterContent from '../../../components/FilterContent';
+import InputFormFilter from '../../../components/Form/InputFormFilter';
+import { formattedDate } from '../../../GeneralFunctions/functions';
 
 function PurchaseList() {
   const [dataProduct, setDataProduct] = useState([]);
@@ -15,32 +18,102 @@ function PurchaseList() {
   const url = `/purchases`
   const location = useLocation();
   const [checked, setChecked] = useState(false);
+  const [columnsExcel, setColumnsExcel] = useState([]);
+  const [productSelected, setProductSelected] = useState(null);
+  const [supplierSelected, setSupplierSelected] = useState(null);
+  const [statusSelected, setStatusSelected] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [columnsExcelProd, setColumnsExcelProd] = useState([]);
+  const [columnsExcelMat, setColumnsExcelMat] = useState([]);
 
-  async function loadData() {
+  const [productOptions, setProductsOptions] = useState('');
+  const [supplierOptions, setSupplierOptions] = useState('');
+  const [statusOptions, setStatusOptions] = useState('');
+
+  async function loadData(clean) {
     let productList = [];
     let materialList = [];
-    await get(url)
+    let start = new Date().toISOString();
+    let end = new Date().toISOString();
+    let startQuery = `start=${start}`;
+    let endQuery = `end=${end}`;
+
+
+    let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
+    if (!clean) {
+
+      let supplierQuery = supplierSelected && supplierSelected.id ? `supplier=${supplierSelected.id}` : null;
+      let statusQuery = statusSelected && statusSelected.id ? `status=${statusSelected.id}` : null;
+      let productQuery = productSelected && productSelected.id ? `product=${productSelected.id}` : null;
+
+      query = query.includes('?') ? query + '&' + supplierQuery : query + '?' + supplierQuery;
+      query = query.includes('?') ? query + '&' + statusQuery : query + '?' + statusQuery;
+      query = query.includes('?') ? query + '&' + productQuery : query + '?' + productQuery;
+    }
+
+    await get(`${url}${query}`)
       .then(async response => {
         if (response) {
-          response.records.map(item =>{
-            if(item.SupplierPurchases){
+          let productListAux = [];
+          let materialListAux = [];
+          response.records.map(item => {
+            console.log(response.records)
+            if (item.SupplierPurchases) {
               item.SupplierAux = item.SupplierPurchases.find(supPurchase => supPurchase.purchase == item.id)
             }
-            if(item.material) {
+            if (item.material) {
               materialList.push(item)
-            } else{
+              let obj = {
+                id: item.id,
+                Fornecedor: item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person ? item.SupplierAux.Supplier.Person.name : '',
+                'Telefone do Vendedor': item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.phone : '',
+                'Email do Vendedor': item.SupplierAux &&item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.email : '',
+                'Cnpj do Vendedor':item.SupplierAux && item.SupplierAux.Supplier ? item.SupplierAux.Supplier.cnpj : '',
+                Material: item.Material?.name,
+                'Quantidade da compra': item.quantity,
+                Preço: "R$" + item.price + ",00",
+                Prazo: item.end,
+                Status: item.Status?.name,
+                Criação: formattedDate(item.createdAt),
+              }
+              materialListAux.push(obj)
+            } else {
               productList.push(item)
+              let obj = {
+                id: item.id,
+                Fornecedor: item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person ? item.SupplierAux.Supplier.Person.name : '',
+                'Telefone do Vendedor': item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.phone : '',
+                'Email do Vendedor': item.SupplierAux &&item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.email : '',
+                'Cnpj do Vendedor':item.SupplierAux && item.SupplierAux.Supplier ? item.SupplierAux.Supplier.cnpj : '',
+                Produto: item.Product?.name,
+                'Quantidade da compra': item.quantity,
+                Preço: "R$" + item.price + ",00",
+                Prazo: item.end,
+                Status: item.Status?.name,
+                Criação: formattedDate(item.createdAt),
+              }
+              productListAux.push(obj)
             }
-            if(item.end){
+            if (item.end) {
               let newDate = new Date(item.end)
-              item.end = ((newDate.getDate() )) + "/" + ((newDate.getMonth() + 1)) + "/" + newDate.getFullYear(); 
-            } 
+              item.end = ((newDate.getDate())) + "/" + ((newDate.getMonth() + 1)) + "/" + newDate.getFullYear();
+            }
           })
           setDataProduct(productList);
           setDataMaterial(materialList);
+          setColumnsExcelProd(productListAux);
+          setColumnsExcelMat(materialListAux);
         }
       });
 
+  }
+
+  function cleanFilter() {
+    setSupplierSelected('');
+    setStatusSelected('');
+    setProductSelected('');
+    setEndDate('');
+    loadData(true);
   }
 
   const columns = [
@@ -52,7 +125,7 @@ function PurchaseList() {
     },
     {
       name: 'Produto',
-      selector: row => row.Product? row.Product.name : null,
+      selector: row => row.Product ? row.Product.name : null,
       sortable: true,
     },
     {
@@ -67,7 +140,7 @@ function PurchaseList() {
     },
     {
       name: 'Fornecedor',
-      selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      selector: row => row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name : null,
       sortable: true,
     },
     {
@@ -77,12 +150,12 @@ function PurchaseList() {
     },
     {
       name: 'Status',
-      selector: row =>  row.status == 1 || !row.status ? "Pendente" :  row.status == 2 ? "Em Andamento" :  row.status == 3 ? "Concluído" : row.status == 4 ? "Negada" : "-",
+      selector: row => row.status == 1 || !row.status ? "Pendente" : row.status == 2 ? "Em Andamento" : row.status == 3 ? "Concluído" : row.status == 4 ? "Negada" : "-",
       sortable: true,
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} completed={row.status}/>,
+      selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} completed={row.status} />,
       center: true,
       style: {
         display: 'flex',
@@ -116,22 +189,22 @@ function PurchaseList() {
     },
     {
       name: 'Fornecedor',
-      selector: row =>  row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name :  null,
+      selector: row => row.SupplierAux && row.SupplierAux.Supplier.Person && row.SupplierAux.Supplier.Person ? row.SupplierAux.Supplier.Person.name : null,
       sortable: true,
     },
     {
       name: 'Prazo',
-      selector: row =>  row.end,
+      selector: row => row.end,
       sortable: true,
     },
     {
       name: 'Status',
-      selector: row =>  row.status == 1 || !row.status ? "Pendente" :  row.status == 2 ? "Em Andamento" :  row.status == 3 ? "Concluído" : row.status == 4 ? "Negada" : "-",
+      selector: row => row.status == 1 || !row.status ? "Pendente" : row.status == 2 ? "Em Andamento" : row.status == 3 ? "Concluído" : row.status == 4 ? "Negada" : "-",
       sortable: true,
     },
     {
       name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} completed={row.status}/>,
+      selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} completed={row.status} />,
       center: true,
       style: {
         display: 'flex',
@@ -175,13 +248,55 @@ function PurchaseList() {
     },
   };
 
+  function getOptions() {
+    get(`/products`)
+      .then(async response => {
+        if (response && response.records) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.name
+          })
+          setProductsOptions(response.records);
+        }
+      });
+    get(`/suppliers`)
+      .then(async response => {
+        if (response && response.records) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.Person.name
+          })
+          setSupplierOptions(response.records);
+        }
+      });
+
+    get(`/status`)
+      .then(async response => {
+        if (response && response.records) {
+          response.records = response.records.filter(item => !item.id_permission);
+          response.records.map(item => {
+            item.value = item.value;
+            item.label = item.name
+          })
+          setStatusOptions(response.records);
+        }
+      });
+  }
+
   useEffect(() => {
+    getOptions();
     loadData();
   }, [])
 
   return (
     <Container>
       <HeaderContent title="Compras" icon={<ShoppingCart fontSize="large" />} titleButton="Nova Compra" linkTo="/purchases/novo" />
+      <FilterContent columnsExcel={!checked ? columnsExcelProd : columnsExcelMat} filesheet={!checked ? "Compras de Produtos" : "Compras de Materiais"} fileName={!checked ? "salesProducts.xlsx" : "salesMaterials.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}>
+        <InputFormFilter options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title={!checked ? "Produto" : "Material"} type='select' size="small"></InputFormFilter>
+        <InputFormFilter options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputFormFilter>
+        <InputFormFilter options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputFormFilter>
+        <InputFormFilter value={endDate} setValue={setEndDate} title="Prazo" type='date' size="small"></InputFormFilter>
+      </FilterContent>
       <ListContent
         columns={!checked ? columns : columnsMaterial}
         data={!checked ? dataProduct : dataMaterial}
