@@ -19,13 +19,14 @@ function PurchaseList() {
   const location = useLocation();
   const [checked, setChecked] = useState(false);
   const [columnsExcel, setColumnsExcel] = useState([]);
-  const [productSelected, setProductSelected] = useState(null);
+  const [nameSelected, setNameSelected] = useState(null);
   const [supplierSelected, setSupplierSelected] = useState(null);
   const [statusSelected, setStatusSelected] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [columnsExcelProd, setColumnsExcelProd] = useState([]);
   const [columnsExcelMat, setColumnsExcelMat] = useState([]);
 
+  const [materialsOptions, setMaterialsOptions] = useState('');
   const [productOptions, setProductsOptions] = useState('');
   const [supplierOptions, setSupplierOptions] = useState('');
   const [statusOptions, setStatusOptions] = useState('');
@@ -33,22 +34,26 @@ function PurchaseList() {
   async function loadData(clean) {
     let productList = [];
     let materialList = [];
-    let start = new Date().toISOString();
+    let start = new Date("08 28, 2023").toISOString();
     let end = new Date().toISOString();
     let startQuery = `start=${start}`;
     let endQuery = `end=${end}`;
-
 
     let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
     if (!clean) {
 
       let supplierQuery = supplierSelected && supplierSelected.id ? `supplier=${supplierSelected.id}` : null;
       let statusQuery = statusSelected && statusSelected.id ? `status=${statusSelected.id}` : null;
-      let productQuery = productSelected && productSelected.id ? `product=${productSelected.id}` : null;
+      let nameQuery = nameSelected && nameSelected.id ? `name=${nameSelected.id}` : null;
+      let endQuery = endDate ? `endD=${endDate}` : null;
+      let checkedQuery = checked ? `checked=${checked}` : null;
 
       query = query.includes('?') ? query + '&' + supplierQuery : query + '?' + supplierQuery;
       query = query.includes('?') ? query + '&' + statusQuery : query + '?' + statusQuery;
-      query = query.includes('?') ? query + '&' + productQuery : query + '?' + productQuery;
+      query = query.includes('?') ? query + '&' + nameQuery : query + '?' + nameQuery;
+      query = query.includes('?') ? query + '&' + nameQuery : query + '?' + nameQuery;
+      query = query.includes('?') ? query + '&' + endQuery : query + '?' + endQuery;
+      query = query.includes('?') ? query + '&' + checkedQuery : query + '?' + checkedQuery;
     }
 
     await get(`${url}${query}`)
@@ -67,8 +72,8 @@ function PurchaseList() {
                 id: item.id,
                 Fornecedor: item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person ? item.SupplierAux.Supplier.Person.name : '',
                 'Telefone do Vendedor': item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.phone : '',
-                'Email do Vendedor': item.SupplierAux &&item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.email : '',
-                'Cnpj do Vendedor':item.SupplierAux && item.SupplierAux.Supplier ? item.SupplierAux.Supplier.cnpj : '',
+                'Email do Vendedor': item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.email : '',
+                'Cnpj do Vendedor': item.SupplierAux && item.SupplierAux.Supplier ? item.SupplierAux.Supplier.cnpj : '',
                 Material: item.Material?.name,
                 'Quantidade da compra': item.quantity,
                 Preço: "R$" + item.price + ",00",
@@ -83,8 +88,8 @@ function PurchaseList() {
                 id: item.id,
                 Fornecedor: item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person ? item.SupplierAux.Supplier.Person.name : '',
                 'Telefone do Vendedor': item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.phone : '',
-                'Email do Vendedor': item.SupplierAux &&item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.email : '',
-                'Cnpj do Vendedor':item.SupplierAux && item.SupplierAux.Supplier ? item.SupplierAux.Supplier.cnpj : '',
+                'Email do Vendedor': item.SupplierAux && item.SupplierAux.Supplier && item.SupplierAux.Supplier.Person && item.SupplierAux.Supplier.Person.Contact ? item.SupplierAux.Supplier.Person.Contact.email : '',
+                'Cnpj do Vendedor': item.SupplierAux && item.SupplierAux.Supplier ? item.SupplierAux.Supplier.cnpj : '',
                 Produto: item.Product?.name,
                 'Quantidade da compra': item.quantity,
                 Preço: "R$" + item.price + ",00",
@@ -111,7 +116,7 @@ function PurchaseList() {
   function cleanFilter() {
     setSupplierSelected('');
     setStatusSelected('');
-    setProductSelected('');
+    setNameSelected('');
     setEndDate('');
     loadData(true);
   }
@@ -259,6 +264,16 @@ function PurchaseList() {
           setProductsOptions(response.records);
         }
       });
+    get(`/materials`)
+      .then(async response => {
+        if (response && response.records) {
+          response.records.map(item => {
+            item.value = item.id;
+            item.label = item.id + '. ' + item.name
+          })
+          setMaterialsOptions(response.records);
+        }
+      });
     get(`/suppliers`)
       .then(async response => {
         if (response && response.records) {
@@ -287,12 +302,19 @@ function PurchaseList() {
     getOptions();
     loadData();
   }, [])
+  useEffect(() => {
+    cleanFilter()
+  }, [checked])
 
   return (
     <Container>
       <HeaderContent title="Compras" icon={<ShoppingCart fontSize="large" />} titleButton="Nova Compra" linkTo="/purchases/novo" />
       <FilterContent columnsExcel={!checked ? columnsExcelProd : columnsExcelMat} filesheet={!checked ? "Compras de Produtos" : "Compras de Materiais"} fileName={!checked ? "salesProducts.xlsx" : "salesMaterials.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}>
-        <InputFormFilter options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title={!checked ? "Produto" : "Material"} type='select' size="small"></InputFormFilter>
+        {!checked ?
+          <InputFormFilter options={productOptions} selected={nameSelected} setSelected={setNameSelected} value={nameSelected} setValue={setNameSelected} title="Produto" type='select' size="small"></InputFormFilter>
+          :
+          <InputFormFilter options={materialsOptions} selected={nameSelected} setSelected={setNameSelected} value={nameSelected} setValue={setNameSelected} title="Material" type='select' size="small"></InputFormFilter>
+        }
         <InputFormFilter options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputFormFilter>
         <InputFormFilter options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputFormFilter>
         <InputFormFilter value={endDate} setValue={setEndDate} title="Prazo" type='date' size="small"></InputFormFilter>

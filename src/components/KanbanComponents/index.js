@@ -6,7 +6,6 @@ function Kanban(props) {
   const url = `/tasks`
   const [data, setData] = useState(props.data);
   const [events, setEvents] = useState([]);
-  console.log(props)
   useEffect(() => {
     setData(props.data);
     let eventAux = [
@@ -26,7 +25,6 @@ function Kanban(props) {
         eventAux[0]['Finalizado'].push(item)
       }
     })
-    console.log(eventAux)
     setEvents(eventAux)
     setCurrentEvent(eventAux[0])
   }, [props]);

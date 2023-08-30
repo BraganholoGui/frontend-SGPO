@@ -37,7 +37,7 @@ width: 400px;
 
 export const TaskContainer = styled.div`
   width: 100%;
-  height: 69vh;
+  min-height: 150vh;
   overflow: auto;
   border: 1px solid rgba(0,0,0,0.3);
   box-shadow: 7px 10px 7px rgb(0 0 0 / 35%);

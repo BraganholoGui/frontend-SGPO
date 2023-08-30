@@ -36,6 +36,11 @@ function TaskKanban() {
   return (
     <Container>
       <HeaderContent title="Tarefas" icon={<Task fontSize="large" />} titleButton="Nova Tarefa" linkTo="/tasks/novo" />
+      {/* <FilterContent columnsExcel={columnsExcel} filesheet={"Tarefas"} fileName={"tasks.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}> */}
+        {/* <InputFormFilter options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputFormFilter>
+        <InputFormFilter options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputFormFilter> */}
+        {/* <InputFormFilter value={endDate} setValue={setEndDate} title="Prazo" type='date' size="small"></InputFormFilter> */}
+      {/* </FilterContent> */}
       <ListContentKanban data={data} setData={setData}/>
 
     </Container>
