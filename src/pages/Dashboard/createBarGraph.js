@@ -69,7 +69,7 @@ export function CreateBarGraph(props) {
   return (
     <>
       {data ?
-        <Bar options={options} data={data} />
+        <Bar options={options} data={data} style={{maxWidth:'450px', maxHeight:'320px', minWidth:'450px', minHeight:'320px'}}  />
         : null
       }
     </>

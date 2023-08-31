@@ -62,7 +62,6 @@ function PurchaseList() {
           let productListAux = [];
           let materialListAux = [];
           response.records.map(item => {
-            console.log(response.records)
             if (item.SupplierPurchases) {
               item.SupplierAux = item.SupplierPurchases.find(supPurchase => supPurchase.purchase == item.id)
             }

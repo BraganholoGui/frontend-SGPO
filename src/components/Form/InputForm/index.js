@@ -109,7 +109,6 @@ function InputForm(props) {
                   isDisabled={readOnly}
                   isClearable={isMulti &&  Array.isArray(value)  ? value.some((v) => !v.isFixed) : ''}
                     onChange={(e) => {
-                      console.log(e)
                       if(isMulti){
                         setSelected(e)
                         setValue(e)
@@ -131,7 +130,7 @@ function InputForm(props) {
                   onChange={(e) => {
                     setValue(e.target.value)
                     props.setValue(e.target.value)
-                    console.log(e.target.value)
+                    (e.target.value)
                   }}
                   selected={selected}
                 />

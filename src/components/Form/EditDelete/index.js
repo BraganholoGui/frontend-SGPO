@@ -23,7 +23,6 @@ function EditDelete(props) {
     setData(props.data)
     setCompleted(props.completed)
     setAlert(props.alert)
-    console.log(props)
   }, [props])
 
   function updateList() {

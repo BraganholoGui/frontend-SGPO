@@ -57,7 +57,7 @@ export function CreatePieGraph(props) {
   return (
     <>
       { data ?
-        <Pie data={data} style={{width:'90%', height:'95%'}} />
+        <Pie data={data} style={{maxWidth:'350px', maxHeight:'350px', minWidth:'350px', minHeight:'350px'}} />
         : null
       }
     </>

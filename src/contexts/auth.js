@@ -25,8 +25,9 @@ export const AuthProvider = ({ children }) => {
       let x = actions.post('/login', userData).then(x => {
         setToken(x.token)
         setUser(x.user)
+        console.log(x)
         localStorage.setItem('token', x.token)
-        localStorage.setItem('user', x.user)
+        localStorage.setItem('user', JSON.stringify(x.user))
         actions.defaults.headers.Authorization = `Bearer ${token}`;
         toast('success', 'Bem vindo!');
       }).catch(err => {

@@ -10,9 +10,9 @@ import CreateGraph from './createGraph';
 import * as S from './style';
 import { CreatePieGraph } from './createPieGraph';
 import { CreateBarGraph } from './createBarGraph';
+import MinhaImagem from '../../pages/amor.png';
 
 function StockList() {
-
   const [listProduct, setProductList] = useState([]);
   const [datasets, setDatasets] = useState([]);
 
@@ -99,7 +99,6 @@ function StockList() {
   }
 
   function jsonToJsonArray(info) {
-    console.log(info)
     let list = [];
     if (info && info.length > 0) {
       info.map((item, index) => {
@@ -107,7 +106,6 @@ function StockList() {
         list.push(item)
       })
     }
-    console.log(list)
     return list
   }
 
@@ -220,6 +218,7 @@ function StockList() {
         </Container>
       </CBox>
       </ContainerMain>
+    <img src={MinhaImagem} alt="Minha Imagem" />
     </S.Container>
   )
 

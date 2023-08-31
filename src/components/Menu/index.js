@@ -14,9 +14,12 @@ import { BarChart, Task, AccountTree, ShoppingCart,
 
 const Menu = () => {
   const [click, setClick] = useState(true);
+  const [user, setUser] = useState(true);
 
   const handleClick = () => setClick(!click);
-
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')))
+  }, [])
   return (
     <>
       <S.MenuLabel htmlFor='navi-toggle' onClick={handleClick}>

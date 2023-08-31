@@ -46,7 +46,6 @@ function BuyerList() {
     await get(`${url}${query}`)
       .then(async response => {
         if (response) {
-          console.log(response.records);
           setData(response.records);
           let listAux = []
           response.records.map(item => {

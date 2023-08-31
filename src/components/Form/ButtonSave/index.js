@@ -21,7 +21,6 @@ function ButtonSave(props) {
 
   async function handleSubmit(url) {
     setLoading(true)
-    console.log(obj)
     let invalid = false;
     if(obj.productObj && !obj.materialObj){
       if(obj.productObj.quantity == 0 || obj.productObj.quantity < parseInt(obj.quantity)){

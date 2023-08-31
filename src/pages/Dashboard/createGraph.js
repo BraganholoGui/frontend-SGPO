@@ -49,7 +49,6 @@ function CreateGraph() {
         }
       })
     })
-    console.log(listInfo)
     createDataInfo(listInfo)
 
   }
@@ -107,7 +106,6 @@ function CreateGraph() {
   }
 
   function jsonToJsonArray() {
-    console.log(json)
     let list = [];
     if (json && json.length > 0) {
       json.map((item, index) => {
@@ -115,7 +113,6 @@ function CreateGraph() {
         list.push(item)
       })
     }
-    console.log(list)
     return list
   }
 

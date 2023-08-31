@@ -92,7 +92,6 @@ function InputFormFilter(props) {
     setIsMulti(props.isMulti);
     setMin(props.max);
     setMax(props.min);
-    console.log(props)
   }, [props])
 
   const getBackgroundSize = () => {

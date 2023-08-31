@@ -32,7 +32,6 @@ function Sale() {
         .then(async response => {
           if (response) {
             setData(response.sale);
-            console.log(response.sale);
           }
         });
     }
@@ -60,7 +59,6 @@ function Sale() {
           })
           setProductsOptions(response.records);
           if (data && data.product) {
-            console.log(response.records.find(item => item.id == data.product))
             setProductSelected(response.records.find(item => item.id == data.product))
           }
         }

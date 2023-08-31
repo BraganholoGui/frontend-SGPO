@@ -11,7 +11,6 @@ export default function useBackgroundOsndImportService() {
 
   useEffect(() => {
     setInterval(async () => {
-      console.log('teste')
       localStorage.setItem('teste', 1)
     }, 2000)
   }, [])
