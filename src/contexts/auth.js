@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   }
   
   function Logout() {
-    toast('success', 'DEslogado!');
+    toast('success', 'Deslogado!');
     setToken(null);
     setUser(null);
     localStorage.removeItem("token")

@@ -35,7 +35,23 @@ function User() {
     }
   }
 
+  function updateStorage(){
+
+    let userStorage = JSON.parse(localStorage.getItem('user'))
+    get(`/roles/${role?.id}`)
+    .then(async response => {
+      console.log(response)
+      console.log(userStorage)
+      userStorage = {
+        ...userStorage, 
+        Role: response.role
+      }
+      console.log(userStorage)
+    });
+  }
+
   function buildSubmitObj() {
+
     let obj = {
       contact: {
         id: data.Person && data.Person.Contact ? data.Person.Contact.id : null,
@@ -51,6 +67,7 @@ function User() {
       team: team ? team.id : null,
       role: role ? role.id : null,
     }
+
 
     return obj;
   }
@@ -80,7 +97,7 @@ function User() {
       .then(async response => {
         let listTeams = []
         if (response) {
-          response?.user?.TeamUsers.map(team => {
+          response?.user?.TeamUsers?.map(team => {
             let obj = {
               ...team,
               value: team.Team.name,

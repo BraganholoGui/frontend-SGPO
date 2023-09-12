@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
@@ -28,16 +28,50 @@ import Task from '../pages/Task/Form';
 import StockList from '../pages/Stock/List';
 
 const PublicRoutes = () => {
+
+  const [user, setUser] = useState(null);
+  const [permission, setPermission] = useState(null);
+
+  useEffect(() => {
+    console.log('localStorage', JSON.parse(localStorage.getItem('user')))
+    setUser(JSON.parse(localStorage.getItem('user')))
+    setPermission(JSON.parse(localStorage.getItem('user')).Role.status)
+  }, []);
+
   return (
     <BrowserRouter>
       <Layout>
-        <Switch>
-          <Route path="/roles/:id" component={Role} />
-          <Route path="/roles" component={RoleList} />
-          <Route path="/teams/:id" component={Team} />
-          <Route path="/teams" component={TeamList} />
-          <Route path="/users/:id" component={User} />
-          <Route path="/users" component={Users} />
+        {
+          permission == 4 ?
+            <Switch>
+              <Route path="/roles/:id" component={Role} />
+              <Route path="/roles" component={RoleList} />
+              <Route path="/teams/:id" component={Team} />
+              <Route path="/teams" component={TeamList} />
+              <Route path="/users/:id" component={User} />
+              <Route path="/users" component={Users} />
+              <Route path="/suppliers/:id" component={Supplier} />
+              <Route path="/suppliers" component={SupplierList} />
+              <Route path="/buyers/:id" component={Buyer} />
+              <Route path="/buyers" component={BuyerList} />
+              <Route path="/materials/:id" component={Material} />
+              <Route path="/materials" component={MaterialList} />
+              <Route path="/products/:id" component={Product} />
+              <Route path="/products" component={ProductList} />
+              <Route path="/purchases/:id" component={Purchase} />
+              <Route path="/purchases" component={PurchaseList} />
+              <Route path="/sales/:id" component={Sale} />
+              <Route path="/sales" component={SaleList} />
+              <Route path="/stock" component={StockList} />
+              <Route path="/tasks/:id" component={Task} />
+              <Route path="/tasks" component={TaskKanban} />
+              <Route path="/themes/:id" component={Theme} />
+              <Route path="/themes" component={ThemeList} />
+              <Route path="/" component={Dashboard} />
+              <Redirect to={'/'} />
+            </Switch>
+            : permission == 5 ? 
+            <Switch>
           <Route path="/suppliers/:id" component={Supplier} />
           <Route path="/suppliers" component={SupplierList} />
           <Route path="/buyers/:id" component={Buyer} />
@@ -53,11 +87,21 @@ const PublicRoutes = () => {
           <Route path="/stock" component={StockList} />
           <Route path="/tasks/:id" component={Task} />
           <Route path="/tasks" component={TaskKanban} />
-          <Route path="/themes/:id" component={Theme} />
-          <Route path="/themes" component={ThemeList} />
           <Route path="/" component={Dashboard} />
           <Redirect to={'/'} />
         </Switch>
+          :
+          <Switch>
+          <Route path="/materials" component={MaterialList} />
+          <Route path="/products" component={ProductList} />
+          <Route path="/stock" component={StockList} />
+          <Route path="/tasks/:id" component={Task} />
+          <Route path="/tasks" component={TaskKanban} />
+          <Route path="/" component={Dashboard} />
+          <Redirect to={'/'} />
+        </Switch>
+          }
+
       </Layout>
     </BrowserRouter>
   );
