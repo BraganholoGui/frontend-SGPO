@@ -16,6 +16,7 @@ function Buyer() {
   const [cpf_cnpj, setCpfCnpj] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [isCnpj, setIsCnpj] = useState('');
 
   async function loadData() {
     if (id != 'novo') {
@@ -25,7 +26,7 @@ function Buyer() {
             setData(response.buyer);
           }
         });
-    } 
+    }
   }
 
   function buildSubmitObj() {
@@ -40,9 +41,12 @@ function Buyer() {
         name: name
       },
       cpf_cnpj: cpf_cnpj,
-      is_cnpj:true
-     
+      is_cnpj: isCnpj == 'option1' ? true : false
+
     }
+
+    console.log(isCnpj)
+    console.log(obj)
 
     return obj;
   }
@@ -55,6 +59,7 @@ function Buyer() {
   useEffect(() => {
     setName(data.Person && data.Person ? data.Person.name : '');
     setCpfCnpj(data.cpf_cnpj);
+    setIsCnpj(data.is_cnpj ? 'option1' : 'option2' );
     setEmail(data.Person && data.Person.Contact ? data.Person.Contact.email : '');
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
   }, [data])
@@ -65,12 +70,17 @@ function Buyer() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/buyers" title={id == "novo" ? "Novo Compradores" : "Editar Compradores"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={cpf_cnpj} setValue={setCpfCnpj} title="CPF ou CNPJ" type='text' size="medium"></InputForm>
-            <InputForm value={name} setValue={setName} title="Nome" type='text' size="medium"></InputForm>
+            {isCnpj == 'option1' ?
+              <InputForm value={cpf_cnpj} setValue={setCpfCnpj} title="CNPJ" type='cnpjMask' size="small"></InputForm>
+              :
+              <InputForm value={cpf_cnpj} setValue={setCpfCnpj} title="CPF" type='cpfMask' size="small"></InputForm>
+            }
+            <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
+            <InputForm value={isCnpj} setValue={setIsCnpj} title="É CNPJ?" type='radio' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={email} setValue={setEmail} title="Email" type='text' size="medium"></InputForm>
-            <InputForm value={phone} setValue={setPhone} title="Telefone" type='text' size="medium"></InputForm>
+            <InputForm value={phone} setValue={setPhone} title="Telefone" type='phoneMask' size="medium"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>

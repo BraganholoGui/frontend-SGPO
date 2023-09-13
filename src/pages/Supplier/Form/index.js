@@ -64,12 +64,12 @@ function Supplier() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/suppliers" title={id == "novo" ? "Novo Fornecedor" : "Editar Fornecedor"} icon={<Person fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={cnpj} setValue={setCnpj} title="CNPJ" type='text' size="medium"></InputForm>
+            <InputForm value={cnpj} setValue={setCnpj} title="CNPJ" type='cnpjMask' size="medium"></InputForm>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="medium"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={email} setValue={setEmail} title="Email" type='email' size="medium"></InputForm>
-            <InputForm value={phone} setValue={setPhone} title="Telefone" type='text' size="medium"></InputForm>
+            <InputForm value={phone} setValue={setPhone} title="Telefone"  type='phoneMask' size="medium"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>

@@ -147,7 +147,7 @@ function User() {
             <InputForm value={email} setValue={setEmail} title="Email" type='email' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm value={phone} setValue={setPhone} title="Telefone" type='teext' size="small"></InputForm>
+            <InputForm value={phone} setValue={setPhone} title="Telefone" type='phoneMask' size="small"></InputForm>
             {id != 'novo' ?
               <InputForm options={teamOptions} selected={teamOptions} isMulti={true} readOnly={true} setSelected={setTeam} value={team} setValue={setTeam} title="Times" type='select' size="small"></InputForm>
               :

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import * as S from './style';
 import Select from 'react-select'
 import { theme } from '../../../theme';
-
+import InputMask from 'react-input-mask';
 
 function InputForm(props) {
   const [size, setSize] = useState('');
@@ -49,11 +49,11 @@ function InputForm(props) {
         ...styles,
         border: `1px solid ${theme.inputLock}`,
         backgroundColor: `${theme.bgColor}`,
-        borderRadius:'20px',
-        padding:'5px',
-        textAlign:'center',
+        borderRadius: '20px',
+        padding: '5px',
+        textAlign: 'center',
         zIndex: 99999999,
-        
+
       };
     },
     multiValueLabel: (styles, { data }) => ({
@@ -72,11 +72,11 @@ function InputForm(props) {
         ...styles,
         border: `1px solid ${theme.inputLock}`,
         backgroundColor: `${theme.bgColor}`,
-        borderRadius:'20px',
-        padding:'5px',
-        textAlign:'center',
-        width:'70%',
-        
+        borderRadius: '20px',
+        padding: '5px',
+        textAlign: 'center',
+        width: '70%',
+
       };
     },
   };
@@ -92,6 +92,11 @@ function InputForm(props) {
     setIsMulti(props.isMulti);
   }, [props])
 
+  const handleOptionChange = (event) => {
+    setValue(event.target.value)
+    props.setValue(event.target.value)
+  };
+
   return (
     <>
       {
@@ -101,41 +106,95 @@ function InputForm(props) {
             {
               type == 'select' ?
                 <Select options={options || []} selected={selected}
-                styles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                menuPortalTarget={document.body}
-                menuPosition={'fixed'} 
+                  styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
                   setSelected={setSelected} value={selected}
                   isMulti={isMulti}
                   isDisabled={readOnly}
-                  isClearable={isMulti &&  Array.isArray(value)  ? value.some((v) => !v.isFixed) : ''}
-                    onChange={(e) => {
-                      if(isMulti){
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      }else{
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      }
-
-                    }}/>
-                :
-                <S.Input
-                  type={type}
-                  readOnly={readOnly}
-                  value={value}
+                  isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
                   onChange={(e) => {
-                    setValue(e.target.value)
-                    props.setValue(e.target.value)
-                  }}
-                  selected={selected}
-                />
+                    if (isMulti) {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    } else {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    }
+
+                  }} />
+                : type == 'phoneMask' ?
+                  < InputMask
+                    className="input-mask"
+                    mask='(99) 99999-9999'
+                    value={value}
+                    onChange={(e) => {
+                      setValue(e.target.value)
+                      props.setValue(e.target.value)
+                    }}>
+                  </InputMask>
+                  : type == 'cnpjMask' ?
+                    < InputMask
+                      className="input-mask"
+                      mask='99.999.999/9999-99'
+                      value={value}
+                      onChange={(e) => {
+                        setValue(e.target.value)
+                        props.setValue(e.target.value)
+                      }}>
+                    </InputMask>
+                    : type == 'cpfMask' ?
+                      < InputMask
+                        className="input-mask"
+                        mask='999.999.999-99'
+                        value={value}
+                        onChange={(e) => {
+                          setValue(e.target.value)
+                          props.setValue(e.target.value)
+                        }}>
+                      </InputMask>
+                      : type == 'radio' ?
+                        <div>
+                          <label>
+                            <input
+                              type="radio"
+                              name="options"
+                              value="option1"
+                              checked={value === 'option1'}
+                              onChange={handleOptionChange}
+                            />
+                            Sim
+                          </label>
+
+                          <label>
+                            <input
+                              type="radio"
+                              name="options"
+                              value="option2"
+                              checked={value === 'option2'}
+                              onChange={handleOptionChange}
+                            />
+                            Não
+                          </label>
+                        </div>
+                        :
+                        <S.Input
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}
+                          selected={selected}
+                        />
             }
 
-          </S.ContainerFormSmall>
+          </S.ContainerFormSmall >
           :
           size == 'medium' ?
             <S.ContainerFormMedium>
@@ -143,36 +202,65 @@ function InputForm(props) {
               {
                 type == 'select' ?
                   <Select options={options || []} selected={selected}
-                    styles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
                     menuPortalTarget={document.body}
-                    menuPosition={'fixed'} 
+                    menuPosition={'fixed'}
                     setSelected={setSelected} value={selected}
                     isMulti={isMulti}
                     isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : null}
                     onChange={(e) => {
-                      if(isMulti){
+                      if (isMulti) {
                         setSelected(e)
                         setValue(e)
                         props.setValue(e)
                         props.setSelected(e)
-                      }else{
+                      } else {
                         setSelected(e)
                         setValue(e)
                         props.setValue(e)
                         props.setSelected(e)
                       }
                     }} />
-                  :
-                  <S.Input
-                  type={type}
-                  readOnly={readOnly}
-                  value={value}
-                  onChange={(e) => {
-                    setValue(e.target.value)
-                    props.setValue(e.target.value)
-                  }}
-                  selected={selected}
-                  />
+                  : type == 'phoneMask' ?
+                    <InputMask
+                      className="input-mask"
+                      mask='(99) 99999-9999'
+                      value={value}
+                      onChange={(e) => {
+                        setValue(e.target.value)
+                        props.setValue(e.target.value)
+                      }}>
+                    </InputMask> : type == 'cnpjMask' ?
+                      < InputMask
+                        className="input-mask"
+                        mask='99.999.999/9999-99'
+                        value={value}
+                        onChange={(e) => {
+                          setValue(e.target.value)
+                          props.setValue(e.target.value)
+                        }}>
+                      </InputMask>
+                      : type == 'cpfMask' ?
+                        < InputMask
+                          className="input-mask"
+                          mask='999.999.999-99'
+                          value={value}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}>
+                        </InputMask>
+                        :
+                        <S.Input
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}
+                          selected={selected}
+                        />
               }
             </S.ContainerFormMedium>
             :
@@ -181,38 +269,67 @@ function InputForm(props) {
               {
                 type == 'select' ?
                   <Select options={options || []} selected={selected}
-                  styles={{...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                  menuPortalTarget={document.body}
-                  menuPosition={'fixed'} 
+                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
                     setSelected={setSelected} value={selected}
                     isMulti={isMulti}
-                    isClearable={isMulti && Array.isArray(value)  ? value.some((v) => !v.isFixed) : null}
+                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : null}
 
                     onChange={(e) => {
-                      if(isMulti){
+                      if (isMulti) {
                         setSelected(e)
                         setValue(e)
                         props.setValue(e)
                         props.setSelected(e)
-                      }else{
+                      } else {
                         setSelected(e)
                         setValue(e)
                         props.setValue(e)
                         props.setSelected(e)
                       }
 
-                    }}/>
-                  :
-                  <S.Input
-                  type={type}
-                  readOnly={readOnly}
-                  value={value}
-                  onChange={(e) => {
-                    setValue(e.target.value)
-                    props.setValue(e.target.value)
-                  }}
-                  selected={selected}
-                  />
+                    }} />
+                  : type == 'phoneMask' ?
+                    <InputMask
+                      className="input-mask"
+                      mask='(99) 99999-9999'
+                      value={value}
+                      onChange={(e) => {
+                        setValue(e.target.value)
+                        props.setValue(e.target.value)
+                      }}>
+                    </InputMask> : type == 'cnpjMask' ?
+                      < InputMask
+                        className="input-mask"
+                        mask='99.999.999/9999-99'
+                        value={value}
+                        onChange={(e) => {
+                          setValue(e.target.value)
+                          props.setValue(e.target.value)
+                        }}>
+                      </InputMask>
+                      : type == 'cpfMask' ?
+                        < InputMask
+                          className="input-mask"
+                          mask='999.999.999-99'
+                          value={value}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}>
+                        </InputMask>
+                        :
+                        <S.Input
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}
+                          selected={selected}
+                        />
               }
             </S.ContainerFormBig>
 
