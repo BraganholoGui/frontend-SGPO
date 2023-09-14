@@ -20,10 +20,8 @@ const Menu = () => {
   const [permission, setPermission] = useState(null);
 
   useEffect(() => {
-    console.log('localStorage', JSON.parse(localStorage.getItem('user')))
     setUser(JSON.parse(localStorage.getItem('user')))
     setPermission(JSON.parse(localStorage.getItem('user')).Role.status)
-    console.log(JSON.parse(localStorage.getItem('user')).Role.status)
   }, []);
 
   const handleClick = () => setClick(!click);

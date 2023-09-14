@@ -58,7 +58,7 @@ function Material() {
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="medium"></InputForm>
-            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="medium"></InputForm>
+            <InputForm value={price} setValue={setPrice} title="Preço" type='priceMask' size="medium"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="medium"></InputForm>

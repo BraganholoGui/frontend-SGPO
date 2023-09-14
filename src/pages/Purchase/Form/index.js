@@ -150,6 +150,7 @@ function Purchase() {
       }
     }
   }, [data])
+  
 
   return (
     <>
@@ -157,9 +158,9 @@ function Purchase() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<ShoppingCart fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
+            <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='priceMask' size="small"></InputForm>
             <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
-            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
+            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='priceMask' size="small"></InputForm>
           </S.ContentBox>
 
           {id != "novo" ?

@@ -127,7 +127,7 @@ function Sale() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/sales" title={id == "novo" ? "Nova Venda" : "Editar Venda"} icon={<Loyalty fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
+            <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='priceMask' size="small"></InputForm>
             <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
             <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
           </S.ContentBox>

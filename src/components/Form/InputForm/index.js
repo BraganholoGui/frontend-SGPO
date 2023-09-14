@@ -9,6 +9,7 @@ function InputForm(props) {
   const [size, setSize] = useState('');
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
+  const [valueAux, setValueAux] = useState(0);
   const [value, setValue] = useState('');
   const [options, setOptions] = useState([]);
   const [readOnly, setReadOnly] = useState(false);
@@ -90,7 +91,28 @@ function InputForm(props) {
     setSelected(props.selected);
     setReadOnly(props.readOnly);
     setIsMulti(props.isMulti);
+    setValueAux(maskCurrency(props.value ? props.value : 0));
   }, [props])
+
+  function mascaraMoeda(event) {
+    const onlyDigits = event.target.value
+      .split("")
+      .filter(s => /\d/.test(s))
+      .join("")
+      .padStart(3, "0")
+    const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2)
+    setValue(digitsFloat)
+    props.setValue(digitsFloat)
+    event.target.value = maskCurrency(digitsFloat)
+    setValueAux(maskCurrency(digitsFloat))
+  }
+
+  function maskCurrency(valor, locale = 'pt-BR', currency = 'BRL') {
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency
+    }).format(valor)
+  }
 
   const handleOptionChange = (event) => {
     setValue(event.target.value)
@@ -147,51 +169,59 @@ function InputForm(props) {
                         props.setValue(e.target.value)
                       }}>
                     </InputMask>
-                    : type == 'cpfMask' ?
-                      < InputMask
-                        className="input-mask"
-                        mask='999.999.999-99'
-                        value={value}
-                        onChange={(e) => {
-                          setValue(e.target.value)
-                          props.setValue(e.target.value)
-                        }}>
-                      </InputMask>
-                      : type == 'radio' ?
-                        <div>
-                          <label>
-                            <input
-                              type="radio"
-                              name="options"
-                              value="option1"
-                              checked={value === 'option1'}
-                              onChange={handleOptionChange}
-                            />
-                            Sim
-                          </label>
-
-                          <label>
-                            <input
-                              type="radio"
-                              name="options"
-                              value="option2"
-                              checked={value === 'option2'}
-                              onChange={handleOptionChange}
-                            />
-                            Não
-                          </label>
-                        </div>
-                        :
-                        <S.Input
-                          type={type}
-                          readOnly={readOnly}
+                    : type == 'priceMask' ?
+                      <S.Input
+                        type={type}
+                        readOnly={readOnly}
+                        value={valueAux}
+                        onInput={(event) => mascaraMoeda(event)}
+                        selected={selected}
+                      />
+                      : type == 'cpfMask' ?
+                        < InputMask
+                          className="input-mask"
+                          mask='999.999.999-99'
                           value={value}
                           onChange={(e) => {
                             setValue(e.target.value)
                             props.setValue(e.target.value)
-                          }}
-                          selected={selected}
-                        />
+                          }}>
+                        </InputMask>
+                        : type == 'radio' ?
+                          <div>
+                            <label>
+                              <input
+                                type="radio"
+                                name="options"
+                                value="option1"
+                                checked={value === 'option1'}
+                                onChange={handleOptionChange}
+                              />
+                              Sim
+                            </label>
+
+                            <label>
+                              <input
+                                type="radio"
+                                name="options"
+                                value="option2"
+                                checked={value === 'option2'}
+                                onChange={handleOptionChange}
+                              />
+                              Não
+                            </label>
+                          </div>
+                          :
+                          <S.Input
+                            type={type}
+                            readOnly={readOnly}
+                            value={value}
+                            onChange={(e) => {
+                              setValue(e.target.value)
+                              props.setValue(e.target.value)
+                            }}
+                            selected={selected}
+                          />
             }
 
           </S.ContainerFormSmall >
@@ -230,37 +260,70 @@ function InputForm(props) {
                         setValue(e.target.value)
                         props.setValue(e.target.value)
                       }}>
-                    </InputMask> : type == 'cnpjMask' ?
-                      < InputMask
-                        className="input-mask"
-                        mask='99.999.999/9999-99'
-                        value={value}
-                        onChange={(e) => {
-                          setValue(e.target.value)
-                          props.setValue(e.target.value)
-                        }}>
-                      </InputMask>
-                      : type == 'cpfMask' ?
+                    </InputMask>
+                    : type == 'priceMask' ?
+                      <S.Input
+                        type={type}
+                        readOnly={readOnly}
+                        value={valueAux}
+                        onInput={(event) => mascaraMoeda(event)}
+                        selected={selected}
+                      /> :
+                      type == 'cnpjMask' ?
                         < InputMask
                           className="input-mask"
-                          mask='999.999.999-99'
+                          mask='99.999.999/9999-99'
                           value={value}
                           onChange={(e) => {
                             setValue(e.target.value)
                             props.setValue(e.target.value)
                           }}>
                         </InputMask>
-                        :
-                        <S.Input
-                          type={type}
-                          readOnly={readOnly}
-                          value={value}
-                          onChange={(e) => {
-                            setValue(e.target.value)
-                            props.setValue(e.target.value)
-                          }}
-                          selected={selected}
-                        />
+                        : type == 'cpfMask' ?
+                          < InputMask
+                            className="input-mask"
+                            mask='999.999.999-99'
+                            value={value}
+                            onChange={(e) => {
+                              setValue(e.target.value)
+                              props.setValue(e.target.value)
+                            }}>
+                          </InputMask>
+                          : type == 'radio' ?
+                            <div>
+                              <label>
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  value="option1"
+                                  checked={value === 'option1'}
+                                  onChange={handleOptionChange}
+                                />
+                                Sim
+                              </label>
+
+                              <label>
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  value="option2"
+                                  checked={value === 'option2'}
+                                  onChange={handleOptionChange}
+                                />
+                                Não
+                              </label>
+                            </div>
+                            :
+                            <S.Input
+                              type={type}
+                              readOnly={readOnly}
+                              value={value}
+                              onChange={(e) => {
+                                setValue(e.target.value)
+                                props.setValue(e.target.value)
+                              }}
+                              selected={selected}
+                            />
               }
             </S.ContainerFormMedium>
             :
@@ -309,27 +372,59 @@ function InputForm(props) {
                           props.setValue(e.target.value)
                         }}>
                       </InputMask>
-                      : type == 'cpfMask' ?
-                        < InputMask
-                          className="input-mask"
-                          mask='999.999.999-99'
-                          value={value}
-                          onChange={(e) => {
-                            setValue(e.target.value)
-                            props.setValue(e.target.value)
-                          }}>
-                        </InputMask>
-                        :
+                      : type == 'priceMask' ?
                         <S.Input
                           type={type}
                           readOnly={readOnly}
-                          value={value}
-                          onChange={(e) => {
-                            setValue(e.target.value)
-                            props.setValue(e.target.value)
-                          }}
+                          value={valueAux}
+                          onInput={(event) => mascaraMoeda(event)}
                           selected={selected}
                         />
+                        : type == 'cpfMask' ?
+                          < InputMask
+                            className="input-mask"
+                            mask='999.999.999-99'
+                            value={value}
+                            onChange={(e) => {
+                              setValue(e.target.value)
+                              props.setValue(e.target.value)
+                            }}>
+                          </InputMask>
+                          : type == 'radio' ?
+                            <div>
+                              <label>
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  value="option1"
+                                  checked={value === 'option1'}
+                                  onChange={handleOptionChange}
+                                />
+                                Sim
+                              </label>
+
+                              <label>
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  value="option2"
+                                  checked={value === 'option2'}
+                                  onChange={handleOptionChange}
+                                />
+                                Não
+                              </label>
+                            </div>
+                            :
+                            <S.Input
+                              type={type}
+                              readOnly={readOnly}
+                              value={value}
+                              onChange={(e) => {
+                                setValue(e.target.value)
+                                props.setValue(e.target.value)
+                              }}
+                              selected={selected}
+                            />
               }
             </S.ContainerFormBig>
 
