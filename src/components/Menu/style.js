@@ -30,7 +30,7 @@ export const Nav = styled.div`
   /* background:${(props) => (!props.clicked? " #115b4c":"#b6edc8")}; */
   /* border-radius: 0% 0% 100% 0%; */
   width: ${(props) => (props.clicked? "5rem":"14rem")};
-  height: ${(props) => (props.clicked? "5rem":"100vh")};
+  height: ${(props) => (props.clicked? "5rem":"100%")};
   transition: transform 3.2s;
 `;
 export const Icon = styled.span`
@@ -73,8 +73,8 @@ export const Navigation = styled.nav`
 export const List = styled.ul`
 position: absolute;
 list-style:none;
-top: 52%;
-left: 52%;
+top: 50%;
+left: 50%;
 transform:translate(-50%,-50%);
 text-align: start;
 width: 100%;

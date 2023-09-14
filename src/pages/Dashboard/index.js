@@ -10,7 +10,7 @@ import CreateGraph from './createGraph';
 import * as S from './style';
 import { CreatePieGraph } from './createPieGraph';
 import { CreateBarGraph } from './createBarGraph';
-import MinhaImagem from '../../pages/amor.png';
+import MinhaImagem from '../../static/Logo/amor.png';
 
 function StockList() {
   const [listProduct, setProductList] = useState([]);

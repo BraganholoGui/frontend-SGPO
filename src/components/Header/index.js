@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/auth';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Select from 'react-select'
-
+import Logo from '../../static/Logo/sgpo1.png'
 
 function HeaderInit() {
   const [user, setUser] = useState(true);
@@ -27,6 +27,7 @@ function HeaderInit() {
     <>
       <S.ContainerMain>
         <S.Title>
+        <img src={Logo} alt="Logo" />
           Sistema de Gestao de processos operacionais (SGPO)
         </S.Title>
         <S.Profile>
