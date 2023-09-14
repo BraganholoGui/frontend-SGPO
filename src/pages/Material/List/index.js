@@ -9,7 +9,7 @@ import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 import FilterContent from '../../../components/FilterContent';
 import InputFormFilter from '../../../components/Form/InputFormFilter';
-import { formattedDate } from '../../../GeneralFunctions/functions';
+import { findMaxPrice, findMaxQtdMin, formattedDate } from '../../../GeneralFunctions/functions';
 
 function MaterialList() {
   const [data, setData] = useState([]);
@@ -22,22 +22,24 @@ function MaterialList() {
   const [price, setPrice] = useState(null);
   const [quantity, setQuantity] = useState(null);
   const [quantityMin, setQuantityMin] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
+  const [maxQtdMin, setMaxQtdMin] = useState(null);
 
 
   async function loadData(clean) {
-    let start = new Date().toISOString() ;
+    let start = new Date().toISOString();
     let end = new Date().toISOString();
     let startQuery = `start=${start}`;
     let endQuery = `end=${end}`;
-    
+
     let query = start && end ? `?${startQuery}&${endQuery}` : start ? `?${startQuery}` : end ? `?${endQuery}` : '';
-    if(!clean){
-  
+    if (!clean) {
+
       let quantityMinQuery = quantityMin ? `quantityMin=${quantityMin}` : null;
       let nameQuery = name ? `name=${name}` : null;
       let priceQuery = price ? `price=${price}` : null;
       let descriptionQuery = description ? `description=${description}` : null;
-  
+
       query = query.includes('?') ? query + '&' + quantityMinQuery : query + '?' + quantityMinQuery;
       query = query.includes('?') ? query + '&' + nameQuery : query + '?' + nameQuery;
       query = query.includes('?') ? query + '&' + priceQuery : query + '?' + priceQuery;
@@ -60,13 +62,15 @@ function MaterialList() {
             }
             listAux.push(obj)
           })
+          if (!maxQtdMin) setMaxQtdMin(findMaxQtdMin(response.records))
+          if (!maxPrice) setMaxPrice(findMaxPrice(response.records))
           setColumnsExcel(listAux)
         }
       });
 
   }
 
-  function cleanFilter(){
+  function cleanFilter() {
     setPrice('');
     setName('');
     setDescription('');
@@ -123,31 +127,31 @@ function MaterialList() {
     table: {
       style: {
         border: '1px solid black',
-        backgroundColor:  '#363535',
-        color:'#fff'
+        backgroundColor: '#363535',
+        color: '#fff'
       },
     },
     rows: {
       style: {
         minHeight: '72px',
-        backgroundColor:  '#363535',
-        color:'#fff'
+        backgroundColor: '#363535',
+        color: '#fff'
       },
     },
     headCells: {
       style: {
         paddingLeft: '8px',
         paddingRight: '8px',
-        backgroundColor:  '#363535',
-        color:'#fff'
+        backgroundColor: '#363535',
+        color: '#fff'
       },
     },
     cells: {
       style: {
         paddingLeft: '8px',
         paddingRight: '8px',
-        backgroundColor:  '#363535',
-        color:'#fff'
+        backgroundColor: '#363535',
+        color: '#fff'
       },
     },
   };
@@ -159,11 +163,11 @@ function MaterialList() {
   return (
     <Container>
       <HeaderContent title="Materiais" icon={<Category fontSize="large" />} titleButton="Novo Material" linkTo="/materials/novo" />
-      <FilterContent spaceTitle columnsExcel={columnsExcel} filesheet={"Materiais"} fileName={"materials.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
+      <FilterContent spaceTitle columnsExcel={columnsExcel} filesheet={"Materiais"} fileName={"materials.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}>
         <InputFormFilter spaceTitle value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
-        <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
-        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Quantidade Mín." type='range' min="0" max="100" size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max={maxPrice} size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Qtd Mín." type='range' min="0" max={maxQtdMin} size="small"></InputFormFilter>
         {/* <InputFormFilter spaceTitle value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputFormFilter> */}
       </FilterContent>
       <ListContent

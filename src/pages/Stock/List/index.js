@@ -10,7 +10,7 @@ import EditDelete from '../../../components/Form/EditDelete';
 import FilterContent from '../../../components/FilterContent';
 import SwitchMaterialProduct from '../../../components/Switch/MaterialProduct';
 import InputFormFilter from '../../../components/Form/InputFormFilter';
-import { formattedDate } from '../../../GeneralFunctions/functions';
+import { findMaxPrice, findMaxQtdMin, formattedDate } from '../../../GeneralFunctions/functions';
 
 function StockList() {
   const [dataProduct, setDataProduct] = useState([]);
@@ -27,9 +27,18 @@ function StockList() {
   const [description, setDescription] = useState(null);
   const [price, setPrice] = useState(null);
   const [quantityMin, setQuantityMin] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
+  const [maxQtdMin, setMaxQtdMin] = useState(null);
 
 
   async function loadData(clean) {
+    let maxAllPrice;
+    let maxAllQtdMin;
+    let maxProductPrice;
+    let maxProductQtdMin;
+    let maxMaterialPrice;
+    let maxMaterialQtdMin;
+
     let start = new Date().toISOString() ;
     let end = new Date().toISOString();
     let startQuery = `start=${start}`;
@@ -69,6 +78,8 @@ function StockList() {
               list.push(item)
             }
           })
+          maxProductPrice = findMaxPrice(list);
+          maxProductQtdMin = findMaxQtdMin(list);
           setDataProduct(list);
           setColumnsExcelProd(listAux);
         }
@@ -95,11 +106,18 @@ function StockList() {
               list.push(item)
             }
           })
+          maxMaterialPrice = findMaxPrice(list);
+          maxMaterialQtdMin = findMaxQtdMin(list);
           setDataMaterial(list);
           setColumnsExcelMat(listAux);
         }
       });
 
+      maxAllPrice = maxProductPrice > maxMaterialPrice ? maxProductPrice : maxMaterialPrice;
+      maxAllQtdMin= maxProductQtdMin > maxMaterialQtdMin ? maxProductQtdMin : maxMaterialQtdMin;
+      if(!maxQtdMin) setMaxQtdMin(maxAllQtdMin)
+      if(!maxPrice) setMaxPrice(maxAllPrice)
+      
   }
 
   const columns = [
@@ -242,8 +260,8 @@ function StockList() {
       <FilterContent spaceTitle columnsExcel={!checked ? columnsExcelProd : columnsExcelmat} filesheet={!checked ? "Produtos" : "Materiais"} fileName={!checked ? "products.xlsx" : "materials.xlsx"} loadData={() => loadData()} cleanFilter={() => cleanFilter()}>
         <InputFormFilter spaceTitle value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter spaceTitle value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
-        <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
-        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Quantidade Mín." type='range' min="0" max="100" size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={price} setValue={setPrice} title="Preço" type='range' min="0" max={maxPrice} size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Qtd Mín." type='range' min="0" max={maxQtdMin} size="small"></InputFormFilter>
       </FilterContent>
       <ListContent
         columns={!checked ? columns : columnsMaterial}

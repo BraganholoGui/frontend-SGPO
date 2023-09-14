@@ -9,7 +9,7 @@ import * as S from './style';
 import EditDelete from '../../../components/Form/EditDelete';
 import FilterContent from '../../../components/FilterContent';
 import InputFormFilter from '../../../components/Form/InputFormFilter';
-import { formattedDate } from '../../../GeneralFunctions/functions';
+import { findMaxPrice, findMaxQtdMin, formattedDate } from '../../../GeneralFunctions/functions';
 
 function ProductList() {
   const [data, setData] = useState([]);
@@ -22,6 +22,8 @@ function ProductList() {
   const [price, setPrice] = useState(null);
   const [quantity, setQuantity] = useState(null);
   const [quantityMin, setQuantityMin] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
+  const [maxQtdMin, setMaxQtdMin] = useState(null);
 
   async function loadData(clean) {
     let start = new Date().toISOString() ;
@@ -60,6 +62,8 @@ function ProductList() {
             listAux.push(obj)
           })
           setColumnsExcel(listAux)
+          if (!maxQtdMin) setMaxQtdMin(findMaxQtdMin(response.records))
+          if (!maxPrice) setMaxPrice(findMaxPrice(response.records))
         }
       });
 
@@ -152,8 +156,8 @@ function ProductList() {
       <FilterContent columnsExcel={columnsExcel} filesheet={"Produtos"} fileName={"products.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
         <InputFormFilter value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
-        <InputFormFilter value={price} setValue={setPrice} title="Preço" type='range' min="0" max="100" size="small"></InputFormFilter>
-        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Quantidade Mín." type='range' min="0" max="100" size="small"></InputFormFilter>
+        <InputFormFilter value={price} setValue={setPrice} title="Preço" type='range' min="0" max={maxPrice} size="small"></InputFormFilter>
+        <InputFormFilter spaceTitle value={quantityMin} setValue={setQuantityMin} title="Qtd Mín." type='range' min="0" max={maxQtdMin} size="small"></InputFormFilter>
         {/* <InputFormFilter value={quantityMin} setValue={setQuantityMin} title="Quantidade Mínima" type='text' size="small"></InputFormFilter> */}
       </FilterContent>
       <ListContent

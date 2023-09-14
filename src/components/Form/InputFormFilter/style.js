@@ -19,6 +19,26 @@ padding:10px;
     transition: all 0.9s ease-in-out;
 }
 `; 
+export const InputRange = styled.input`
+background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `#fff`)};
+border-radius: 10px;
+border: 2px solid #ccc;
+box-shadow: 2px 2px 3px #ccc;
+height: 38px;
+font-family: Arial, sans-serif;
+font-size: 16px;
+color: #333;
+transition: all 0.9s ease-in-out;
+padding:10px;
+width: 100%;
+margin: 0;
+padding: 0;
+
+&&:focus{
+    border: 2px solid ${theme.primaryDark};
+    transition: all 0.9s ease-in-out;
+}
+`; 
 
 export const ContainerFormSmall = styled.div`
 width: 20%;
@@ -108,4 +128,5 @@ export const RadioInput = styled.input`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
 `; 

@@ -36,3 +36,26 @@ export function arrayToXLSX(arrayOfObjects, sheetName, fileName) {
   
   XLSX.writeFile(wb, fileName);
 }
+
+export function findMaxPrice(listOfObjects) {
+  let maxPrice = -1; 
+
+  for (const obj of listOfObjects) {
+    if (obj.price > maxPrice) {
+      maxPrice = obj.price;
+    }
+  }
+
+  return maxPrice;
+}
+export function findMaxQtdMin(listOfObjects) {
+  let maxQtdMin = -1; 
+
+  for (const obj of listOfObjects) {
+    if (obj.quantity_min > maxQtdMin) {
+      maxQtdMin = obj.quantity_min;
+    }
+  }
+
+  return maxQtdMin;
+}

@@ -14,8 +14,8 @@ function InputFormFilter(props) {
   const [readOnly, setReadOnly] = useState(false);
   const [selected, setSelected] = useState(null);
   const [isMulti, setIsMulti] = useState(false);
-  const [min, setMin] = useState('0');
-  const [max, setMax] = useState('100');
+  const [mini, setMini] = useState('0');
+  const [maxi, setMaxi] = useState('100');
 
   const colourStyles = {
     control: (styles) => ({
@@ -90,8 +90,10 @@ function InputFormFilter(props) {
     setSelected(props.selected);
     setReadOnly(props.readOnly);
     setIsMulti(props.isMulti);
-    setMin(props.max);
-    setMax(props.min);
+    setMini(props.min == -1 ? 0 : props.min);
+    setMaxi(props.max == -1 ? 1000 : props.max);
+    console.log(props.max);
+    console.log(props.min);
   }, [props])
 
   const getBackgroundSize = () => {
@@ -184,18 +186,35 @@ function InputFormFilter(props) {
                         {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
                       </S.Title>
                     </S.Space>
-                    <S.Input
-                      type={type}
-                      readOnly={readOnly}
-                      value={value}
-                      // placeholder={title}
-                      style={getBackgroundSize()}
-                      onChange={(e) => {
-                        setValue(e.target.value)
-                        props.setValue(e.target.value)
-                      }}
-                      selected={selected}
-                    />
+                    {type == 'range' ?
+                      <S.InputRange
+                        type={type}
+                        readOnly={readOnly}
+                        value={value}
+                        min={mini}
+                        max={maxi}
+                        // placeholder={title}
+                        style={getBackgroundSize()}
+                        onChange={(e) => {
+                          setValue(e.target.value)
+                          props.setValue(e.target.value)
+                        }}
+                        selected={selected}
+                      />
+                      :
+                      <S.Input
+                        type={type}
+                        readOnly={readOnly}
+                        value={value}
+                        // placeholder={title}
+                        style={getBackgroundSize()}
+                        onChange={(e) => {
+                          setValue(e.target.value)
+                          props.setValue(e.target.value)
+                        }}
+                        selected={selected}
+                      />
+                    }
                   </>
             }
 
@@ -278,18 +297,35 @@ function InputFormFilter(props) {
                           {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
                         </S.Title>
                       </S.Space>
-                      <S.Input
-                        type={type}
-                        readOnly={readOnly}
-                        value={value}
-                        // placeholder={title}
-                        style={getBackgroundSize()}
-                        onChange={(e) => {
-                          setValue(e.target.value)
-                          props.setValue(e.target.value)
-                        }}
-                        selected={selected}
-                      />
+                      {type == 'range' ?
+                        <S.InputRange
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          min={mini}
+                          max={maxi}
+                          // placeholder={title}
+                          style={getBackgroundSize()}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}
+                          selected={selected}
+                        />
+                        :
+                        <S.Input
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          // placeholder={title}
+                          style={getBackgroundSize()}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}
+                          selected={selected}
+                        />
+                      }
                     </>
               }
 
@@ -372,17 +408,35 @@ function InputFormFilter(props) {
                           {type == 'range' ? <>{title}:  {value}</> : <>{title}</>}
                         </S.Title>
                       </S.Space>
-                      <S.Input
-                        type={type}
-                        readOnly={readOnly}
-                        value={value}
-                        // placeholder={title}
-                        onChange={(e) => {
-                          setValue(e.target.value)
-                          props.setValue(e.target.value)
-                        }}
-                        selected={selected}
-                      />
+                      {type == 'range' ?
+                        <S.InputRange
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          min={mini}
+                          max={maxi}
+                          // placeholder={title}
+                          style={getBackgroundSize()}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}
+                          selected={selected}
+                        />
+                        :
+                        <S.Input
+                          type={type}
+                          readOnly={readOnly}
+                          value={value}
+                          // placeholder={title}
+                          style={getBackgroundSize()}
+                          onChange={(e) => {
+                            setValue(e.target.value)
+                            props.setValue(e.target.value)
+                          }}
+                          selected={selected}
+                        />
+                      }
                     </>
               }
 

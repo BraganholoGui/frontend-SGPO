@@ -128,9 +128,9 @@ function Stock() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<Inventory fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={price} setValue={setPrice} title="Preço" type='text' size="small"></InputForm>
+            <InputForm value={price} setValue={setPrice} title="Preço" type='priceMask' size="small"></InputForm>
             <InputForm value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
-            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
+            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='priceMask' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
