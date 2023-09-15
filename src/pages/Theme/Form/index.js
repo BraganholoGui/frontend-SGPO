@@ -19,7 +19,8 @@ function Theme() {
       get(`/themes/${id}`)
         .then(async response => {
           if (response) {
-            setData(response.material);
+            console.log(response);
+            setData(response.theme);
           }
         });
     } 

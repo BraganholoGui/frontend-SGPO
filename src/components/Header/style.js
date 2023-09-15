@@ -81,3 +81,86 @@ export const ContainerLogout = styled.div`
    margin-left:15px; 
    cursor:pointer;
 `; 
+export const DivLogo = styled.div`
+display:flex;
+flex-direction:column; 
+cursor:pointer;
+height: 4rem;
+background-color: #000;
+padding: 7px;
+@media (max-width: 650px) {
+  display:none
+}
+`; 
+export const DivLogoSquare = styled.div`
+border:  5px solid #000;
+cursor:pointer;
+height: 4rem;
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+min-height: 50px;
+min-width: 60px;
+color: #4DFFC5;
+font-size: 30px;
+
+`; 
+export const SlLogo = styled.div`
+color: #4DFFC5;
+font-size: 15px;
+`; 
+
+export const SiglaLogo = styled.div`
+display:flex;
+justify-content: center;
+align-items: center;
+height: 50%;
+font-size: 40px;
+font-style: italic;
+width: 100%;
+color: #4DFFC5;
+`; 
+export const FullNameLogo = styled.div`
+display:flex;
+justify-content: flex-start;
+align-items: center;
+font-size: 18px;
+height: 50%;
+width: 100%;
+`; 
+export const Cube = styled.div`
+position: relative;
+width: 60px;
+height: 60px;
+transform-style: preserve-3d;
+transform: rotateX(30deg);
+animation: animate 4s linear infinite;
+background:linear-gradient(#151515, #4DFFC5);
+display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+div{
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+
+  span{
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(#151515, #4DFFC5);
+    transform: rotateY(calc(90deg * var(--i))) translateZ(30deg);
+  }
+}
+`; 
