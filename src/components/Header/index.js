@@ -10,6 +10,7 @@ import './style.css';
 function HeaderInit() {
   const [user, setUser] = useState(true);
   const [fullLogo, setFullLogo] = useState(false);
+  const [minorLogo, setMinorLogo] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')))
@@ -32,28 +33,24 @@ function HeaderInit() {
 
           {fullLogo ?
             <>
-              <S.DivLogoSquare onClick={() => setFullLogo(!fullLogo)}>
+              <S.DivLogoSquare onClick={() => { setMinorLogo(true); setFullLogo(false) }}>
                 <InsertChart fontSize='large' />
-                {/* <S.SlLogo>
-              SGPO
-            </S.SlLogo> */}
               </S.DivLogoSquare>
               <S.DivLogo>
-                {/* <S.SiglaLogo>
-                  SGPO
-                </S.SiglaLogo> */}
                 <S.FullNameLogo>
                   Sistema de Gestão de Processos Operacionais
                 </S.FullNameLogo>
               </S.DivLogo>
             </>
             : null}
-          <S.Cube onClick={() => setFullLogo(!fullLogo)}>
-            aaa
-            <div>
-              <span style={{ "--i": 0 }}>SGPO</span>
-            </div>
-          </S.Cube>
+          {minorLogo ?
+            <S.Cube onClick={() => { setFullLogo(true); setMinorLogo(false) }}>
+              <div>
+                <span style={{ "--i": 0 }}>SGPO</span>
+              </div>
+            </S.Cube>
+            : null
+          }
         </S.Title>
         <S.Profile>
           <S.VerticalHr></S.VerticalHr>

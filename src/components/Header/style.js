@@ -16,6 +16,7 @@ export const Title = styled.div`
   justify-content: center;
   align-items: center;
   color: #fff;
+  margin-left: 300px;
   font-size: 3vh;
   @media (max-width: 1400px) {
      width: 70%;

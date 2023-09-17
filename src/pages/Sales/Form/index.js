@@ -129,7 +129,7 @@ function Sale() {
           <S.ContentBox>
             <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='priceMask' size="small"></InputForm>
             <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
-            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='text' size="small"></InputForm>
+            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='priceMask' size="small"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             {id != "novo" ?
