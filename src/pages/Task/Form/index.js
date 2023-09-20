@@ -19,6 +19,7 @@ function TaskForm() {
   const [userSelected, setUserSelected] = useState(null);
   const [statusSelected, setStatusSelected] = useState(1);
   const [prioritySelected, setPrioritySelected] = useState(null);
+  const [teamsRelateds, setTeamsRelateds] = useState('');
 
   const [themeOptions, setThemeOptions] = useState('');
   const [userOptions, setUserOptions] = useState('');
@@ -33,18 +34,18 @@ function TaskForm() {
             setData(response.task);
           }
         });
-    } 
+    }
   }
 
   function buildSubmitObj() {
     let obj = {
-      name:name,
-      description:description,
-      user:userSelected ? userSelected.id : null,
+      name: name,
+      description: description,
+      user: userSelected ? userSelected.id : null,
       start: new Date(),
-      end:end,
+      end: end,
       theme: themeSelected ? themeSelected.id : null,
-      created_by:1,
+      created_by: 1,
       status: id != "novo" ? statusSelected ? statusSelected.id : null : 1,
       priority: prioritySelected ? prioritySelected.id : null,
     }
@@ -59,12 +60,12 @@ function TaskForm() {
             item.label = item.id + '. ' + item.name
           })
           setThemeOptions(response.records);
-          if(data && data.theme){
+          if (data && data.theme) {
             setThemeSelected(response.records.find(item => item.id == data.theme))
           }
         }
       });
-    get(`/users`) 
+    get(`/users`)
       .then(async response => {
         if (response && response.records) {
           response.records.map(item => {
@@ -72,12 +73,12 @@ function TaskForm() {
             item.label = item.id + '. ' + item.Person.name
           })
           setUserOptions(response.records);
-          if(data && data.user){
+          if (data && data.user) {
             setUserSelected(response.records.find(item => item.id == data.user))
           }
         }
       });
-    get(`/status`) 
+    get(`/status`)
       .then(async response => {
         if (response && response.records) {
           response.records = response.records.filter(item => !item.id_permission);
@@ -86,12 +87,12 @@ function TaskForm() {
             item.label = item.id + '. ' + item.name
           })
           setStatusOptions(response.records);
-          if(data && data.status){
+          if (data && data.status) {
             setStatusSelected(response.records.find(item => item.id == data.status))
           }
         }
       });
-    get(`/priorities`) 
+    get(`/priorities`)
       .then(async response => {
         if (response && response.records) {
           response.records.map(item => {
@@ -99,7 +100,7 @@ function TaskForm() {
             item.label = item.id + '. ' + item.name
           })
           setPriorityOptions(response.records);
-          if(data && data.priority){
+          if (data && data.priority) {
             setPrioritySelected(response.records.find(item => item.id == data.priority))
           }
         }
@@ -110,11 +111,20 @@ function TaskForm() {
     loadData();
     getOptions();
   }, [])
-  
-  
   useEffect(() => {
-    setName(data.name );
-    setDescription(data.description );
+    if (userSelected && userSelected.TeamUsers) {
+      userSelected.TeamUsers.map(team => {
+        team.value = team.team;
+        team.label = team.Team.name;
+      })
+      setTeamsRelateds(userSelected.TeamUsers)
+    }
+  }, [userSelected])
+
+
+  useEffect(() => {
+    setName(data.name);
+    setDescription(data.description);
     getOptions();
   }, [data])
 
@@ -128,8 +138,8 @@ function TaskForm() {
             <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
             {/* {
               id != "novo" ? */}
-              <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status(alterar para radio btton)" type='select' size="small"></InputForm>
-              {/* : null
+            <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status(alterar para radio btton)" type='select' size="small"></InputForm>
+            {/* : null
             } */}
           </S.ContentBox>
           <S.ContentBox>
@@ -139,6 +149,9 @@ function TaskForm() {
             <InputForm options={userOptions} selected={userSelected} setSelected={setUserSelected} value={userSelected} setValue={setUserSelected} title="Responsável" type='select' size="small"></InputForm>
             <InputForm options={themeOptions} selected={themeSelected} setSelected={setThemeSelected} value={themeSelected} setValue={setThemeSelected} title="Tema" type='select' size="small"></InputForm>
             <InputForm options={priorityOptions} selected={prioritySelected} setSelected={setPrioritySelected} value={prioritySelected} setValue={setPrioritySelected} title="Prioridade" type='select' size="small"></InputForm>
+          </S.ContentBox>
+          <S.ContentBox>
+            <InputForm readOnly={true} isMulti options={[]} selected={teamsRelateds} setSelected={setTeamsRelateds} value={teamsRelateds} setValue={setTeamsRelateds} title="Times do Responsável" type='select' size="large"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>

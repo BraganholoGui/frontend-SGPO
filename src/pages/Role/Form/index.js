@@ -61,7 +61,6 @@ function Role() {
 
   useEffect(() => {
     setName(data.name);
-    setPermissionSelected(data?.Status?.name);
   }, [data])
 
   return (
@@ -71,7 +70,7 @@ function Role() {
         <FormContent>
           <S.ContentBox>
             <InputForm value={name} setValue={setName} title="Nome do cargo" type='text' size="medium"></InputForm>
-            <InputForm options={statusOptions} selected={permissionSelected} setSelected={setPermissionSelected} value={permissionSelected} setValue={setPermissionSelected} title="Status(alterar para radio btton)" type='select' size="small"></InputForm>
+            <InputForm options={statusOptions} selected={permissionSelected} setSelected={setPermissionSelected} value={permissionSelected} setValue={setPermissionSelected} title="Status" type='select' size="small"></InputForm>
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} />
         </FormContent>

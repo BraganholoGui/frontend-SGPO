@@ -10,7 +10,7 @@ export const ContainerMain = styled.div`
   `; 
 export const Box = styled.div`
   margin-top: 2%;
-  width: 70%;
+  width: 85%;
   z-index: 999;
 `; 
 export const RowCont = styled.div`

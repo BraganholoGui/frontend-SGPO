@@ -20,23 +20,35 @@ function ButtonSave(props) {
   }, [props])
 
   async function handleSubmit(url) {
+    console.log(obj)
     setLoading(true)
     let invalid = false;
+    let message;
+    if(obj.contact && obj.contact.phone && obj.contact.phone.length < 15) {
+      invalid = true
+      message =  `Digite um telefone válido!`
+    };
+    if(obj.contact && obj.contact.email && !obj.contact.email.includes("@")) {
+      invalid = true
+      message =  `Digite um email válido!`
+    };
     if(obj.productObj && !obj.materialObj){
       if(obj.productObj.quantity == 0 || obj.productObj.quantity < parseInt(obj.quantity)){
-        setLoading(false);
-        toast('error', `Produto sem quantidade sulficiente!`);
+        message = `Produto sem quantidade suficiente!`;
         invalid = true
       }
     }
     if(obj.materialObj && !obj.productObj){
       if(obj.materialObj.quantity == 0 || obj.materialObj.quantity < parseInt(obj.quantity)){
-        setLoading(false);
-        toast('error', `Material sem quantidade sulficiente!`);
+        message =  `Material sem quantidade suficiente!`;
         invalid = true
       }
     }
-    if(invalid) return;
+    if(invalid){
+      toast('error', message);
+      setLoading(false)
+      return;
+    } 
     
     if (id != 'novo') {
       await put(`${url}/${id}`, obj)
@@ -46,7 +58,7 @@ function ButtonSave(props) {
           setLoading(false)
           
         }).catch((err) => {
-          toast('error', err.reason || `Error ao atualizar o registro :(`);
+          toast('error', err.response.data.error || `Error ao atualizar o registro :(`);
           setLoading(false)
         });
     } else {
@@ -57,7 +69,8 @@ function ButtonSave(props) {
           history.goBack();
 
         }).catch((err) => {
-          toast('error', err.reason || `Error ao salvar o registro :(`);
+          console.log(err)
+          toast('error', err.response.data.error || `Error ao salvar o registro :(`);
           setLoading(false)
         });
     }

@@ -107,7 +107,7 @@ function MaterialList() {
     },
     {
       name: 'Quantidade',
-      selector: row => row.quantity,
+      selector: row => row.quantity ? row.quantity : 0 ,
       sortable: true,
     },
     {

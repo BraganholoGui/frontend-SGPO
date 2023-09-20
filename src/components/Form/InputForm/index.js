@@ -232,25 +232,27 @@ function InputForm(props) {
               {
                 type == 'select' ?
                   <Select options={options || []} selected={selected}
-                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                    menuPortalTarget={document.body}
-                    menuPosition={'fixed'}
-                    setSelected={setSelected} value={selected}
-                    isMulti={isMulti}
-                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : null}
-                    onChange={(e) => {
-                      if (isMulti) {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      } else {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      }
-                    }} />
+                  styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
+                  setSelected={setSelected} value={selected}
+                  isMulti={isMulti}
+                  isDisabled={readOnly}
+                  isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                  onChange={(e) => {
+                    if (isMulti) {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    } else {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    }
+
+                  }} />
                   : type == 'phoneMask' ?
                     <InputMask
                       className="input-mask"
@@ -332,27 +334,27 @@ function InputForm(props) {
               {
                 type == 'select' ?
                   <Select options={options || []} selected={selected}
-                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                    menuPortalTarget={document.body}
-                    menuPosition={'fixed'}
-                    setSelected={setSelected} value={selected}
-                    isMulti={isMulti}
-                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : null}
+                  styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
+                  setSelected={setSelected} value={selected}
+                  isMulti={isMulti}
+                  isDisabled={readOnly}
+                  isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                  onChange={(e) => {
+                    if (isMulti) {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    } else {
+                      setSelected(e)
+                      setValue(e)
+                      props.setValue(e)
+                      props.setSelected(e)
+                    }
 
-                    onChange={(e) => {
-                      if (isMulti) {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      } else {
-                        setSelected(e)
-                        setValue(e)
-                        props.setValue(e)
-                        props.setSelected(e)
-                      }
-
-                    }} />
+                  }} />
                   : type == 'phoneMask' ?
                     <InputMask
                       className="input-mask"

@@ -12,6 +12,7 @@ export const Button = styled.button`
  color: #fff;
  font-weight: 700;
  a{
+  width: 100%;
   color: #fff;
  font-weight: 700;
    text-transform: uppercase;
