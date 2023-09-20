@@ -30,6 +30,9 @@ function Buyer() {
   }
 
   function buildSubmitObj() {
+    // console.log(cpf_cnpj)
+    // console.log(cpf_cnpj.length)
+    // console.log(isCnpj)
     let obj = {
       contact: {
         id: data.Person && data.Person.Contact ? data.Person.Contact.id : null,

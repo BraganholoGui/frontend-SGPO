@@ -138,10 +138,11 @@ transform-style: preserve-3d;
 transform: rotateX(30deg);
 animation: animate 4s linear infinite;
 background:linear-gradient(#151515, #4DFFC5);
+border-radius: 15px;
 display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+justify-content: center;
+align-items: center;
+flex-direction: column;
 div{
   position:absolute;
   top: 0;
@@ -149,6 +150,7 @@ div{
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  border-radius: 15px;
 
   span{
     cursor: pointer;
@@ -162,6 +164,7 @@ div{
     height: 100%;
     background:linear-gradient(#151515, #4DFFC5);
     transform: rotateY(calc(90deg * var(--i))) translateZ(30deg);
+    border-radius: 15px;
   }
 }
 `; 

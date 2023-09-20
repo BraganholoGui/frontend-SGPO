@@ -24,11 +24,21 @@ function ButtonSave(props) {
     setLoading(true)
     let invalid = false;
     let message;
-    if(obj.contact && obj.contact.phone && obj.contact.phone.length < 15) {
+
+    console.log(obj)
+    console.log(obj.cpf_cnpj)
+    console.log(obj.cpf_cnpj.replace(/\D/g, '').length)
+    console.log(obj.cpf_cnpj.replace(/\D/g, ''))
+    if(!obj.is_cnpj  && obj.cpf_cnpj && (obj.cpf_cnpj.replace(/[^\d]/g, '')).length < 11) {
+      invalid = true
+      message =  `Digite um CPF válido!`
+    }else if(obj.is_cnpj && obj.cpf_cnpj.replace(/\D/g, '').length < 14) {
+      invalid = true
+      message =  `Digite um CNPJ válido!`
+    }else if(obj.contact && obj.contact.phone && obj.contact.phone.length < 15) {
       invalid = true
       message =  `Digite um telefone válido!`
-    };
-    if(obj.contact && obj.contact.email && !obj.contact.email.includes("@")) {
+    }else if(obj.contact && obj.contact.email && !obj.contact.email.includes("@")) {
       invalid = true
       message =  `Digite um email válido!`
     };
