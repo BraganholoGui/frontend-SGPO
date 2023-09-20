@@ -8,6 +8,7 @@ import {
   Edit, DeleteTwoTone, Reviews, ErrorTwoTone, CheckCircleTwoTone
 } from '@mui/icons-material';
 import { LoadingSmall } from '../../Loading';
+import ModalDelete from '../../Modal';
 
 function EditDelete(props) {
   const [id, setId] = useState('');
@@ -16,6 +17,7 @@ function EditDelete(props) {
   const [deleteItem, setDeleteitem] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [alert, setAlert] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
 
   useEffect(() => {
     setId(props.id)
@@ -24,6 +26,28 @@ function EditDelete(props) {
     setCompleted(props.completed)
     setAlert(props.alert)
   }, [props])
+
+  const toggle = () => {
+    setOpenModalDelete(!openModalDelete)
+  };
+  const allowDel = (allow) => {
+    console.log(allow)
+     if (allow) {
+      setDeleteitem(true)
+      del(url, id)
+        .then(() => {
+          toast('success', `Deletado com sucesso!`);
+          setDeleteitem(false)
+          updateList()
+        })
+        .catch(err => {
+          toast('error', err.reason || `Error ao deletar o registro :(`);
+          setDeleteitem(false)
+        })
+        setOpenModalDelete(false)
+    }
+
+  };
 
   function updateList() {
     get(url)
@@ -36,17 +60,21 @@ function EditDelete(props) {
   }
 
   function deleteForm(url, id) {
-    setDeleteitem(true)
-    del(url, id)
-      .then(() => {
-        toast('success', `Deletado com sucesso!`);
-        setDeleteitem(false)
-        updateList()
-      })
-      .catch(err => {
-        toast('error', err.reason || `Error ao deletar o registro :(`);
-        setDeleteitem(false)
-      })
+    toggle();
+    // if (allowDelete) {
+    //   setDeleteitem(true)
+    //   del(url, id)
+    //     .then(() => {
+    //       toast('success', `Deletado com sucesso!`);
+    //       setDeleteitem(false)
+    //       updateList()
+    //     })
+    //     .catch(err => {
+    //       toast('error', err.reason || `Error ao deletar o registro :(`);
+    //       setDeleteitem(false)
+    //     })
+    // }
+
   }
 
   return (
@@ -60,7 +88,7 @@ function EditDelete(props) {
         :
         <S.Completed>
           <a href={`${url}/${id}`}><Reviews style={{ color: 'green' }}></Reviews></a>
-          <CheckCircleTwoTone style={{ cursor: 'pointer',color: 'green' }} onClick={() => toast('success', `Compra Finalizada!`)} />
+          <CheckCircleTwoTone style={{ cursor: 'pointer', color: 'green' }} onClick={() => toast('success', `Compra Finalizada!`)} />
         </S.Completed>
       }
       {
@@ -68,6 +96,9 @@ function EditDelete(props) {
           <LoadingSmall></LoadingSmall>
           : null
       }
+      <ModalDelete
+        openModalDelete={openModalDelete} setOpenModalDelete={setOpenModalDelete} toggle={toggle} allowDel={allowDel}
+      />
     </S.Container>
   )
 

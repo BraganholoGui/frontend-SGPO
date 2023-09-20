@@ -25,10 +25,6 @@ function ButtonSave(props) {
     let invalid = false;
     let message;
 
-    console.log(obj)
-    console.log(obj.cpf_cnpj)
-    console.log(obj.cpf_cnpj.replace(/\D/g, '').length)
-    console.log(obj.cpf_cnpj.replace(/\D/g, ''))
     if(!obj.is_cnpj  && obj.cpf_cnpj && (obj.cpf_cnpj.replace(/[^\d]/g, '')).length < 11) {
       invalid = true
       message =  `Digite um CPF válido!`
