@@ -19,6 +19,12 @@ function Login() {
       password: password
     });
   }
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
 
   return (
     <S.ContainerBody>
@@ -38,7 +44,9 @@ function Login() {
                 type='text'
                 onChange={(e) => {
                   setUserName(e.target.value)
-                }} />
+                }} 
+                onKeyPress={handleKeyPress}
+                />
                 <S.Label>
                   Senha:
                 </S.Label>
@@ -49,6 +57,7 @@ function Login() {
                   onChange={(e) => {
                     setPassword(e.target.value)
                   }}
+                  onKeyPress={handleKeyPress}
                 />
                 <S.PasswordToggle onClick={togglePasswordVisibility}>
                   <S.PasswordIcon>
