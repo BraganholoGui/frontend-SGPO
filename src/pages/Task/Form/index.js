@@ -14,7 +14,7 @@ function TaskForm() {
   const [data, setData] = useState({});
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [end, setEnd] = useState('12/12/2022');
+  const [end, setEnd] = useState('');
   const [themeSelected, setThemeSelected] = useState(null);
   const [userSelected, setUserSelected] = useState(null);
   const [statusSelected, setStatusSelected] = useState(1);
@@ -125,6 +125,10 @@ function TaskForm() {
   useEffect(() => {
     setName(data.name);
     setDescription(data.description);
+    if (data.end) {
+      let newDateFormatted = new Date(data.end).toISOString().slice(0, 10);
+      setEnd(newDateFormatted);
+    }
     getOptions();
   }, [data])
 
