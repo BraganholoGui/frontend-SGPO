@@ -18,6 +18,9 @@ const Task = ({ name, details, item, id, provided, handleRemove }) => {
         Responsável: {item.User && item.User.Person ? item.User.Person.name  : null}
       </S.TaskDetails>
       <S.TaskDetails>
+        Criado por: {item.createdBy && item.createdBy.Person ? item.createdBy.Person.name  : null}
+      </S.TaskDetails>
+      <S.TaskDetails>
         Prioridade: {item  && item.Priority ? item.Priority.name  : null}
       </S.TaskDetails>
       <S.TaskDetails>

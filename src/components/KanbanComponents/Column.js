@@ -39,6 +39,7 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                   >
                     {(provided, snapshot) => (
                       <>
+                      {console.log(item)}
                         <Task
                           name={item.name}
                           item={item}

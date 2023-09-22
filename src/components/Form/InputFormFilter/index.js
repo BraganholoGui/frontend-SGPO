@@ -123,7 +123,7 @@ function InputFormFilter(props) {
                     styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
                     menuPortalTarget={document.body}
                     menuPosition={'fixed'}
-                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                    isClearable={true}
                     onChange={(e) => {
                       if (isMulti) {
                         setSelected(e)
@@ -235,7 +235,7 @@ function InputFormFilter(props) {
                       styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
                       menuPortalTarget={document.body}
                       menuPosition={'fixed'}
-                      isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                      isClearable={true}
                       onChange={(e) => {
                         if (isMulti) {
                           setSelected(e)
@@ -345,7 +345,7 @@ function InputFormFilter(props) {
                       styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
                       menuPortalTarget={document.body}
                       menuPosition={'fixed'}
-                      isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                      isClearable={true}
                       onChange={(e) => {
                         if (isMulti) {
                           setSelected(e)
