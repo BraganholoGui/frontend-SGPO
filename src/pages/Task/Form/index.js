@@ -43,7 +43,7 @@ function TaskForm() {
       description: description,
       user: userSelected ? userSelected.id : null,
       start: new Date(),
-      end: end,
+      end: new Date(end),
       theme: themeSelected ? themeSelected.id : null,
       created_by: 1,
       status: id != "novo" ? statusSelected ? statusSelected.id : null : 1,
@@ -138,13 +138,13 @@ function TaskForm() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/tasks" title={id == "novo" ? "Novo Tarefa" : "Editar Tarefa"} icon={<Task fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
-            <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
-            {/* {
-              id != "novo" ? */}
-            <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status(alterar para radio btton)" type='select' size="small"></InputForm>
-            {/* : null
-            } */}
+            <InputForm value={name} setValue={setName} title="Nome" type='text' size={id != "novo" ? "small" : 'medium'}></InputForm>
+            <InputForm value={end} setValue={setEnd} title="Prazo" type='date' size={id != "novo" ? "small" : 'medium'}></InputForm>
+            {
+              id != "novo" ?
+            <InputForm options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+            : null
+            }
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="large"></InputForm>

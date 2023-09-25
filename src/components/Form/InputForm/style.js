@@ -35,11 +35,11 @@ padding:10px;
 `; 
 
 export const ContainerFormSmall = styled.div`
-width: 30%;
+width: 25%;
 display: flex;
 flex-direction: column;
-transition: all 2s ;
-transform: rotate(-360deg);
+/* transition: all 2s ;
+transform: rotate(-360deg); */
 
 .input-mask{
   background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `${theme.input}`)};
@@ -60,16 +60,16 @@ padding:10px;
 }
 @media (max-width: 860px) {
     width: 95%;
-    transition: all 2s ;
-    transform: rotate(360deg);
+    /* transition: all 2s ;
+    transform: rotate(360deg); */
   }
 
 `; 
 export const ContainerFormMedium = styled.div`
 width: 40%;
 display: flex;
-transition: all 2s ;
-transform: rotate(-360deg);
+/* transition: all 2s ;
+transform: rotate(-360deg); */
 z-index: 1;
 flex-direction: column;
 .input-mask{
@@ -83,20 +83,20 @@ font-size: 16px;
 color: #333;
 transition: all 0.9s ease-in-out;
 padding:10px;
-@media (max-width: 860px) {
-    width: 95%;
-    transition: all 2s ;
-    transform: rotate(360deg);
+  @media (max-width: 860px) {
+      width: 95%;
+      /* transition: all 2s ;
+      transform: rotate(360deg); */
 
-  }
-
+    }
+}
 `; 
 export const ContainerFormBig = styled.div`
 width: 90%;
 display: flex;
 flex-direction: column;
-transition: all 2s ;
-transform: rotate(-360deg);
+/* transition: all 2s ;
+transform: rotate(-360deg); */
 .input-mask{
   background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `${theme.input}`)};
 border-radius: 10px;
@@ -108,12 +108,13 @@ font-size: 16px;
 color: #333;
 transition: all 0.9s ease-in-out;
 padding:10px;
-@media (max-width: 860px) {
-    width: 95%;
-    transition: all 2s ;
-    transform: rotate(360deg);
+  @media (max-width: 860px) {
+      width: 95%;
+      /* transition: all 2s ;
+      transform: rotate(360deg); */
 
   }
+}
 
 `; 
 export const Title = styled.label`
