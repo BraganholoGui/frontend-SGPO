@@ -97,14 +97,25 @@ font-size: 0.9em;
 font-weight: 600;
 `;
 
+export const TaskDetailsResponse = styled.div`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.8em;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+    ${({ other }) => other ? `color: #9c9c9c` : 'color:#EC7E3F'}
+`;
 export const TaskDetails = styled.div`
   font-style: normal;
   font-weight: 300;
   font-size: 0.8em;
-  color: #9c9c9c;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
+  text-align: justify;
+  color: #9c9c9c
 `;
 
 export const ContainerActions = styled.div`

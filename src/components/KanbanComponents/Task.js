@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { formattedDate } from '../../GeneralFunctions/functions';
 import * as S from './style'
 
 const Task = ({ name, details, item, id, provided, handleRemove }) => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
   return (
     <S.Task
       ref={provided.innerRef}
@@ -14,9 +17,11 @@ const Task = ({ name, details, item, id, provided, handleRemove }) => {
         </S.TaskNameInformation>
       </S.TaskName>
       <S.TaskDetails>Descrição: {details}</S.TaskDetails>
-      <S.TaskDetails>
+      <S.TaskDetailsResponse other={item.user != user.id ? true : false}>
         Responsável: {item.User && item.User.Person ? item.User.Person.name  : null}
-      </S.TaskDetails>
+        {console.log(item)}
+        {console.log(user)}
+      </S.TaskDetailsResponse>
       <S.TaskDetails>
         Criado por: {item.createdBy && item.createdBy.Person ? item.createdBy.Person.name  : null}
       </S.TaskDetails>

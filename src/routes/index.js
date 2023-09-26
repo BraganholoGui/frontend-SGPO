@@ -5,7 +5,18 @@ import PrivateRoutes from './privateRoutes';
 
 const AppRoutes = () => {
   const { signed } = useAuth();
-  return signed ? <PrivateRoutes /> : <PublicRoutes />;
+  const [user, setUser] = useState(true);
+
+  useEffect(() => {
+    if (!signed) {
+
+      const storagedUser = localStorage.getItem('user');
+      if (storagedUser) {
+        setUser(null);
+      }
+    }
+  }, []);
+  return user || signed ? <PrivateRoutes /> : <PublicRoutes />;
 };
- 
+
 export default AppRoutes;
