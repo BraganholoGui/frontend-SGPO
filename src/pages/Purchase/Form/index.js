@@ -47,7 +47,7 @@ function Purchase() {
     let obj = {
       product: productSelected ? productSelected.id : null,
       price: price,
-      end: end,
+      end: new Date(end),
       material: materialSelected ? materialSelected.id : null,
       quantity: quantity,
       supplier: supplierSelected ? supplierSelected.id : null,
