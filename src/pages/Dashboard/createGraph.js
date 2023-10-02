@@ -79,7 +79,7 @@ function CreateGraph() {
       labels: listNames,
       datasets: [
         {
-          label: '# of Votes',
+          label: 'Qtd',
           data: listQtds,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',

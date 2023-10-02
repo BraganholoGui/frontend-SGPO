@@ -45,7 +45,7 @@ function TaskKanban() {
                 item.details = item.description
                 let obj = {
                   id: item.id,
-                  Time: item.name,
+                  Tarefa: item.name,
                   Criação: formattedDate(item.createdAt),
                 }
                 list.push(obj)
@@ -63,7 +63,7 @@ function TaskKanban() {
                 item.details = item.description
                 let obj = {
                   id: item.id,
-                  Time: item.name,
+                  Tarefa: item.name,
                   Criação: formattedDate(item.createdAt),
                 }
                 list.push(obj)
@@ -165,7 +165,6 @@ function TaskKanban() {
       <HeaderContent title="Tarefas" icon={<Task fontSize="large" />} titleButton="Nova Tarefa" linkTo="/tasks/novo" />
       <FilterContent columnsExcel={columnsExcel} filesheet={"Tarefas"} fileName={"tasks.xlsx"} loadData={() => loadData(false, true)} cleanFilter={() => cleanFilter()}>
         <InputFormFilter value={description} setValue={setDescription} title="Nome" type='text' size="small"></InputFormFilter>
-        {console.log(user)}
         {user.Role.status == 4 ?
           <InputFormFilter options={userOptions} selected={userSelected} setSelected={setUserSelected} value={userSelected} setValue={setUserSelected} title="Responsável" type='select' size="small"></InputFormFilter>
           : null

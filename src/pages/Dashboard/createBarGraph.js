@@ -24,7 +24,7 @@ export function CreateBarGraph(props) {
   const [labels, setLabels] = useState(props.labels);
   const [data, setData] = useState(null);
   const options = {
-    indexAxis: 'y',
+    // indexAxis: 'y',
     elements: {
       bar: {
         display: false,
@@ -36,10 +36,12 @@ export function CreateBarGraph(props) {
       legend: {
         display: false,
         position: 'right',
+        labels: {
+          color: '#d3b837', 
+        },
       },
       title: {
         display: false,
-        text: 'Chart.js Horizontal Bar Chart',
       },
     },
   };
@@ -57,10 +59,14 @@ export function CreateBarGraph(props) {
       labels,
       datasets: [
         {
-          label: 'Dataset 1',
+          label: 'Qtd',
           data: labels.map((item, index) => props.datasets[index]),
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          borderColor: 'rgb(53, 162, 235)',
+          backgroundColor: ['#a47130',
+          '#d3b837',],
+          borderColor: ['#d3b837',
+          '#fff',],
+          maxHeight: '10px',
+          height: '10px',
         },
       ]
     });
@@ -69,7 +75,7 @@ export function CreateBarGraph(props) {
   return (
     <>
       {data ?
-        <Bar options={options} data={data} style={{maxWidth:'450px', maxHeight:'320px', minWidth:'450px', minHeight:'320px'}}  />
+        <Bar options={options} data={data} style={{ maxWidth: '450px', maxHeight: '320px', minWidth: '100px', minHeight: '320px' }} />
         : null
       }
     </>
