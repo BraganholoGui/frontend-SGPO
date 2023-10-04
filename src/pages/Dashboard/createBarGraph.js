@@ -31,7 +31,7 @@ export function CreateBarGraph(props) {
         borderWidth: 2,
       },
     },
-    responsive: true,
+    // responsive: true,
     plugins: {
       legend: {
         display: false,

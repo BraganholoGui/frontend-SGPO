@@ -46,6 +46,13 @@ function TaskKanban() {
                 let obj = {
                   id: item.id,
                   Tarefa: item.name,
+                  Descrição: item.description,
+                  Prazo: formattedDate(item.end),
+                  Tema: item.Theme.name,
+                  Responsável: item.User.Person.name,
+                  'Criado Por': item.createdBy.Person.name,
+                  Status: item.Status.name,
+                  Prioridade: item.Priority.name,
                   Criação: formattedDate(item.createdAt),
                 }
                 list.push(obj)
@@ -64,6 +71,13 @@ function TaskKanban() {
                 let obj = {
                   id: item.id,
                   Tarefa: item.name,
+                  Descrição: item.description,
+                  Prazo: formattedDate(item.end),
+                  Tema: item.Theme.name,
+                  Responsável: item.User.Person.name,
+                  'Criado Por': item.createdBy.Person.name,
+                  Status: item.Status.name,
+                  Prioridade: item.Priority.name,
                   Criação: formattedDate(item.createdAt),
                 }
                 list.push(obj)
@@ -74,7 +88,6 @@ function TaskKanban() {
           });
       }
     } else {
-      console.log()
       let start = new Date().toISOString();
       let end = new Date().toISOString();
       let startQuery = `start=${start}`;
@@ -102,7 +115,14 @@ function TaskKanban() {
               item.details = item.description
               let obj = {
                 id: item.id,
-                Time: item.name,
+                Tarefa: item.name,
+                Descrição: item.description,
+                Prazo: formattedDate(item.end),
+                Tema: item.Theme.name,
+                Responsável: item.User.Person.name,
+                'Criado Por': item.createdBy.Person.name,
+                Status: item.Status.name,
+                Prioridade: item.Priority.name,
                 Criação: formattedDate(item.createdAt),
               }
               list.push(obj)

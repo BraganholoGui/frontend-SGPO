@@ -105,7 +105,7 @@ export const TaskDetailsResponse = styled.div`
   display: flex;
   flex-direction: column;
   text-align: justify;
-    ${({ other }) => other ? `color: #9c9c9c` : 'color:#EC7E3F'}
+    ${({ other }) => other ? `color: #EC7E3F` : 'color:#9c9c9c'}
 `;
 export const TaskDetails = styled.div`
   font-style: normal;

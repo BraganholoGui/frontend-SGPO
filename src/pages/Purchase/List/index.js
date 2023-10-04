@@ -316,7 +316,7 @@ function PurchaseList() {
         }
         <InputFormFilter options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputFormFilter>
         <InputFormFilter options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputFormFilter>
-        <InputFormFilter value={endDate} setValue={setEndDate} title="Prazo" type='date' size="small"></InputFormFilter>
+        {/* <InputFormFilter value={endDate} setValue={setEndDate} title="Prazo" type='date' size="small"></InputFormFilter> */}
       </FilterContent>
       <ListContent
         columns={!checked ? columns : columnsMaterial}
