@@ -10,9 +10,9 @@ export const ContainerMain = styled.div`
 export const Box = styled.div`
   margin-top: 2%;
   flex-wrap: wrap;
-  width: 70%;
+  width: 80%;
   z-index: 999;
-  padding:40px;
+  padding:40px 40px 20px 40px;
   border-top: 2px solid rgb(	17, 91, 76, 0.3);
   border-left: 2px solid rgb(	17, 91, 76, 0.3);
   border-right: 2px solid rgb(	17, 91, 76, 0.5);

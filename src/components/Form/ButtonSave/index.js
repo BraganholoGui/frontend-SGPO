@@ -20,7 +20,6 @@ function ButtonSave(props) {
   }, [props])
 
   async function handleSubmit(url) {
-    console.log(obj)
     setLoading(true)
     let invalid = false;
     let message;
@@ -64,8 +63,8 @@ function ButtonSave(props) {
           setLoading(false)
           
         }).catch((err) => {
-          toast('error', err.response.data.error || `Error ao atualizar o registro :(`);
           setLoading(false)
+          toast('error', err.response?.data?.error || `Error ao atualizar o registro :(`);
         });
     } else {
       post(url, obj)
@@ -76,8 +75,8 @@ function ButtonSave(props) {
 
         }).catch((err) => {
           console.log(err)
-          toast('error', err.response.data.error || `Error ao salvar o registro :(`);
           setLoading(false)
+          toast('error', err.response?.data?.error || `Error ao salvar o registro :(`);
         });
     }
   }

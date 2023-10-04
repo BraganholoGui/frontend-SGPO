@@ -158,7 +158,7 @@ function PurchaseList() {
       sortable: true,
     },
     {
-      name: 'Editar/Deletar',
+      name: 'Ações',
       selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} completed={row.status} />,
       center: true,
       style: {
@@ -207,7 +207,7 @@ function PurchaseList() {
       sortable: true,
     },
     {
-      name: 'Editar/Deletar',
+      name: 'Ações',
       selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} completed={row.status} />,
       center: true,
       style: {

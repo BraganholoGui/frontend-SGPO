@@ -41,7 +41,7 @@ padding: 0;
 `; 
 
 export const ContainerFormSmall = styled.div`
-width: 20%;
+width: 30%;
 display: flex;
 flex-direction: column;
 transition: all 2s ;

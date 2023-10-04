@@ -150,9 +150,9 @@ function TaskForm() {
             <InputForm value={description} setValue={setDescription} title="Descrição" type='textarea' size="large"></InputForm>
           </S.ContentBox>
           <S.ContentBox>
-            <InputForm options={userOptions} selected={userSelected} setSelected={setUserSelected} value={userSelected} setValue={setUserSelected} title="Responsável" type='select' size="small"></InputForm>
+            <InputForm options={userOptions} selected={userSelected} setSelected={setUserSelected} value={userSelected} setValue={setUserSelected} title="Responsável" type='select' size="small" mgl></InputForm>
             <InputForm options={themeOptions} selected={themeSelected} setSelected={setThemeSelected} value={themeSelected} setValue={setThemeSelected} title="Tema" type='select' size="small"></InputForm>
-            <InputForm options={priorityOptions} selected={prioritySelected} setSelected={setPrioritySelected} value={prioritySelected} setValue={setPrioritySelected} title="Prioridade" type='select' size="small"></InputForm>
+            <InputForm options={priorityOptions} selected={prioritySelected} setSelected={setPrioritySelected} value={prioritySelected} setValue={setPrioritySelected} title="Prioridade" type='select' size="small" mgr></InputForm>
           </S.ContentBox>
           <S.ContentBox>
             <InputForm readOnly={true} isMulti options={[]} selected={teamsRelateds} setSelected={setTeamsRelateds} value={teamsRelateds} setValue={setTeamsRelateds} title="Times do Responsável" type='select' size="large"></InputForm>

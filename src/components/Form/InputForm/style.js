@@ -18,6 +18,7 @@ padding:10px;
     border: 2px solid ${theme.primaryDark};
     transition: all 0.9s ease-in-out;
 }
+
 `; 
 export const InputRadio = styled.input`
 /* width: 30%; */
@@ -32,6 +33,12 @@ padding:10px;
     border: 2px solid ${theme.primaryDark};
     transition: all 0.9s ease-in-out;
 }
+@media (max-width: 860px) {
+      width: 95%;
+      /* transition: all 2s ;
+      transform: rotate(360deg); */
+
+    }
 `; 
 
 export const ContainerFormSmall = styled.div`
@@ -40,7 +47,8 @@ display: flex;
 flex-direction: column;
 /* transition: all 2s ;
 transform: rotate(-360deg); */
-
+margin-left: ${(props) => (props.mgl ? `10px`: `0`)};
+margin-right: ${(props) => (props.mgr ? `10px`: `0`)};
 .input-mask{
   background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `${theme.input}`)};
 border-radius: 10px;
@@ -60,6 +68,8 @@ padding:10px;
 }
 @media (max-width: 860px) {
     width: 95%;
+    margin-left:0;
+    margin-right:0;
     /* transition: all 2s ;
     transform: rotate(360deg); */
   }
@@ -83,13 +93,13 @@ font-size: 16px;
 color: #333;
 transition: all 0.9s ease-in-out;
 padding:10px;
-  @media (max-width: 860px) {
-      width: 95%;
-      /* transition: all 2s ;
-      transform: rotate(360deg); */
-
-    }
 }
+@media (max-width: 860px) {
+    width: 95%;
+    /* transition: all 2s ;
+    transform: rotate(360deg); */
+
+  }
 `; 
 export const ContainerFormBig = styled.div`
 width: 90%;
@@ -108,12 +118,12 @@ font-size: 16px;
 color: #333;
 transition: all 0.9s ease-in-out;
 padding:10px;
-  @media (max-width: 860px) {
-      width: 95%;
-      /* transition: all 2s ;
-      transform: rotate(360deg); */
+}
+@media (max-width: 860px) {
+    width: 95%;
+    /* transition: all 2s ;
+    transform: rotate(360deg); */
 
-  }
 }
 
 `; 

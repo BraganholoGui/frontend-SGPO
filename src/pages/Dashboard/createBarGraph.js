@@ -31,7 +31,7 @@ export function CreateBarGraph(props) {
         borderWidth: 2,
       },
     },
-    // responsive: true,
+    responsive: true,
     plugins: {
       legend: {
         display: false,
@@ -65,8 +65,6 @@ export function CreateBarGraph(props) {
           '#d3b837',],
           borderColor: ['#d3b837',
           '#fff',],
-          maxHeight: '10px',
-          height: '10px',
         },
       ]
     });

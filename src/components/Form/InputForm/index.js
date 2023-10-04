@@ -26,6 +26,7 @@ function InputForm(props) {
       border: '2px solid #ccc',
       boxShadow: '2px 2px 3px #ccc',
       minHeight: '50px',
+      minWidth:'33%',
       fontFamily: ' Arial, sans-serif',
       fontSize: '16px',
       color: '#333',
@@ -123,7 +124,7 @@ function InputForm(props) {
     <>
       {
         size == 'small' ?
-          <S.ContainerFormSmall>
+          <S.ContainerFormSmall mgl={props.mgl} mgr={props.mgr}>
             <S.Title>{title}</S.Title>
             {
               type == 'select' ?

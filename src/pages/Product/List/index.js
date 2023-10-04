@@ -24,7 +24,7 @@ function ProductList() {
   const [quantityMin, setQuantityMin] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
   const [maxQtdMin, setMaxQtdMin] = useState(null);
-
+  const user = JSON.parse(localStorage.getItem('user'))
   async function loadData(clean) {
     let start = new Date().toISOString() ;
     let end = new Date().toISOString();
@@ -105,11 +105,11 @@ function ProductList() {
     },
     {
       name: 'Quantidade',
-      selector: row => row.quantity,
+      selector: row => row.quantity ? row.quantity : 0,
       sortable: true,
     },
     {
-      name: 'Editar/Deletar',
+      name: 'Ações',
       selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} />,
       center: true,
       style: {
@@ -118,6 +118,39 @@ function ProductList() {
         alignItems: 'center',
 
       },
+    },
+  ];
+  const columnsComum = [
+    {
+      name: 'ID',
+      selector: row => row.id,
+      sortable: true,
+      center: true,
+    },
+    {
+      name: 'Nome',
+      selector: row => row.name,
+      sortable: true,
+    },
+    {
+      name: 'Descrição',
+      selector: row => row.description,
+      sortable: true,
+    },
+    {
+      name: 'Preço',
+      selector: row => row.price,
+      sortable: true,
+    },
+    {
+      name: 'Quantidade mínima',
+      selector: row => row.quantity_min,
+      sortable: true,
+    },
+    {
+      name: 'Quantidade',
+      selector: row => row.quantity ? row.quantity : 0,
+      sortable: true,
     },
   ];
 
@@ -152,7 +185,7 @@ function ProductList() {
 
   return (
     <Container>
-      <HeaderContent title="Produtos" icon={<Category fontSize="large" />} titleButton="Novo Produto" linkTo="/products/novo" />
+      <HeaderContent title="Produtos" icon={<Category fontSize="large" />} titleButton={user.Role?.status == 6 ? null : "Novo Produto"} linkTo="/products/novo" />
       <FilterContent columnsExcel={columnsExcel} filesheet={"Produtos"} fileName={"products.xlsx"} loadData={() => loadData() } cleanFilter={() => cleanFilter() }>
         <InputFormFilter value={description} setValue={setDescription} title="Descrição" type='text' size="small"></InputFormFilter>
         <InputFormFilter value={name} setValue={setName} title="Nome" type='text' size="small"></InputFormFilter>
@@ -161,7 +194,7 @@ function ProductList() {
         {/* <InputFormFilter value={quantityMin} setValue={setQuantityMin} title="Quantidade Mínima" type='text' size="small"></InputFormFilter> */}
       </FilterContent>
       <ListContent
-        columns={columns}
+        columns={user.Role?.status == 6 ? columnsComum : columns}
         data={data}
         customStyles={customStyles}
       />

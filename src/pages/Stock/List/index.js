@@ -29,7 +29,7 @@ function StockList() {
   const [quantityMin, setQuantityMin] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
   const [maxQtdMin, setMaxQtdMin] = useState(null);
-
+  const user = JSON.parse(localStorage.getItem('user'))
 
   async function loadData(clean) {
     let maxAllPrice;
@@ -153,8 +153,8 @@ function StockList() {
       sortable: true,
     },
     {
-      name: 'Editar/Deletar',
-      selector: row => <EditDelete id={row.id} url={urlProducts} data={dataProduct} setData={setDataProduct} alert={row.quantity_min > row.quantity ? true : false} />,
+      name: 'Ações',
+      selector: row => <EditDelete comum={user.Role?.status == 6 ? true : false} id={row.id} url={urlProducts} data={dataProduct} setData={setDataProduct} alert={row.quantity_min > row.quantity ? true : false} />,
       center: true,
       style: {
         display: 'flex',
@@ -197,7 +197,7 @@ function StockList() {
       sortable: true,
     },
     {
-      name: 'Editar/Deletar',
+      name: 'Ações',
       selector: row => <EditDelete id={row.id} url={urlMaterials} data={dataMaterial} setData={setDataMaterial} alert={row.quantity_min > row.quantity ? true : false} />,
       center: true,
       style: {

@@ -81,8 +81,12 @@ function EditDelete(props) {
     <S.Container>
       {completed != 3 ?
         <>
+        {!props.comum ? 
+        <>
           <a href={`${url}/${id}`}><Edit color='primary'></Edit></a>
           <S.Button onClick={() => deleteForm(url, id)}><DeleteTwoTone color='warning'></DeleteTwoTone></S.Button>
+        </>
+        : null }
           {alert ? <ErrorTwoTone style={{ cursor: 'pointer' }} onClick={() => toast('warning', `Quantidade baixa!`)} /> : null}
         </>
         :

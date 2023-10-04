@@ -109,7 +109,7 @@ function SaleList() {
       sortable: true,
     },
     {
-      name: 'Editar/Deletar',
+      name: 'Ações',
       selector: row => <EditDelete id={row.id} url={url} data={data} setData={setData} completed={row.status} />,
       center: true,
       style: {
