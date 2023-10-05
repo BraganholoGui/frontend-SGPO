@@ -8,8 +8,9 @@ import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
 import SwitchMaterialProduct from '../../../components/Switch/MaterialProduct';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
-function Purchase() {
+function Purchase(props) {
   const { id } = useParams();
   const url = '/purchases';
   const [data, setData] = useState({});
@@ -34,7 +35,7 @@ function Purchase() {
 
   async function loadData() {
     if (id != 'novo') {
-      get(`/purchases/${id}`)
+      get(`/purchases/${id ? id : props.idAux}`)
         .then(async response => {
           if (response) {
             setData(response.purchase);
@@ -110,7 +111,7 @@ function Purchase() {
           setStatusOptions(response.records);
           if (data && data.status) {
             setStatusSelected(response.records.find(item => item.id == data.status))
-            if(data.status == 3){
+            if (data.status == 3) {
               setCompleted(true)
             }
           }
@@ -120,7 +121,7 @@ function Purchase() {
 
   function calculateTotal() {
     let total = price * quantity;
-    if(!total) total = 0;
+    if (!total) total = 0;
     setTotal(total)
   }
 
@@ -150,56 +151,118 @@ function Purchase() {
       }
     }
   }, [data])
-  
+
 
   return (
     <>
-      <S.Container>
-        <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<ShoppingCart fontSize="large" />} />
-        <FormContent>
-          <S.ContentBox>
-            <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='priceMask' size="small"></InputForm>
-            <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
-            <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='priceMask' size="small"></InputForm>
-          </S.ContentBox>
-
-          {id != "novo" ?
-            <S.ContentBox>
-              {
-                completed ? 
-                null
-                :
-                <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
-
-              }
-              <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
-            </S.ContentBox>
-            : null
-          }
-          {
-            id == 'novo' ?
+      {
+        !props.isModal ?
+          <S.Container>
+            <HeaderContent id={id} titleButton="Voltar" linkTo="/purchases" title={id == "novo" ? "Nova Compra" : "Editar Compra"} icon={<ShoppingCart fontSize="large" />} />
+            <FormContent>
               <S.ContentBox>
-                <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+                <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='priceMask' size="small"></InputForm>
+                <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
+                <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='priceMask' size="small"></InputForm>
               </S.ContentBox>
-              : null
-          }
 
-          <S.ContentBox>
-            {id != "novo" ?
-              <InputForm  readOnly={completed} options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
-              :
-              <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
-            }
-            {checked ?
-              <InputForm readOnly={completed} options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
-              :
-              <InputForm readOnly={completed} options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
-            }
-            <InputForm readOnly={completed} options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
-          </S.ContentBox>
-          <ButtonForm url={url} obj={buildSubmitObj()} completed={completed} />
-        </FormContent>
-      </S.Container>
+              {id != "novo" ?
+                <S.ContentBox>
+                  {
+                    completed ?
+                      null
+                      :
+                      <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+
+                  }
+                  <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+                </S.ContentBox>
+                : null
+              }
+              {
+                id == 'novo' ?
+                  <S.ContentBox>
+                    <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+                  </S.ContentBox>
+                  : null
+              }
+
+              <S.ContentBox>
+                {id != "novo" ?
+                  <InputForm readOnly={completed} options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+                  :
+                  <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+                }
+                {checked ?
+                  <InputForm readOnly={completed} options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
+                  :
+                  <InputForm readOnly={completed} options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
+                }
+                <InputForm readOnly={completed} options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
+              </S.ContentBox>
+              <ButtonForm url={url} obj={buildSubmitObj()} completed={completed} />
+            </FormContent>
+          </S.Container>
+          :
+          <Modal
+            isOpen={props.openModalInfo}
+            toggle={props.toggle}
+            centered
+            fullscreen='lg'
+            style={{minWidth:'1000px'}}
+          >
+            <ModalHeader style={{ display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+              Tem certeza que deseja deletar esse item?
+            </ModalHeader>
+            <ModalBody style={{ display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <S.Container>
+            <FormContent>
+              <S.ContentBox>
+                <InputForm readOnly={completed} value={price} setValue={setPrice} title="Preço" type='priceMask' size="small"></InputForm>
+                <InputForm readOnly={completed} value={quantity} setValue={setQuantity} title="Quantidade" type='text' size="small"></InputForm>
+                <InputForm value={total} readOnly={true} setValue={setTotal} title="Preço Total" type='priceMask' size="small"></InputForm>
+              </S.ContentBox>
+
+              {id != "novo" ?
+                <S.ContentBox>
+                  {
+                    completed ?
+                      null
+                      :
+                      <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+
+                  }
+                  <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+                </S.ContentBox>
+                : null
+              }
+              {
+                id == 'novo' ?
+                  <S.ContentBox>
+                    <SwitchMaterialProduct size="small" checked={checked} setChecked={setChecked} cleanValue={cleanValue} setCleanValue={setCleanValue} deleteValue={true}></SwitchMaterialProduct>
+                  </S.ContentBox>
+                  : null
+              }
+
+              <S.ContentBox>
+                {id != "novo" ?
+                  <InputForm readOnly={completed} options={statusOptions} selected={statusSelected} setSelected={setStatusSelected} value={statusSelected} setValue={setStatusSelected} title="Status" type='select' size="small"></InputForm>
+                  :
+                  <InputForm readOnly={completed} value={end} setValue={setEnd} title="Prazo" type='date' size="small"></InputForm>
+                }
+                {checked ?
+                  <InputForm readOnly={completed} options={materialOptions} selected={materialSelected} setSelected={setMaterialSelected} value={materialSelected} setValue={setMaterialSelected} title="Material" type='select' size="small"></InputForm>
+                  :
+                  <InputForm readOnly={completed} options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
+                }
+                <InputForm readOnly={completed} options={supplierOptions} selected={supplierSelected} setSelected={setSupplierSelected} value={supplierSelected} setValue={setSupplierSelected} title="Fornecedor" type='select' size="small"></InputForm>
+              </S.ContentBox>
+            </FormContent>
+          </S.Container>
+            </ModalBody>
+          </Modal>
+      }
+
     </>
   )
 

@@ -10,12 +10,15 @@ import EditDelete from '../../../components/Form/EditDelete';
 import FilterContent from '../../../components/FilterContent';
 import InputFormFilter from '../../../components/Form/InputFormFilter';
 import { formattedDate } from '../../../GeneralFunctions/functions';
+import Purchase from '../Form';
 
 function PurchaseList() {
   const [dataProduct, setDataProduct] = useState([]);
   const [dataMaterial, setDataMaterial] = useState([]);
   const { id } = useParams();
   const url = `/purchases`
+  const [idAux, setIdAux] = useState(false);
+  const [urlAux, setUrlAux] = useState(false);
   const location = useLocation();
   const [checked, setChecked] = useState(false);
   const [columnsExcel, setColumnsExcel] = useState([]);
@@ -30,6 +33,15 @@ function PurchaseList() {
   const [productOptions, setProductsOptions] = useState('');
   const [supplierOptions, setSupplierOptions] = useState('');
   const [statusOptions, setStatusOptions] = useState('');
+  const [openModalInfo, setOpenModalInfo] = useState('');
+
+  const toggleInfo = (url, id) => {
+    setOpenModalInfo(!openModalInfo)
+    console.log(url)
+    console.log(id)
+    setIdAux(id)
+    setUrlAux(url)
+  };
 
   async function loadData(clean) {
     let productList = [];
@@ -159,7 +171,7 @@ function PurchaseList() {
     },
     {
       name: 'Ações',
-      selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} completed={row.status} />,
+      selector: row => <EditDelete id={row.id} url={url} data={dataProduct} setData={setDataProduct} completed={row.status} openModalInfo={openModalInfo} setOpenModalInfo={setOpenModalInfo} toggle={toggleInfo}/>,
       center: true,
       style: {
         display: 'flex',
@@ -208,7 +220,7 @@ function PurchaseList() {
     },
     {
       name: 'Ações',
-      selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} completed={row.status} />,
+      selector: row => <EditDelete id={row.id} url={url} data={dataMaterial} setData={setDataMaterial} completed={row.status} openModalInfo={openModalInfo} setOpenModalInfo={setOpenModalInfo} toggle={toggleInfo} />,
       center: true,
       style: {
         display: 'flex',
@@ -327,7 +339,8 @@ function PurchaseList() {
         setChecked={setChecked}
         conditionalRowStyles={conditionalRowStyles}
       />
-
+       {/* <Purchase isModal  openModalInfo={openModalInfo} setOpenModalInfo={setOpenModalInfo} toggle={toggle}/> */}
+       <Purchase isModal idAux={idAux} urlAux={urlAux} openModalInfo={openModalInfo} setOpenModalInfo={setOpenModalInfo} toggle={toggleInfo}/>
     </Container>
   )
 

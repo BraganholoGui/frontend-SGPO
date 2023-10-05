@@ -92,6 +92,7 @@ function EditDelete(props) {
         :
         <S.Completed>
           <a href={`${url}/${id}`}><Reviews style={{ color: 'green' }}></Reviews></a>
+          {/* <Reviews style={{ color: 'green' }} onClick={() => props.toggle(url, id)}></Reviews> */}
           <CheckCircleTwoTone style={{ cursor: 'pointer', color: 'green' }} onClick={() => toast('success', `Compra Finalizada!`)} />
         </S.Completed>
       }
