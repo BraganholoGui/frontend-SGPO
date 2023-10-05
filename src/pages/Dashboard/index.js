@@ -196,19 +196,19 @@ function StockList() {
       <ContainerMain>
       <CBox quantityContainer={2} title={'Produtos e Materiais'}>
         <Container heightLimit={true}>
-          Produto mais vendidos
+          8 Produto mais vendidos
           <CreateBarGraph labels={labelProductsSell} datasets={datasetsProductsSell}></CreateBarGraph>
         </Container>
         <Container heightLimit={true}>
-          Produtos com quantidade baixa
+          8 Produtos com quantidade baixa
           <CreatePieGraph labels={['Quantidade Baixa', 'Quantidade Regulada']} datasets={datasets}/>
         </Container>
         <Container heightLimit={true}>
-        Produto mais comprado
+        8 Produto mais comprado
           <CreateBarGraph labels={labelProductsPurchased} datasets={datasetsProductsPurchased}></CreateBarGraph>
         </Container>
         <Container heightLimit={true}>
-          Material mais comprado
+          8 Material mais comprado
           <CreateBarGraph labels={labelMaterialPurchased} datasets={datasetsMaterialPurchased}></CreateBarGraph>
         </Container>
       </CBox>

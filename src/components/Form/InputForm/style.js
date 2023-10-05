@@ -131,3 +131,17 @@ export const Title = styled.label`
 font-family: Monospace;
 font-weight: 900;
 `; 
+export const StyledTextarea = styled.textarea`
+min-height: 100px;
+background-color: ${(props) => (props.readOnly ? `${theme.inputLock}`: `${theme.input}`)};
+border-radius: 10px;
+border: 2px solid #ccc;
+box-shadow: 2px 2px 3px #ccc;
+font-family: Arial, sans-serif;
+font-size: 16px;
+color: #333;
+padding:10px;
+&&:focus{
+    border: 2px solid ${theme.primaryDark};
+}
+  `;

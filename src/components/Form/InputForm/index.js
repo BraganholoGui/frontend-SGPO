@@ -26,7 +26,7 @@ function InputForm(props) {
       border: '2px solid #ccc',
       boxShadow: '2px 2px 3px #ccc',
       minHeight: '50px',
-      minWidth:'33%',
+      minWidth: '33%',
       fontFamily: ' Arial, sans-serif',
       fontSize: '16px',
       color: '#333',
@@ -212,6 +212,17 @@ function InputForm(props) {
                               Não
                             </label>
                           </div>
+                           : type == 'textarea' ?
+                           <S.StyledTextarea
+                             type={type}
+                             readOnly={readOnly}
+                             value={value}
+                             onChange={(e) => {
+                               setValue(e.target.value)
+                               props.setValue(e.target.value)
+                             }}
+                             selected={selected}
+                           />
                           :
                           <S.Input
                             type={type}
@@ -233,27 +244,27 @@ function InputForm(props) {
               {
                 type == 'select' ?
                   <Select options={options || []} selected={selected}
-                  styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                  menuPortalTarget={document.body}
-                  menuPosition={'fixed'}
-                  setSelected={setSelected} value={selected}
-                  isMulti={isMulti}
-                  isDisabled={readOnly}
-                  isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
-                  onChange={(e) => {
-                    if (isMulti) {
-                      setSelected(e)
-                      setValue(e)
-                      props.setValue(e)
-                      props.setSelected(e)
-                    } else {
-                      setSelected(e)
-                      setValue(e)
-                      props.setValue(e)
-                      props.setSelected(e)
-                    }
+                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    setSelected={setSelected} value={selected}
+                    isMulti={isMulti}
+                    isDisabled={readOnly}
+                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                    onChange={(e) => {
+                      if (isMulti) {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      } else {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }
 
-                  }} />
+                    }} />
                   : type == 'phoneMask' ?
                     <InputMask
                       className="input-mask"
@@ -316,17 +327,27 @@ function InputForm(props) {
                                 Não
                               </label>
                             </div>
-                            :
-                            <S.Input
-                              type={type}
-                              readOnly={readOnly}
-                              value={value}
-                              onChange={(e) => {
-                                setValue(e.target.value)
-                                props.setValue(e.target.value)
-                              }}
-                              selected={selected}
-                            />
+                            : type == 'textarea' ?
+                              <S.StyledTextarea
+                                type={type}
+                                readOnly={readOnly}
+                                value={value}
+                                onChange={(e) => {
+                                  setValue(e.target.value)
+                                  props.setValue(e.target.value)
+                                }}
+                                selected={selected}
+                              /> :
+                              <S.Input
+                                type={type}
+                                readOnly={readOnly}
+                                value={value}
+                                onChange={(e) => {
+                                  setValue(e.target.value)
+                                  props.setValue(e.target.value)
+                                }}
+                                selected={selected}
+                              />
               }
             </S.ContainerFormMedium>
             :
@@ -335,27 +356,27 @@ function InputForm(props) {
               {
                 type == 'select' ?
                   <Select options={options || []} selected={selected}
-                  styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
-                  menuPortalTarget={document.body}
-                  menuPosition={'fixed'}
-                  setSelected={setSelected} value={selected}
-                  isMulti={isMulti}
-                  isDisabled={readOnly}
-                  isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
-                  onChange={(e) => {
-                    if (isMulti) {
-                      setSelected(e)
-                      setValue(e)
-                      props.setValue(e)
-                      props.setSelected(e)
-                    } else {
-                      setSelected(e)
-                      setValue(e)
-                      props.setValue(e)
-                      props.setSelected(e)
-                    }
+                    styles={{ ...colourStyles, menuPortal: base => ({ ...base, zIndex: 99999999999 }) }}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    setSelected={setSelected} value={selected}
+                    isMulti={isMulti}
+                    isDisabled={readOnly}
+                    isClearable={isMulti && Array.isArray(value) ? value.some((v) => !v.isFixed) : ''}
+                    onChange={(e) => {
+                      if (isMulti) {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      } else {
+                        setSelected(e)
+                        setValue(e)
+                        props.setValue(e)
+                        props.setSelected(e)
+                      }
 
-                  }} />
+                    }} />
                   : type == 'phoneMask' ?
                     <InputMask
                       className="input-mask"
@@ -417,6 +438,17 @@ function InputForm(props) {
                                 Não
                               </label>
                             </div>
+                             : type == 'textarea' ?
+                             <S.StyledTextarea
+                               type={type}
+                               readOnly={readOnly}
+                               value={value}
+                               onChange={(e) => {
+                                 setValue(e.target.value)
+                                 props.setValue(e.target.value)
+                               }}
+                               selected={selected}
+                             />
                             :
                             <S.Input
                               type={type}

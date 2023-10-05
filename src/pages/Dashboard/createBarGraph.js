@@ -46,25 +46,38 @@ export function CreateBarGraph(props) {
     },
   };
 
+  // useEffect(() => {
+  //   setLabels(props.labels);
+  // }, [])
   useEffect(() => {
-    setLabels(props.labels);
-  }, [])
-  useEffect(() => {
-    setLabels(props.labels);
+    let labelsAux=[];
+    props.labels.map((label, index) => {
+      if(index<8) labelsAux.push(label);
+    })
+    setLabels(labelsAux);
   }, [props])
 
   useEffect(() => {
-
+    let labelsAux =[];
+    let datasetsAux=[];
+    props.datasets.map((dataset, index) => {
+      if(index<8) datasetsAux.push(dataset);
+    })
+    // labels.map((label, index) => {
+    //   if(index<1) labelsAux.push(label);
+    // })
     setData({
       labels,
       datasets: [
         {
           label: 'Qtd',
-          data: labels.map((item, index) => props.datasets[index]),
+          data: labels?.map((item, index) => datasetsAux[index]),
           backgroundColor: ['#a47130',
           '#d3b837',],
           borderColor: ['#d3b837',
           '#fff',],
+          maxHeight: '10px',
+          height: '10px',
         },
       ]
     });

@@ -43,7 +43,7 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
                         <Task
                           name={item.name}
                           item={item}
-                          details={item.details}
+                          details={item.details?.split(/\s+/).slice(0, 10).join(' ') + ' ...'}
                           id={item.id}
                           provided={provided}
                           snapshot={snapshot}

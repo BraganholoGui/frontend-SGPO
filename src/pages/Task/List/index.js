@@ -112,7 +112,7 @@ function TaskKanban() {
           let list = [];
           if (response) {
             response.records.map(item => {
-              item.details = item.description
+              item.details = item.description.split(/\s+/).slice(0, 10).join(' ') + ' ...';
               let obj = {
                 id: item.id,
                 Tarefa: item.name,
