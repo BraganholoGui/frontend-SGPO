@@ -7,6 +7,7 @@ import * as S from './style';
 import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
+import ImageUploader from '../../../components/ImageUploader';
 
 function User() {
   const { id } = useParams();
@@ -19,6 +20,7 @@ function User() {
   const [phone, setPhone] = useState('');
   const [team, setTeam] = useState('');
   const [role, setRole] = useState('');
+  const [userProfile, setUserProfile] = useState('');
 
   const [roleOptions, setRoleOptions] = useState('');
   const [teamOptions, setTeamOptions] = useState('');
@@ -35,16 +37,16 @@ function User() {
     }
   }
 
-  function updateStorage(){
+  function updateStorage() {
 
     let userStorage = JSON.parse(localStorage.getItem('user'))
     get(`/roles/${role?.id}`)
-    .then(async response => {
-      userStorage = {
-        ...userStorage, 
-        Role: response.role
-      }
-    });
+      .then(async response => {
+        userStorage = {
+          ...userStorage,
+          Role: response.role
+        }
+      });
   }
 
   function buildSubmitObj() {
@@ -63,8 +65,9 @@ function User() {
       password: password,
       team: team ? team.id : null,
       role: role ? role.id : null,
+      photo: userProfile ? userProfile : null,
     }
-
+    console.log(obj)
 
     return obj;
   }
@@ -151,6 +154,9 @@ function User() {
               null
             }
             <InputForm options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
+          </S.ContentBox>
+          <S.ContentBox>
+            <ImageUploader value={userProfile} setValue={setUserProfile} />
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} redefinePassword />
         </FormContent>

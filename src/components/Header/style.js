@@ -50,6 +50,7 @@ color: #fff;
 `; 
 export const UserInfo = styled.div`
 width: 100%;
+min-width: 150px;
 display:flex;
 color: #fff;
 font-size: 18px;
@@ -75,12 +76,19 @@ export const Logout = styled.div`
   border-radius: 7px;
   padding: 5px;
   cursor: pointer;
+  margin-right: 10px;
+  max-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `; 
 export const ContainerLogout = styled.div`
   display:flex;
-   flex-direction:column; 
+   /* flex-direction:column;  */
    margin-left:15px; 
    cursor:pointer;
+   justify-content: center;
+   align-items: center;
 `; 
 export const DivLogo = styled.div`
 display:flex;
