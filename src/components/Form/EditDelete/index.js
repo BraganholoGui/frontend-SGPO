@@ -31,7 +31,6 @@ function EditDelete(props) {
     setOpenModalDelete(!openModalDelete)
   };
   const allowDel = (allow) => {
-    console.log(allow)
      if (allow) {
       setDeleteitem(true)
       del(url, id)

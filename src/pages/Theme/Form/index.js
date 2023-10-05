@@ -19,7 +19,6 @@ function Theme() {
       get(`/themes/${id}`)
         .then(async response => {
           if (response) {
-            console.log(response);
             setData(response.theme);
           }
         });

@@ -44,8 +44,6 @@ const Task = ({ name, details, item, id, provided, handleRemove }) => {
       <S.TaskDetails>Descrição: {details}</S.TaskDetails>
       <S.TaskDetailsResponse other={item.user != user.id ? true : false}>
         Responsável: {item.User && item.User.Person ? item.User.Person.name  : null}
-        {console.log('itwm',item)}
-        {console.log(user)}
       </S.TaskDetailsResponse>
       <S.TaskDetails>
         Criado por: {item.createdBy && item.createdBy.Person ? item.createdBy.Person.name  : null}

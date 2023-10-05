@@ -35,7 +35,7 @@ function Purchase(props) {
 
   async function loadData() {
     if (id != 'novo') {
-      get(`/purchases/${id ? id : props.idAux}`)
+      get(`/purchases/${id}`)
         .then(async response => {
           if (response) {
             setData(response.purchase);

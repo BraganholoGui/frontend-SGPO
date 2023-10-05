@@ -90,7 +90,7 @@ function SaleList() {
     },
     {
       name: 'Produto',
-      selector: row => row.Product.name,
+      selector: row => row.Product?.name,
       sortable: true,
     },
     {

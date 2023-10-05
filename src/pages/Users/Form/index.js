@@ -40,13 +40,10 @@ function User() {
     let userStorage = JSON.parse(localStorage.getItem('user'))
     get(`/roles/${role?.id}`)
     .then(async response => {
-      console.log(response)
-      console.log(userStorage)
       userStorage = {
         ...userStorage, 
         Role: response.role
       }
-      console.log(userStorage)
     });
   }
 

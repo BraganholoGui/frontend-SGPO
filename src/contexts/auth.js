@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
       let x = actions.post('/login', userData).then(x => {
         setToken(x.token)
         setUser(x.user)
-        console.log(x)
         localStorage.setItem('token', x.token)
         localStorage.setItem('user', JSON.stringify(x.user))
         actions.defaults.headers.Authorization = `Bearer ${token}`;
@@ -39,7 +38,6 @@ export const AuthProvider = ({ children }) => {
       })
 
     } catch (e) {
-      console.log("Error")
       toast('error', `Acesso negado!`);
     }
   }

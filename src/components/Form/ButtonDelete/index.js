@@ -23,7 +23,6 @@ function ButtonDelete(props) {
     setOpenModalDelete(!openModalDelete)
   };
   const allowDel = (allow) => {
-    console.log(allow)
      if (allow) {
       setLoading(true)
       del(url, id)

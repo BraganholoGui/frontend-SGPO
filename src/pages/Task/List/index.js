@@ -127,7 +127,6 @@ function TaskKanban() {
               }
               list.push(obj)
             })
-            console.log(response)
             setData(response.records);
             setColumnsExcel(list);
           }
@@ -178,6 +177,10 @@ function TaskKanban() {
 
   function cleanFilter() {
     loadData(true, false);
+    setDescription('')
+    setUserSelected(null)
+    setPrioritySelected(null)
+    setThemeSelected(null)
   }
 
   return (

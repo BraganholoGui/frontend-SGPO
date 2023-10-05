@@ -10,7 +10,6 @@ export default function useBackgroundService({ children, projectBr }) {
 
   useEffect(() => {
     setInterval(async () => {
-     console.log('guilherme')
     }, 7000)
   }, [])
 

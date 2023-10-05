@@ -37,8 +37,6 @@ function PurchaseList() {
 
   const toggleInfo = (url, id) => {
     setOpenModalInfo(!openModalInfo)
-    console.log(url)
-    console.log(id)
     setIdAux(id)
     setUrlAux(url)
   };
