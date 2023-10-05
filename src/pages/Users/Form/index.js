@@ -121,6 +121,7 @@ function User() {
   useEffect(() => {
     setName(data.Person && data.Person ? data.Person.name : '');
     setPassword(data.password_hash);
+    setUserProfile(data.photo);
     setAccessName(data.access_name);
     setEmail(data.Person && data.Person.Contact ? data.Person.Contact.email : '');
     setPhone(data.Person && data.Person.Contact ? data.Person.Contact.phone : '');
