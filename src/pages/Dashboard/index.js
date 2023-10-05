@@ -200,7 +200,7 @@ function StockList() {
           <CreateBarGraph labels={labelProductsSell} datasets={datasetsProductsSell}></CreateBarGraph>
         </Container>
         <Container heightLimit={true}>
-          8 Produtos com quantidade baixa
+          Qtd. de produtos com quantidade baixa
           <CreatePieGraph labels={['Quantidade Baixa', 'Quantidade Regulada']} datasets={datasets}/>
         </Container>
         <Container heightLimit={true}>
