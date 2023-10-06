@@ -23,4 +23,10 @@ height: auto;
 margin-right:10px; 
 margin-bottom:10px; 
 border-radius:50%;
+cursor: pointer;
+`; 
+export const ImgPhotoBig = styled.img`
+width: 500px; 
+height: auto;
+/* border-radius:50%; */
 `; 

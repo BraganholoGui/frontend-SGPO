@@ -1,5 +1,5 @@
 import HeaderContent from '../../../components/HeaderContent';
-import { People } from '@mui/icons-material';
+import { People, ToggleOnTwoTone } from '@mui/icons-material';
 import { get } from '../../../services/actions';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -8,6 +8,7 @@ import InputForm from '../../../components/Form/InputForm';
 import FormContent from '../../../components/FormContent';
 import ButtonForm from '../../../components/Form/ButtonForm';
 import ImageUploader from '../../../components/ImageUploader';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 function User() {
   const { id } = useParams();
@@ -24,7 +25,11 @@ function User() {
 
   const [roleOptions, setRoleOptions] = useState('');
   const [teamOptions, setTeamOptions] = useState('');
+  const [openPhoto, setOpenPhoto] = useState('');
 
+  const togglePhoto = () =>{
+    setOpenPhoto(!openPhoto)
+  }
 
   async function loadData() {
     if (id != 'novo') {
@@ -143,7 +148,7 @@ function User() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<People fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
-            <ImageUploader value={userProfile} setValue={setUserProfile} />
+            <ImageUploader value={userProfile} setValue={setUserProfile} onClick={togglePhoto}/>
           </S.ContentBox>
           <S.ContentBox>
             <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
@@ -161,6 +166,7 @@ function User() {
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} redefinePassword />
         </FormContent>
+       
       </S.Container>
     </>
   )
