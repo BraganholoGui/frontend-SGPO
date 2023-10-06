@@ -13,16 +13,22 @@ import {
   Psychology,
   People
 } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Menu = () => {
   const [click, setClick] = useState(true);
   const [user, setUser] = useState(true);
   const [permission, setPermission] = useState(null);
 
+  const history = useHistory();
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')))
-    setPermission(JSON.parse(localStorage.getItem('user')).Role.status)
+    setPermission(JSON.parse(localStorage.getItem('user'))?.Role?.status)
   }, []);
+  // useEffect(() => {
+  //   if(!permission ) history.push('/login')
+  // }, [permission]);
 
   const handleClick = () => setClick(!click);
 
@@ -131,7 +137,7 @@ const Menu = () => {
                     <a href='/suppliers'>Fornecedores</a>
                   </li>
                 </S.List>
-                    :
+                    : permission == 6 ?
                     <S.List>
                   <li>
                     <BarChart />
@@ -154,6 +160,7 @@ const Menu = () => {
                     <a href='/materials'>Materiais</a>
                   </li>
                 </S.List>
+                  : null
               }
 
             </S.Navigation> : null

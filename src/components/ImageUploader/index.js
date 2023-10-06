@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import * as S from './style'
 function ImageUploader(props) {
   const [base64Image, setBase64Image] = useState('');
   const [value, setValue] = useState('');
@@ -24,14 +24,13 @@ function ImageUploader(props) {
   }, [props])
 
   return (
-    <div>
-      <label htmlFor="file-input" className="custom-file-label" style={{ borderRadius:'20px', border:'1px solid #115b4c', padding:'10px', marginRight:'10px' }}>
-        { 'Escolha uma imagem para seu perfil'}
-      </label>
-      <input  type="file" id="file-input" accept="image/*" onChange={handleFileInputChange} style={{ display: 'none' }} />
-      {console.log(base64Image)}
-      {base64Image && <img src={`data:image/jpeg;base64,${base64Image}`} alt="Imagem em base64" style={{ width: '50px', height: 'auto',marginRight:'10px', borderRadius:'50%' }}/>}
-    </div>
+    <S.ContainerMain>
+      {base64Image && <S.ImgPhoto src={`data:image/jpeg;base64,${base64Image}`} alt="Imagem em base64"/>}
+      <S.TitlePhoto htmlFor="file-input" className="custom-file-label">
+        { 'Altere a imagem desse perfil'}
+      </S.TitlePhoto>
+      <S.InputPhoto  type="file" id="file-input" accept="image/*" onChange={handleFileInputChange} />
+    </S.ContainerMain>
   );
 }
 

@@ -34,7 +34,7 @@ const PublicRoutes = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')))
-    setPermission(JSON.parse(localStorage.getItem('user')).Role.status)
+    setPermission(JSON.parse(localStorage.getItem('user'))?.Role.status)
   }, []);
 
   return (

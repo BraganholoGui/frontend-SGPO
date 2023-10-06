@@ -56,7 +56,7 @@ function HeaderInit() {
         <S.Profile>
           <S.VerticalHr></S.VerticalHr>
           <S.ContainerLogout>
-            {user.photo ? <img src={`data:image/jpeg;base64,${user.photo}`} onClick={() => setIsDropdownOpen(!isDropdownOpen)} alt={user.access_name} style={{ width: '50px', height: 'auto',marginRight:'10px', borderRadius:'50%' }} /> :
+            {user?.photo ? <img src={`data:image/jpeg;base64,${user.photo}`} onClick={() => setIsDropdownOpen(!isDropdownOpen)} alt={user.access_name} style={{ width: '50px', height: 'auto',marginRight:'10px', borderRadius:'50%' }} /> :
               <Person onClick={() => setIsDropdownOpen(!isDropdownOpen)} style={{ width: '50px', height: 'auto',marginRight:'10px', borderRadius:'50%' }} />
             }
             {isDropdownOpen && (

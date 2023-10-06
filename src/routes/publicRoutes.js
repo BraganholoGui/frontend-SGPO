@@ -7,6 +7,7 @@ const PrivateRoutes = () => {
   return (
     <BrowserRouter>
     <Switch>
+      <Route path="/login" component={Login} />
       <Route path="/" component={Login} />
     </Switch>
     </BrowserRouter>

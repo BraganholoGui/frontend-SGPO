@@ -10,7 +10,6 @@ import CreateGraph from './createGraph';
 import * as S from './style';
 import { CreatePieGraph } from './createPieGraph';
 import { CreateBarGraph } from './createBarGraph';
-import MinhaImagem from '../../static/Logo/amor.png';
 
 function StockList() {
   const [listProduct, setProductList] = useState([]);
@@ -218,7 +217,6 @@ function StockList() {
         </Container>
       </CBox>
       </ContainerMain>
-    {/* <img src={MinhaImagem} alt="Minha Imagem" /> */}
     </S.Container>
   )
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as S from './styles';
 import { useAuth } from '../../contexts/auth';
@@ -25,6 +25,14 @@ function Login() {
     }
   };
 
+  const { Logout } = useAuth();
+  async function handleLogout() {
+    await Logout();
+  }
+
+  // useEffect(() => {
+  //   Logout();
+  // }, []);
 
   return (
     <S.ContainerBody>

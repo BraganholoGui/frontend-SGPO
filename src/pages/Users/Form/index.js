@@ -143,6 +143,9 @@ function User() {
         <HeaderContent id={id} titleButton="Voltar" linkTo="/users" title={id == "novo" ? "Novo Usuário" : "Editar Usuário"} icon={<People fontSize="large" />} />
         <FormContent>
           <S.ContentBox>
+            <ImageUploader value={userProfile} setValue={setUserProfile} />
+          </S.ContentBox>
+          <S.ContentBox>
             <InputForm value={accessName} setValue={setAccessName} title="Nome de acesso" type='text' size="small"></InputForm>
             <InputForm value={name} setValue={setName} title="Nome" type='text' size="small"></InputForm>
             <InputForm value={email} setValue={setEmail} title="Email" type='email' size="small"></InputForm>
@@ -155,9 +158,6 @@ function User() {
               null
             }
             <InputForm options={roleOptions} selected={role} setSelected={setRole} value={role} setValue={setRole} title="Cargo" type='select' size="small"></InputForm>
-          </S.ContentBox>
-          <S.ContentBox>
-            <ImageUploader value={userProfile} setValue={setUserProfile} />
           </S.ContentBox>
           <ButtonForm url={url} obj={buildSubmitObj()} redefinePassword />
         </FormContent>
