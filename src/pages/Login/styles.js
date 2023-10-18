@@ -2,16 +2,23 @@ import styled from 'styled-components';
 import {Visibility, VisibilityOff} from '@mui/icons-material';
 
 export const ContainerBody = styled.div`
-background-image: linear-gradient(#115b4c, #b6edc8);
+background-image: linear-gradient(#b6edc8, #115b4c);
+/* background-image: linear-gradient(#115b4c, #b6edc8); */
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
 height:100vh;
 flex-direction: column;
 `;
+export const Title = styled.i`
+font-size: 25px;
+`;
 
 export const ContainerAll = styled.div`
-background-color:   rgb(255, 255, 255);
+/* background-color:   rgb(255, 255, 255, 0.5); */
+background: rgba(255, 255, 255, 0.1); /* Cor de fundo com transparência */
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+backdrop-filter: blur(5px); /* Aplica um desfoque ao fundo */
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -22,19 +29,24 @@ border-radius: 20px;
 border: 1px solid #000;
 box-shadow: 7px 10px 7px rgb(0 0 0 / 35%);
 padding: 5%;
+
 `;
 export const TitleLogin = styled.header`
 font-size: 28px;
 font-weight: 700;
 `;
 export const MainTitleLogin = styled.div`
-font-size: 28px;
+font-size: 25px;
 font-weight: 700;
-/* padding-bottom: 70px; */
+display:flex ;
+justify-content: center;
+align-items: center;
+padding: 30px 0;
+flex-direction: column;
 `;
 export const Line = styled.hr`
 width: 100%;
-padding-bottom: 50px;
+padding-bottom: 5px;
 `;
 export const ContainerForm = styled.div`
 width: 100%;
@@ -132,6 +144,46 @@ export const PasswordInput = styled.input`
     border-radius: 5px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
+
+export const Cube = styled.div`
+position: relative;
+width: 90px;
+height: 90px;
+transform-style: preserve-3d;
+font-size: 25px;
+transform: rotateX(30deg);
+animation: animate 4s linear infinite;
+background:linear-gradient(#151515, #4DFFC5);
+border-radius: 15px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+div{
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  border-radius: 15px;
+
+  span{
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(#151515, #4DFFC5);
+    transform: rotateY(calc(90deg * var(--i))) translateZ(30deg);
+    border-radius: 15px;
+  }
+}
+`; 
 
 export const PasswordToggle = styled.div`
   position: absolute;

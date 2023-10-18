@@ -31,8 +31,8 @@ export function CreatePieGraph(props) {
               label: 'Qtd',
               data: datas,
               backgroundColor: [
-                '#a47130',
-                '#d3b837',
+                '#32876d',
+                '#b6edc8',
                 'rgba(196, 90, 179, 0.6)',
                 'rgba(54, 162, 235, 0.6)',
                 'rgba(75, 192, 192, 0.6)',
@@ -41,7 +41,7 @@ export function CreatePieGraph(props) {
                 'rgba(255, 159, 64, 0.6)',
               ],
               borderColor: [
-                '#d3b837',
+                '#b6edc8',
                 '#fff',
                 'rgba(54, 162, 235, 1)',
                 'rgba(75, 192, 192, 1)',

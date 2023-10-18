@@ -37,8 +37,13 @@ function Login() {
   return (
     <S.ContainerBody>
       <S.MainTitleLogin>
-        SGPO - Login
+        <S.Cube >
+          <div>
+            <span style={{ "--i": 0 }}>SGPO</span>
+          </div>
+        </S.Cube>
       </S.MainTitleLogin>
+        <S.Title>Sistema de Gestão de Processos Operacionais</S.Title>
       <S.Line />
       <S.ContainerAll>
         <S.ContainerForm>
@@ -52,12 +57,12 @@ function Login() {
                 type='text'
                 onChange={(e) => {
                   setUserName(e.target.value)
-                }} 
+                }}
                 onKeyPress={handleKeyPress}
-                />
-                <S.Label>
-                  Senha:
-                </S.Label>
+              />
+              <S.Label>
+                Senha:
+              </S.Label>
               <S.StyledPasswordInput>
                 <S.PasswordInput
                   type={showPassword ? 'text' : 'password'}
@@ -69,7 +74,7 @@ function Login() {
                 />
                 <S.PasswordToggle onClick={togglePasswordVisibility}>
                   <S.PasswordIcon>
-                    {showPassword ? <S.PasswordEyeSlashIcon/> : <S.PasswordEyeIcon/>}
+                    {showPassword ? <S.PasswordEyeSlashIcon /> : <S.PasswordEyeIcon />}
                   </S.PasswordIcon>
                 </S.PasswordToggle>
               </S.StyledPasswordInput>
