@@ -11,6 +11,7 @@ import FormContent from '../../FormContent';
 import InputForm from '../InputForm';
 import ButtonForm from '../ButtonForm';
 import ButtonSave from '../ButtonSave';
+import Switch from "react-switch"
 
 function ButtonPassword(props) {
   const { id } = useParams();
@@ -23,6 +24,7 @@ function ButtonPassword(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordO, setShowPasswordO] = useState(false);
   const [showPasswordCO, setShowPasswordCO] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -33,17 +35,21 @@ function ButtonPassword(props) {
   const togglePasswordVisibilityCO = () => {
     setShowPasswordCO(!showPasswordCO);
   };
+  const toggleFotrgotPass = () => {
+    setForgotPassword(!forgotPassword);
+  };
 
   const toggle = () => setOpenModal(!openModal);
 
   async function handleSubmit() {
 
-    if(newPass != confirmNewPass) return toast('error', `Senhas incompatíveis`);
+    if (newPass != confirmNewPass) return toast('error', `Senhas incompatíveis`);
 
     let obj = {
       id,
       oldPassword: oldPass,
-      newPass
+      newPass,
+      forgotPassword: forgotPassword
     }
 
     setLoading(true)
@@ -76,15 +82,43 @@ function ButtonPassword(props) {
           <FormContent>
             <S.ContentBox>
               <S.ContainerForm>
+                <S.Title>Esqueceu a senha?</S.Title>
+                <Switch
+                  onChange={toggleFotrgotPass}
+                  checked={forgotPassword}
+                  onColor="#b6edc8"
+                  onHandleColor="#115b4c"
+                  offColor="#bac0bc"
+                  offHandleColor="#474949"
+                  handleDiameter={30}
+                  uncheckedIcon={false}
+                  checkedIcon={false}
+                  boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                  activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+
+                />
+              </S.ContainerForm>
+
+            </S.ContentBox>
+            <S.ContentBox>
+              <S.ContainerForm>
                 <S.Title>Senha antiga</S.Title>
                 <S.StyledPasswordInput>
-                  <S.PasswordInput
-                    type={showPassword ? 'text' : 'password'}
-                    value={oldPass}
-                    onChange={(e) => {
-                      setOldPass(e.target.value)
-                    }}
-                  />
+                  {forgotPassword ?
+                    <S.PasswordInputBlock
+                      readOnly
+                      type={showPassword ? 'text' : 'password'}
+                    />
+
+                    :
+                    <S.PasswordInput
+                      type={showPassword ? 'text' : 'password'}
+                      value={oldPass}
+                      onChange={(e) => {
+                        setOldPass(e.target.value)
+                      }}
+                    />
+                  }
                   <S.PasswordToggle onClick={togglePasswordVisibility}>
                     <S.PasswordIcon>
                       {showPassword ? <S.PasswordEyeSlashIcon /> : <S.PasswordEyeIcon />}
@@ -116,7 +150,7 @@ function ButtonPassword(props) {
             </S.ContentBox>
             <S.ContentBox>
               <S.ContainerForm>
-                <S.Title>Nova senha</S.Title>
+                <S.Title>Confimre a nova senha</S.Title>
                 <S.StyledPasswordInput>
                   <S.PasswordInput
                     type={showPasswordCO ? 'text' : 'password'}
