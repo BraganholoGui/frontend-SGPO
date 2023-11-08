@@ -12,6 +12,10 @@ flex-direction: column;
 `;
 export const Title = styled.i`
 font-size: 25px;
+display:flex ;
+justify-content: center;
+align-items: center;
+text-align: center;
 `;
 
 export const ContainerAll = styled.div`
