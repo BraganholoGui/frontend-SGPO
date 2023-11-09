@@ -77,7 +77,7 @@ function Sale() {
         }
       });
 
-      get(`/status`)
+    get(`/status`)
       .then(async response => {
         if (response && response.records) {
           response.records = response.records.filter(item => !item.id_permission);
@@ -88,7 +88,7 @@ function Sale() {
           setStatusOptions(response.records);
           if (data && data.Status) {
             setStatusSelected(response.records.find(item => item.id == data.status))
-            if(data.status == 3){
+            if (data.status == 3) {
               setCompleted(true)
             }
           }
@@ -140,7 +140,13 @@ function Sale() {
             <InputForm readOnly={completed} options={productOptions} selected={productSelected} setSelected={setProductSelected} value={productSelected} setValue={setProductSelected} title="Produto" type='select' size="small"></InputForm>
             <InputForm readOnly={completed} options={buyerOptions} selected={buyerSelected} setSelected={setBuyerSelected} value={buyerSelected} setValue={setBuyerSelected} title="Comprador" type='select' size="small"></InputForm>
           </S.ContentBox>
-          <ButtonForm url={url} obj={buildSubmitObj()} completed={completed}/>
+          <S.DivQtdProduct>
+            <S.Title>{console.log(productSelected)}
+              Quantidade Atual do Produto:{productSelected?.quantity ? productSelected?.quantity :  0}
+
+            </S.Title>
+          </S.DivQtdProduct>
+          <ButtonForm url={url} obj={buildSubmitObj()} completed={completed} />
         </FormContent>
       </S.Container>
     </>

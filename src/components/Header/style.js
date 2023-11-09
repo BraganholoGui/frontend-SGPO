@@ -16,11 +16,15 @@ export const Title = styled.div`
   justify-content: center;
   align-items: center;
   color: #fff;
-  margin-left: 300px;
+  margin-right: 20px;
+  margin-left: 280px;
   font-size: 3vh;
-  @media (max-width: 1400px) {
-     width: 70%;
+  @media (max-width: 768px) {
+     width: 80%;
      font-size: 2.5vh;
+     margin-left: 0px;
+     margin-right: 10px;
+   
   }
 `;
 export const Profile = styled.div`
@@ -35,9 +39,10 @@ export const Profile = styled.div`
 cursor: pointer;
 
   }
-  @media (max-width: 1400px) {
+  @media (max-width: 768px) {
      width: 30%;
      font-size: 2.5vh;
+     padding-right: 0px;
   }
 `;
 export const ProfileInfo = styled.div`
@@ -93,10 +98,13 @@ export const ContainerLogout = styled.div`
 export const DivLogo = styled.div`
 display:flex;
 flex-direction:column; 
+justify-content: center;
+align-items: center;
 cursor:pointer;
 height: 4rem;
-background-color: #000;
+/* background:linear-gradient(#4DFFC5, #151515); */
 padding: 7px;
+border-radius: 21% 79% 22% 78% / 100% 0% 100% 0%   ;
 @media (max-width: 650px) {
   display:none
 }
@@ -113,7 +121,7 @@ min-height: 50px;
 min-width: 60px;
 color: #4DFFC5;
 font-size: 30px;
-
+border-radius: 20% 0 0 20%;
 `; 
 export const SlLogo = styled.div`
 color: #4DFFC5;
@@ -134,9 +142,11 @@ export const FullNameLogo = styled.div`
 display:flex;
 justify-content: flex-start;
 align-items: center;
-font-size: 18px;
+font-size: 22px;
 height: 50%;
-width: 100%;
+font-weight: bold;
+text-shadow: 4px 4px black;
+cursor: pointer;
 `; 
 export const Cube = styled.div`
 position: relative;
@@ -173,6 +183,8 @@ div{
     background:linear-gradient(#151515, #4DFFC5);
     transform: rotateY(calc(90deg * var(--i))) translateZ(30deg);
     border-radius: 15px;
+    font-weight: bold;
+text-shadow: 3px 3px black;
   }
 }
 `; 

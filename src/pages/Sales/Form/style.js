@@ -15,3 +15,16 @@ export const ContentBox = styled.div`
   }
  
 `; 
+
+export const DivQtdProduct = styled.div`
+  width: 100%;
+  display:flex ;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+ 
+`; 
+export const Title = styled.label`
+font-family: Monospace;
+font-weight: 900;
+`; 
