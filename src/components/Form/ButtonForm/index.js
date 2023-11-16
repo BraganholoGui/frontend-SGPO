@@ -28,7 +28,7 @@ function ButtonForm(props) {
           :
           <S.Box>
             {
-              props.redefinePassword ? 
+              props.redefinePassword && id != "novo" ? 
               <ButtonPassword/> : null
             }
             {

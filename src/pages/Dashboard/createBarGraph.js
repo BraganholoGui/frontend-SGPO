@@ -72,10 +72,11 @@ export function CreateBarGraph(props) {
         {
           label: 'Qtd',
           data: labels?.map((item, index) => datasetsAux[index]),
-          backgroundColor: ['#b6edc8',
-          '#32876d',],
-          borderColor: ['#32876d',
-          '#fff',],
+          backgroundColor: ['#042A2B','#2f5449','#4b7468', '#4c8977','#4ea289','#78aa9c', '#93b9ae', '#b6e5d2'
+          ],
+          borderColor: ['#fff',
+          ],
+          borderRadius:'20px',
           maxHeight: '10px',
           height: '10px',
         },

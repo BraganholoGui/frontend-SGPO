@@ -125,7 +125,7 @@ function CreateGraph() {
   }
 
   return (
-    <div>
+    <div style={{ width: '70%', }}>
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '2% 0' }}>
         <input type="file" onChange={handleFileChange}  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
       </div>
