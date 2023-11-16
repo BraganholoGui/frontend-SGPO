@@ -86,13 +86,13 @@ function EditDelete(props) {
           <S.Button onClick={() => deleteForm(url, id)}><DeleteTwoTone color='warning'></DeleteTwoTone></S.Button>
         </>
         : null }
-          {alert ? <ErrorTwoTone style={{ cursor: 'pointer' }} onClick={() => toast('warning', `Quantidade baixa!`)} /> : null}
+          {alert ? <ErrorTwoTone style={{ cursor: 'pointer' }} onClick={() => toast('warning', `Quantidade baixa!`)} /> :   <CheckCircleTwoTone style={{ cursor: 'pointer', color: 'green' }} onClick={() => toast('success', `Compra Finalizada!`)} />}
         </>
         :
         <S.Completed>
           <a href={`${url}/${id}`}><Reviews style={{ color: 'green' }}></Reviews></a>
           {/* <Reviews style={{ color: 'green' }} onClick={() => props.toggle(url, id)}></Reviews> */}
-          <CheckCircleTwoTone style={{ cursor: 'pointer', color: 'green' }} onClick={() => toast('success', `Compra Finalizada!`)} />
+          <CheckCircleTwoTone style={{ cursor: 'pointer', color: 'green' }} onClick={() => toast('success', `Quantidade estável!`)} />
         </S.Completed>
       }
       {
